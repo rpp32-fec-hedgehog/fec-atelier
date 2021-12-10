@@ -1,4 +1,4 @@
-// Save actual config file as a .env
+// IMPORTANT: Save actual config file as a .env
 
 // Put your parse application keys here!
 $.ajaxPrefilter(function (settings, _, jqXHR) {
@@ -6,4 +6,4 @@ $.ajaxPrefilter(function (settings, _, jqXHR) {
 });
 
 // Put your campus prefix here
-window.CAMPUS = 'hr-rpp';
+window.CAMPUS = 'hr-rpp32';
