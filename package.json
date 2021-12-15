@@ -6,6 +6,8 @@
   "scripts": {
     "test": "mocha tests/Overview/test.Overview.js",
     "react-dev": "webpack --config webpack.config.js -w",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "react-dev": "webpack --watch",
     "start": "npx nodemon server/index.js"
   },
   "repository": {
@@ -20,6 +22,7 @@
   "homepage": "https://github.com/rpp32-fec-hedgehog/fec-atelier#readme",
   "devDependencies": {
     "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.5",
     "@babel/preset-react": "^7.16.0",
     "babel-loader": "^8.2.3",
     "chai": "^4.3.4",
