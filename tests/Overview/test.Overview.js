@@ -2,15 +2,16 @@ const chai = require('chai')
 const assert = chai.assert;
 const axios = require('axios');
 let server = require('../testServer.js')
-
-
 expect = chai.expect;
 should = chai.should();
+
+
+// require('dotenv').config();
 // import file(s) needed
 
-// import getProductDataByItem from ('../../utils/apiCalls.js');
 const getProductDataByItem = require('../../utils/apiCalls.js').getProductDataByItem;
 
+// console.log(process.env)
 
 describe('Overview', function() {
 
@@ -23,6 +24,14 @@ describe('Overview', function() {
     })
 
   })
+
+  // before each here to grab API data
+
+  // getProductDataByItem(59560)
+  // .then((result) => {
+  //   // console.log(result.data);
+  //   expect(result.data.name).to.equal('YEasy')
+  // })
 
   describe('Gather API data', function() {
 
