@@ -1,4 +1,4 @@
-import axios from 'axios';
+//import axios from 'axios';
 //changed mine to js as I wanted to use the linter and added it to my gitignore. I can change back to env if that is needed.
 import GITHUB_API_TOKEN from '.././env/config.js';
 
@@ -15,14 +15,14 @@ let getReviewsByItem = function(productId) {
     headers: headerVals
   };
 
-  axios(options)
-    .then((response) => {
-      callback(null, response.data);
-    })
-    .catch((error) => {
-      callback(error.message);
-    })
-}
+//   axios(options)
+//     .then((response) => {
+//       callback(null, response.data);
+//     })
+//     .catch((error) => {
+//       callback(error.message);
+//     })
+// }
 
 let getReviewsMetaByItem = function(productId) {
   let headerVals = {
@@ -34,14 +34,14 @@ let getReviewsMetaByItem = function(productId) {
     headers: headerVals
   };
 
-  axios(options)
-    .then((response) => {
-      callback(null, response.data);
-    })
-    .catch((error) => {
-      callback(error.message);
-    })
-}
+//   axios(options)
+//     .then((response) => {
+//       callback(null, response.data);
+//     })
+//     .catch((error) => {
+//       callback(error.message);
+//     })
+// }
 
 module.exports = {
   getReviewsByItem,
