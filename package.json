@@ -4,7 +4,7 @@
   "description": "FEC Capstone Project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha tests/Overview/test.Overview.js",
     "react-dev": "webpack --config webpack.config.js -w",
     "start": "npx nodemon server/index.js"
   },
