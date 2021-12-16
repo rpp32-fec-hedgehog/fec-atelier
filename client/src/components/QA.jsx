@@ -13,10 +13,9 @@ class QA extends React.Component {
       url: '/qa/questions',
       method: 'GET',
       success: (data) => {
-        console.log('Server GET Success ', DATA);
+        console.log('Server GET Success ', data);
       }
     })
-    console.log('something');
   }
 
   render() {
