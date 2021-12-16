@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import $ from 'jquery';
 
+import QASearch from './QASearch.jsx';
+
 class QA extends React.Component {
   constructor(props) {
     super(props);
@@ -9,6 +11,18 @@ class QA extends React.Component {
       questions: [],
       searchText: ''
     };
+  }
+
+  searchHandler (e) {
+    e.preventDefault();
+
+    // update state with search text
+    let text = e.target.value;
+    this.setState({
+      questions: this.state.questions,
+      //questions to be changed, should update on text change
+      searchText: text
+    })
   }
 
   componentDidMount() {
@@ -24,7 +38,7 @@ class QA extends React.Component {
   render() {
     return (
       <div>
-        Put your components here
+        <QASearch searchHandler={this.searchHandler.bind(this)}/>
       </div>
     )
   }
