@@ -14,7 +14,7 @@ app.use(express.urlencoded({extended: true}));
 // })
 
 app.get('/qa/questions', function(req, res) {
-  res.end();
+  res.send('DATA');
 })
 
 app.listen(port, () => {
