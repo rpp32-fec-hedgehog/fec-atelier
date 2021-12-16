@@ -26,4 +26,4 @@ class Ratings extends React.Component {
 
 
 
-export default Practice;
+export default Ratings;
