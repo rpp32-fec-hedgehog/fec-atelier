@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { getProductDataByItem } from '../../.././utils/apiCalls.js';
+import { getProductDataByItem } from '../../../../utils/apiCalls.js';
+
 
 class Overview extends React.Component {
   constructor(props) {
@@ -9,8 +10,6 @@ class Overview extends React.Component {
       overviewStuff: ''
     }
   }
-
-
 
   render() {
     return (
