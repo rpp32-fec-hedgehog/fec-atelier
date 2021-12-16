@@ -5,7 +5,10 @@ import $ from 'jquery';
 class QA extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      questions: [],
+      searchText: ''
+    };
   }
 
   componentDidMount() {
