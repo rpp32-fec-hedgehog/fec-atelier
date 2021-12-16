@@ -7,10 +7,9 @@ app.use(express.static('../client/dist'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.get('/', function(req, res) {
-  res.status(200);
-  res.end;
-})
+// app.get('/', function(req, res) {
+//   res.status(200).send('from the server');
+// })
 
 app.listen(port, () => {
   console.log('Listening on port 3000');

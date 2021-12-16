@@ -20,6 +20,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <h1>Atelier</h1>
         <div className="overview">
           <Overview itemid={this.state.item_id} />
         </div>
