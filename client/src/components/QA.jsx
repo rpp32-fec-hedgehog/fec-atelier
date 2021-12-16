@@ -39,6 +39,7 @@ class QA extends React.Component {
   render() {
     return (
       <div>
+        <h4>Questions and Answers</h4>
         <QASearch searchHandler={this.searchHandler.bind(this)}/>
         <QAView questions={this.state.questions} />
       </div>
