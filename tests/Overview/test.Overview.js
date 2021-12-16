@@ -10,6 +10,7 @@ should = chai.should();
 // import file(s) needed
 
 const getProductDataByItem = require('../../utils/apiCalls.js').getProductDataByItem;
+const getProductStylesByItem = require('../../utils/apiCalls.js').getProductStylesByItem;
 
 // console.log(process.env)
 
