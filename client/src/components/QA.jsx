@@ -3,6 +3,7 @@ import ReactDom from 'react-dom';
 import $ from 'jquery';
 
 import QASearch from './QASearch.jsx';
+import QAView from './QAView.jsx';
 
 class QA extends React.Component {
   constructor(props) {
@@ -39,6 +40,7 @@ class QA extends React.Component {
     return (
       <div>
         <QASearch searchHandler={this.searchHandler.bind(this)}/>
+        <QAView questions={this.state.questions} />
       </div>
     )
   }
