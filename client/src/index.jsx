@@ -15,7 +15,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log('something');
   }
 
   render() {
