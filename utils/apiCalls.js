@@ -55,10 +55,31 @@ const getProductStylesByItem = (product_id) => {
   })
 }
 
-
+/*
+====================================================================================
+=================== satisfies data needed for AddToCart components =================
+====================================================================================
+*/
+const addProductToCart = (sku_id) => {
+  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/cart`;
+  axios.post(endpoint, {
+    headers : {
+      "Authorization" : // put API key from .env here
+    },
+    'sku_id' : sku_id
+  })
+  .then((results) => {
+    return `Item successfully added to the cart`;
+  })
+  .catch((err) => {
+    console.log(`Error fetching the product data ${err}`)
+  })
+}
 
 module.exports.getProductDataByItem = getProductDataByItem;
+module.exports.getReviewsMetaByItem = getReviewsMetaByItem;
 module.exports.getProductStylesByItem = getProductStylesByItem;
+module.exports.addProductToCart = addProductToCart;
 //import axios from 'axios';
 
 //changed mine to js as I wanted to use the linter and added it to my gitignore. I can change back to env if that is needed.
