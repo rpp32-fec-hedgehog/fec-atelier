@@ -14,6 +14,9 @@ app.use(express.urlencoded({extended: true}));
 // })
 
 app.get('/qa/questions', function(req, res) {
+  // const getProductQuestionData = require('../utils/apiCalls');
+  // console.log(getProductQuestionData());
+
   res.send();
 })
 
