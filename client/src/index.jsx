@@ -13,7 +13,8 @@ class App extends React.Component {
     };
   }
 
-    componentDidMount() {
+  componentDidMount() {
+    console.log('something');
   }
 
   render() {
