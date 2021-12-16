@@ -13,6 +13,10 @@ app.use(express.urlencoded({extended: true}));
 //   res.end();
 // })
 
+app.get('/qa/questions', function(req, res) {
+  res.end();
+})
+
 app.listen(port, () => {
   console.log('Listening on port 3000');
 });

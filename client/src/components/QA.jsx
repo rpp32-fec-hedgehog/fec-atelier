@@ -9,13 +9,13 @@ class QA extends React.Component {
   }
 
   componentDidMount() {
-    // $.ajax({
-    //   url: '/qa/questions/product_id=1',
-    //   method: 'GET',
-    //   success: (data) => {
-    //     console.log('Server GET Success ', DATA);
-    //   }
-    // })
+    $.ajax({
+      url: '/qa/questions',
+      method: 'GET',
+      success: (data) => {
+        console.log('Server GET Success ', DATA);
+      }
+    })
     console.log('something');
   }
 

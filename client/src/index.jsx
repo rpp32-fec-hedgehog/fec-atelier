@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 //import axios from 'axios';
 
+import QA from './components/QA.jsx';
 import Ratings from './components/Ratings.jsx';
 
 class App extends React.Component {
