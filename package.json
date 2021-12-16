@@ -4,8 +4,8 @@
   "description": "FEC Capstone Project",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests/Overview/test.Overview.js",
-    "react-dev": "webpack --watch",
+    "test-qa": "mocha tests/QA/test.QA.js",
+    "react-dev": "webpack --config webpack.config.js -w",
     "start": "npx nodemon server/index.js"
   },
   "repository": {
