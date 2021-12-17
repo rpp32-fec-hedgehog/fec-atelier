@@ -1,7 +1,15 @@
 const axios = require('axios');
-// let server = require('./testServer.js')
+const server = require('./testIndex.js');
 
 const getProductDataByItem = require('../utils/apiCalls.js').getProductDataByItem;
+
+// beforeAll((done) => {
+//   done();
+// })
+
+// afterAll((done) => {
+//   done();
+// })
 
 // ========== Overview ========== //
 describe('Overview', function() {
