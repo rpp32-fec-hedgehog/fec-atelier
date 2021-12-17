@@ -3,10 +3,10 @@ import React from 'react';
 
 class ImageGallery extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       productInfoStuff: ''
-    }
+    };
   }
 
   render() {

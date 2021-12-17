@@ -3,10 +3,10 @@ import React from 'react';
 
 class ProductInfo extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       productInfoStuff: ''
-    }
+    };
   }
 
   render() {

@@ -10,10 +10,10 @@ import { getProductDataByItem } from '../../../../utils/apiCalls.js';
 
 class Overview extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       overviewStuff: ''
-    }
+    };
   }
 
   render() {
@@ -26,11 +26,9 @@ class Overview extends React.Component {
           <AddToCart product_id={this.props.itemid} />
           <ImageGallery product_id={this.props.itemid} />
         </div>
-
       </div>
     )
   }
 }
 
 export default Overview;
-
