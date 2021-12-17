@@ -1,9 +1,8 @@
 import React from 'react';
-import ReactDom from 'react-dom';
 import $ from 'jquery';
 
-import QASearch from './QASearch.jsx';
-import QAView from './QAView.jsx';
+import QASearch from './components/QASearch.jsx';
+import QAView from './components/QAView.jsx';
 
 class QA extends React.Component {
   constructor(props) {
