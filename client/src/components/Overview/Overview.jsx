@@ -19,7 +19,7 @@ class Overview extends React.Component {
       .then((result) => {
         this.setState({
           productData : result.data
-        })
+        });
       })
       .catch((err) => {
         console.error(err);
@@ -27,7 +27,9 @@ class Overview extends React.Component {
 
     axios.get(`products/${this.props.itemid}/styles`)
       .then((result) => {
-        console.log(result.data)
+        this.setState({
+          styleData : result.data
+        });
       })
       .catch((err) => {
         console.error(err);

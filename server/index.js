@@ -20,6 +20,13 @@ app.get('/products/:product_id', (req, res) => {
   })
 })
 
+app.get('/products/:product_id/styles', (req, res) => {
+  let product = req.params.product_id;
+  apiCalls.getProductStylesByItem(product, (styleData) => {
+    res.send(styleData);
+  })
+})
+
 app.listen(port, () => {
   console.log('Listening on port 3000');
 });
