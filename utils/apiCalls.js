@@ -1,5 +1,5 @@
 const axios = require('axios');
-import GITHUB_API_TOKEN from '.././env/config.js';
+const GITHUB_API_TOKEN = require('.././env/config.js');
 // const API_KEY = require('../env/dwightApiKey.js').API_KEY
 
 const getProductDataByItem = (product_id) => {
@@ -43,7 +43,7 @@ const getReviewsMetaByItem = (product_id) => {
 
 //module.exports.getProductDataByItem = getProductDataByItem;
 
-export {
+module.exports = {
   getProductDataByItem,
   getReviewsByItem,
   getReviewsMetaByItem
