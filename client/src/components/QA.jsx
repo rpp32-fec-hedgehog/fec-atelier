@@ -31,7 +31,7 @@ class QA extends React.Component {
       url: '/qa/questions/'.concat(this.props.itemid),
       method: 'GET',
       success: (data) => {
-        console.log('Server GET Success ', data);
+        // console.log('Server GET Success ', data);
       }
     })
   }
