@@ -1,6 +1,7 @@
 import React from 'react';
 import { getReviewsByItem, getReviewsMetaByItem } from '../../../.././utils/apiCalls.js';
 import RatingsList from './components/RatingsList.jsx';
+import axios from 'axios';
 
 class Ratings extends React.Component {
   constructor(props) {
@@ -47,6 +48,7 @@ class Ratings extends React.Component {
     return (
       <div>
         <h1>Ratings</h1>
+        <RatingsList ratings={this.state.ratings}></RatingsList>
       </div>
     );
   }
