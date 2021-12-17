@@ -27,6 +27,13 @@ app.get('/products/:product_id/styles', (req, res) => {
   })
 })
 
+app.post('/reviews/meta', (req, res) => {
+  let product = req.body.data.product_id;
+  apiCalls.getReviewsMetaByItem(product, (reviewsData) => {
+    res.send(reviewsData);
+  })
+})
+
 app.listen(port, () => {
   console.log('Listening on port 3000');
 });

@@ -19,18 +19,18 @@ const getProductDataByItem = (product_id, callback) => {
     callback(err);
   })
 }
-const getReviewsMetaByItem = (product_id) => {
-  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${productId}`;
+const getReviewsMetaByItem = (product_id, callback) => {
+  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${product_id}`;
   axios.get(endpoint, {
     headers : {
-      // "Authorization" : // put API key from .env here
+      "Authorization" : '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'
     }
   })
   .then((results) => {
-    return results.data;
+    callback(results.data);
   })
   .catch((err) => {
-    console.log(`Error fetching the product data ${err}`)
+    callback(err);
   })
 }
 

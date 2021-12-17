@@ -10,7 +10,8 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      overviewStuff: ''
+      productData : '',
+      styleData : ''
     };
   }
 
@@ -41,10 +42,10 @@ class Overview extends React.Component {
       <div>
         <div>
           <h1>Overview Widget Here</h1>
-          <ProductInfo product_id={this.props.itemid}/>
-          <StyleSelector product_id={this.props.itemid} />
-          <AddToCart product_id={this.props.itemid} />
-          <ImageGallery product_id={this.props.itemid} />
+          <ProductInfo itemid={this.props.itemid} productData={this.state.productData}/>
+          <StyleSelector itemid={this.props.itemid} />
+          <AddToCart itemid={this.props.itemid} />
+          <ImageGallery itemid={this.props.itemid} />
         </div>
       </div>
     )
