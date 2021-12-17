@@ -31,6 +31,10 @@ class QA extends React.Component {
       method: 'GET',
       success: (data) => {
         // console.log('Server GET Success ', data);
+        this.setState({
+          questions: data.results,
+          searchText: this.state.searchText
+        })
       }
     })
   }
