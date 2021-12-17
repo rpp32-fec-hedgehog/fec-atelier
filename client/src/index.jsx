@@ -21,7 +21,7 @@ class App extends React.Component {
     return (
       <div>
         <div className="main">
-          <QA itemid={this.state.item_id} />
+          <QA itemid={59553} />
           <Ratings itemid={this.state.item_id} />
         </div>
       </div>
