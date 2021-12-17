@@ -22,14 +22,16 @@ class Overview extends React.Component {
         })
       })
       .catch((err) => {
-        alert(err);
+        console.error(err);
       })
 
-    // axios.get(`products/${this.props.itemid}/styles`)
-    //   .then((result) => {
-    //     console.log(result.data)
-    //   })
-
+    axios.get(`products/${this.props.itemid}/styles`)
+      .then((result) => {
+        console.log(result.data)
+      })
+      .catch((err) => {
+        console.error(err);
+      })
   }
 
   render() {
