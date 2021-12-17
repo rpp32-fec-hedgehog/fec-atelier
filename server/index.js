@@ -8,17 +8,26 @@ app.use(express.static(path.join(__dirname, '..', '/client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-// app.get('/', function(req, res) {
-//   res.status(200);
-//   res.end();
-// })
+// ========== Shared ========== //
 
-app.get('/qa/questions', function(req, res) {
-  // const getProductQuestionData = require('../utils/apiCalls');
-  // console.log(getProductQuestionData());
+// ========== Overview ========== //
 
-  res.send();
+// ========== Related Products ========== //
+
+// ========== Questions & Answers ========== //
+
+app.get('/qa/questions/:product_id', function(req, res) {
+  const apiCalls = require('../utils/apiCalls.js');
+  let product = req.params.product_id;
+
+  apiCalls.getProductQuestionData(product, (questions) => {
+    res.send(questions);
+  })
 })
+
+// ========== Ratings & Reviews ========== //
+
+// ========== Server Listen ========== //
 
 app.listen(port, () => {
   console.log('Listening on port 3000');
