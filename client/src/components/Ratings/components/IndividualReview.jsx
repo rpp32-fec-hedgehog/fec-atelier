@@ -1,9 +1,9 @@
 import React from 'react';
 
 const IndividualReview = (props) => {
-
-    const id = props.rating.review_id;
-    const summary = props.rating.summary;
+  console.log('individual items in individual review: ', props);
+    //const id = props.rating.review_id;
+    const summary = props.summary;
 
     return (
       <li>

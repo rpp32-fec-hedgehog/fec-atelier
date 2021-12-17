@@ -32,7 +32,11 @@ class Ratings extends React.Component {
 
   getAllReviews(item_id, callback) {
     //open to making this call elsewhere and importing. Just trying to get data flowing.
-    axios.get('/ratings')
+    axios.get('/ratings', {
+      headers : {
+        "item_id" : item_id
+      }
+    })
       .then((response) => {
         console.log('ratings list in client from axios: ', response.data);
         //this.setState({ratings: response.data})

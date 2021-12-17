@@ -14,14 +14,14 @@ const getProductDataByItem = (product_id) => {
   })
 }
 
-const getReviewsByItem = (product_id) => {
-  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${product_id}`;
+const getReviewsByItem = (product_id, callback) => {
+  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${product_id}`;
   return axios.get(endpoint, {
     headers : {
       "Authorization" : GITHUB_API_TOKEN,
       count: 20,
       //I'll need to take this in as a param in the future
-      sort: newest
+      sort: 'newest'
     }
   })
   .catch((err) => {
@@ -30,7 +30,7 @@ const getReviewsByItem = (product_id) => {
 }
 
 const getReviewsMetaByItem = (product_id) => {
-  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${product_id}`;
+  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${product_id}`;
   return axios.get(endpoint, {
     headers : {
       "Authorization" : GITHUB_API_TOKEN
