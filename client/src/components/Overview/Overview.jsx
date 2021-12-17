@@ -24,7 +24,7 @@ class Overview extends React.Component {
       })
       .catch((err) => {
         console.error(err);
-      })
+      });
 
     axios.get(`products/${this.props.itemid}/styles`)
       .then((result) => {
@@ -34,7 +34,7 @@ class Overview extends React.Component {
       })
       .catch((err) => {
         console.error(err);
-      })
+      });
   }
 
   render() {
@@ -43,8 +43,8 @@ class Overview extends React.Component {
         <div>
           <h1>Overview Widget Here</h1>
           <ProductInfo itemid={this.props.itemid} productData={this.state.productData}/>
-          <StyleSelector itemid={this.props.itemid} />
-          <AddToCart itemid={this.props.itemid} />
+          <StyleSelector styleData={this.state.styleData} />
+          <AddToCart styleData={this.state.styleData} />
           <ImageGallery styleData={this.state.styleData}/>
         </div>
       </div>

@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, '..', '/client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-
+// Overview routes to be added
 app.get('/products/:product_id', (req, res) => {
   let product = req.params.product_id;
   apiCalls.getProductDataByItem(product, (data) => {

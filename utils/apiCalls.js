@@ -60,7 +60,7 @@ const getProductStylesByItem = (product_id, callback) => {
 =================== satisfies data needed for AddToCart components =================
 ====================================================================================
 */
-const addProductToCart = (sku_id) => {
+const addProductToCart = (sku_id, callback) => {
   let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/cart`;
   axios.post(endpoint, {
     headers : {
@@ -69,10 +69,10 @@ const addProductToCart = (sku_id) => {
     'sku_id' : sku_id
   })
   .then((results) => {
-    return `Item successfully added to the cart`;
+    callback();
   })
   .catch((err) => {
-    console.log(`Error fetching the product data ${err}`)
+    callback(err)
   })
 }
 
