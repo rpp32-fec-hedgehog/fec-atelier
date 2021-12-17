@@ -45,7 +45,7 @@ class Overview extends React.Component {
           <ProductInfo itemid={this.props.itemid} productData={this.state.productData}/>
           <StyleSelector itemid={this.props.itemid} />
           <AddToCart itemid={this.props.itemid} />
-          <ImageGallery itemid={this.props.itemid} />
+          <ImageGallery styleData={this.state.styleData}/>
         </div>
       </div>
     )
