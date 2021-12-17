@@ -8,7 +8,7 @@ class Ratings extends React.Component {
     super(props);
     this.state = {
       item_id: '',
-      ratings: []
+      ratings: [{review_id: 1, summary: 'summary1'}, {review_id: 2, summary: 'summary2'}] //very fake data here
     };
     this.getAllReviews = this.getAllReviews.bind(this);
   }
@@ -35,8 +35,8 @@ class Ratings extends React.Component {
     axios.get('/ratings')
       .then((response) => {
         console.log('ratings list in client from axios: ', response.data);
-        this.setState({ratings: response.data})
-        callback(null, response.data);
+        //this.setState({ratings: response.data})
+        //callback(null, response.data);
       })
       .catch((error) => {
         callback(error);
