@@ -44,15 +44,39 @@ describe('Overview', function() {
 
 // ========== Related Products ========== //
 describe('Related Products', function() {
+  describe('SUB-SECTION EXAMPLE', function() {
 
+    test('TEST EXAMPLE', function() {
+      var testsWorking = true;
+
+      expect(testsWorking).toBe(true);
+    })
+
+  })
 })
 
 // ========== Questions & Answers ========== //
 describe('Questions & Answers', function() {
+  describe('SUB-SECTION EXAMPLE', function () {
 
+    test('TEST EXAMPLE', function () {
+      var testsWorking = true;
+
+      expect(testsWorking).toBe(true);
+    })
+
+  })
 })
 
 // ========== Ratings & Reviews ========== //
 describe('Ratings & Reviews', function() {
+  describe('SUB-SECTION EXAMPLE', function () {
 
+    test('TEST EXAMPLE', function () {
+      var testsWorking = true;
+
+      expect(testsWorking).toBe(true);
+    })
+
+  })
 })
