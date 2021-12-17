@@ -14,20 +14,18 @@ app.use(express.urlencoded({extended: true}));
 app.get('/ratings', function(req, res, next) {
   console.log('server recieves review item number from client: ', req.headers.item_id);
 
-  getReviewsByItem(req.headers.item_id, (err, result) => {
+  getReviewsByItem(req.headers.item_id, (err, results) => {
     if (err) {
       console.log('server reports error retriving reviews: ', err);
-      res.status(401); //what's an easy way to grab this?
+      res.status(res.status);
       res.end();
 
     } else {
-      console.log('server reports review data from api: ', result);
+      console.log('server reports review data from api: ', results.data.results);
       res.status(200);
-      res.end();
+      res.end(JSON.stringify(results.data.results));
     }
   })
-
-
 })
 
 app.listen(port, () => {

@@ -10,7 +10,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      item_id: '59553' //might as well have an item in initial state
+      item_id: '59556' //might as well have an item in initial state
     };
   }
 
