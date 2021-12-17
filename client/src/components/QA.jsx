@@ -28,7 +28,7 @@ class QA extends React.Component {
 
   componentDidMount() {
     $.ajax({
-      url: '/qa/questions',
+      url: '/qa/questions/'.concat(this.props.itemid),
       method: 'GET',
       success: (data) => {
         console.log('Server GET Success ', data);
