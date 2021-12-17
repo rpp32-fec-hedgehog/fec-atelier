@@ -22,7 +22,7 @@ class App extends React.Component {
       <div>
         <h1>Atelier</h1>
         <div className="overview">
-          <Overview itemid={this.state.item_id} />
+          <Overview itemid={59553} />
         </div>
         <div className="main">
           <Ratings itemid={this.state.item_id} />

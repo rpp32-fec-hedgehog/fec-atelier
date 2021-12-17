@@ -5,18 +5,18 @@ const axios = require('axios');
 =============   satisfies data needed for ProductInfo component  ================
 =================================================================================
 */
-const getProductDataByItem = (product_id) => {
+const getProductDataByItem = (product_id, callback) => {
   let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${product_id}`;
-  axios.get(endpoint, {
+  return axios.get(endpoint, {
     headers : {
-      // "Authorization" : // put API key from .env here
+      "Authorization" : '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'
     }
   })
   .then((results) => {
-    return results.data;
+    callback(results.data);
   })
   .catch((err) => {
-    console.log(`Error fetching the product data ${err}`)
+    callback(err);
   })
 }
 const getReviewsMetaByItem = (product_id) => {

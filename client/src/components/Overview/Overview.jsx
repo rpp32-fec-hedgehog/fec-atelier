@@ -1,12 +1,10 @@
 import React from 'react';
+import axios from 'axios';
 
-import ProductInfo from './components/ProductInfo.jsx'
-import StyleSelector from './components/StyleSelector.jsx'
-import AddToCart from './components/AddToCart.jsx'
-import ImageGallery from './components/ImageGallery.jsx'
-
-import { getProductDataByItem } from '../../../../utils/apiCalls.js';
-
+import ProductInfo from './components/ProductInfo.jsx';
+import StyleSelector from './components/StyleSelector.jsx';
+import AddToCart from './components/AddToCart.jsx';
+import ImageGallery from './components/ImageGallery.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -14,6 +12,24 @@ class Overview extends React.Component {
     this.state = {
       overviewStuff: ''
     };
+  }
+
+  componentDidMount() {
+    axios.get(`/products/${this.props.itemid}`)
+      .then((result) => {
+        this.setState({
+          productData : result.data
+        })
+      })
+      .catch((err) => {
+        alert(err);
+      })
+
+    // axios.get(`products/${this.props.itemid}/styles`)
+    //   .then((result) => {
+    //     console.log(result.data)
+    //   })
+
   }
 
   render() {
