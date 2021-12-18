@@ -11,7 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      item_id: ''
+      item_id: 59553
     };
   }
 
@@ -26,7 +26,7 @@ class App extends React.Component {
           <Overview itemid={this.state.item_id} />
         </div>
         <div className="main">
-          <QA itemid={59553} />
+          <QA itemid={this.state.item_id} />
           <Ratings itemid={this.state.item_id} />
         </div>
       </div>
