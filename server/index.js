@@ -6,8 +6,6 @@ const port = 3000;
 
 const apiCalls = require('../utils/apiCalls.js');
 
-console.log(path.join(__dirname, '..', '/client/dist'));
-
 app.use(express.static(path.join(__dirname, '..', '/client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
