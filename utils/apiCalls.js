@@ -4,21 +4,70 @@ const axios = require('axios');
 
 // ========== Overview ========== //
 
-// const API_KEY = require('../env/dwightApiKey.js').API_KEY
-
-const getProductDataByItem = (product_id) => {
+const getProductDataByItem = (product_id, callback) => {
   let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${product_id}`;
   return axios.get(endpoint, {
     headers : {
-      // "Authorization" : API_KEY
+      // "Authorization" : // put API key from .env here
     }
   })
+  .then((results) => {
+    callback(results.data);
+  })
   .catch((err) => {
-    console.log(`Error fetching the product data ${err}`)
+    callback(err);
+  })
+}
+const getReviewsMetaByItem = (product_id, callback) => {
+  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${product_id}`;
+  axios.get(endpoint, {
+    headers : {
+      // "Authorization" : // put API key from .env here
+    }
+  })
+  .then((results) => {
+    callback(results.data);
+  })
+  .catch((err) => {
+    callback(err);
+  })
+}
+
+const getProductStylesByItem = (product_id, callback) => {
+  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${product_id}/styles`;
+  axios.get(endpoint, {
+    headers : {
+      // "Authorization" : // put API key from .env here
+    }
+  })
+  .then((results) => {
+    callback(results.data);
+  })
+  .catch((err) => {
+    callback(err);
+  })
+}
+
+const addProductToCart = (sku_id, callback) => {
+  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/cart`;
+  axios.post(endpoint, {
+    headers : {
+      // "Authorization" : // put API key from .env here
+    },
+    'sku_id' : sku_id
+  })
+  .then((results) => {
+    callback();
+  })
+  .catch((err) => {
+    callback(err)
   })
 }
 
 module.exports.getProductDataByItem = getProductDataByItem;
+module.exports.getReviewsMetaByItem = getReviewsMetaByItem;
+module.exports.getProductStylesByItem = getProductStylesByItem;
+module.exports.addProductToCart = addProductToCart;
 
 // ========== Related Products ========== //
 
