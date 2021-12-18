@@ -1,10 +1,9 @@
 const axios = require('axios');
 
-/*
-=================================================================================
-=============   satisfies data needed for ProductInfo component  ================
-=================================================================================
-*/
+// ========== Shared ========== //
+
+// ========== Overview ========== //
+
 const getProductDataByItem = (product_id, callback) => {
   let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${product_id}`;
   return axios.get(endpoint, {
@@ -34,12 +33,6 @@ const getReviewsMetaByItem = (product_id, callback) => {
   })
 }
 
-
-/*
-====================================================================================
-== satisfies data needed for StyleSelector, ImageGallery and AddToCart components ==
-====================================================================================
-*/
 const getProductStylesByItem = (product_id, callback) => {
   let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${product_id}/styles`;
   axios.get(endpoint, {
@@ -55,11 +48,6 @@ const getProductStylesByItem = (product_id, callback) => {
   })
 }
 
-/*
-====================================================================================
-=================== satisfies data needed for AddToCart components =================
-====================================================================================
-*/
 const addProductToCart = (sku_id, callback) => {
   let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/cart`;
   axios.post(endpoint, {
@@ -80,6 +68,33 @@ module.exports.getProductDataByItem = getProductDataByItem;
 module.exports.getReviewsMetaByItem = getReviewsMetaByItem;
 module.exports.getProductStylesByItem = getProductStylesByItem;
 module.exports.addProductToCart = addProductToCart;
+
+// ========== Related Products ========== //
+
+// ========== Questions & Answers ========== //
+
+const QA_API_KEY = require('../env/config.js').API_KEY;
+
+const getProductQuestionData = (product_id, callback) => {
+  let endpoint = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id='.concat(product_id);
+
+  return axios.get(endpoint, {
+    headers: {
+      "Authorization": QA_API_KEY
+    }
+  })
+    .then((res) => {
+      callback(res.data);
+    })
+    .catch((err) => {
+      callback(err);
+    });
+}
+
+module.exports.getProductQuestionData = getProductQuestionData;
+
+// ========== Ratings & Reviews ========== //
+
 //import axios from 'axios';
 
 //changed mine to js as I wanted to use the linter and added it to my gitignore. I can change back to env if that is needed.

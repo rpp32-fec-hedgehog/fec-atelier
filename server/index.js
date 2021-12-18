@@ -10,7 +10,12 @@ app.use(express.static(path.join(__dirname, '..', '/client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-// Overview routes to be added
+const apiCalls = require('../utils/apiCalls.js');
+
+// ========== Shared ========== //
+
+// ========== Overview ========== //
+
 app.get('/products/:product_id', (req, res) => {
   let product = req.params.product_id;
   apiCalls.getProductDataByItem(product, (data) => {
@@ -31,6 +36,21 @@ app.post('/reviews/meta', (req, res) => {
     res.send(reviewsData);
   })
 })
+// ========== Related Products ========== //
+
+// ========== Questions & Answers ========== //
+
+app.get('/qa/questions/:product_id', function(req, res) {
+  let product = req.params.product_id;
+
+  apiCalls.getProductQuestionData(product, (questions) => {
+    res.send(questions);
+  })
+})
+
+// ========== Ratings & Reviews ========== //
+
+// ========== Server Listen ========== //
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
