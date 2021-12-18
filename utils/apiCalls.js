@@ -1,4 +1,9 @@
 const axios = require('axios');
+
+// ========== Shared ========== //
+
+// ========== Overview ========== //
+
 // const API_KEY = require('../env/dwightApiKey.js').API_KEY
 
 const getProductDataByItem = (product_id) => {
@@ -14,6 +19,33 @@ const getProductDataByItem = (product_id) => {
 }
 
 module.exports.getProductDataByItem = getProductDataByItem;
+
+// ========== Related Products ========== //
+
+// ========== Questions & Answers ========== //
+
+const QA_API_KEY = require('../env/config.js').API_KEY;
+
+const getProductQuestionData = (product_id, callback) => {
+  let endpoint = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id='.concat(product_id);
+
+  return axios.get(endpoint, {
+    headers: {
+      "Authorization": QA_API_KEY
+    }
+  })
+    .then((res) => {
+      callback(res.data);
+    })
+    .catch((err) => {
+      callback(err);
+    });
+}
+
+module.exports.getProductQuestionData = getProductQuestionData;
+
+// ========== Ratings & Reviews ========== //
+
 //import axios from 'axios';
 
 //changed mine to js as I wanted to use the linter and added it to my gitignore. I can change back to env if that is needed.
