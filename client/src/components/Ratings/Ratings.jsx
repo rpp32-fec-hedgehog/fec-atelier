@@ -40,7 +40,7 @@ class Ratings extends React.Component {
     })
       .then((response) => {
         console.log('ratings list in client from axios: ', response.data);
-        //this.setState({ratings: response.data})
+        this.setState({ratings: response.data})
         callback(null, response.data);
       })
       .catch((error) => {

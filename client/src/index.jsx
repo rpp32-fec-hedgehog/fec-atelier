@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-//import axios from 'axios';
 
 import Overview from './components/Overview/Overview.jsx';
 import QA from './components/QA/QA.jsx';
-import Ratings from './components/Ratings.jsx';
+import Ratings from './components/Ratings/Ratings.jsx';
 
 class App extends React.Component {
   constructor(props) {
