@@ -58,14 +58,14 @@ module.exports.addProductToCart = addProductToCart;
 
 // ========== Questions & Answers ========== //
 
-const QA_API_KEY = require('../env/config.js').API_KEY;
+//const QA_API_KEY = require('../env/config.js').API_KEY;
 
 const getProductQuestionData = (product_id, callback) => {
   let endpoint = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id='.concat(product_id);
 
   return axios.get(endpoint, {
     headers: {
-      "Authorization": QA_API_KEY
+      //"Authorization": QA_API_KEY
     }
   })
     .then((res) => {
@@ -85,7 +85,7 @@ const getReviewsByItem = (product_id, callback) => {
   let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${product_id}`;
   axios.get(endpoint, {
     headers : {
-      Authorization : process.env.API_KEY,
+      //Authorization : process.env.API_KEY,
       //count: 20,
       //I'll need to take this in as a param in the future
       //sort: 'newest'
