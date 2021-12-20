@@ -29,7 +29,7 @@ class AddToCart extends React.Component {
     })
   }
 
-  addToMyOutfit(e) {
+  addToMyOutfit() {
     let newOutfit = this.state.myOutfit
     _.contains(this.state.myOutfit, this.state.sku) ?
       (newOutfit.splice(newOutfit.indexOf(this.state.sku), 1),
