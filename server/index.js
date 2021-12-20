@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+require('dotenv').config();
 
 const app = express();
 const port = 3000;
@@ -35,6 +36,13 @@ app.post('/reviews/meta', (req, res) => {
   })
 })
 // ========== Related Products ========== //
+
+app.get('/relatedItems', (req, res) => {
+  let item_id = req.query.item_id;
+  console.log('Item_ID: ', item_id);
+  apiCalls.getRelatedProductsById(item_id);
+});
+
 
 // ========== Questions & Answers ========== //
 

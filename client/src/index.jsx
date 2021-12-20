@@ -6,6 +6,7 @@ import $ from 'jquery';
 import Overview from './components/Overview/Overview.jsx';
 import QA from './components/QA/QA.jsx';
 import Ratings from './components/Ratings.jsx';
+import RelatedItems from './components/RelatedProducts/Related-Items.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -26,8 +27,11 @@ class App extends React.Component {
           <Overview itemid={this.state.item_id} />
         </div>
         <div className="main">
-          <QA itemid={this.state.item_id} />
+          {/* <QA itemid={this.state.item_id} /> */}
           <Ratings itemid={this.state.item_id} />
+        </div>
+        <div>
+          <RelatedItems itemId={this.state.item_id}/>
         </div>
       </div>
     );
