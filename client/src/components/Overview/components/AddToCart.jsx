@@ -10,7 +10,7 @@ class AddToCart extends React.Component {
       quantity : 1,
       cart: {}
     };
-    this.addToCart.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   addToCart() {
