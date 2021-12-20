@@ -18,7 +18,7 @@ class Ratings extends React.Component {
   }
 
   componentDidMount(props){
-    console.log('props id in Ratings: ', this.props.itemid);
+    // console.log('props id in Ratings: ', this.props.itemid);
 
     this.getAllReviews(this.props.itemid, (error, result) => {
       //retrive reviews. Do sorting here, if possible (or in RatingsList?).
@@ -32,14 +32,14 @@ class Ratings extends React.Component {
 
   getAllReviews(item_id, callback) {
     //open to making this call elsewhere and importing. Just trying to get data flowing.
-    console.log('getAllReviews got id number: ', item_id);
+    // console.log('getAllReviews got id number: ', item_id);
     axios.get('/ratings', {
       headers : {
         "item_id" : item_id
       }
     })
       .then((response) => {
-        console.log('ratings list in client from axios: ', response.data);
+        // console.log('ratings list in client from axios: ', response.data);
         this.setState({ratings: response.data})
         callback(null, response.data);
       })
