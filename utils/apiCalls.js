@@ -73,7 +73,7 @@ module.exports.addProductToCart = addProductToCart;
 
 // ========== Questions & Answers ========== //
 
-const QA_API_KEY = require('../env/config.js').API_KEY;
+// const QA_API_KEY = require('../env/config.js').API_KEY;
 
 const getProductQuestionData = (product_id, callback) => {
   let endpoint = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id='.concat(product_id);

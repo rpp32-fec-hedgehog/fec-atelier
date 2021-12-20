@@ -10,8 +10,6 @@ app.use(express.static(path.join(__dirname, '..', '/client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-const apiCalls = require('../utils/apiCalls.js');
-
 // ========== Shared ========== //
 
 // ========== Overview ========== //
