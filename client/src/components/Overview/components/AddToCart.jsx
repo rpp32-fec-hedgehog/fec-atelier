@@ -5,7 +5,7 @@ class AddToCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sku: 2122777, // purely for testing
+      sku: 2122777, // default value purely for testing
       selectedSize: '-',
       selectedQuantity : 8, // again using the default value (this will be updated as sku changes)
       cart: {},
@@ -14,10 +14,10 @@ class AddToCart extends React.Component {
     };
     this.addToCart = this.addToCart.bind(this);
     this.selectSize = this.selectSize.bind(this);
+    this.selectQuantity = this.selectQuantity.bind(this);
   }
 
   addToCart() {
-    // post request to cart here
     axios.post('/cart', {
       'sku_id' : this.state.sku // sku will update when size and styles are selected
     })
@@ -28,31 +28,39 @@ class AddToCart extends React.Component {
 
   selectSize(e) {
     this.setState({
-      size : e.target.value
+      selectedSize: e.target.value
+    })
+  }
+
+  selectQuantity(e) {
+    this.setState({
+      selectedQuantity: e.target.value
     })
   }
 
   render() {
     return (
       <div className="add-to-cart-info">Add To Cart Area
-      <div className="size-selector"> Select a Size
-        <select value={this.state.selectedSize} onChange={this.selectSize}>
-          <option value="default">-</option>
-          {this.state.sizes.map((size) => {
-            return (<option key={size} value={size}>{size}</option>)
-          })}
-        </select>
-      </div>
-      <div className="qty-selector"> Select a Quantity
-        <select>
-          <option value="default">-</option>
-          {this.state.quantities.map((number) => {
-            while(number <= this.state.selectedQuantity) {
-              return (<option key={number} value={number}>{number}</option>)
-            }
-          })}
-        </select>
-      </div>
+        <div className="size-selector"> Select a Size
+          <select value={this.state.selectedSize} onChange={this.selectSize}>
+            <option value="default">-</option>
+            {this.state.sizes.map((size) => {
+              return (<option key={size} value={size}>{size}</option>)
+            })}
+          </select>
+        </div>
+
+        <div className="qty-selector"> Select a Quantity
+          <select onChange={this.selectQuantity}>
+            <option value="default">-</option>
+            {this.state.quantities.map((number) => {
+              while(number <= this.state.selectedQuantity) {
+                return (<option key={number} value={number}>{number}</option>)
+              }
+            })}
+          </select>
+        </div>
+
         <button onClick={this.addToCart}>Add To Cart</button>
       </div>
     )
