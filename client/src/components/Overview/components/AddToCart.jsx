@@ -22,7 +22,7 @@ class AddToCart extends React.Component {
       'sku_id' : this.state.sku // sku will update when size and styles are selected
     })
     .then((result) => {
-      alert('added to Cart');
+      alert(`${this.props.productName} added to Cart`);
     })
   }
 
