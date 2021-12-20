@@ -65,7 +65,7 @@ const getProductQuestionData = (product_id, callback) => {
 
   return axios.get(endpoint, {
     headers: {
-      //"Authorization": QA_API_KEY
+      "Authorization": process.env.API_KEY
     }
   })
     .then((res) => {
