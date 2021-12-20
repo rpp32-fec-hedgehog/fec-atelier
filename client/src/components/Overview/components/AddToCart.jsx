@@ -5,10 +5,12 @@ class AddToCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sku : 2122777, // purely for testing
-      size : '-',
-      quantity : 1,
-      cart: {}
+      sku: 2122777, // purely for testing
+      selectedSize: '-',
+      selectedQuantity : 8, // again using the default value (this will be updated as sku changes)
+      cart: {},
+      sizes: ['S','XS','M','L','XL','XXL'],
+      quantities: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
     };
     this.addToCart = this.addToCart.bind(this);
     this.selectSize = this.selectSize.bind(this);
@@ -34,19 +36,21 @@ class AddToCart extends React.Component {
     return (
       <div className="add-to-cart-info">Add To Cart Area
       <div className="size-selector"> Select a Size
-        <select value={this.state.value} onChange={this.selectSize}>
+        <select value={this.state.selectedSize} onChange={this.selectSize}>
           <option value="default">-</option>
-          <option value="XS">XS</option>
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
-          <option value="XL">XL</option>
-          <option value="XXL">XXL</option>
+          {this.state.sizes.map((size) => {
+            return (<option key={size} value={size}>{size}</option>)
+          })}
         </select>
       </div>
       <div className="qty-selector"> Select a Quantity
         <select>
           <option value="default">-</option>
+          {this.state.quantities.map((number) => {
+            while(number <= this.state.selectedQuantity) {
+              return (<option key={number} value={number}>{number}</option>)
+            }
+          })}
         </select>
       </div>
         <button onClick={this.addToCart}>Add To Cart</button>
