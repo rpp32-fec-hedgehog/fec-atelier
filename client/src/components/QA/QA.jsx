@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 
-import QASearch from './components/QASearch.jsx';
+import SearchQuestion from './components/SearchQuestion.jsx';
 import QAView from './components/QAView.jsx';
 
 class QA extends React.Component {
@@ -43,7 +43,7 @@ class QA extends React.Component {
     return (
       <div>
         <h4>Questions and Answers</h4>
-        <QASearch searchHandler={this.searchHandler.bind(this)}/>
+        <SearchQuestion searchHandler={this.searchHandler.bind(this)}/>
         <QAView questions={this.state.questions} />
       </div>
     )
