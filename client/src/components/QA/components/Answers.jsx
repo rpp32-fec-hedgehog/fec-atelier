@@ -3,7 +3,7 @@ import _ from 'underscore';
 
 let Answers = (props) => {
   return <ul>
-    {_.values(props.answers).slice(0, 3).map((a) => {
+    {_.values(props.answers).slice(0, 2).map((a) => {
       return <li key={a.id}>{a.body}</li>
     })}
   </ul>
