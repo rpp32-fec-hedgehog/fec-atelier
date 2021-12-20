@@ -18,20 +18,6 @@ const getProductDataByItem = (product_id, callback) => {
     callback(err);
   })
 }
-const getReviewsMetaByItem = (product_id, callback) => {
-  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${product_id}`;
-  axios.get(endpoint, {
-    headers : {
-      // "Authorization" : // put API key from .env here
-    }
-  })
-  .then((results) => {
-    callback(results.data);
-  })
-  .catch((err) => {
-    callback(err);
-  })
-}
 
 const getProductStylesByItem = (product_id, callback) => {
   let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${product_id}/styles`;
@@ -65,13 +51,14 @@ const addProductToCart = (sku_id, callback) => {
 }
 
 module.exports.getProductDataByItem = getProductDataByItem;
-module.exports.getReviewsMetaByItem = getReviewsMetaByItem;
 module.exports.getProductStylesByItem = getProductStylesByItem;
 module.exports.addProductToCart = addProductToCart;
 
 // ========== Related Products ========== //
 
 // ========== Questions & Answers ========== //
+
+//const QA_API_KEY = require('../env/config.js').API_KEY;
 
 const getProductQuestionData = (product_id, callback) => {
   let endpoint = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id='.concat(product_id);
@@ -93,53 +80,39 @@ module.exports.getProductQuestionData = getProductQuestionData;
 
 // ========== Ratings & Reviews ========== //
 
-//import axios from 'axios';
+const getReviewsByItem = (product_id, callback) => {
+  console.log('get reviews by item fired: ', product_id);
+  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${product_id}`;
+  axios.get(endpoint, {
+    headers : {
+      //Authorization : process.env.API_KEY,
+      //count: 20,
+      //I'll need to take this in as a param in the future
+      //sort: 'newest'
+    }
+  })
+  .then((response) => {
+    console.log('api call reports data back');
+    callback(null, response);
+  })
+  .catch((error) => {
+    console.log('Error fetching the ratings data: ', error)
+    callback(error);
+  })
+}
 
-//changed mine to js as I wanted to use the linter and added it to my gitignore. I can change back to env if that is needed.
-// import GITHUB_API_TOKEN from '.././env/config.js';
+const getReviewsMetaByItem = (product_id) => {
+  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${product_id}`;
+  return axios.get(endpoint, {
+    headers : {
+      "Authorization" : process.env.API_KEY
+    }
+  })
+  .catch((err) => {
+    console.log('Error fetching the ratings metadata: ', err)
+  })
+}
 
-// let getReviewsByItem = function(productId) {
-//   let headerVals = {
-//     Authorization: GITHUB_API_TOKEN,
-//     count: 20,
-//     //I'll probably need to take this in as a param in the future
-//     sort: newest
-//   };
+module.exports.getReviewsByItem = getReviewsByItem;
+module.exports.getReviewsMetaByItem = getReviewsMetaByItem;
 
-//   let options = {
-//     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${productId}`,
-//     headers: headerVals
-//   };
-
-//   axios(options)
-//     .then((response) => {
-//       callback(null, response.data);
-//     })
-//     .catch((error) => {
-//       callback(error.message);
-//     })
-// }
-
-// let getReviewsMetaByItem = function(productId) {
-//   let headerVals = {
-//     Authorization: GITHUB_API_TOKEN,
-//   };
-
-//   let options = {
-//     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${productId}`,
-//     headers: headerVals
-//   };
-
-//   axios(options)
-//     .then((response) => {
-//       callback(null, response.data);
-//     })
-//     .catch((error) => {
-//       callback(error.message);
-//     })
-// }
-
-// module.exports = {
-//   getReviewsByItem,
-//   getReviewsMetaByItem
-// }
