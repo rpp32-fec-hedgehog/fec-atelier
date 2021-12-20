@@ -1,10 +1,12 @@
 const express = require('express');
 const path = require('path');
+require('dotenv').config();
 
 const app = express();
 const port = 3000;
 
 const apiCalls = require('../utils/apiCalls.js');
+
 
 app.use(express.static(path.join(__dirname, '..', '/client/dist')));
 app.use(express.json());
