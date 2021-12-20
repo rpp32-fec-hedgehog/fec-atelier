@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import _ from 'underscore';
 
 class AddToCart extends React.Component {
   constructor(props) {
@@ -9,10 +10,12 @@ class AddToCart extends React.Component {
       selectedSize: '-',
       selectedQuantity : 8, // again using the default value (this will be updated as sku changes)
       cart: {},
+      myOutfit: [],
       sizes: ['S','XS','M','L','XL','XXL'],
       quantities: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
     };
     this.addToCart = this.addToCart.bind(this);
+    this.addToMyOutfit = this.addToMyOutfit.bind(this);
     this.selectSize = this.selectSize.bind(this);
     this.selectQuantity = this.selectQuantity.bind(this);
   }
@@ -24,6 +27,19 @@ class AddToCart extends React.Component {
     .then((result) => {
       alert(`${this.props.productName} added to Cart`);
     })
+  }
+
+  addToMyOutfit(e) {
+    let newOutfit = this.state.myOutfit
+    _.contains(this.state.myOutfit, this.state.sku) ?
+      (newOutfit.splice(newOutfit.indexOf(this.state.sku), 1),
+        this.setState({
+          myOutfit: newOutfit
+        })
+      ) :
+      this.setState({
+        myOutfit: this.state.myOutfit.concat([this.state.sku])
+      });
   }
 
   selectSize(e) {
@@ -62,6 +78,7 @@ class AddToCart extends React.Component {
         </div>
 
         <button onClick={this.addToCart}>Add To Cart</button>
+        <button onClick={this.addToMyOutfit}>Add To My Outfit</button>
       </div>
     )
   }
