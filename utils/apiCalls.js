@@ -115,4 +115,3 @@ const getReviewsMetaByItem = (product_id) => {
 
 module.exports.getReviewsByItem = getReviewsByItem;
 module.exports.getReviewsMetaByItem = getReviewsMetaByItem;
-

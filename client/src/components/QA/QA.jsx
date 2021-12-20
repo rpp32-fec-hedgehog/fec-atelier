@@ -1,8 +1,8 @@
 import React from 'react';
 import $ from 'jquery';
 
-import QASearch from './components/QASearch.jsx';
-import QAView from './components/QAView.jsx';
+import SearchQuestion from './components/SearchQuestion.jsx';
+import Questions from './components/Questions.jsx';
 
 class QA extends React.Component {
   constructor(props) {
@@ -43,8 +43,8 @@ class QA extends React.Component {
     return (
       <div>
         <h4>Questions and Answers</h4>
-        <QASearch searchHandler={this.searchHandler.bind(this)}/>
-        <QAView questions={this.state.questions} />
+        <SearchQuestion searchHandler={this.searchHandler.bind(this)}/>
+        <Questions questions={this.state.questions} />
       </div>
     )
   }

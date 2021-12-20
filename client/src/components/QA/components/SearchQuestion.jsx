@@ -1,9 +1,9 @@
 import React from 'react';
 
-let QASearch = (props) => {
+let SearchQuestion = (props) => {
   return <div className="qa-search-bar">
     <input type="text" onChange={props.searchHandler}></input>
   </div>;
 }
 
-export default QASearch;
+export default SearchQuestion;
