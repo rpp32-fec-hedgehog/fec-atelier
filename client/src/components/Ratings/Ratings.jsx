@@ -25,7 +25,7 @@ class Ratings extends React.Component {
       if (error) {
         console.log('client reports retrieve reviews error: ', error);
       } else {
-        console.log('client reports retrieve reviews success: ', result);
+        // console.log('client reports retrieve reviews success: ', result);
       }
     })
   }

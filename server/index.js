@@ -50,7 +50,7 @@ app.get('/qa/questions/:product_id', function(req, res) {
 // ========== Ratings & Reviews ========== //
 
 app.get('/ratings', function(req, res, next) {
-  console.log('server recieves review item number from client: ', req.headers.item_id);
+  // console.log('server recieves review item number from client: ', req.headers.item_id);
 
   apiCalls.getReviewsByItem(req.headers.item_id, (err, results) => {
     if (err) {
@@ -59,7 +59,7 @@ app.get('/ratings', function(req, res, next) {
       res.end();
 
     } else {
-      console.log('server reports review data from api: ', results.data.results);
+      // console.log('server reports review data from api: ', results.data.results);
       res.status(200);
       res.end(JSON.stringify(results.data.results));
     }
