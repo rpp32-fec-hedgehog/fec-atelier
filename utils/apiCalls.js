@@ -7,11 +7,7 @@ const getProductDataByItem = (product_id, callback) => {
   let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${product_id}`;
   return axios.get(endpoint, {
     headers : {
-<<<<<<< HEAD
-      "Authorization" : process.env.API_KEY
-=======
       "Authorization": process.env.API_KEY
->>>>>>> d2127f2cc0521c4a647192384302a60c11621c89
     }
   })
   .then((results) => {
@@ -26,11 +22,7 @@ const getProductStylesByItem = (product_id, callback) => {
   let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${product_id}/styles`;
   axios.get(endpoint, {
     headers : {
-<<<<<<< HEAD
-      "Authorization" : process.env.API_KEY
-=======
       "Authorization": process.env.API_KEY
->>>>>>> d2127f2cc0521c4a647192384302a60c11621c89
     }
   })
   .then((results) => {
@@ -45,11 +37,7 @@ const addProductToCart = (sku_id, callback) => {
   let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/cart`;
   axios.post(endpoint, {
     headers : {
-<<<<<<< HEAD
-      "Authorization" : process.env.API_KEY
-=======
       "Authorization": process.env.API_KEY
->>>>>>> d2127f2cc0521c4a647192384302a60c11621c89
     },
     'sku_id' : sku_id
   })
@@ -76,11 +64,7 @@ const getProductQuestionData = (product_id, callback) => {
 
   return axios.get(endpoint, {
     headers: {
-<<<<<<< HEAD
-      "Authorization" : process.env.API_KEY
-=======
       "Authorization": process.env.API_KEY
->>>>>>> d2127f2cc0521c4a647192384302a60c11621c89
     }
   })
     .then((res) => {
