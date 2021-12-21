@@ -29,6 +29,12 @@ app.get('/products/:product_id/styles', (req, res) => {
   })
 })
 
+app.post('/cart', (req, res) => {
+  apiCalls.addProductToCart(req.body.sku_id, (result) => {
+    res.send(result);
+  })
+})
+
 // ========== Related Products ========== //
 
 // ========== Questions & Answers ========== //
