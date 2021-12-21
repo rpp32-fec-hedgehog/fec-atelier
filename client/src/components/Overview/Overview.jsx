@@ -13,10 +13,12 @@ class Overview extends React.Component {
       productData : '',
       styleData : ''
     };
+    this.grabProductData = this.grabProductData.bind(this);
+    this.grabStylesData = this.grabStylesData.bind(this);
   }
 
-  componentDidMount() {
-    axios.get(`products/${this.props.itemid}`)
+  async grabProductData() {
+    await axios.get(`products/${this.props.itemid}`)
       .then((result) => {
         this.setState({
           productData : result.data
@@ -25,8 +27,10 @@ class Overview extends React.Component {
       .catch((err) => {
         console.error(err.message)
       });
+  }
 
-    axios.get(`products/${this.props.itemid}/styles`)
+  async grabStylesData() {
+    await axios.get(`products/${this.props.itemid}/styles`)
       .then((result) => {
         this.setState({
           styleData : result.data
@@ -37,12 +41,17 @@ class Overview extends React.Component {
       });
   }
 
+  componentDidMount() {
+    this.grabProductData();
+    this.grabStylesData();
+  }
+
   render() {
     return (
       <div data-testid='overview-widget'>
         <div>
           <h1>Overview Widget Here</h1>
-          {/* <ProductInfo itemid={this.props.itemid} productData={this.state.productData}/> */}
+          <ProductInfo itemid={this.props.itemid} productData={this.state.productData}/>
           <StyleSelector styleData={this.state.styleData} />
           <AddToCart productName={this.state.productData.name} styleData={this.state.styleData} />
           <ImageGallery styleData={this.state.styleData}/>

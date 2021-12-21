@@ -26,11 +26,13 @@ jest.mock('axios');
 describe('Overview', function() {
 
   describe('Render Overview Widget', function() {
-    // test('should Render the Overview  Component', function() {
-    //   render(<Overview />);
-    //   const OverviewElement = screen.getByTestId('overview-widget');
-    //   expect(OverviewElement).toBeInTheDocument();
-    // })
+
+    test('should Render the Overview Component', function() {
+      render(<Overview />);
+      const OverviewElement = screen.getByTestId('overview-widget');
+      expect(OverviewElement).toBeInTheDocument();
+    })
+
     test('should Render the AddToCart Component', function() {
       render(<AddToCart />);
       const AddToCartElement = screen.getByTestId('add-to-cart');

@@ -7,10 +7,11 @@ class ProductInfo extends React.Component {
     this.state = {
       reviews: ''
     };
+    this.grabReviews = this.grabReviews.bind(this);
   }
 
-  componentDidMount() {
-    axios.post(`/reviews/meta`, {
+  async grabReviews() {
+    await axios.post(`/reviews/meta`, {
       data : {
         product_id : this.props.itemid
       }
@@ -20,6 +21,10 @@ class ProductInfo extends React.Component {
         reviews : reviewsData.data.ratings
       })
     })
+  }
+
+  componentDidMount() {
+    this.grabReviews()
   }
 
   render() {
