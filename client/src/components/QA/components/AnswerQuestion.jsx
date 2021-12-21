@@ -1,22 +1,23 @@
 import React from 'react';
 
-class QAsk extends React.Component {
+class AnswerQuestion extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      question: '',
+      answer: '',
       nickname: '',
-      email: ''
+      email: '',
+      photos: ''
     };
   }
 
   render() {
     return (
       <div>
-        put your question here
+        put your answers here
       </div>
     )
   }
 }
 
-export default QAsk;
+export default AnswerQuestion;
