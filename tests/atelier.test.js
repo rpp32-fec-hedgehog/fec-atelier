@@ -8,6 +8,9 @@ import "regenerator-runtime/runtime.js";
 import '@testing-library/jest-dom';
 import Overview from '../client/src/components/Overview/Overview.jsx';
 import AddToCart from '../client/src/components/Overview/components/AddToCart.jsx';
+import ImageGallery from '../client/src/components/Overview/components/ImageGallery.jsx';
+import ProductInfo from '../client/src/components/Overview/components/ProductInfo.jsx';
+import StyleSelector from '../client/src/components/Overview/components/StyleSelector.jsx';
 import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 
 jest.mock('axios');
@@ -27,6 +30,24 @@ describe('Overview', function() {
     test('should Render the AddToCart Component', function() {
       render(<AddToCart />);
       const OverviewElement = screen.getByTestId('add-to-cart');
+      expect(OverviewElement).toBeInTheDocument();
+    })
+
+    test('should Render the ImageGallery Component', function() {
+      render(<ImageGallery />);
+      const OverviewElement = screen.getByTestId('image-gallery');
+      expect(OverviewElement).toBeInTheDocument();
+    })
+
+    test('should Render the ProductInfo Component', function() {
+      render(<ProductInfo />);
+      const OverviewElement = screen.getByTestId('product-info');
+      expect(OverviewElement).toBeInTheDocument();
+    })
+
+    test('should Render the StyleSelector Component', function() {
+      render(<StyleSelector />);
+      const OverviewElement = screen.getByTestId('style-selector');
       expect(OverviewElement).toBeInTheDocument();
     })
   })

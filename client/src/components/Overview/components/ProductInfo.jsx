@@ -15,16 +15,16 @@ class ProductInfo extends React.Component {
         product_id : this.props.itemid
       }
     })
-      .then((reviewsData) => {
-        this.setState({
-          reviews : reviewsData.data.ratings
-        })
+    .then((reviewsData) => {
+      this.setState({
+        reviews : reviewsData.data.ratings
       })
+    })
   }
 
   render() {
     return (
-      <div className="product-info">Product Info</div>
+      <div className="product-info" data-testid="product-info">Product Info</div>
     )
   }
 }
