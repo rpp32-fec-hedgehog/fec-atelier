@@ -29,12 +29,12 @@ app.get('/products/:product_id/styles', (req, res) => {
   })
 })
 
-app.post('/reviews/meta', (req, res) => {
-  let product = req.body.data.product_id;
-  apiCalls.getReviewsMetaByItem(product, (reviewsData) => {
-    res.send(reviewsData);
+app.post('/cart', (req, res) => {
+  apiCalls.addProductToCart(req.body.sku_id, (result) => {
+    res.send(result);
   })
 })
+
 // ========== Related Products ========== //
 
 app.get('/relatedItems', (req, res) => {
@@ -55,6 +55,30 @@ app.get('/qa/questions/:product_id', function(req, res) {
 })
 
 // ========== Ratings & Reviews ========== //
+
+app.get('/ratings', function(req, res, next) {
+  console.log('server recieves review item number from client: ', req.headers.item_id);
+
+  apiCalls.getReviewsByItem(req.headers.item_id, (err, results) => {
+    if (err) {
+      console.log('server reports error retriving reviews: ', err);
+      res.status(res.status);
+      res.end();
+
+    } else {
+      console.log('server reports review data from api: ', results.data.results);
+      res.status(200);
+      res.end(JSON.stringify(results.data.results));
+    }
+  })
+})
+
+app.post('/reviews/meta', (req, res) => {
+  let product = req.body.data.product_id;
+  apiCalls.getReviewsMetaByItem(product, (reviewsData) => {
+    res.send(reviewsData);
+  })
+})
 
 // ========== Server Listen ========== //
 
