@@ -42,7 +42,7 @@ class QA extends React.Component {
   render() {
     return (
       <div>
-        <h4>Questions and Answers</h4>
+        <h1>Questions and Answers</h1>
         <SearchQuestion searchHandler={this.searchHandler.bind(this)}/>
         <Questions questions={this.state.questions} />
       </div>
