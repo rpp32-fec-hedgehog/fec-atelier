@@ -26,29 +26,33 @@ jest.mock('axios');
 describe('Overview', function() {
 
   describe('Render Overview Widget', function() {
-
+    // test('should Render the Overview  Component', function() {
+    //   render(<Overview />);
+    //   const OverviewElement = screen.getByTestId('overview-widget');
+    //   expect(OverviewElement).toBeInTheDocument();
+    // })
     test('should Render the AddToCart Component', function() {
       render(<AddToCart />);
-      const OverviewElement = screen.getByTestId('add-to-cart');
-      expect(OverviewElement).toBeInTheDocument();
+      const AddToCartElement = screen.getByTestId('add-to-cart');
+      expect(AddToCartElement).toBeInTheDocument();
     })
 
     test('should Render the ImageGallery Component', function() {
       render(<ImageGallery />);
-      const OverviewElement = screen.getByTestId('image-gallery');
-      expect(OverviewElement).toBeInTheDocument();
+      const ImageGalleryElement = screen.getByTestId('image-gallery');
+      expect(ImageGalleryElement).toBeInTheDocument();
     })
 
     test('should Render the ProductInfo Component', function() {
       render(<ProductInfo />);
-      const OverviewElement = screen.getByTestId('product-info');
-      expect(OverviewElement).toBeInTheDocument();
+      const ProductInfoElement = screen.getByTestId('product-info');
+      expect(ProductInfoElement).toBeInTheDocument();
     })
 
     test('should Render the StyleSelector Component', function() {
       render(<StyleSelector />);
-      const OverviewElement = screen.getByTestId('style-selector');
-      expect(OverviewElement).toBeInTheDocument();
+      const StyleSelectorElement = screen.getByTestId('style-selector');
+      expect(StyleSelectorElement).toBeInTheDocument();
     })
   })
 

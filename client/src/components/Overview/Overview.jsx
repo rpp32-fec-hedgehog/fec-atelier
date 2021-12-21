@@ -42,7 +42,7 @@ class Overview extends React.Component {
       <div data-testid='overview-widget'>
         <div>
           <h1>Overview Widget Here</h1>
-          <ProductInfo itemid={this.props.itemid} productData={this.state.productData}/>
+          {/* <ProductInfo itemid={this.props.itemid} productData={this.state.productData}/> */}
           <StyleSelector styleData={this.state.styleData} />
           <AddToCart productName={this.state.productData.name} styleData={this.state.styleData} />
           <ImageGallery styleData={this.state.styleData}/>
