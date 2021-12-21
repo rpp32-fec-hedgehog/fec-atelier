@@ -1,7 +1,15 @@
-const axios = require('axios');
-const server = require('./testIndex.js');
+/**
+ * @jest-environment jsdom
+ */
 
-const getProductDataByItem = require('../utils/apiCalls.js').getProductDataByItem;
+// const axios = require('axios');
+// const server = require('./testIndex.js');
+import React from 'react';
+// import { render, screen, cleanup, fireEvent } from './test-utils.jsx';
+import {render, screen} from '@testing-library/react';
+import '@testing-library/jest-dom';
+import Overview from '../client/src/components/Overview/Overview.jsx';
+
 
 // beforeAll((done) => {
 //   done();
@@ -13,8 +21,17 @@ const getProductDataByItem = require('../utils/apiCalls.js').getProductDataByIte
 
 // ========== Overview ========== //
 describe('Overview', function() {
-  describe('Gather API data', function() {
 
+  describe('Render Overview Widget', function() {
+
+    test('should Render the Overview Widget', function() {
+      render(<Overview />);
+      const OverviewElement = screen.getByTestId('overview-widget');
+      expect(OverviewElement).toBeInTheDocument();
+    })
+  })
+
+  describe('Gather API data', function() {
     test('should GET (ratings numbers) from Reviews API for StarRating component', function() {
       // logic to check if data is being recieved from reviews API
     })

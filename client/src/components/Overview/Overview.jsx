@@ -16,14 +16,14 @@ class Overview extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`/products/${this.props.itemid}`)
+    axios.get(`products/${this.props.itemid}`)
       .then((result) => {
         this.setState({
           productData : result.data
         });
       })
       .catch((err) => {
-        console.error(err);
+        console.error(err)
       });
 
     axios.get(`products/${this.props.itemid}/styles`)
@@ -33,13 +33,13 @@ class Overview extends React.Component {
         });
       })
       .catch((err) => {
-        console.error(err);
+        console.error(err.message);
       });
   }
 
   render() {
     return (
-      <div>
+      <div data-testid='overview-widget'>
         <div>
           <h1>Overview Widget Here</h1>
           <ProductInfo itemid={this.props.itemid} productData={this.state.productData}/>
