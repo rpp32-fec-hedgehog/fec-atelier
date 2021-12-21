@@ -23,7 +23,7 @@ class Overview extends React.Component {
         });
       })
       .catch((err) => {
-        console.error(err)
+        console.error(err.message)
       });
 
     axios.get(`products/${this.props.itemid}/styles`)

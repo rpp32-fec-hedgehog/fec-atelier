@@ -2,15 +2,15 @@
  * @jest-environment jsdom
  */
 
-// const axios = require('axios');
-// const server = require('./testIndex.js');
+import axios from 'axios';
 import React from 'react';
-// import { render, screen, cleanup, fireEvent } from './test-utils.jsx';
-import {render, screen} from '@testing-library/react';
+import "regenerator-runtime/runtime.js";
 import '@testing-library/jest-dom';
 import Overview from '../client/src/components/Overview/Overview.jsx';
+import AddToCart from '../client/src/components/Overview/components/AddToCart.jsx';
+import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 
-
+jest.mock('axios');
 // beforeAll((done) => {
 //   done();
 // })
@@ -24,9 +24,9 @@ describe('Overview', function() {
 
   describe('Render Overview Widget', function() {
 
-    test('should Render the Overview Widget', function() {
-      render(<Overview />);
-      const OverviewElement = screen.getByTestId('overview-widget');
+    test('should Render the AddToCart Component', function() {
+      render(<AddToCart />);
+      const OverviewElement = screen.getByTestId('add-to-cart');
       expect(OverviewElement).toBeInTheDocument();
     })
   })
