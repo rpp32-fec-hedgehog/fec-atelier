@@ -20,6 +20,8 @@ class Overview extends React.Component {
     };
     this.grabProductData = this.grabProductData.bind(this);
     this.grabStylesData = this.grabStylesData.bind(this);
+    this.cycleForward = this.cycleForward.bind(this);
+    this.cycleBackward = this.cycleBackward.bind(this);
   }
 
   async grabProductData() {
@@ -48,6 +50,28 @@ class Overview extends React.Component {
       });
   }
 
+  cycleForward(e) {
+    let current = this.state.currentPhoto;
+    let max = this.state.numberOfPhotos;
+    this.state.currentPhoto < max - 1 ?
+    this.setState({
+      photo: this.state.styleData[this.state.selectedStyle].photos[current + 1].url,
+      currentPhoto: this.state.currentPhoto + 1
+    }) :
+    null
+  }
+
+  cycleBackward(e) {
+    let current = this.state.currentPhoto;
+    let max = this.state.numberOfPhotos;
+    this.state.currentPhoto > 0 ?
+    this.setState({
+      photo: this.state.styleData[this.state.selectedStyle].photos[current - 1].url,
+      currentPhoto: this.state.currentPhoto - 1
+    }) :
+    null
+  }
+
   componentDidMount() {
     this.grabProductData();
     this.grabStylesData();
@@ -59,7 +83,8 @@ class Overview extends React.Component {
         <div>
           <h1>Overview Widget Here</h1>
           <ProductInfo itemid={this.props.itemid} productData={this.state.productData} />
-          <ImageGallery styleData={this.state.styleData} photo={this.state.photo}/>
+          <ImageGallery styleData={this.state.styleData} photo={this.state.photo}
+            forward={this.cycleForward} backward={this.cycleBackward} />
           <StyleSelector styleData={this.state.styleData} />
           <AddToCart productName={this.state.productData.name} styleData={this.state.styleData} />
         </div>
