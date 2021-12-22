@@ -20,7 +20,9 @@ class ImageGallery extends React.Component {
     return (
       <div className="Image-Gallery" data-testid="image-gallery" style={{border: "1px solid black"}}>
         <h4>Image Gallery</h4>
-        <div></div>
+        <img className="main-gallery" src={this.props.photo}></img>
+        <button className='forward'>forward</button>
+        <button className='backward'>backward</button>
       </div>
     )
   }

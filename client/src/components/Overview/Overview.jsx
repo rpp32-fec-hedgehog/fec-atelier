@@ -40,7 +40,7 @@ class Overview extends React.Component {
         this.setState({
           styleData : result.data.results,
           photo: result.data.results[0].photos[0].url,
-          numberOfPhotos: result.data.results.map(id => id.photos).length
+          numberOfPhotos: result.data.results.map(style => style.photos).length
         });
       })
       .catch((err) => {
@@ -59,7 +59,7 @@ class Overview extends React.Component {
         <div>
           <h1>Overview Widget Here</h1>
           <ProductInfo itemid={this.props.itemid} productData={this.state.productData} />
-          <ImageGallery styleData={this.state.styleData}/>
+          <ImageGallery styleData={this.state.styleData} photo={this.state.photo}/>
           <StyleSelector styleData={this.state.styleData} />
           <AddToCart productName={this.state.productData.name} styleData={this.state.styleData} />
         </div>
