@@ -31,11 +31,20 @@ class QA extends React.Component {
   handleQs(e) {
     e.preventDefault();
 
-    this.setState({
-      questions: this.state.questions,
-      searchText: this.state.searchText,
-      questionCount: this.state.questionCount += 2
-    })
+    if (this.state.questions.length > this.state.questionCount) {
+      this.setState({
+        questions: this.state.questions,
+        searchText: this.state.searchText,
+        questionCount: this.state.questionCount += 2
+      })
+    } else {
+      this.setState({
+        questions: this.state.questions,
+        searchText: this.state.searchText,
+        questionCount: this.state.questionCount -= 2
+      })
+    }
+
   }
 
   componentDidMount() {
