@@ -53,9 +53,9 @@ class Overview extends React.Component {
         <div>
           <h1>Overview Widget Here</h1>
           <ProductInfo itemid={this.props.itemid} productData={this.state.productData} />
+          <ImageGallery styleData={this.state.styleData}/>
           <StyleSelector styleData={this.state.styleData} />
           <AddToCart productName={this.state.productData.name} styleData={this.state.styleData} />
-          <ImageGallery styleData={this.state.styleData}/>
         </div>
       </div>
     )
