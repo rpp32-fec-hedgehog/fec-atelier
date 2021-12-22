@@ -13,33 +13,42 @@ class Overview extends React.Component {
       productData : '',
       styleData : ''
     };
+    this.grabProductData = this.grabProductData.bind(this);
+    this.grabStylesData = this.grabStylesData.bind(this);
   }
 
-  componentDidMount() {
-    axios.get(`/products/${this.props.itemid}`)
+  async grabProductData() {
+    await axios.get(`products/${this.props.itemid}`)
       .then((result) => {
         this.setState({
           productData : result.data
         });
       })
       .catch((err) => {
-        console.error(err);
+        console.error(err.message)
       });
+  }
 
-    axios.get(`products/${this.props.itemid}/styles`)
+  async grabStylesData() {
+    await axios.get(`products/${this.props.itemid}/styles`)
       .then((result) => {
         this.setState({
           styleData : result.data
         });
       })
       .catch((err) => {
-        console.error(err);
+        console.error(err.message);
       });
+  }
+
+  componentDidMount() {
+    this.grabProductData();
+    this.grabStylesData();
   }
 
   render() {
     return (
-      <div>
+      <div data-testid='overview-widget'>
         <div>
           <h1>Overview Widget Here</h1>
           <ProductInfo itemid={this.props.itemid} productData={this.state.productData}/>

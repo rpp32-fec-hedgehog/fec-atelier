@@ -56,7 +56,7 @@ class AddToCart extends React.Component {
 
   render() {
     return (
-      <div className="add-to-cart-info">Add To Cart Area
+      <div className="add-to-cart" data-testid="add-to-cart">Add To Cart Area
         <div className="size-selector"> Select a Size
           <select value={this.state.selectedSize} onChange={this.selectSize}>
             <option value="default">-</option>

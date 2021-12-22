@@ -7,6 +7,7 @@ const port = 3000;
 
 const apiCalls = require('../utils/apiCalls.js');
 
+
 app.use(express.static(path.join(__dirname, '..', '/client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -68,7 +69,7 @@ app.get('/ratings', function(req, res, next) {
 
 app.post('/reviews/meta', (req, res) => {
   let product = req.body.data.product_id;
-  apiCalls.getReviewsMetaByItem(product, (reviewsData) => {
+  apiCalls.getReviewsForOverview(product, (reviewsData) => {
     res.send(reviewsData);
   })
 })

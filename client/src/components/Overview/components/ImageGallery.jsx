@@ -11,7 +11,7 @@ class ImageGallery extends React.Component {
 
   render() {
     return (
-      <div className="Image-Gallery">Image Gallery</div>
+      <div className="Image-Gallery" data-testid="image-gallery">Image Gallery</div>
     )
   }
 }

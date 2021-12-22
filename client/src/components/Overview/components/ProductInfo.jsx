@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import "regenerator-runtime/runtime.js";
 
 class ProductInfo extends React.Component {
   constructor(props) {
@@ -7,24 +8,29 @@ class ProductInfo extends React.Component {
     this.state = {
       reviews: ''
     };
+    this.grabReviews = this.grabReviews.bind(this);
   }
 
-  componentDidMount() {
-    axios.post(`/reviews/meta`, {
+  async grabReviews() {
+    await axios.post(`/reviews/meta`, {
       data : {
         product_id : this.props.itemid
       }
     })
-      .then((reviewsData) => {
-        this.setState({
-          reviews : reviewsData.data.ratings
-        })
+    .then((reviewsData) => {
+      this.setState({
+        reviews : reviewsData.data.ratings
       })
+    })
+  }
+
+  componentDidMount() {
+    this.grabReviews()
   }
 
   render() {
     return (
-      <div className="product-info">Product Info</div>
+      <div className="product-info" data-testid="product-info">Product Info</div>
     )
   }
 }
