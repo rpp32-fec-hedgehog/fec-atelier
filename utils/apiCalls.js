@@ -56,35 +56,18 @@ module.exports.addProductToCart = addProductToCart;
 
 // ========== Related Products ========== //
 
-module.exports.getRelatedProductsById = (id) => {
-  console.log('API-KEY', process.env.API_KEY);
-  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/?product_id=${id}/related`;
-  return axios.get(endpoint, {
-    headers: {
-      'Authorization': process.env.API_KEY
-    }
-  })
-    .then(e => {console.log(e); res.end()}).catch(e=>e);
-};
+
 
 // ========== Questions & Answers ========== //
 
-<<<<<<< HEAD
-// const QA_API_KEY = require('../env/config.js').API_KEY;
-=======
 //const QA_API_KEY = require('../env/config.js').API_KEY;
->>>>>>> d2127f2cc0521c4a647192384302a60c11621c89
 
 const getProductQuestionData = (product_id, callback) => {
   let endpoint = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id='.concat(product_id);
 
   return axios.get(endpoint, {
     headers: {
-<<<<<<< HEAD
-      // "Authorization": QA_API_KEY
-=======
       "Authorization": process.env.API_KEY
->>>>>>> d2127f2cc0521c4a647192384302a60c11621c89
     }
   })
     .then((res) => {
