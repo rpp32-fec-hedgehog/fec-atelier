@@ -24,54 +24,56 @@ class ProductInfo extends React.Component {
     .then((reviewsData) => {
       this.setState({
         reviews : reviewsData.data.ratings
-      })
-      return this.getStarCount(reviewsData.data.ratings)
+      });
+      return this.getStarCount(reviewsData.data.ratings);
     })
     .then((starsList) => {
       this.setState({
         starCount: starsList
-      })
-    })
+      });
+    });
   }
 
   getStarCount(listOfStars) {
-    return _.values(listOfStars)
+    return _.values(listOfStars);
   }
 
   calculateStarRating() {
-    let totalStars = 0
-    let actual = 0
-    let outOfFiveStars
+    let totalStars = 0;
+    let actual = 0;
+    let outOfFiveStars;
     totalStars = (_.reduce(this.state.starCount, (memo, num) => {
       return parseInt(memo) + parseInt(num);
     }, 0)) * 5;
 
     for (let i = 0; i < this.state.starCount.length; i++) {
-      actual += ((i+1) * parseInt(this.state.starCount[i]))
-    }
+      actual += ((i+1) * parseInt(this.state.starCount[i]));
+    };
 
-    outOfFiveStars = Math.ceil(((actual/totalStars) * 5) / .25) * .25
-    return outOfFiveStars.toString()
+    outOfFiveStars = Math.ceil(((actual/totalStars) * 5) / .25) * .25;
+    return outOfFiveStars.toString();
   }
 
   componentDidMount() {
-    this.grabReviews()
     this.grabReviews();
-    this.getStarCount(this.state.reviews)
+    this.grabReviews();
+    this.getStarCount(this.state.reviews);
   }
 
   render() {
     return (
       <div className="product-info" data-testid="product-info" style={{border: "1px solid black"}}>
         <h4>Product Info</h4>
-      {this.state.starCount.length > 0 ?
+      {this.state.starCount.length ?
         <div className="star-rating" data-testid="star-rating">
           {this.calculateStarRating()} Stars
         </div>
         : null
       }
       <div>{this.props.productData.category}</div>
+      <div>${this.props.productData.default_price}</div>
       <div>{this.props.productData.name}</div>
+      <div>{this.props.productData.description}</div>
     </div>
     )
   }
