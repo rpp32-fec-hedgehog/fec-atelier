@@ -98,7 +98,7 @@ const getReviewsByItem = (product_id, callback) => {
   let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${product_id}`;
   axios.get(endpoint, {
     headers : {
-      Authorization : process.env.API_KEY
+      Authorization : process.env.API_KEY,
       //count: 20,
       //I'll need to take this in as a param in the future
       sort: 'newest'
