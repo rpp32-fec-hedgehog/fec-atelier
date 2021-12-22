@@ -12,7 +12,11 @@ class Overview extends React.Component {
     super(props);
     this.state = {
       productData : '',
-      styleData : ''
+      styleData : '',
+      photo: '',
+      selectedStyle: 0,
+      currentPhoto: 0,
+      numberOfPhotos: 0
     };
     this.grabProductData = this.grabProductData.bind(this);
     this.grabStylesData = this.grabStylesData.bind(this);
@@ -34,7 +38,9 @@ class Overview extends React.Component {
     await axios.get(`products/${this.props.itemid}/styles`)
       .then((result) => {
         this.setState({
-          styleData : result.data
+          styleData : result.data.results,
+          photo: result.data.results[0].photos[0].url,
+          numberOfPhotos: result.data.results.map(id => id.photos).length
         });
       })
       .catch((err) => {
