@@ -64,12 +64,16 @@ class ProductInfo extends React.Component {
     return (
       <div className="product-info" data-testid="product-info" style={{border: "1px solid black"}}>
         <h4>Product Info</h4>
-      {this.state.starCount.length ?
-        <div className="star-rating" data-testid="star-rating">
-          {this.calculateStarRating()} Stars
-        </div>
-        : null
-      }
+        {this.state.starCount.length ?
+          <div className="star-rating" data-testid="star-rating">
+            {this.calculateStarRating()} Stars //
+            {(_.reduce(this.state.starCount, (memo, num) => {
+              return parseInt(memo) + parseInt(num);
+                }, 0))} Reviews
+          </div>
+          : null
+        }
+      <div>{}</div>
       <div>{this.props.productData.category}</div>
       <div>${this.props.productData.default_price}</div>
       <div>{this.props.productData.name}</div>
