@@ -11,7 +11,9 @@ class StyleSelector extends React.Component {
 
   render() {
     return (
-      <div className="styles-info" data-testid="style-selector">Styles Info</div>
+      <div className="styles-info" data-testid="style-selector" style={{border: "1px solid black"}}>
+        <h4>Styles Info</h4>
+      </div>
     )
   }
 }

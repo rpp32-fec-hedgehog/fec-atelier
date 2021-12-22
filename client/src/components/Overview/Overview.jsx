@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import "regenerator-runtime/runtime.js";
 
 import ProductInfo from './components/ProductInfo.jsx';
 import StyleSelector from './components/StyleSelector.jsx';
@@ -48,13 +49,13 @@ class Overview extends React.Component {
 
   render() {
     return (
-      <div data-testid='overview-widget'>
+      <div data-testid='overview-widget' style={{border: "1px solid black"}}>
         <div>
           <h1>Overview Widget Here</h1>
-          <ProductInfo itemid={this.props.itemid} productData={this.state.productData}/>
+          <ProductInfo itemid={this.props.itemid} productData={this.state.productData} />
+          <ImageGallery styleData={this.state.styleData}/>
           <StyleSelector styleData={this.state.styleData} />
           <AddToCart productName={this.state.productData.name} styleData={this.state.styleData} />
-          <ImageGallery styleData={this.state.styleData}/>
         </div>
       </div>
     )
