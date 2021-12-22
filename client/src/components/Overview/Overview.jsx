@@ -49,7 +49,7 @@ class Overview extends React.Component {
 
   render() {
     return (
-      <div data-testid='overview-widget'>
+      <div data-testid='overview-widget' style={{border: "1px solid black"}}>
         <div>
           <h1>Overview Widget Here</h1>
           <ProductInfo itemid={this.props.itemid} productData={this.state.productData} />
