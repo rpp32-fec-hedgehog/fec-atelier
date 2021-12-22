@@ -7,7 +7,11 @@ let Questions = (props) => {
     {props.questions.map(q => {
       return <li key={'q-'.concat(q.question_id)}>
         Q: {q.question_body}
-        <Answers answers={_.values(q.answers).slice(0, 2)} />
+        <Answers answers={_.chain(_.values(q.answers))
+          .sortBy((answer) => {return answer.helpfulness})
+          .reverse()
+          .slice(0, 2)
+        } />
       </li>
     })}
   </ul>;
