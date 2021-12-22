@@ -10,7 +10,8 @@ class QA extends React.Component {
     super(props);
     this.state = {
       questions: [],
-      searchText: ''
+      searchText: '',
+      questionCount: 2
     };
   }
 
@@ -22,7 +23,8 @@ class QA extends React.Component {
     this.setState({
       questions: this.state.questions,
       //questions to be changed, should update on text change
-      searchText: text
+      searchText: text,
+      questionCount: this.state.questionCount
     })
   }
 
@@ -37,7 +39,8 @@ class QA extends React.Component {
           .sortBy((question) => {return question.question_helpfulness})
           .reverse()
           ._wrapped,
-          searchText: this.state.searchText
+          searchText: this.state.searchText,
+          questionCount: this.state.questionCount
         })
       }
     })
