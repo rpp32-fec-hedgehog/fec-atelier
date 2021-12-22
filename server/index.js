@@ -7,6 +7,7 @@ const port = 3000;
 
 const apiCalls = require('../utils/apiCalls.js');
 
+
 app.use(express.static(path.join(__dirname, '..', '/client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -50,7 +51,7 @@ app.get('/qa/questions/:product_id', function(req, res) {
 // ========== Ratings & Reviews ========== //
 
 app.get('/ratings', function(req, res, next) {
-  console.log('server recieves review item number from client: ', req.headers.item_id);
+  // console.log('server recieves review item number from client: ', req.headers.item_id);
 
   apiCalls.getReviewsByItem(req.headers.item_id, (err, results) => {
     if (err) {
@@ -59,7 +60,7 @@ app.get('/ratings', function(req, res, next) {
       res.end();
 
     } else {
-      console.log('server reports review data from api: ', results.data.results);
+      // console.log('server reports review data from api: ', results.data.results);
       res.status(200);
       res.end(JSON.stringify(results.data.results));
     }
@@ -68,7 +69,7 @@ app.get('/ratings', function(req, res, next) {
 
 app.post('/reviews/meta', (req, res) => {
   let product = req.body.data.product_id;
-  apiCalls.getReviewsMetaByItem(product, (reviewsData) => {
+  apiCalls.getReviewsForOverview(product, (reviewsData) => {
     res.send(reviewsData);
   })
 })

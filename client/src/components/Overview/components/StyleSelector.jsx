@@ -11,7 +11,7 @@ class StyleSelector extends React.Component {
 
   render() {
     return (
-      <div className="styles-info">Styles Info</div>
+      <div className="styles-info" data-testid="style-selector">Styles Info</div>
     )
   }
 }
