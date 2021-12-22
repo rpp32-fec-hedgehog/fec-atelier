@@ -15,7 +15,7 @@ class QA extends React.Component {
     };
   }
 
-  searchHandler (e) {
+  searchHandler(e) {
     e.preventDefault();
 
     // update state with search text
@@ -25,6 +25,16 @@ class QA extends React.Component {
       //questions to be changed, should update on text change
       searchText: text,
       questionCount: this.state.questionCount
+    })
+  }
+
+  handleQs(e) {
+    e.preventDefault();
+
+    this.setState({
+      questions: this.state.questions,
+      searchText: this.state.searchText,
+      questionCount: this.state.questionCount += 2
     })
   }
 
@@ -47,11 +57,15 @@ class QA extends React.Component {
   }
 
   render() {
+    let state = this.state;
     return (
       <div>
         <h1>Questions and Answers</h1>
         <SearchQuestion searchHandler={this.searchHandler.bind(this)}/>
-        <Questions questions={this.state.questions.slice(0, 2)} />
+        <Questions questions={state.questions.slice(0, state.questionCount)}
+          handleQs={this.handleQs.bind(this)}
+          totalQs={this.state.questions.length}
+        />
       </div>
     )
   }
