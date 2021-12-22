@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import _ from 'underscore';
 
 import SearchQuestion from './components/SearchQuestion.jsx';
 import Questions from './components/Questions.jsx';
@@ -44,7 +45,11 @@ class QA extends React.Component {
       <div>
         <h1>Questions and Answers</h1>
         <SearchQuestion searchHandler={this.searchHandler.bind(this)}/>
-        <Questions questions={this.state.questions.slice(0, 2)} />
+        <Questions questions={_.chain(this.state.questions)
+          .sortBy((question) => {return question.question_helpfulness})
+          .reverse()
+          .slice(0, 2)
+        } />
       </div>
     )
   }

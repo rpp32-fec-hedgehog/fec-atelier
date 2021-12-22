@@ -4,7 +4,7 @@ import Answers from './Answers.jsx';
 
 let Questions = (props) => {
   return <ul>
-    {props.questions.map(q => {
+    {props.questions._wrapped.map(q => {
       return <li key={'q-'.concat(q.question_id)}>
         Q: {q.question_body}
         <Answers answers={_.chain(_.values(q.answers))
