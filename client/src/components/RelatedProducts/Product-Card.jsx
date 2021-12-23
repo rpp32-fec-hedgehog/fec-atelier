@@ -4,11 +4,10 @@ const ProductCard = (props) => {
   return (
     <div>
       <ul>
-        <li>{props.item.category}</li>
-        <li>{props.item.name}</li>
-        <li>{props.item.default_price}</li>
-        <li>{props.item.slogan}</li>
-        {/* <li>{props.rating}</li> */}
+        <li key={props.i}>{props.item.category}</li>
+        <li key={props.i}>{props.item.name}</li>
+        <li key={props.i}>{props.item.default_price}</li>
+        <li key={props.i}>{props.item.slogan}</li>
       </ul>
     </div>
   )

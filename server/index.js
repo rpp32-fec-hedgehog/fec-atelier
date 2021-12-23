@@ -40,7 +40,6 @@ app.post('/cart', (req, res) => {
 
 app.get('/relatedItems', (req, res) => {
   let item_id = req.query.item_id;
-  console.log('Item_ID: ', item_id);
   getRelated(item_id)
     .then(e => res.status(200).send(e)).catch(e=>e);
 });
