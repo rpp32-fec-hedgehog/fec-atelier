@@ -10,7 +10,7 @@ let Questions = (props) => {
         return <li key={'q-'.concat(q.question_id)}>
           Q: {q.question_body}
           <Answers answers={_.chain(_.values(q.answers))
-            .sortBy((answer) => { return answer.helpfulness })
+            .sortBy(answer => {return answer.helpfulness})
             .reverse()
             .slice(0, 2)
           } />
@@ -20,8 +20,8 @@ let Questions = (props) => {
   </div>];
 
   let totalQs = props.totalQs;
-  let more = [<button key="more-q" onClick={props.handleQs}>More Answered Questions</button>];
-  let less = [<button key="less-q" onClick={props.handleQs}>Less Answered Questions</button>];
+  let more = <button key="more-q" onClick={props.handleQs}>More Answered Questions</button>;
+  let less = <button key="less-q" onClick={props.handleQs}>Less Answered Questions</button>;
 
   if (totalQs < 2) {
     return base;
@@ -30,7 +30,6 @@ let Questions = (props) => {
   } else {
     return base.concat(less);
   }
-
 }
 
 export default Questions;
