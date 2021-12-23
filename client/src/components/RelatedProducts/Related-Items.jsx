@@ -36,6 +36,7 @@ class RelatedItems extends React.Component {
           return (<ProductCard item={item}  key={i}/>)
         })}
       </Carousel>
+
     )
   }
 }

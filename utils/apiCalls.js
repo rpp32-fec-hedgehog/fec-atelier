@@ -1,5 +1,4 @@
 const axios = require('axios');
-
 // ========== Shared ========== //
 
 // ========== Overview ========== //
@@ -50,17 +49,31 @@ const addProductToCart = (sku_id, callback) => {
   })
 }
 
+const getReviewsForOverview = (product_id, callback) => {
+  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${product_id}`;
+  axios.get(endpoint, {
+    headers : {
+      "Authorization": process.env.API_KEY
+    }
+  })
+  .then((results) => {
+    callback(results.data);
+  })
+  .catch((err) => {
+    callback(err);
+  })
+}
+
 module.exports.getProductDataByItem = getProductDataByItem;
 module.exports.getProductStylesByItem = getProductStylesByItem;
 module.exports.addProductToCart = addProductToCart;
+module.exports.getReviewsForOverview = getReviewsForOverview;
 
 // ========== Related Products ========== //
 
 
 
 // ========== Questions & Answers ========== //
-
-//const QA_API_KEY = require('../env/config.js').API_KEY;
 
 const getProductQuestionData = (product_id, callback) => {
   let endpoint = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id='.concat(product_id);
@@ -83,18 +96,18 @@ module.exports.getProductQuestionData = getProductQuestionData;
 // ========== Ratings & Reviews ========== //
 
 const getReviewsByItem = (product_id, callback) => {
-  console.log('get reviews by item fired: ', product_id);
+  // console.log('get reviews by item fired: ', product_id);
   let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${product_id}`;
   axios.get(endpoint, {
     headers : {
-      //Authorization : process.env.API_KEY,
+      Authorization : process.env.API_KEY,
       //count: 20,
       //I'll need to take this in as a param in the future
-      //sort: 'newest'
+      sort: 'newest'
     }
   })
   .then((response) => {
-    console.log('api call reports data back');
+    // console.log('api call reports data back');
     callback(null, response);
   })
   .catch((error) => {
@@ -111,7 +124,7 @@ const getReviewsMetaByItem = (product_id) => {
     }
   })
   .catch((err) => {
-    console.log('Error fetching the ratings metadata: ', err)
+    // console.log('Error fetching the ratings metadata: ', err)
   })
 }
 

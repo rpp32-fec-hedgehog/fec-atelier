@@ -1,12 +1,17 @@
 import React from 'react';
+import _ from 'underscore';
 import Answers from './Answers.jsx';
 
 let Questions = (props) => {
   return <ul>
-    {props.questions.slice(0, 2).map(q => {
+    {props.questions.map(q => {
       return <li key={'q-'.concat(q.question_id)}>
-        {q.question_body}
-        <Answers answers={q.answers} />
+        Q: {q.question_body}
+        <Answers answers={_.chain(_.values(q.answers))
+          .sortBy((answer) => {return answer.helpfulness})
+          .reverse()
+          .slice(0, 2)
+        } />
       </li>
     })}
   </ul>;
