@@ -5,8 +5,6 @@ import $ from 'jquery';
 import Overview from './components/Overview/Overview.jsx';
 import QA from './components/QA/QA.jsx';
 import Ratings from './components/Ratings.jsx';
-import RelatedProducts from './components/RelatedProducts.jsx';
-import Ratings from './components/Ratings/Ratings.jsx';
 import RelatedItems from './components/RelatedProducts/Related-Items.jsx';
 import Outfits from './components/RelatedProducts/Outfits.jsx';
 
