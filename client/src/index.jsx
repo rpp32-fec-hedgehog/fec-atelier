@@ -7,6 +7,8 @@ import QA from './components/QA/QA.jsx';
 import Ratings from './components/Ratings.jsx';
 import RelatedProducts from './components/RelatedProducts.jsx';
 import Ratings from './components/Ratings/Ratings.jsx';
+import RelatedItems from './components/RelatedProducts/Related-Items.jsx';
+import Outfits from './components/RelatedProducts/Outfits.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -32,8 +34,11 @@ class App extends React.Component {
           <Ratings itemid={this.state.item_id} />
           </div>
         </div>
-        <div className="relatedProducts">
-          <RelatedProducts />
+        <div>
+          <RelatedItems itemId={this.state.item_id}/>
+        </div>
+        <div>
+          <Outfits itemId={this.state.item_id}/>
         </div>
       </div>
     );

@@ -6,6 +6,7 @@ const app = express();
 const port = 3000;
 
 const apiCalls = require('../utils/apiCalls.js');
+const { getRelated }= require('../utils/RelatedProducts');
 
 
 app.use(express.static(path.join(__dirname, '..', '/client/dist')));
@@ -37,6 +38,13 @@ app.post('/cart', (req, res) => {
 })
 
 // ========== Related Products ========== //
+
+app.get('/relatedItems', (req, res) => {
+  let item_id = req.query.item_id;
+  getRelated(item_id)
+    .then(e => res.status(200).send(e)).catch(e=>e);
+});
+
 
 // ========== Questions & Answers ========== //
 
