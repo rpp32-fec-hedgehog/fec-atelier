@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import _ from 'underscore';
 import "regenerator-runtime/runtime.js";
 
 import ProductInfo from './components/ProductInfo.jsx';
@@ -85,7 +86,7 @@ class Overview extends React.Component {
           <ProductInfo itemid={this.props.itemid} productData={this.state.productData} />
           <ImageGallery styleData={this.state.styleData} photo={this.state.photo}
             forward={this.cycleForward} backward={this.cycleBackward} />
-          <StyleSelector styleData={this.state.styleData} />
+          <StyleSelector styleData={_.map(this.state.styleData, style => style.photos).map(arr => arr[0].thumbnail_url)}/>
           <AddToCart productName={this.state.productData.name} styleData={this.state.styleData} />
         </div>
       </div>
