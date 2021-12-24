@@ -21,7 +21,6 @@ let Questions = (props) => {
 
   let totalQs = props.totalQs;
   let more = <button key="more-q" onClick={props.handleQs}>More Answered Questions</button>;
-  let less = <button key="less-q" onClick={props.handleQs}>Less Answered Questions</button>;
 
   if (totalQs > questions.length && totalQs > 2) {
     return base.concat(more);
