@@ -18,11 +18,19 @@ class QA extends React.Component {
     e.preventDefault();
 
     let text = e.target.value;
+    if (text.length >= 3) {
+      this.setState({
+        questions: this.sortQs(this.state.questions, text),
+        questionCount: this.state.questionCount
+      })
+    }
+  }
 
-    this.setState({
-      questions: this.state.questions,
-      //questions to be changed, should update on text change
-      questionCount: this.state.questionCount
+  sortQs(questions, sortTerm) {
+    return questions.map(q => {
+      if (q.body.includes(sortTerm)) {
+        return q;
+      }
     })
   }
 
