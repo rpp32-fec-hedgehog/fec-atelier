@@ -10,7 +10,6 @@ class QA extends React.Component {
     super(props);
     this.state = {
       questions: [],
-      searchText: '',
       questionCount: 2
     };
   }
@@ -18,12 +17,11 @@ class QA extends React.Component {
   searchHandler(e) {
     e.preventDefault();
 
-    // update state with search text
     let text = e.target.value;
+
     this.setState({
       questions: this.state.questions,
       //questions to be changed, should update on text change
-      searchText: text,
       questionCount: this.state.questionCount
     })
   }
@@ -34,17 +32,14 @@ class QA extends React.Component {
     if (this.state.questions.length > this.state.questionCount) {
       this.setState({
         questions: this.state.questions,
-        searchText: this.state.searchText,
         questionCount: this.state.questionCount += 2
       })
     } else {
       this.setState({
         questions: this.state.questions,
-        searchText: this.state.searchText,
         questionCount: this.state.questionCount -= 2
       })
     }
-
   }
 
   componentDidMount() {
@@ -58,7 +53,6 @@ class QA extends React.Component {
           .sortBy((question) => {return question.question_helpfulness})
           .reverse()
           ._wrapped,
-          searchText: this.state.searchText,
           questionCount: this.state.questionCount
         })
       }
