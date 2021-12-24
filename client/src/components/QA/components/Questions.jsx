@@ -23,7 +23,7 @@ let Questions = (props) => {
   let more = <button key="more-q" onClick={props.handleQs}>More Answered Questions</button>;
   let less = <button key="less-q" onClick={props.handleQs}>Less Answered Questions</button>;
 
-  if (totalQs < 2) {
+  if (totalQs <= 2) {
     return base;
   } else if (totalQs > questions.length) {
     return base.concat(more);
