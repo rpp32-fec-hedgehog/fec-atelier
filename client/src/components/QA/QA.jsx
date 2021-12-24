@@ -10,6 +10,7 @@ class QA extends React.Component {
     super(props);
     this.state = {
       questions: [],
+      sortedQuestions: [],
       questionCount: 2
     };
   }
@@ -20,16 +21,23 @@ class QA extends React.Component {
     let text = e.target.value;
     if (text.length >= 3) {
       this.setState({
-        questions: this.sortQs(this.state.questions, text),
-        questionCount: this.state.questionCount
+        questions: this.state.questions,
+        sortedQuestions: this.sortQs(this.state.questions, text),
+        questionCount: 2
+      })
+    } else {
+      this.setState({
+        questions: this.state.questions,
+        sortedQuestions: this.state.questions,
+        questionCount: 2
       })
     }
   }
 
   sortQs(questions, sortTerm) {
-    return questions.map(q => {
-      if (q.body.includes(sortTerm)) {
-        return q;
+    return _.filter(questions, q => {
+      if (q.question_body.includes(sortTerm)) {
+        return true;
       }
     })
   }
@@ -37,14 +45,16 @@ class QA extends React.Component {
   handleQs(e) {
     e.preventDefault();
 
-    if (this.state.questions.length > this.state.questionCount) {
+    if (this.state.sortedQuestions.length > this.state.questionCount) {
       this.setState({
         questions: this.state.questions,
+        sortedQuestions: this.state.sortedQuestions,
         questionCount: this.state.questionCount += 2
       })
     } else {
       this.setState({
         questions: this.state.questions,
+        sortedQuestions: this.state.sortedQuestions,
         questionCount: this.state.questionCount -= 2
       })
     }
@@ -56,11 +66,14 @@ class QA extends React.Component {
       method: 'GET',
       success: (data) => {
         // console.log('Server GET Success ', data);
+        let responseData = _.chain(data.results)
+        .sortBy((question) => {return question.question_helpfulness})
+        .reverse()
+        ._wrapped;
+
         this.setState({
-          questions: _.chain(data.results)
-          .sortBy((question) => {return question.question_helpfulness})
-          .reverse()
-          ._wrapped,
+          questions: responseData,
+          sortedQuestions: responseData,
           questionCount: this.state.questionCount
         })
       }
@@ -73,9 +86,9 @@ class QA extends React.Component {
       <div>
         <h1>Questions and Answers</h1>
         <SearchQuestion searchHandler={this.searchHandler.bind(this)}/>
-        <Questions questions={state.questions.slice(0, state.questionCount)}
+        <Questions questions={state.sortedQuestions.slice(0, state.questionCount)}
           handleQs={this.handleQs.bind(this)}
-          totalQs={this.state.questions.length}
+          totalQs={state.sortedQuestions.length}
         />
       </div>
     )
