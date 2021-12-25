@@ -21,7 +21,7 @@ class Questions extends React.Component {
               .sortBy(answer => {return answer.helpfulness})
               .reverse()
               .slice(0, 2)
-              ._wrapped
+              .value()
             } />
           </li>
         })}
