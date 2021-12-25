@@ -6,7 +6,7 @@ class Questions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      answers: []
+      expanded: 2
     }
   }
 
@@ -20,7 +20,13 @@ class Questions extends React.Component {
             <Answers answers={_.chain(_.values(q.answers))
               .sortBy(answer => {return answer.helpfulness})
               .reverse()
-              .slice(0, 2)
+              .partition(user => {
+                if (user === 'Seller') {
+                  return true;
+                }
+              })
+              .flatten()
+              .slice(0, this.state.expanded)
               .value()
             } />
           </li>
