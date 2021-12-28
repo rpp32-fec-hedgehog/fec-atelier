@@ -21,15 +21,11 @@ class QA extends React.Component {
     let text = e.target.value;
     if (text.length >= 3) {
       this.setState({
-        questions: this.state.questions,
-        sortedQuestions: this.sortQs(this.state.questions, text),
-        questionCount: 2
+        sortedQuestions: this.sortQs(this.state.questions, text)
       })
     } else {
       this.setState({
-        questions: this.state.questions,
-        sortedQuestions: this.state.questions,
-        questionCount: 2
+        sortedQuestions: this.state.questions
       })
     }
   }
@@ -47,14 +43,10 @@ class QA extends React.Component {
 
     if (this.state.sortedQuestions.length > this.state.questionCount) {
       this.setState({
-        questions: this.state.questions,
-        sortedQuestions: this.state.sortedQuestions,
         questionCount: this.state.questionCount += 2
       })
     } else {
       this.setState({
-        questions: this.state.questions,
-        sortedQuestions: this.state.sortedQuestions,
         questionCount: this.state.questionCount -= 2
       })
     }
@@ -73,8 +65,7 @@ class QA extends React.Component {
 
         this.setState({
           questions: responseData,
-          sortedQuestions: responseData,
-          questionCount: this.state.questionCount
+          sortedQuestions: responseData
         })
       }
     })
