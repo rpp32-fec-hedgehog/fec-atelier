@@ -13,6 +13,7 @@ let Questions = (props) => {
             .sortBy(answer => {return answer.helpfulness})
             .reverse()
             .slice(0, 2)
+            .value()
           } />
         </li>
       })}

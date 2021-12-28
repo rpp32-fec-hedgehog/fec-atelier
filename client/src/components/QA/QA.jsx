@@ -57,7 +57,7 @@ class QA extends React.Component {
           questions: _.chain(data.results)
           .sortBy((question) => {return question.question_helpfulness})
           .reverse()
-          ._wrapped,
+          .value(),
           searchText: this.state.searchText,
           questionCount: this.state.questionCount
         })
