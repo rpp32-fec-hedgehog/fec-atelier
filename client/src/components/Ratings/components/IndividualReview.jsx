@@ -10,9 +10,16 @@ const IndividualReview = (props) => {
     const recommend = props.recommend;
     const response = props.response;
 
+    const reviewStyle = {
+      border: '1px solid rgba(0, 0, 0, 1)',
+      width: '45%',
+      float: 'left',
+      margin: '5px'
+    };
+
     return (
-      <li>
-      <span> star rating {moment(date).format('LL')} <br></br> <b>{summary}</b> <br></br> {body} <br></br> {reviewer_name} <br></br> {response} <br></br> {recommend}</span>
+      <li style={reviewStyle}>
+      <span> star rating goes here {moment(date).format('LL')} <br></br> <b>{summary}</b> <br></br> {body} <br></br>...should include pictures<br></br> {reviewer_name} <br></br> {response} <br></br> {recommend ? "I recommend this product": null}</span>
     </li>
     )
 
