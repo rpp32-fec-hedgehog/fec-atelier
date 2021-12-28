@@ -69,7 +69,7 @@ class QA extends React.Component {
         let responseData = _.chain(data.results)
         .sortBy((question) => {return question.question_helpfulness})
         .reverse()
-        ._wrapped;
+        .value()
 
         this.setState({
           questions: responseData,
