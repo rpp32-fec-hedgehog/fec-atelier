@@ -10,11 +10,12 @@ class QA extends React.Component {
     super(props);
     this.state = {
       questions: [],
-      searchText: ''
+      searchText: '',
+      questionCount: 2
     };
   }
 
-  searchHandler (e) {
+  searchHandler(e) {
     e.preventDefault();
 
     // update state with search text
@@ -22,8 +23,28 @@ class QA extends React.Component {
     this.setState({
       questions: this.state.questions,
       //questions to be changed, should update on text change
-      searchText: text
+      searchText: text,
+      questionCount: this.state.questionCount
     })
+  }
+
+  handleQs(e) {
+    e.preventDefault();
+
+    if (this.state.questions.length > this.state.questionCount) {
+      this.setState({
+        questions: this.state.questions,
+        searchText: this.state.searchText,
+        questionCount: this.state.questionCount += 2
+      })
+    } else {
+      this.setState({
+        questions: this.state.questions,
+        searchText: this.state.searchText,
+        questionCount: this.state.questionCount -= 2
+      })
+    }
+
   }
 
   componentDidMount() {
@@ -36,19 +57,24 @@ class QA extends React.Component {
           questions: _.chain(data.results)
           .sortBy((question) => {return question.question_helpfulness})
           .reverse()
-          ._wrapped,
-          searchText: this.state.searchText
+          .value(),
+          searchText: this.state.searchText,
+          questionCount: this.state.questionCount
         })
       }
     })
   }
 
   render() {
+    let state = this.state;
     return (
       <div>
         <h1>Questions and Answers</h1>
         <SearchQuestion searchHandler={this.searchHandler.bind(this)}/>
-        <Questions questions={this.state.questions.slice(0, 2)} />
+        <Questions questions={state.questions.slice(0, state.questionCount)}
+          handleQs={this.handleQs.bind(this)}
+          totalQs={this.state.questions.length}
+        />
       </div>
     )
   }
