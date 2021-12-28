@@ -10,41 +10,46 @@ class QA extends React.Component {
     super(props);
     this.state = {
       questions: [],
-      searchText: '',
+      sortedQuestions: [],
       questionCount: 2
     };
   }
 
-  searchHandler(e) {
+  searchQs(e) {
     e.preventDefault();
 
-    // update state with search text
     let text = e.target.value;
-    this.setState({
-      questions: this.state.questions,
-      //questions to be changed, should update on text change
-      searchText: text,
-      questionCount: this.state.questionCount
+    if (text.length >= 3) {
+      this.setState({
+        sortedQuestions: this.sortQs(this.state.questions, text)
+      })
+    } else {
+      this.setState({
+        sortedQuestions: this.state.questions
+      })
+    }
+  }
+
+  sortQs(questions, sortTerm) {
+    return _.filter(questions, q => {
+      if (q.question_body.includes(sortTerm)) {
+        return true;
+      }
     })
   }
 
   handleQs(e) {
     e.preventDefault();
 
-    if (this.state.questions.length > this.state.questionCount) {
+    if (this.state.sortedQuestions.length > this.state.questionCount) {
       this.setState({
-        questions: this.state.questions,
-        searchText: this.state.searchText,
         questionCount: this.state.questionCount += 2
       })
     } else {
       this.setState({
-        questions: this.state.questions,
-        searchText: this.state.searchText,
         questionCount: this.state.questionCount -= 2
       })
     }
-
   }
 
   componentDidMount() {
@@ -53,13 +58,14 @@ class QA extends React.Component {
       method: 'GET',
       success: (data) => {
         // console.log('Server GET Success ', data);
+        let responseData = _.chain(data.results)
+        .sortBy((question) => {return question.question_helpfulness})
+        .reverse()
+        .value()
+
         this.setState({
-          questions: _.chain(data.results)
-          .sortBy((question) => {return question.question_helpfulness})
-          .reverse()
-          .value(),
-          searchText: this.state.searchText,
-          questionCount: this.state.questionCount
+          questions: responseData,
+          sortedQuestions: responseData
         })
       }
     })
@@ -70,10 +76,10 @@ class QA extends React.Component {
     return (
       <div>
         <h1>Questions and Answers</h1>
-        <SearchQuestion searchHandler={this.searchHandler.bind(this)}/>
-        <Questions questions={state.questions.slice(0, state.questionCount)}
+        <SearchQuestion searchQs={this.searchQs.bind(this)}/>
+        <Questions questions={state.sortedQuestions.slice(0, state.questionCount)}
           handleQs={this.handleQs.bind(this)}
-          totalQs={this.state.questions.length}
+          totalQs={state.sortedQuestions.length}
         />
       </div>
     )
