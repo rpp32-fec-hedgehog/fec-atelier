@@ -6,12 +6,20 @@ import axios from 'axios';
 import React from 'react';
 import "regenerator-runtime/runtime.js";
 import '@testing-library/jest-dom';
+import { render, screen, cleanup, fireEvent } from '@testing-library/react';
+
 import Overview from '../client/src/components/Overview/Overview.jsx';
 import AddToCart from '../client/src/components/Overview/components/AddToCart.jsx';
 import ImageGallery from '../client/src/components/Overview/components/ImageGallery.jsx';
 import ProductInfo from '../client/src/components/Overview/components/ProductInfo.jsx';
 import StyleSelector from '../client/src/components/Overview/components/StyleSelector.jsx';
-import { render, screen, cleanup, fireEvent } from '@testing-library/react';
+
+import QA from '../client/src/components/QA/QA.jsx';
+import AnswerQuestion from '../client/src/components/QA/components/AnswerQuestion.jsx';
+import Answers from '../client/src/components/QA/components/Answers.jsx';
+import AskQuestion from '../client/src/components/QA/components/AskQuestion.jsx';
+import Questions from '../client/src/components/QA/components/Questions.jsx';
+import SearchQuestion from '../client/src/components/QA/components/SearchQuestion.jsx';
 
 jest.mock('axios');
 // beforeAll((done) => {
