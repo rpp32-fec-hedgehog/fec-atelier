@@ -3,7 +3,7 @@ import _ from 'underscore';
 import moment from 'moment';
 
 let Answers = (props) => {
-  return <ul>
+  return <ul data-testid="answers">
     {props.answers.map(a => {
       let answerer = a.answerer_name;
       if (answerer === 'Seller') {
