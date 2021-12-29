@@ -3,7 +3,7 @@
 // ========== Related Products ========== //
 
 // ========== Questions & Answers ========== //
-const answersData = {
+let answerData = {
   "5181410": {
     "id": 5181410,
     "body": "GOOD",
@@ -55,6 +55,6 @@ const answersData = {
   }
 }
 
-module.exports.answersData = answersData;
+module.exports.answerData = answerData;
 
 // ========== Ratings & Reviews ========== //
