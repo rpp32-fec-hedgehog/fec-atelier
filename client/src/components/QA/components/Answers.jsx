@@ -3,7 +3,6 @@ import _ from 'underscore';
 import moment from 'moment';
 
 let Answers = (props) => {
-  console.log('AAAAA ', props.answers);
   return <ul data-testid="answers">
     {props.answers.map(a => {
       let answerer = a.answerer_name;
