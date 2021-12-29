@@ -4,6 +4,7 @@
 
 import axios from 'axios';
 import React from 'react';
+import _ from 'underscore';
 import "regenerator-runtime/runtime.js";
 import '@testing-library/jest-dom';
 import {render, screen, cleanup, fireEvent} from '@testing-library/react';
@@ -172,9 +173,9 @@ describe('Questions & Answers', function() {
     })
 
     test('should render questions sorted by helpfulness', function() {
-      render(<Questions questions={questionData} />);
-      // render(<QA itemid={59557} />);
-      const TopQuestions = screen.getByTestId('testtest');
+      render(<QA itemid={59557} />);
+      // render(<Questions questions={questionData} />);
+      const TopQuestions = screen.getByText('testtest');
       expect(TopQuestions).toBeInTheDocument();
     })
 
