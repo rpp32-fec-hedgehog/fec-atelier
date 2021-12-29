@@ -12,7 +12,7 @@ class Questions extends React.Component {
 
   render() {
     let questions = this.props.questions;
-    let base = [<div key="q-base">
+    let base = [<div data-testid="questions" key="q-base">
       <ul>
         {questions.map(q => {
           return <li key={'q-'.concat(q.question_id)}>
