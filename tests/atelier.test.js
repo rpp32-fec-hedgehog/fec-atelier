@@ -6,7 +6,8 @@ import axios from 'axios';
 import React from 'react';
 import "regenerator-runtime/runtime.js";
 import '@testing-library/jest-dom';
-import { render, screen, cleanup, fireEvent } from '@testing-library/react';
+import {render, screen, cleanup, fireEvent} from '@testing-library/react';
+import {answersData} from '../samples/sampleData.js';
 
 import Overview from '../client/src/components/Overview/Overview.jsx';
 import AddToCart from '../client/src/components/Overview/components/AddToCart.jsx';
@@ -118,8 +119,15 @@ describe('Questions & Answers', function() {
       expect(QAElement).toBeInTheDocument();
     })
 
-    test('should render the AnswerQuestion component', function () {
+    test('should render the AnswerQuestion component', function() {
       render(<AnswerQuestion />);
+      const AnswerQuestionElement = screen.getByTestId('answer-question');
+      expect(AnswerQuestionElement).toBeInTheDocument();
+    })
+
+    test('should render Answers components', function() {
+
+      render(<Answers />);
       const AnswerQuestionElement = screen.getByTestId('answer-question');
       expect(AnswerQuestionElement).toBeInTheDocument();
     })
