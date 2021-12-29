@@ -132,9 +132,12 @@ describe('Questions & Answers', function() {
   })
 
   describe('Answers Component', function() {
+    beforeEach(() => {
+      render(<Answers answers={Object.values(questionData[0]['answers'])} />);
+    })
+
 
     test('should render Answers components', function() {
-      render(<Answers answers={Object.values(questionData[0]['answers'])} />);
       const AnswersElement = screen.getByTestId('answers');
       expect(AnswersElement).toBeInTheDocument();
     })

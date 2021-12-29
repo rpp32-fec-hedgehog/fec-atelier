@@ -60,7 +60,7 @@ let questionData = [
         "id": 5181410,
         "body": "GOOD",
         "date": "2021-11-18T00:00:00.000Z",
-        "answerer_name": "Seller",
+        "answerer_name": "bizza",
         "helpfulness": 2,
         "photos": [
           "https://ucarecdn.com/78916c78-7056-4c54-b8f1-dc4634980428/"
@@ -120,7 +120,7 @@ let questionData = [
         "body": "Yes, we do!",
         "date": "2021-11-18T00:00:00.000Z",
         "answerer_name": "Seller",
-        "helpfulness": 0,
+        "helpfulness": 2,
         "photos": [
           "https://ucarecdn.com/064c6c85-f077-4b3a-8975-15b47a2cde6d/",
           "https://ucarecdn.com/46fb5051-9c8e-4198-b96a-c2366dcedb9c/"
@@ -161,16 +161,7 @@ let questionData = [
     "asker_name": "weewoo",
     "question_helpfulness": 1,
     "reported": false,
-    "answers": {
-      "5181541": {
-        "id": 5181541,
-        "body": "yes ? yes ? yes ? yes ? ",
-        "date": "2021-12-04T00:00:00.000Z",
-        "answerer_name": "yes",
-        "helpfulness": 0,
-        "photos": []
-      }
-    }
+    "answers": {}
   }
 ]
 
