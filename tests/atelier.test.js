@@ -7,7 +7,7 @@ import React from 'react';
 import "regenerator-runtime/runtime.js";
 import '@testing-library/jest-dom';
 import {render, screen, cleanup, fireEvent} from '@testing-library/react';
-import {answersData} from '../samples/sampleData.js';
+import {questionData, answerData} from '../samples/sampleData.js';
 
 import Overview from '../client/src/components/Overview/Overview.jsx';
 import AddToCart from '../client/src/components/Overview/components/AddToCart.jsx';
@@ -34,7 +34,7 @@ jest.mock('axios');
 // ========== Overview ========== //
 describe('Overview', function() {
 
-  describe('Render Overview Widget', function() {
+  xdescribe('Render Overview Widget', function() {
 
     test('should Render the Overview Component', function() {
       render(<Overview />);
@@ -54,7 +54,7 @@ describe('Overview', function() {
       expect(ImageGalleryElement).toBeInTheDocument();
     })
 
-    xtest('should Render the ProductInfo Component', function() {
+    test('should Render the ProductInfo Component', function() {
       render(<ProductInfo />);
       const ProductInfoElement = screen.getByTestId('product-info');
       expect(ProductInfoElement).toBeInTheDocument();
@@ -126,10 +126,21 @@ describe('Questions & Answers', function() {
     })
 
     test('should render Answers components', function() {
+      render(<Answers answers={Object.values(answerData)} />);
+      const AnswersElement = screen.getByTestId('answers');
+      expect(AnswersElement).toBeInTheDocument();
+    })
 
-      render(<Answers />);
-      const AnswerQuestionElement = screen.getByTestId('answer-question');
-      expect(AnswerQuestionElement).toBeInTheDocument();
+    test('should render AskQuestion component', function() {
+      render(<AskQuestion />);
+      const AskQuestionElement = screen.getByTestId('ask-question');
+      expect(AskQuestionElement).toBeInTheDocument();
+    })
+
+    test('should render Questions components', function() {
+      render(<Questions questions={questionData}/>);
+      const QuestionsElement = screen.getByTestId('questions');
+      expect(QuestionsElement).toBeInTheDocument();
     })
 
   })
