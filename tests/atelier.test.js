@@ -115,7 +115,7 @@ describe('Questions & Answers', function() {
 
     test('should render the QA component', function() {
       render(<QA itemid={59557} />);
-      const QAElement = screen.getByTestId('qa-widget');
+      const QAElement = screen.getByTestId('qa');
       expect(QAElement).toBeInTheDocument();
     })
 
@@ -144,12 +144,13 @@ describe('Questions & Answers', function() {
     })
 
     test('should render SearchQuestion component', function() {
-      render(<SearchQuestion questions={questionData} />);
+      render(<SearchQuestion />);
       const SearchQuestionElement = screen.getByTestId('search-question');
       expect(SearchQuestionElement).toBeInTheDocument();
     })
 
   })
+
 })
 
 // ========== Ratings & Reviews ========== //
