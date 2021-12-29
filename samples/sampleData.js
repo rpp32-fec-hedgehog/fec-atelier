@@ -17,7 +17,7 @@ let questionData = [
         "body": "What do you want to ask?",
         "date": "2021-11-18T00:00:00.000Z",
         "answerer_name": "jack",
-        "helpfulness": 0,
+        "helpfulness": 2,
         "photos": []
       },
       "5181393": {
@@ -71,7 +71,7 @@ let questionData = [
         "body": "I think this is really good product",
         "date": "2021-11-19T00:00:00.000Z",
         "answerer_name": "tesh",
-        "helpfulness": 0,
+        "helpfulness": 3,
         "photos": []
       },
       "5181545": {
