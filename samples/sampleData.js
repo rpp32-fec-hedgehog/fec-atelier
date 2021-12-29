@@ -79,7 +79,7 @@ let questionData = [
         "body": "maybe",
         "date": "2021-12-04T00:00:00.000Z",
         "answerer_name": "weewoo",
-        "helpfulness": 0,
+        "helpfulness": 4,
         "photos": [
           "http://res.cloudinary.com/dpwwavsdm/image/upload/v1638600117/IMG_3154_j0bauv.jpg",
           "http://res.cloudinary.com/dpwwavsdm/image/upload/v1638600118/neeko_laaosh.jpg"
@@ -112,7 +112,7 @@ let questionData = [
     "question_body": "Do you ship internationally?",
     "question_date": "2021-11-18T00:00:00.000Z",
     "asker_name": "Jack",
-    "question_helpfulness": 2,
+    "question_helpfulness": 1,
     "reported": false,
     "answers": {
       "5181391": {
@@ -159,7 +159,7 @@ let questionData = [
     "question_body": "test",
     "question_date": "2021-12-03T00:00:00.000Z",
     "asker_name": "weewoo",
-    "question_helpfulness": 1,
+    "question_helpfulness": 0,
     "reported": false,
     "answers": {}
   }
