@@ -9,7 +9,7 @@ let questionData = [
     "question_body": "really, really, really",
     "question_date": "2021-11-17T00:00:00.000Z",
     "asker_name": "hello",
-    "question_helpfulness": 2,
+    "question_helpfulness": 1,
     "reported": false,
     "answers": {
       "5181392": {
@@ -112,7 +112,7 @@ let questionData = [
     "question_body": "Do you ship internationally?",
     "question_date": "2021-11-18T00:00:00.000Z",
     "asker_name": "Jack",
-    "question_helpfulness": 1,
+    "question_helpfulness": 5,
     "reported": false,
     "answers": {
       "5181391": {
