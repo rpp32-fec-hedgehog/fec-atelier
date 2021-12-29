@@ -181,6 +181,12 @@ describe('Questions & Answers', function() {
       expect(SearchQuestionElement).toBeInTheDocument();
     })
 
+    test('should render search bar with placeholder text', function() {
+      render(<SearchQuestion />);
+      const PlaceholderElement = screen.getByPlaceholderText('Search for answers...');
+      expect(PlaceholderElement).toBeInTheDocument();
+    })
+
   })
 
 })
