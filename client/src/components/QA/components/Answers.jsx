@@ -3,6 +3,7 @@ import _ from 'underscore';
 import moment from 'moment';
 
 let Answers = (props) => {
+  console.log('AAAAA ', props.answers);
   return <ul data-testid="answers">
     {props.answers.map(a => {
       let answerer = a.answerer_name;
@@ -10,7 +11,7 @@ let Answers = (props) => {
         answerer = <b>{answerer}</b>
       }
 
-      return <div key={'a-'.concat(a.id)}>
+      return <div key={'a-'.concat(a.id)} data-testid={answerer}>
         <li>A: {a.body}</li>
           by {answerer}, {moment(a.date).format('LL')}
       </div>
