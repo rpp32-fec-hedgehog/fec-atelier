@@ -119,7 +119,7 @@ let questionData = [
         "id": 5181391,
         "body": "Yes, we do!",
         "date": "2021-11-18T00:00:00.000Z",
-        "answerer_name": "Seller",
+        "answerer_name": "test",
         "helpfulness": 2,
         "photos": [
           "https://ucarecdn.com/064c6c85-f077-4b3a-8975-15b47a2cde6d/",
@@ -148,7 +148,7 @@ let questionData = [
         "id": 5181542,
         "body": "why?",
         "date": "2021-12-04T00:00:00.000Z",
-        "answerer_name": "why",
+        "answerer_name": "Seller",
         "helpfulness": 0,
         "photos": []
       }

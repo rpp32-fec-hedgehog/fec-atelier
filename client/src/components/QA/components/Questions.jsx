@@ -21,7 +21,7 @@ class Questions extends React.Component {
               .sortBy(answer => {return answer.helpfulness})
               .reverse()
               .partition(user => {
-                if (user === 'Seller') {
+                if (user.answerer_name === 'Seller') {
                   return true;
                 }
               })
