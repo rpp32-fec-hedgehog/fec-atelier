@@ -7,7 +7,7 @@ import React from 'react';
 import "regenerator-runtime/runtime.js";
 import '@testing-library/jest-dom';
 import {render, screen, cleanup, fireEvent} from '@testing-library/react';
-import {questionData, answerData} from '../samples/sampleData.js';
+import {questionData} from '../samples/sampleData.js';
 
 import Overview from '../client/src/components/Overview/Overview.jsx';
 import AddToCart from '../client/src/components/Overview/components/AddToCart.jsx';
@@ -126,7 +126,7 @@ describe('Questions & Answers', function() {
     })
 
     test('should render Answers components', function() {
-      render(<Answers answers={Object.values(answerData)} />);
+      render(<Answers answers={Object.values(questionData[0]['answers'])} />);
       const AnswersElement = screen.getByTestId('answers');
       expect(AnswersElement).toBeInTheDocument();
     })
@@ -138,9 +138,15 @@ describe('Questions & Answers', function() {
     })
 
     test('should render Questions components', function() {
-      render(<Questions questions={questionData}/>);
+      render(<Questions questions={questionData} />);
       const QuestionsElement = screen.getByTestId('questions');
       expect(QuestionsElement).toBeInTheDocument();
+    })
+
+    test('should render SearchQuestion component', function() {
+      render(<SearchQuestion questions={questionData} />);
+      const SearchQuestionElement = screen.getByTestId('search-question');
+      expect(SearchQuestionElement).toBeInTheDocument();
     })
 
   })
