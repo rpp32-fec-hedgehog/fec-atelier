@@ -132,14 +132,23 @@ describe('Questions & Answers', function() {
   })
 
   describe('Answers Component', function() {
-    beforeEach(() => {
-      render(<Answers answers={Object.values(questionData[0]['answers'])} />);
-    })
-
 
     test('should render Answers components', function() {
+      render(<Answers answers={Object.values(questionData[0]['answers'])} />);
       const AnswersElement = screen.getByTestId('answers');
       expect(AnswersElement).toBeInTheDocument();
+    })
+
+    test('should render answers sorted by helpfulness', function() {
+      render(<Questions questions={questionData} />);
+      const TopAnswer = screen.getByTestId('weewoo');
+      expect(TopAnswer).toBeInTheDocument();
+    })
+
+    test('should render Seller answer at top of answer list', function() {
+      render(<Questions questions={questionData} />);
+      const SellerAnswer = screen.getByTestId(<b>Seller</b>);
+      expect(SellerAnswer).toBeInTheDocument();
     })
 
   })
