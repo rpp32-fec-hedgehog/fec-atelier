@@ -109,12 +109,19 @@ describe('Related Products', function() {
 
 // ========== Questions & Answers ========== //
 describe('Questions & Answers', function() {
-  describe('SUB-SECTION EXAMPLE', function () {
 
-    test('TEST EXAMPLE', function () {
-      var testsWorking = true;
+  describe('Render Q&A Widget', function() {
 
-      expect(testsWorking).toBe(true);
+    test('should render the QA component', function() {
+      render(<QA itemid={59557} />);
+      const QAElement = screen.getByTestId('qa-widget');
+      expect(QAElement).toBeInTheDocument();
+    })
+
+    test('should render the AnswerQuestion component', function () {
+      render(<AnswerQuestion />);
+      const AnswerQuestionElement = screen.getByTestId('answer-question');
+      expect(AnswerQuestionElement).toBeInTheDocument();
     })
 
   })
@@ -122,9 +129,9 @@ describe('Questions & Answers', function() {
 
 // ========== Ratings & Reviews ========== //
 describe('Ratings & Reviews', function() {
-  describe('SUB-SECTION EXAMPLE', function () {
+  describe('SUB-SECTION EXAMPLE', function() {
 
-    test('TEST EXAMPLE', function () {
+    test('TEST EXAMPLE', function() {
       var testsWorking = true;
 
       expect(testsWorking).toBe(true);
