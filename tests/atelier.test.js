@@ -111,7 +111,7 @@ describe('Related Products', function() {
 // ========== Questions & Answers ========== //
 describe('Questions & Answers', function() {
 
-  describe('Render Q&A Widget', function() {
+  describe('QA Component', function() {
 
     test('should render the QA component', function() {
       render(<QA itemid={59557} />);
@@ -119,11 +119,19 @@ describe('Questions & Answers', function() {
       expect(QAElement).toBeInTheDocument();
     })
 
+  })
+
+  describe('AnswerQuestion Component', function() {
+
     test('should render the AnswerQuestion component', function() {
       render(<AnswerQuestion />);
       const AnswerQuestionElement = screen.getByTestId('answer-question');
       expect(AnswerQuestionElement).toBeInTheDocument();
     })
+
+  })
+
+  describe('Answers Component', function() {
 
     test('should render Answers components', function() {
       render(<Answers answers={Object.values(questionData[0]['answers'])} />);
@@ -131,17 +139,29 @@ describe('Questions & Answers', function() {
       expect(AnswersElement).toBeInTheDocument();
     })
 
+  })
+
+  describe('AskQuestion Component', function() {
+
     test('should render AskQuestion component', function() {
       render(<AskQuestion />);
       const AskQuestionElement = screen.getByTestId('ask-question');
       expect(AskQuestionElement).toBeInTheDocument();
     })
 
+  })
+
+  describe('Questions Component', function() {
+
     test('should render Questions components', function() {
       render(<Questions questions={questionData} />);
       const QuestionsElement = screen.getByTestId('questions');
       expect(QuestionsElement).toBeInTheDocument();
     })
+
+  })
+
+  describe('SearchQuestion Component', function() {
 
     test('should render SearchQuestion component', function() {
       render(<SearchQuestion />);
