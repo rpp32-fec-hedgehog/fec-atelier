@@ -15,7 +15,7 @@ class Questions extends React.Component {
     let base = [<div data-testid="questions" key="q-base">
       <ul>
         {questions.map(q => {
-          return <li key={'q-'.concat(q.question_id)}>
+          return <li key={'q-'.concat(q.question_id)} data-testid={q.question_body}>
             Q: {q.question_body}
             <Answers answers={_.chain(_.values(q.answers))
               .sortBy(answer => {return answer.helpfulness})

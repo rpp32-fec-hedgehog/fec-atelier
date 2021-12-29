@@ -141,8 +141,8 @@ describe('Questions & Answers', function() {
 
     test('should render answers sorted by helpfulness', function() {
       render(<Questions questions={questionData} />);
-      const TopAnswer = screen.getByTestId('weewoo');
-      expect(TopAnswer).toBeInTheDocument();
+      const TopAnswers = screen.getByTestId('weewoo');
+      expect(TopAnswers).toBeInTheDocument();
     })
 
     test('should render Seller answer at top of answer list', function() {
@@ -169,6 +169,13 @@ describe('Questions & Answers', function() {
       render(<Questions questions={questionData} />);
       const QuestionsElement = screen.getByTestId('questions');
       expect(QuestionsElement).toBeInTheDocument();
+    })
+
+    test('should render questions sorted by helpfulness', function() {
+      render(<Questions questions={questionData} />);
+      // render(<QA itemid={59557} />);
+      const TopQuestions = screen.getByTestId('testtest');
+      expect(TopQuestions).toBeInTheDocument();
     })
 
   })
