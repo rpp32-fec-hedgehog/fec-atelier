@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import $ from 'jquery';
 import _ from 'underscore';
 import "regenerator-runtime/runtime.js";
 
@@ -26,6 +27,15 @@ class Overview extends React.Component {
   }
 
   async grabProductData() {
+    // $.ajax({
+    //   url: `products/${this.props.itemid}`,
+    //   method: 'GET',
+    //   success: (result) => {
+    //     this.setState({
+    //       productData : result
+    //     });
+    //   }
+    // })
     await axios.get(`products/${this.props.itemid}`)
       .then((result) => {
         this.setState({
@@ -38,6 +48,18 @@ class Overview extends React.Component {
   }
 
   async grabStylesData() {
+    // $.ajax({
+    //   url: `products/${this.props.itemid}/styles`,
+    //   method: 'GET',
+    //   success: (result) => {
+    //     console.log('result inside style data', result)
+    //     this.setState({
+    //       styleData : result,
+    //       photo: result.results[0].photos[0].url,
+    //       numberOfPhotos: result.results.map(style => style.photos).length
+    //     });
+    //   }
+    // })
     await axios.get(`products/${this.props.itemid}/styles`)
       .then((result) => {
         this.setState({
@@ -82,11 +104,11 @@ class Overview extends React.Component {
     return (
       <div data-testid='overview-widget' style={{border: "1px solid black"}}>
         <div>
-          <h1>Overview Widget Here</h1>
+          <h1>Overview</h1>
           <ProductInfo itemid={this.props.itemid} productData={this.state.productData} />
           <ImageGallery styleData={this.state.styleData} photo={this.state.photo}
             forward={this.cycleForward} backward={this.cycleBackward} />
-          <StyleSelector styleData={_.map(this.state.styleData, style => style.photos).map(arr => arr[0].thumbnail_url)}/>
+          {/* <StyleSelector styleData={_.map(this.state.styleData, style => style.photos).map(arr => arr[0].thumbnail_url)}/> */}
           <AddToCart productName={this.state.productData.name} styleData={this.state.styleData} />
         </div>
       </div>
