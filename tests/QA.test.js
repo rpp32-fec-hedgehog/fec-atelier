@@ -78,7 +78,7 @@ describe('Questions & Answers', function() {
       expect(QuestionsElement).toBeInTheDocument();
     })
 
-    test('should render questions sorted by helpfulness', async function() {
+    xtest('should render questions sorted by helpfulness', async function() {
       // this test may break if helpfulness of certain questions are updated on API
       await waitFor(() => {
         render(<QA itemid={59557} />);
