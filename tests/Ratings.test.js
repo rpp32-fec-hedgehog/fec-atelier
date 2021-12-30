@@ -25,7 +25,7 @@ jest.mock('axios');
 //   done();
 // })
 
-describe('Ratings & Reviews', function() {
+xdescribe('Ratings & Reviews', function() {
   describe('Render Ratings Component', function () {
 
     test('should Render the Ratings Component', function() {
