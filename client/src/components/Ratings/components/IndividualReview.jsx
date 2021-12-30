@@ -18,9 +18,11 @@ const IndividualReview = (props) => {
     };
 
     return (
-      <li style={reviewStyle}>
-      <span> star rating goes here {moment(date).format('LL')} <br></br> <b>{summary}</b> <br></br> {body} <br></br>...should include pictures<br></br> {reviewer_name} <br></br> {response} <br></br> {recommend ? "I recommend this product": null}</span>
-    </li>
+      <div className="individual-review">
+        <li style={reviewStyle}>
+          <span> star rating goes here {moment(date).format('LL')} <br></br> <b>{summary}</b> <br></br> {body} <br></br>...should include pictures<br></br> {reviewer_name} <br></br> {response} <br></br> {recommend ? "I recommend this product!": null}</span>
+        </li>
+    </div>
     )
 
 }
