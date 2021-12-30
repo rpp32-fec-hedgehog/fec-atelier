@@ -6,7 +6,7 @@ import React from 'react';
 import _ from 'underscore';
 import "regenerator-runtime/runtime.js";
 import '@testing-library/jest-dom';
-import {render, screen, cleanup, fireEvent} from '@testing-library/react';
+import {render, screen, cleanup, fireEvent, waitFor} from '@testing-library/react';
 import {questionData} from '../samples/sampleData.js';
 
 import QA from '../client/src/components/QA/QA.jsx';
@@ -78,11 +78,18 @@ describe('Questions & Answers', function() {
       expect(QuestionsElement).toBeInTheDocument();
     })
 
-    xtest('should render questions sorted by helpfulness', function() {
-      render(<QA itemid={59557} />);
-      // render(<Questions questions={questionData} />);
-      const TopQuestions = screen.getByText('testtest');
-      expect(TopQuestions).toBeInTheDocument();
+    test('should render questions sorted by helpfulness', function() {
+      // this test may break if helpfulness of certain questions are updated on API
+      waitFor(() => {
+        render(<QA itemid={59557} />);
+      })
+        .then(res => {
+          const TopQuestions = screen.getByTestId('really, really, really');
+          expect(TopQuestions).toBeInTheDocument();
+        })
+        .catch(err => {
+          return err;
+        })
     })
 
   })
