@@ -85,7 +85,7 @@ describe('Questions & Answers', function() {
       })
         .then(res => {
           // console.log('PLEASE WORK ', TopQuestions);
-          const TopQuestions = screen.getByTestId('really, really, really');
+          const TopQuestions = screen.findByTestId('really, realbvly, really');
           expect(TopQuestions).toBeInTheDocument();
         })
         .catch(err => {
