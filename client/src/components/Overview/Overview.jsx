@@ -27,15 +27,6 @@ class Overview extends React.Component {
   }
 
   async grabProductData() {
-    // $.ajax({
-    //   url: `products/${this.props.itemid}`,
-    //   method: 'GET',
-    //   success: (result) => {
-    //     this.setState({
-    //       productData : result
-    //     });
-    //   }
-    // })
     await axios.get(`products/${this.props.itemid}`)
       .then((result) => {
         this.setState({
@@ -48,18 +39,6 @@ class Overview extends React.Component {
   }
 
   async grabStylesData() {
-    // $.ajax({
-    //   url: `products/${this.props.itemid}/styles`,
-    //   method: 'GET',
-    //   success: (result) => {
-    //     console.log('result inside style data', result)
-    //     this.setState({
-    //       styleData : result,
-    //       photo: result.results[0].photos[0].url,
-    //       numberOfPhotos: result.results.map(style => style.photos).length
-    //     });
-    //   }
-    // })
     await axios.get(`products/${this.props.itemid}/styles`)
       .then((result) => {
         this.setState({
