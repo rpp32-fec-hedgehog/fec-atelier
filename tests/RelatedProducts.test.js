@@ -4,13 +4,23 @@
 
 import axios from 'axios';
 import React from 'react';
-import _ from 'underscore';
-import "regenerator-runtime/runtime.js";
+import 'regenerator-runtime/runtime.js';
 import '@testing-library/jest-dom';
-import {render, screen, cleanup, fireEvent} from '@testing-library/react';
-import {questionData} from '../samples/sampleData.js';
+import {rest} from 'msw'
+import {setupServer} from 'msw/node'
+import Fetch from 'fetch'
+import { render, screen, cleanup, fireEvent, waitFor } from '@testing-library/react';
 
-describe('Related Products', function() {
+jest.mock('axios');
+// beforeAll((done) => {
+//   done();
+// })
+
+// afterAll((done) => {
+//   done();
+// })
+
+xdescribe('Related Products', function() {
   describe('SUB-SECTION EXAMPLE', function() {
 
     test('TEST EXAMPLE', function() {

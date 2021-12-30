@@ -1,9 +1,4 @@
-// ========== Overview ========== //
-
-// ========== Related Products ========== //
-
-// ========== Questions & Answers ========== //
-let questionData = [
+const questionData = [
   {
     "question_id": 553704,
     "question_body": "really, really, really",
@@ -166,5 +161,3 @@ let questionData = [
 ]
 
 module.exports.questionData = questionData;
-
-// ========== Ratings & Reviews ========== //

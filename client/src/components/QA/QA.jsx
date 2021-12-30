@@ -5,7 +5,7 @@ import _ from 'underscore';
 import SearchQuestion from './components/SearchQuestion.jsx';
 import Questions from './components/Questions.jsx';
 
-import sampleData from '../../../../tests/samples/sampleData';
+import sampleData from '../../../../tests/samples/sample-qa-data';
 
 class QA extends React.Component {
   constructor(props) {
