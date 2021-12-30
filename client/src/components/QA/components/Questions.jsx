@@ -13,9 +13,9 @@ class Questions extends React.Component {
   render() {
     let questions = this.props.questions;
     let base = [<div data-testid="questions" key="q-base">
-      <ul data-testid="ul-test">
+      <ul>
         {questions.map(q => {
-          return <div data-testid={q.question_body}>
+          return <div data-testid={q.question_body} key={q.question_body}>
             <li key={'q-'.concat(q.question_id)}>
               Q: {q.question_body}
               <Answers answers={_.chain(_.values(q.answers))
