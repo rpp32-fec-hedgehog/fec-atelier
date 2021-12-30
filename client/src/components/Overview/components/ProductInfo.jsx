@@ -73,11 +73,10 @@ class ProductInfo extends React.Component {
           </div>
           : null
         }
-      <div>{}</div>
-      <div>{this.props.productData.category}</div>
-      <div>${this.props.productData.default_price}</div>
-      <div>{this.props.productData.name}</div>
-      <div>{this.props.productData.description}</div>
+        {this.props.productData ? <div>{this.props.productData.category}</div> : null}
+        {this.props.productData ? <div>{this.props.productData.default_price}</div> : null}
+        {this.props.productData ? <div>{this.props.productData.name}</div> : null}
+        {this.props.productData ? <div>{this.props.productData.description}</div> : null}
     </div>
     )
   }
