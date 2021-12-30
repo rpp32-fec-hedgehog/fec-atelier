@@ -4,7 +4,7 @@
   "description": "FEC Capstone Project",
   "main": "index.js",
   "scripts": {
-    "test": "jest --detectOpenHandles",
+    "test": "jest --detectOpenHandles --coverage",
     "react-dev": "webpack --watch",
     "start": "npx nodemon server/index.js"
   },
@@ -27,6 +27,7 @@
     "babel-loader": "^8.2.3",
     "dotenv": "^10.0.0",
     "jest": "^27.4.5",
+    "msw": "^0.36.3",
     "react-test-renderer": "^17.0.2",
     "webpack": "^5.65.0",
     "webpack-cli": "^4.9.1"
@@ -36,6 +37,7 @@
     "axios": "^0.24.0",
     "cookie-parser": "^1.4.6",
     "express": "^4.17.1",
+    "fetch": "^1.1.0",
     "jquery": "^3.6.0",
     "moment": "^2.29.1",
     "path": "^0.12.7",
