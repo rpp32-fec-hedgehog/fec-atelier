@@ -78,7 +78,7 @@ describe('Questions & Answers', function() {
       expect(QuestionsElement).toBeInTheDocument();
     })
 
-    test('should render questions sorted by helpfulness', function() {
+    xtest('should render questions sorted by helpfulness', function() {
       render(<QA itemid={59557} />);
       // render(<Questions questions={questionData} />);
       const TopQuestions = screen.getByText('testtest');
