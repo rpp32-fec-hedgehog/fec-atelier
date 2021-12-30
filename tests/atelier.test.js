@@ -4,15 +4,20 @@
 
 import axios from 'axios';
 import React from 'react';
-import "regenerator-runtime/runtime.js";
+import 'regenerator-runtime/runtime.js';
 import '@testing-library/jest-dom';
+import {rest} from 'msw'
+import {setupServer} from 'msw/node'
+import Fetch from 'fetch'
+import { render, screen, cleanup, fireEvent, waitFor } from '@testing-library/react';
+
 import Overview from '../client/src/components/Overview/Overview.jsx';
 import AddToCart from '../client/src/components/Overview/components/AddToCart.jsx';
 import ImageGallery from '../client/src/components/Overview/components/ImageGallery.jsx';
 import ProductInfo from '../client/src/components/Overview/components/ProductInfo.jsx';
 import StyleSelector from '../client/src/components/Overview/components/StyleSelector.jsx';
-import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 
+import reviewData from './sample-review-data.js';
 import Ratings from '../client/src/components/Ratings/Ratings.jsx';
 import RatingsList from '../client/src/components/Ratings/components/RatingsList.jsx';
 import IndividualReview from '../client/src/components/Ratings/components/IndividualReview.jsx';
@@ -120,19 +125,10 @@ describe('Questions & Answers', function() {
 describe('Ratings & Reviews', function() {
   describe('Render Ratings Component', function () {
 
-    // test('should Render the Ratings Component', function() {
-    //   render(<Ratings />);
-    //   const RatingsElement = screen.getByTestId('ratings-widget');
-    //   expect(RatingsElement).toBeInTheDocument();
-    // })
-
-    test('should Render the Ratings Component', async () => {
-      // render(<Ratings />);
-      // const RatingsElement = screen.getByTestId('ratings-widget');
-      // expect(RatingsElement).toBeInTheDocument();
-      await waitFor(() => {
-        expect(getByText('Ratings & Reviews')).toBeInTheDocument()
-      })
+    test('should Render the Ratings Component', function() {
+      axios.get.mockResolvedValueOnce(reviewData);
+      render(<Ratings />);
+      expect(screen.getByText('Ratings & Reviews')).toBeInTheDocument();
     })
 
     xtest('should Render the Ratings List Component', function() {
