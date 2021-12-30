@@ -78,13 +78,45 @@ describe('Questions & Answers', function() {
       expect(QuestionsElement).toBeInTheDocument();
     })
 
-    test('should render questions sorted by helpfulness', function() {
+    test('should render questions sorted by helpfulness', async function() {
       // this test may break if helpfulness of certain questions are updated on API
-      waitFor(() => {
+      await waitFor(() => {
         render(<QA itemid={59557} />);
       })
         .then(res => {
+          // console.log('PLEASE WORK ', TopQuestions);
           const TopQuestions = screen.getByTestId('really, really, really');
+          expect(TopQuestions).toBeInTheDocument();
+        })
+        .catch(err => {
+          return err;
+        })
+
+        // render(<QA itemid={59557} />);
+        // const TopQuestions = screen.getByTestId('really, really, really');
+        // expect(TopQuestions).toBeInTheDocument();
+    })
+
+    xtest('should render "More Answered Questions" button when there are 3 or more questions', async function() {
+      await waitFor(() => {
+        render(<QA itemid={59557} />);
+      })
+        .then(res => {
+          const TopQuestions = screen.getByTestId('More Answered Questions');
+          expect(TopQuestions).toBeInTheDocument();
+        })
+        .catch(err => {
+          return err;
+        })
+    })
+
+    xtest('should NOT render "More Answered Questions" button when there are 2 or less questions', function() {
+      // this test may break if more questions are added to this item on the API
+      waitFor(() => {
+        render(<QA itemid={59553} />);
+      })
+        .then(res => {
+          const TopQuestions = screen.getByText('More Answered Questions');
           expect(TopQuestions).toBeInTheDocument();
         })
         .catch(err => {
