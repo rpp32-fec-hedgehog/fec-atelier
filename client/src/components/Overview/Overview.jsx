@@ -108,7 +108,7 @@ class Overview extends React.Component {
           <ProductInfo itemid={this.props.itemid} productData={this.state.productData} />
           <ImageGallery styleData={this.state.styleData} photo={this.state.photo}
             forward={this.cycleForward} backward={this.cycleBackward} />
-          {/* <StyleSelector styleData={_.map(this.state.styleData, style => style.photos).map(arr => arr[0].thumbnail_url)}/> */}
+          <StyleSelector styleData={_.map(this.state.styleData, style => style.photos).map(arr => arr[0].thumbnail_url)}/>
           <AddToCart productName={this.state.productData.name} styleData={this.state.styleData} />
         </div>
       </div>
