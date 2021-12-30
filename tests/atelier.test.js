@@ -13,6 +13,10 @@ import ProductInfo from '../client/src/components/Overview/components/ProductInf
 import StyleSelector from '../client/src/components/Overview/components/StyleSelector.jsx';
 import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 
+import Ratings from '../client/src/components/Ratings/Ratings.jsx';
+import RatingsList from '../client/src/components/Ratings/components/RatingsList.jsx';
+import IndividualReview from '../client/src/components/Ratings/components/IndividualReview.jsx';
+
 jest.mock('axios');
 // beforeAll((done) => {
 //   done();
@@ -114,12 +118,33 @@ describe('Questions & Answers', function() {
 
 // ========== Ratings & Reviews ========== //
 describe('Ratings & Reviews', function() {
-  describe('SUB-SECTION EXAMPLE', function () {
+  describe('Render Ratings Component', function () {
 
-    test('TEST EXAMPLE', function () {
-      var testsWorking = true;
+    // test('should Render the Ratings Component', function() {
+    //   render(<Ratings />);
+    //   const RatingsElement = screen.getByTestId('ratings-widget');
+    //   expect(RatingsElement).toBeInTheDocument();
+    // })
 
-      expect(testsWorking).toBe(true);
+    test('should Render the Ratings Component', async () => {
+      // render(<Ratings />);
+      // const RatingsElement = screen.getByTestId('ratings-widget');
+      // expect(RatingsElement).toBeInTheDocument();
+      await waitFor(() => {
+        expect(getByText('Ratings & Reviews')).toBeInTheDocument()
+      })
+    })
+
+    xtest('should Render the Ratings List Component', function() {
+      render(<RatingsList />);
+      const RatingsListElement = screen.getByTestId('ratings-list');
+      expect(RatingsListElement).toBeInTheDocument();
+    })
+
+    xtest('should Render the individual Review Component', function() {
+      render(<individualReview />);
+      const individualReviewElement = screen.getByTestId('individual-review');
+      expect(individualReviewElement).toBeInTheDocument();
     })
 
   })
