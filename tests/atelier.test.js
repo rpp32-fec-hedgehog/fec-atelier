@@ -28,7 +28,7 @@ describe('Overview', function() {
   describe('Render Overview Widget', function() {
 
     test('should Render the Overview Component', function() {
-      render(<Overview />);
+      render(<Overview itemid={59557}/>);
       const OverviewElement = screen.getByTestId('overview-widget');
       expect(OverviewElement).toBeInTheDocument();
     })
