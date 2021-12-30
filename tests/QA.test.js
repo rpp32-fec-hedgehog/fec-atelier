@@ -7,7 +7,7 @@ import _ from 'underscore';
 import "regenerator-runtime/runtime.js";
 import '@testing-library/jest-dom';
 import {render, screen, cleanup, fireEvent, waitFor} from '@testing-library/react';
-import {questionData} from '../samples/sampleData.js';
+import {questionData} from './samples/sampleData.js';
 
 import QA from '../client/src/components/QA/QA.jsx';
 import AnswerQuestion from '../client/src/components/QA/components/AnswerQuestion.jsx';
