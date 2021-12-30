@@ -96,18 +96,14 @@ module.exports.getProductQuestionData = getProductQuestionData;
 // ========== Ratings & Reviews ========== //
 
 const getReviewsByItem = (product_id, callback) => {
-  // console.log('get reviews by item fired: ', product_id);
   let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${product_id}`;
   axios.get(endpoint, {
     headers : {
       Authorization : process.env.API_KEY,
-      //count: 20,
-      //I'll need to take this in as a param in the future
       sort: 'newest'
     }
   })
   .then((response) => {
-    // console.log('api call reports data back');
     callback(null, response);
   })
   .catch((error) => {
@@ -116,13 +112,16 @@ const getReviewsByItem = (product_id, callback) => {
   })
 }
 
-const getReviewsMetaByItem = (product_id) => {
+const getReviewsMetaByItem = (product_id, callback) => {
   let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${product_id}`;
   return axios.get(endpoint, {
     headers : {
       "Authorization" : process.env.API_KEY
     }
   })
+  .then((metadata => {
+    console.log('metadata recieved by apiCalls: ', metadata);
+  }))
   .catch((err) => {
     // console.log('Error fetching the ratings metadata: ', err)
   })

@@ -4,10 +4,15 @@ import moment from 'moment';
 
 let Answers = (props) => {
   return <ul>
-    {props.answers._wrapped.map(a => {
+    {props.answers.map(a => {
+      let answerer = a.answerer_name;
+      if (answerer === 'Seller') {
+        answerer = <b>{answerer}</b>
+      }
+
       return <div key={'a-'.concat(a.id)}>
-        <li >A: {a.body}</li>
-          by {a.answerer_name}, {moment(a.date).format('LL')}
+        <li>A: {a.body}</li>
+          by {answerer}, {moment(a.date).format('LL')}
       </div>
     })}
   </ul>
