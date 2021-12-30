@@ -12,8 +12,8 @@ import Fetch from 'fetch'
 import { render, screen, cleanup, fireEvent, waitFor } from '@testing-library/react';
 
 
-import productData from './sample-overview-data.js';
-import styleData from './sample-overview-data.js';
+import productData from './samples/sample-overview-data.js';
+import styleData from './samples/sample-overview-data.js';
 import Overview from '../client/src/components/Overview/Overview.jsx';
 import AddToCart from '../client/src/components/Overview/components/AddToCart.jsx';
 import ImageGallery from '../client/src/components/Overview/components/ImageGallery.jsx';
