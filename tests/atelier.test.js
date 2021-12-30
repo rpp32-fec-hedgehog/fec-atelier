@@ -41,7 +41,6 @@ describe('Overview', function() {
 
     test('should Render the Overview Component', function() {
       // axios.get.mockResolvedValueOnce(productData);
-      // expect(screen.getByText('Ratings & Reviews')).toBeInTheDocument();
       render(<Overview itemid={59557}/>);
       const OverviewElement = screen.getByTestId('overview-widget');
       expect(OverviewElement).toBeInTheDocument();
