@@ -4,19 +4,46 @@
 
 import axios from 'axios';
 import React from 'react';
-import _ from 'underscore';
-import "regenerator-runtime/runtime.js";
+import 'regenerator-runtime/runtime.js';
 import '@testing-library/jest-dom';
-import {render, screen, cleanup, fireEvent} from '@testing-library/react';
-import {questionData} from '../samples/sampleData.js';
+import {rest} from 'msw'
+import {setupServer} from 'msw/node'
+import Fetch from 'fetch'
+import { render, screen, cleanup, fireEvent, waitFor } from '@testing-library/react';
 
-describe('Ratings & Reviews', function() {
-  describe('SUB-SECTION EXAMPLE', function() {
+import reviewData from './sample-review-data.js';
+import Ratings from '../client/src/components/Ratings/Ratings.jsx';
+import RatingsList from '../client/src/components/Ratings/components/RatingsList.jsx';
+import IndividualReview from '../client/src/components/Ratings/components/IndividualReview.jsx';
 
-    test('TEST EXAMPLE', function() {
-      var testsWorking = true;
+jest.mock('axios');
+// beforeAll((done) => {
+//   done();
+// })
 
-      expect(testsWorking).toBe(true);
+// afterAll((done) => {
+//   done();
+// })
+
+xdescribe('Ratings & Reviews', function() {
+  describe('Render Ratings Component', function () {
+
+    test('should Render the Ratings Component', function() {
+      axios.get.mockResolvedValueOnce(reviewData);
+      render(<Ratings />);
+      expect(screen.getByText('Ratings & Reviews')).toBeInTheDocument();
+    })
+
+    test('should Render the Ratings List Component', function() {
+      render(<RatingsList />);
+      const RatingsListElement = screen.getByTestId('ratings-list');
+      expect(RatingsListElement).toBeInTheDocument();
+    })
+
+    test('should Render the individual Review Component', function() {
+      render(<IndividualReview />);
+      const individualReviewElement = screen.getByTestId('individual-review');
+      expect(individualReviewElement).toBeInTheDocument();
     })
 
   })
