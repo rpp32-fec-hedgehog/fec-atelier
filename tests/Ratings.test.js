@@ -11,7 +11,7 @@ import {setupServer} from 'msw/node'
 import Fetch from 'fetch'
 import { render, screen, cleanup, fireEvent, waitFor } from '@testing-library/react';
 
-import reviewData from './sample-review-data.js';
+import reviewData from './samples/sample-review-data.js';
 import Ratings from '../client/src/components/Ratings/Ratings.jsx';
 import RatingsList from '../client/src/components/Ratings/components/RatingsList.jsx';
 import IndividualReview from '../client/src/components/Ratings/components/IndividualReview.jsx';
@@ -25,7 +25,7 @@ jest.mock('axios');
 //   done();
 // })
 
-xdescribe('Ratings & Reviews', function() {
+describe('Ratings & Reviews', function() {
   describe('Render Ratings Component', function () {
 
     test('should Render the Ratings Component', function() {
