@@ -51,20 +51,11 @@ app.get('/qa/questions/:product_id', function(req, res) {
 // ========== Ratings & Reviews ========== //
 
 app.get('/ratings', function(req, res, next) {
-  // console.log('server recieves review item number from client: ', req.headers.item_id);
-
   apiCalls.getReviewsByItem(req.headers.item_id, (err, results) => {
-    if (err) {
-      console.log('server reports error retriving reviews: ', err);
-      res.status(res.status);
-      res.end();
-
-    } else {
-      // console.log('server reports review data from api: ', results.data.results);
-      res.status(200);
-      res.end(JSON.stringify(results.data.results));
+      let ratings = results.data.results;
+      res.send(ratings);
     }
-  })
+  )
 })
 
 app.post('/reviews/meta', (req, res) => {

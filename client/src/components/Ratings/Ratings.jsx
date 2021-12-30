@@ -8,7 +8,7 @@ class Ratings extends React.Component {
     super(props);
     this.state = {
       item_id: '',
-      ratings: [{review_id: 1, summary: 'summary1'}, {review_id: 2, summary: 'summary2'}] //very fake data here
+      ratings: [{review_id: 1, summary: 'summary1'}, {review_id: 2, summary: 'summary2'}]
     };
     this.getAllReviews = this.getAllReviews.bind(this);
   }
@@ -18,29 +18,22 @@ class Ratings extends React.Component {
   }
 
   componentDidMount(props){
-    // console.log('props id in Ratings: ', this.props.itemid);
-
     this.getAllReviews(this.props.itemid, (error, result) => {
-      //retrive reviews. Do sorting here, if possible (or in RatingsList?).
       if (error) {
         console.log('client reports retrieve reviews error: ', error);
       } else {
-        // console.log('client reports retrieve reviews success: ', result);
+        this.setState({ratings: result});
       }
     })
   }
 
   getAllReviews(item_id, callback) {
-    //open to making this call elsewhere and importing. Just trying to get data flowing.
-    // console.log('getAllReviews got id number: ', item_id);
     axios.get('/ratings', {
       headers : {
         "item_id" : item_id
       }
     })
       .then((response) => {
-        // console.log('ratings list in client from axios: ', response.data);
-        this.setState({ratings: response.data})
         callback(null, response.data);
       })
       .catch((error) => {
@@ -53,7 +46,7 @@ class Ratings extends React.Component {
 
     return (
       <div>
-        <h1>Ratings</h1>
+        <h1>Ratings & Reviews</h1>
         <RatingsList ratings={this.state.ratings}></RatingsList>
       </div>
     );
