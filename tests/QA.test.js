@@ -4,7 +4,6 @@
 
 import React from 'react';
 import _ from 'underscore';
-import "regenerator-runtime/runtime.js";
 import '@testing-library/jest-dom';
 import {render, screen, cleanup, fireEvent, waitFor} from '@testing-library/react';
 import {product1Data, product2Data} from './samples/sample-qa-data.js';
@@ -16,15 +15,6 @@ import Answers from '../client/src/components/QA/components/Answers.jsx';
 import AskQuestion from '../client/src/components/QA/components/AskQuestion.jsx';
 import Questions from '../client/src/components/QA/components/Questions.jsx';
 import SearchQuestion from '../client/src/components/QA/components/SearchQuestion.jsx';
-
-jest.mock('axios');
-// beforeAll((done) => {
-//   done();
-// })
-
-// afterAll((done) => {
-//   done();
-// })
 
 describe('Questions & Answers', function() {
 
