@@ -10,6 +10,20 @@ class Questions extends React.Component {
     }
   }
 
+  sortAnswers(question) {
+    return _.chain(_.values(question.answers))
+      .sortBy(answer => { return answer.helpfulness })
+      .reverse()
+      .partition(user => {
+        if (user.answerer_name === 'Seller') {
+          return true;
+        }
+      })
+      .flatten()
+      .slice(0, this.state.expanded)
+      .value()
+  }
+
   render() {
     let questions = this.props.questions;
     let base = [<div data-testid="questions" key="q-base">
@@ -18,21 +32,11 @@ class Questions extends React.Component {
           return <div data-testid={q.question_body} key={q.question_body}>
             <li key={'q-'.concat(q.question_id)}>
               Q: {q.question_body}
-              <Answers answers={_.chain(_.values(q.answers))
-                .sortBy(answer => {return answer.helpfulness})
-                .reverse()
-                .partition(user => {
-                  if (user.answerer_name === 'Seller') {
-                    return true;
-                  }
-                })
-                .flatten()
-                .slice(0, this.state.expanded)
-                .value()
-              } />
+              <Answers answers={this.sortAnswers(q)} />
             </li>
           </div>
         })}
+
       </ul>
     </div>];
 
