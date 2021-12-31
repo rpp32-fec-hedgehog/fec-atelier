@@ -7,7 +7,7 @@ import _ from 'underscore';
 import "regenerator-runtime/runtime.js";
 import '@testing-library/jest-dom';
 import {render, screen, cleanup, fireEvent, waitFor} from '@testing-library/react';
-import {questionData} from './samples/sample-qa-data.js';
+import {product1Data, product2Data} from './samples/sample-qa-data.js';
 
 import QA from '../client/src/components/QA/QA.jsx';
 import AnswerList from '../client/src/components/QA/components/AnswerList.jsx';
@@ -41,19 +41,19 @@ describe('Questions & Answers', function() {
   describe('AnswerList Component', function() {
 
     test('should render the AnswerList component', function() {
-      render(<AnswerList questionId="553704" answers={Object.values(questionData[0]['answers'])} />)
+      render(<AnswerList questionId="553704" answers={Object.values(product1Data[0]['answers'])} />)
       const AnswerListElement = screen.getAllByTestId('answer-list');
       expect(AnswerListElement.length > 0).toBe(true);
     })
 
     test('should render the "See More Answers" button when there are more than 2 answers', function() {
-      render(<AnswerList questionId="553704" answers={Object.values(questionData[0]['answers'])} />)
+      render(<AnswerList questionId="553704" answers={Object.values(product1Data[0]['answers'])} />)
       const AnswerListElement = screen.getByText('See More Answers');
       expect(AnswerListElement).toBeInTheDocument();
     })
 
     test('should NOT render the "See More Answers" button when there are less than 2 answers', function() {
-      render(<AnswerList questionId="553773" answers={Object.values(questionData[3]['answers'])} />)
+      render(<AnswerList questionId="553773" answers={Object.values(product1Data[3]['answers'])} />)
       const AnswerListElement = screen.queryByText('See More Answers');
       expect(AnswerListElement).toBeNull();
     })
@@ -73,19 +73,19 @@ describe('Questions & Answers', function() {
   describe('Answers Component', function() {
 
     test('should render Answers components', function() {
-      render(<Answers answer={Object.values(questionData[0]['answers'])[0]} />);
+      render(<Answers answer={Object.values(product1Data[0]['answers'])[0]} />);
       const AnswersElement = screen.getByTestId('answers');
       expect(AnswersElement).toBeInTheDocument();
     })
 
     test('should render answers sorted by helpfulness', function() {
-      render(<Questions questions={questionData} />);
+      render(<Questions questions={product1Data} />);
       const TopAnswers = screen.getByTestId('weewoo');
       expect(TopAnswers).toBeInTheDocument();
     })
 
     test('should render Seller answer at top of answer list', function() {
-      render(<Questions questions={questionData} />);
+      render(<Questions questions={product1Data} />);
       const SellerAnswer = screen.getByTestId(<b>Seller</b>);
       expect(SellerAnswer).toBeInTheDocument();
     })
@@ -105,54 +105,27 @@ describe('Questions & Answers', function() {
   describe('Questions Component', function() {
 
     test('should render Questions components', function() {
-      render(<Questions questions={questionData} />);
+      render(<Questions questions={product1Data} />);
       const QuestionsElement = screen.getByTestId('questions');
       expect(QuestionsElement).toBeInTheDocument();
     })
 
-    xtest('should render questions sorted by helpfulness', async function() {
-      // this test may break if helpfulness of certain questions are updated on API
-      await waitFor(() => {
-        render(<QA itemid={59557} />);
-      })
-        .then(res => {
-          const TopQuestions = screen.findByTestId('really, realbvly, really');
-          expect(TopQuestions).toBeInTheDocument();
-        })
-        .catch(err => {
-          return err;
-        })
-
-        // render(<QA itemid={59557} />);
-        // const TopQuestions = screen.getByTestId('really, really, really');
-        // expect(TopQuestions).toBeInTheDocument();
+    test('should render questions sorted by helpfulness', function() {
+      render(<Questions questions={product1Data} />);
+      const TopQuestions = screen.getByTestId('Do you ship internationally?');
+      expect(TopQuestions).toBeInTheDocument();
     })
 
-    xtest('should render "More Answered Questions" button when there are 3 or more questions', async function() {
-      await waitFor(() => {
-        render(<QA itemid={59557} />);
-      })
-        .then(res => {
-          const TopQuestions = screen.getByTestId('More Answered Questions');
-          expect(TopQuestions).toBeInTheDocument();
-        })
-        .catch(err => {
-          return err;
-        })
+    test('should render "More Answered Questions" button when there are 3 or more questions', function() {
+      render(<Questions questions={product1Data} />);
+      const TopQuestions = screen.getByText('More Answered Questions');
+      expect(TopQuestions).toBeInTheDocument();
     })
 
-    xtest('should NOT render "More Answered Questions" button when there are 2 or less questions', function() {
-      // this test may break if more questions are added to this item on the API
-      waitFor(() => {
-        render(<QA itemid={59553} />);
-      })
-        .then(res => {
-          const TopQuestions = screen.getByText('More Answered Questions');
-          expect(TopQuestions).toBeInTheDocument();
-        })
-        .catch(err => {
-          return err;
-        })
+    test('should NOT render "More Answered Questions" button when there are 2 or less questions', function() {
+      render(<Questions questions={product2Data} />);
+      const TopQuestions = screen.queryByText('More Answered Questions');
+      expect(TopQuestions).toBeNull();
     })
 
   })
