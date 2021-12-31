@@ -1,4 +1,4 @@
-const questionData = [
+const product1Data = [
   {
     "question_id": 553704,
     "question_body": "really, really, really",
@@ -160,4 +160,53 @@ const questionData = [
   }
 ]
 
-module.exports.questionData = questionData;
+module.exports.product1Data = product1Data;
+
+const product2Data = [
+  {
+    "question_id": 553704,
+    "question_body": "really, really, really",
+    "question_date": "2021-11-17T00:00:00.000Z",
+    "asker_name": "hello",
+    "question_helpfulness": 1,
+    "reported": false,
+    "answers": {
+      "5181392": {
+        "id": 5181392,
+        "body": "What do you want to ask?",
+        "date": "2021-11-18T00:00:00.000Z",
+        "answerer_name": "jack",
+        "helpfulness": 2,
+        "photos": []
+      },
+      "5181393": {
+        "id": 5181393,
+        "body": "I think you might want to ask, Is this good?",
+        "date": "2021-11-18T00:00:00.000Z",
+        "answerer_name": "abby",
+        "helpfulness": 1,
+        "photos": []
+      },
+      "5181394": {
+        "id": 5181394,
+        "body": "Right?",
+        "date": "2021-11-18T00:00:00.000Z",
+        "answerer_name": "anny",
+        "helpfulness": 1,
+        "photos": []
+      },
+      "5181456": {
+        "id": 5181456,
+        "body": "good good good good pizza shoes",
+        "date": "2021-11-21T00:00:00.000Z",
+        "answerer_name": "pizza",
+        "helpfulness": 0,
+        "photos": [
+          "https://ucarecdn.com/87015f51-7e80-4761-833c-74581e0be910/"
+        ]
+      }
+    }
+  }
+]
+
+module.exports.product2Data = product2Data;
