@@ -9,22 +9,22 @@ class QA extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      questions: [],
+      originalQuestions: [],
+      questions: []
     };
   }
 
-  searchQs(e) {
+  searchQuestions(e) {
     e.preventDefault();
 
     let text = e.target.value;
     if (text.length >= 3) {
+      console.log('DAVID')
       this.setState({
-        questions: this.sortByTerm(this.state.questions, text)
+        questions: this.sortByTerm(this.state.originalQuestions, text)
       })
     } else {
-      this.setState({
-        questions: this.state.questions
-      })
+      this.setState({questions: this.state.originalQuestions});
     }
   }
 
@@ -36,16 +36,21 @@ class QA extends React.Component {
     })
   }
 
-  componentDidMount() {
+  getQAData() {
     $.ajax({
       url: '/qa/questions/'.concat(this.props.itemid),
       method: 'GET',
       success: (data) => {
         this.setState({
           questions: data.results,
+          originalQuestions: data.results
         })
       }
     })
+  }
+
+  componentDidMount() {
+    this.getQAData();
   }
 
   render() {
@@ -53,7 +58,7 @@ class QA extends React.Component {
     return (
       <div data-testid="qa">
         <h1>Questions and Answers</h1>
-        <SearchQuestion searchQs={this.searchQs.bind(this)}/>
+        <SearchQuestion searchQuestions={this.searchQuestions.bind(this)}/>
         <Questions questions={state.questions} />
       </div>
     )
