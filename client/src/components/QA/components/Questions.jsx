@@ -10,7 +10,7 @@ let Questions = (props) => {
         return <div data-testid={q.question_body} key={q.question_body}>
           <li key={'q-'.concat(q.question_id)}>
             Q: {q.question_body}
-            <AnswerList answers={q.answers} />
+            <AnswerList answers={q.answers} questionId={q.question_id}/>
           </li>
         </div>
       })}
