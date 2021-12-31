@@ -56,19 +56,4 @@ class AnswerList extends React.Component {
   }
 }
 
-// let totalAnswers = q.answers.length;
-// let answers = this.sortAnswers(q);
-// console.log('WOAH ', totalAnswers, answers)
-// if (this.state.expanded === false) {
-//   answers = answers.slice(0, 2);
-// }
-
-// let moreAnswers = <button key="more-answers" >See More Answers</button>;
-// console.log('WOAH2 ', totalAnswers, answers)
-// if (totalAnswers > 2) {
-//   return aBase.concat(moreAnswers);
-// } else {
-//   return aBase;
-// }
-
 export default AnswerList;
