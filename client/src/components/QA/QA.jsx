@@ -19,7 +19,6 @@ class QA extends React.Component {
 
     let text = e.target.value;
     if (text.length >= 3) {
-      console.log('DAVID')
       this.setState({
         questions: this.sortByTerm(this.state.originalQuestions, text)
       })
