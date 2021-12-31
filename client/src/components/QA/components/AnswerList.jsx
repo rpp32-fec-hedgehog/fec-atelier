@@ -11,6 +11,12 @@ class AnswerList extends React.Component {
     };
   }
 
+  handleAnswers(e) {
+    e.preventDefault();
+
+    this.setState({expanded: true});
+  }
+
   sortAnswers(answers) {
     let totalA = this.state.totalAnswers;
     if (!this.state.expanded) {
@@ -37,7 +43,8 @@ class AnswerList extends React.Component {
       </div>
     })
 
-    let moreAnswers = <button key={"more-a-".concat(this.props.questionId)}>
+    let moreAnswers = <button onClick={this.handleAnswers.bind(this)}
+      key={"more-a-".concat(this.props.questionId)}>
       See More Answers
     </button>;
 
