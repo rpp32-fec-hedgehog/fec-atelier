@@ -10,8 +10,6 @@ class QA extends React.Component {
     super(props);
     this.state = {
       questions: [],
-      sortedQuestions: [],
-      questionCount: 2
     };
   }
 
@@ -21,11 +19,11 @@ class QA extends React.Component {
     let text = e.target.value;
     if (text.length >= 3) {
       this.setState({
-        sortedQuestions: this.sortByTerm(this.state.questions, text)
+        questions: this.sortByTerm(this.state.questions, text)
       })
     } else {
       this.setState({
-        sortedQuestions: this.state.questions
+        questions: this.state.questions
       })
     }
   }
@@ -38,38 +36,13 @@ class QA extends React.Component {
     })
   }
 
-  handleQs(e) {
-    e.preventDefault();
-
-    if (this.state.sortedQuestions.length > this.state.questionCount) {
-      this.setState({
-        questionCount: this.state.questionCount += 2
-      })
-    } else {
-      this.setState({
-        questionCount: this.state.questionCount -= 2
-      })
-    }
-  }
-
-  sortByHelpfulness(questions) {
-    return _.chain(questions)
-      .sortBy((question) => { return question.question_helpfulness })
-      .reverse()
-      .value()
-  }
-
   componentDidMount() {
     $.ajax({
       url: '/qa/questions/'.concat(this.props.itemid),
       method: 'GET',
       success: (data) => {
-        // console.log('Server GET Success ', data);
-        let responseData = this.sortByHelpfulness(data.results);
-
         this.setState({
-          questions: responseData,
-          sortedQuestions: responseData
+          questions: data.results,
         })
       }
     })
@@ -81,10 +54,7 @@ class QA extends React.Component {
       <div data-testid="qa">
         <h1>Questions and Answers</h1>
         <SearchQuestion searchQs={this.searchQs.bind(this)}/>
-        <Questions questions={state.sortedQuestions.slice(0, state.questionCount)}
-          handleQs={this.handleQs.bind(this)}
-          totalQs={state.sortedQuestions.length}
-        />
+        <Questions questions={state.questions} />
       </div>
     )
   }
