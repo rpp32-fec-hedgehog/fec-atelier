@@ -93,7 +93,6 @@ describe('Questions & Answers', function() {
         render(<QA itemid={59557} />);
       })
         .then(res => {
-          // console.log('PLEASE WORK ', TopQuestions);
           const TopQuestions = screen.findByTestId('really, realbvly, really');
           expect(TopQuestions).toBeInTheDocument();
         })
