@@ -21,7 +21,7 @@ class QA extends React.Component {
     let text = e.target.value;
     if (text.length >= 3) {
       this.setState({
-        sortedQuestions: this.sortQs(this.state.questions, text)
+        sortedQuestions: this.sortByTerm(this.state.questions, text)
       })
     } else {
       this.setState({
@@ -30,7 +30,7 @@ class QA extends React.Component {
     }
   }
 
-  sortQs(questions, sortTerm) {
+  sortByTerm(questions, sortTerm) {
     return _.filter(questions, q => {
       if (q.question_body.includes(sortTerm)) {
         return true;
@@ -52,16 +52,20 @@ class QA extends React.Component {
     }
   }
 
+  sortByHelpfulness(questions) {
+    return _.chain(questions)
+      .sortBy((question) => { return question.question_helpfulness })
+      .reverse()
+      .value()
+  }
+
   componentDidMount() {
     $.ajax({
       url: '/qa/questions/'.concat(this.props.itemid),
       method: 'GET',
       success: (data) => {
         // console.log('Server GET Success ', data);
-        let responseData = _.chain(data.results)
-        .sortBy((question) => {return question.question_helpfulness})
-        .reverse()
-        .value()
+        let responseData = this.sortByHelpfulness(data.results);
 
         this.setState({
           questions: responseData,
