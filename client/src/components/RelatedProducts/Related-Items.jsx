@@ -19,21 +19,23 @@ class RelatedItems extends React.Component {
       method: 'GET',
       data: {item_id: this.state.currentItem},
       success: data => {
-        console.log('This is coming back to the front end: ', data)
-        this.setState({relatedItems: data})
+        console.log('This is the data: ', data)
+        this.setState({relatedItems: data});
+        console.log('What is in state: ', this.state)
       }
     })
   }
 
   render() {
     if (!this.state.relatedItems.length) {
-      return <div></div>
+      return <div className="blankLoad"></div>
     }
-    let i=1;
+    let i=0;
     return (
       <Carousel show={3.5} slide={3} transition={0.5}>
         {this.state.relatedItems.map(item => {
-          return (<ProductCard item={item}  key={i}/>)
+          i++;
+          return (<ProductCard item={item} key={i}/>)
         })}
       </Carousel>
 
