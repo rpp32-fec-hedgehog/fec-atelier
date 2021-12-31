@@ -10,6 +10,7 @@ import {render, screen, cleanup, fireEvent, waitFor} from '@testing-library/reac
 import {questionData} from './samples/sample-qa-data.js';
 
 import QA from '../client/src/components/QA/QA.jsx';
+import AnswerList from '../client/src/components/QA/components/AnswerList.jsx';
 import AnswerQuestion from '../client/src/components/QA/components/AnswerQuestion.jsx';
 import Answers from '../client/src/components/QA/components/Answers.jsx';
 import AskQuestion from '../client/src/components/QA/components/AskQuestion.jsx';
@@ -37,6 +38,28 @@ describe('Questions & Answers', function() {
 
   })
 
+  describe('AnswerList Component', function() {
+
+    test('should render the AnswerList component', function() {
+      render(<AnswerList questionId="553704" answers={Object.values(questionData[0]['answers'])} />)
+      const AnswerListElement = screen.getAllByTestId('answer-list');
+      expect(AnswerListElement.length > 0).toBe(true);
+    })
+
+    test('should render the "See More Answers" button when there are more than 2 answers', function() {
+      render(<AnswerList questionId="553704" answers={Object.values(questionData[0]['answers'])} />)
+      const AnswerListElement = screen.getByText('See More Answers');
+      expect(AnswerListElement).toBeInTheDocument();
+    })
+
+    test('should NOT render the "See More Answers" button when there are less than 2 answers', function() {
+      render(<AnswerList questionId="553773" answers={Object.values(questionData[3]['answers'])} />)
+      const AnswerListElement = screen.queryByText('See More Answers');
+      expect(AnswerListElement).toBeNull();
+    })
+
+  })
+
   describe('AnswerQuestion Component', function() {
 
     test('should render the AnswerQuestion component', function() {
@@ -50,7 +73,7 @@ describe('Questions & Answers', function() {
   describe('Answers Component', function() {
 
     test('should render Answers components', function() {
-      render(<Answers answers={Object.values(questionData[0]['answers'])} />);
+      render(<Answers answer={Object.values(questionData[0]['answers'])[0]} />);
       const AnswersElement = screen.getByTestId('answers');
       expect(AnswersElement).toBeInTheDocument();
     })
