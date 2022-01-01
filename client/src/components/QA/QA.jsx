@@ -9,28 +9,25 @@ class QA extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      questions: [],
-      sortedQuestions: [],
-      questionCount: 2
+      originalQuestions: [],
+      questions: []
     };
   }
 
-  searchQs(e) {
+  searchQuestions(e) {
     e.preventDefault();
 
     let text = e.target.value;
     if (text.length >= 3) {
       this.setState({
-        sortedQuestions: this.sortQs(this.state.questions, text)
+        questions: this.sortByTerm(this.state.originalQuestions, text)
       })
     } else {
-      this.setState({
-        sortedQuestions: this.state.questions
-      })
+      this.setState({questions: this.state.originalQuestions});
     }
   }
 
-  sortQs(questions, sortTerm) {
+  sortByTerm(questions, sortTerm) {
     return _.filter(questions, q => {
       if (q.question_body.includes(sortTerm)) {
         return true;
@@ -38,37 +35,21 @@ class QA extends React.Component {
     })
   }
 
-  handleQs(e) {
-    e.preventDefault();
-
-    if (this.state.sortedQuestions.length > this.state.questionCount) {
-      this.setState({
-        questionCount: this.state.questionCount += 2
-      })
-    } else {
-      this.setState({
-        questionCount: this.state.questionCount -= 2
-      })
-    }
-  }
-
-  componentDidMount() {
+  getQAData() {
     $.ajax({
       url: '/qa/questions/'.concat(this.props.itemid),
       method: 'GET',
       success: (data) => {
-        // console.log('Server GET Success ', data);
-        let responseData = _.chain(data.results)
-        .sortBy((question) => {return question.question_helpfulness})
-        .reverse()
-        .value()
-
         this.setState({
-          questions: responseData,
-          sortedQuestions: responseData
+          questions: data.results,
+          originalQuestions: data.results
         })
       }
     })
+  }
+
+  componentDidMount() {
+    this.getQAData();
   }
 
   render() {
@@ -76,11 +57,8 @@ class QA extends React.Component {
     return (
       <div data-testid="qa">
         <h1>Questions and Answers</h1>
-        <SearchQuestion searchQs={this.searchQs.bind(this)}/>
-        <Questions questions={state.sortedQuestions.slice(0, state.questionCount)}
-          handleQs={this.handleQs.bind(this)}
-          totalQs={state.sortedQuestions.length}
-        />
+        <SearchQuestion searchQuestions={this.searchQuestions.bind(this)}/>
+        <Questions questions={state.questions} />
       </div>
     )
   }
