@@ -74,7 +74,7 @@ class QA extends React.Component {
   render() {
     let state = this.state;
     return (
-      <div>
+      <div data-testid="qa">
         <h1>Questions and Answers</h1>
         <SearchQuestion searchQs={this.searchQs.bind(this)}/>
         <Questions questions={state.sortedQuestions.slice(0, state.questionCount)}

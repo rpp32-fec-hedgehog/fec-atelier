@@ -12,24 +12,26 @@ class Questions extends React.Component {
 
   render() {
     let questions = this.props.questions;
-    let base = [<div key="q-base">
+    let base = [<div data-testid="questions" key="q-base">
       <ul>
         {questions.map(q => {
-          return <li key={'q-'.concat(q.question_id)}>
-            Q: {q.question_body}
-            <Answers answers={_.chain(_.values(q.answers))
-              .sortBy(answer => {return answer.helpfulness})
-              .reverse()
-              .partition(user => {
-                if (user === 'Seller') {
-                  return true;
-                }
-              })
-              .flatten()
-              .slice(0, this.state.expanded)
-              .value()
-            } />
-          </li>
+          return <div data-testid={q.question_body} key={q.question_body}>
+            <li key={'q-'.concat(q.question_id)}>
+              Q: {q.question_body}
+              <Answers answers={_.chain(_.values(q.answers))
+                .sortBy(answer => {return answer.helpfulness})
+                .reverse()
+                .partition(user => {
+                  if (user.answerer_name === 'Seller') {
+                    return true;
+                  }
+                })
+                .flatten()
+                .slice(0, this.state.expanded)
+                .value()
+              } />
+            </li>
+          </div>
         })}
       </ul>
     </div>];

@@ -12,7 +12,7 @@ class AskQuestion extends React.Component {
 
   render() {
     return (
-      <div>
+      <div data-testid="ask-question">
         put your question here
       </div>
     )
