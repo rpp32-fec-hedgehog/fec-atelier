@@ -11,8 +11,8 @@ let Answers = (props) => {
 
   return <ul class="answer" data-testid="answers">
     <div key={'a-'.concat(answer.id)} data-testid={answerer}>
-      <li>A: {answer.body}</li>
-      by {answerer}, {moment(answer.date).format('LL')}
+      <li class="answer-body">A: {answer.body}</li>
+      <span class="answerer">by {answerer}, {moment(answer.date).format('LL')}</span>
     </div>
   </ul>
 }
