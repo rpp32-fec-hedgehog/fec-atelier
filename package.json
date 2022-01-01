@@ -4,7 +4,7 @@
   "description": "FEC Capstone Project",
   "main": "index.js",
   "scripts": {
-    "test": "jest --detectOpenHandles -coverage",
+    "test": "jest --detectOpenHandles --coverage",
     "react-dev": "webpack --watch",
     "start": "npx nodemon server/index.js"
   },
