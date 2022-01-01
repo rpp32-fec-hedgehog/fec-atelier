@@ -14,7 +14,7 @@ const RatingsList = (props) => {
   });
 
   return(
-    <div className="ratings">
+    <div className="ratings-list">
       <ul style={tileStyle}>{ratings}</ul>
     </div>
   )

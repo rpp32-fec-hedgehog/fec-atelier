@@ -3,18 +3,17 @@ import _ from 'underscore';
 import moment from 'moment';
 
 let Answers = (props) => {
-  return <ul>
-    {props.answers.map(a => {
-      let answerer = a.answerer_name;
-      if (answerer === 'Seller') {
-        answerer = <b>{answerer}</b>
-      }
+  let answer = props.answer;
+  let answerer = answer.answerer_name;
+  if (answerer === 'Seller') {
+    answerer = <b>{answerer}</b>
+  }
 
-      return <div key={'a-'.concat(a.id)}>
-        <li>A: {a.body}</li>
-          by {answerer}, {moment(a.date).format('LL')}
-      </div>
-    })}
+  return <ul data-testid="answers">
+    <div key={'a-'.concat(answer.id)} data-testid={answerer}>
+      <li>A: {answer.body}</li>
+      by {answerer}, {moment(answer.date).format('LL')}
+    </div>
   </ul>
 }
 

@@ -7,7 +7,7 @@ class Ratings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      item_id: '',
+      item_id: 59557,
       ratings: [{review_id: 1, summary: 'summary1'}, {review_id: 2, summary: 'summary2'}]
     };
     this.getAllReviews = this.getAllReviews.bind(this);
@@ -45,7 +45,7 @@ class Ratings extends React.Component {
   render(props) {
 
     return (
-      <div>
+      <div className="ratings-widget">
         <h1>Ratings & Reviews</h1>
         <RatingsList ratings={this.state.ratings}></RatingsList>
       </div>
