@@ -3,10 +3,10 @@
   margin-top: 30px;
 }
 
-.q-body, .q-helpful {
-  display: inline;
-}
-
 .q-helpful {
   margin-left: 50%;
+}
+
+.q-help-count {
+  margin-left: 10px;
 }

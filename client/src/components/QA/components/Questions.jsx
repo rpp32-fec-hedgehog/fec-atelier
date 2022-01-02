@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'underscore';
+import $ from 'jquery';
 import AnswerList from './AnswerList.jsx';
 
 class Questions extends React.Component {
@@ -36,14 +37,33 @@ class Questions extends React.Component {
     return sorted;
   }
 
+  questionIsHelpful(e) {
+    e.preventDefault();
+
+    let question_id = e.target.value;
+    console.log('QID ', question_id);
+
+    // $.ajax({
+    //   url: '/qa/questions/'.concat(question_id, '/helpful'),
+    //   method: 'PUT',
+    //   success: data => {
+    //     console.log('POST ', data);
+    //   }
+    // })
+
+  }
+
   render() {
     let base = [<div data-testid="questions" key="q-base">
       <ul>
         {this.sortByHelpfulness(this.props.questions).map(q => {
           return <div data-testid={q.question_body} key={q.question_body}>
             <li key={'q-'.concat(q.question_id)}>
-              <span class="q-body">Q: {q.question_body}</span>
-              <span class="q-helpful">Helpful?</span>
+              <span className="q-body">Q: {q.question_body}</span>
+              <span className="q-helpful">Helpful?</span>
+              <span className="q-help-count" onClick={this.questionIsHelpful.bind(this)}>
+                Yes{`(${q.question_helpfulness})`}
+              </span>
               <AnswerList answers={q.answers} questionId={q.question_id}/>
             </li>
           </div>
