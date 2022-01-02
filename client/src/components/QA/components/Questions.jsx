@@ -40,7 +40,7 @@ class Questions extends React.Component {
   questionIsHelpful(e) {
     e.preventDefault();
 
-    let question_id = e.target.value;
+    let question_id = e.target; //need to access question id
     console.log('QID ', question_id);
 
     // $.ajax({
