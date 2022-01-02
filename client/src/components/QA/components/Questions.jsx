@@ -42,7 +42,8 @@ class Questions extends React.Component {
         {this.sortByHelpfulness(this.props.questions).map(q => {
           return <div data-testid={q.question_body} key={q.question_body}>
             <li key={'q-'.concat(q.question_id)}>
-              Q: {q.question_body}
+              <span class="q-body">Q: {q.question_body}</span>
+              <span class="q-helpful">Helpful?</span>
               <AnswerList answers={q.answers} questionId={q.question_id}/>
             </li>
           </div>
