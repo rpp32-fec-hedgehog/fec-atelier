@@ -29,7 +29,7 @@ class Questions extends React.Component {
 
   sortByHelpfulness(questions) {
     let sorted = _.chain(questions)
-      .sortBy((question) => { return question.question_helpfulness })
+      .sortBy(question => {return question.question_helpfulness})
       .reverse()
       .slice(0, this.state.questionCount)
       .value()
@@ -40,20 +40,28 @@ class Questions extends React.Component {
   questionIsHelpful(e) {
     e.preventDefault();
 
+    let count = e.target.innerText;
+    console.log('COUNT ', count);
+
     let questionClasses = e.target.className;
     let secondClass = questionClasses.split(' ')[1];
     let subClasses = secondClass.split('-')
-    let question_id = subClasses[2];
+    let question_id = Number(subClasses[2]);
     let questionHelpCount = subClasses[3];
 
     $.ajax({
       url: '/qa/questions/'.concat(question_id, '/helpful'),
       method: 'PUT',
-      error: (err) => {
+      success: () => {
+        this.props.updateHelp(question_id);
+      },
+      error: err => {
         throw err;
       }
     })
   }
+
+  // add flag to state for whether helpful has been clicked or not, have it change to static text after clicked
 
   render() {
     let base = [<div data-testid="questions" key="q-base">
