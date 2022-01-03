@@ -40,9 +40,6 @@ class Questions extends React.Component {
   questionIsHelpful(e) {
     e.preventDefault();
 
-    let count = e.target.innerText;
-    console.log('COUNT ', count);
-
     let questionClasses = e.target.className;
     let secondClass = questionClasses.split(' ')[1];
     let subClasses = secondClass.split('-')
@@ -60,8 +57,6 @@ class Questions extends React.Component {
       }
     })
   }
-
-  // add flag to state for whether helpful has been clicked or not, have it change to static text after clicked
 
   render() {
     let base = [<div data-testid="questions" key="q-base">
