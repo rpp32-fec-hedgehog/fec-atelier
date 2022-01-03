@@ -83,7 +83,7 @@ class Overview extends React.Component {
       selectedStyle: currentStyle,
       photo: this.state.styleData[currentStyle].photos[current].url,
       numberOfPhotos: this.state.styleData[currentPhoto].photos.map(style => style.photos).length
-    })
+    });
   }
 
   componentDidMount() {
