@@ -12,10 +12,10 @@ class StyleSelector extends React.Component {
   render() {
     return (
       <div className="styles-info" data-testid="style-selector" style={{border: "1px solid black"}}>
-        <h4>Style</h4>
+        <h4>Style {this.props.styleName}</h4>
         <div className="styles">
-          {_.map(this.props.styleData, (style, index) => {
-            return (<img className="style-img" key={style} id={index} src={style} onClick={this.props.selectStyle}></img>)
+          {_.map(this.props.styleImgs, (style, index) => {
+            return (<img className="style-img" key={index} id={index} src={style} onClick={this.props.selectStyle}></img>)
           })}
         </div>
       </div>

@@ -45,7 +45,7 @@ class Overview extends React.Component {
         this.setState({
           styleData : result.data.results,
           photo: result.data.results[0].photos[0].url,
-          numberOfPhotos: result.data.results.map(style => style.photos).length
+          numberOfPhotos: result.data.results[0].photos.map(style => style.photos).length
         });
       })
       .catch((err) => {
@@ -76,10 +76,13 @@ class Overview extends React.Component {
   }
 
   handleSelectStyle(e) {
+    let current = this.state.currentPhoto;
     let currentStyle = e.target.id;
+    let currentPhoto = this.state.currentPhoto;
     this.setState({
       selectedStyle: currentStyle,
-      photo: this.state.styleData[currentStyle].photos[this.state.currentPhoto].url
+      photo: this.state.styleData[currentStyle].photos[current].url,
+      numberOfPhotos: this.state.styleData[currentPhoto].photos.map(style => style.photos).length
     })
   }
 
@@ -96,7 +99,11 @@ class Overview extends React.Component {
           <ProductInfo itemid={this.props.itemid} productData={this.state.productData} />
           <ImageGallery styleData={this.state.styleData} photo={this.state.photo}
             forward={this.cycleForward} backward={this.cycleBackward} />
-          <StyleSelector styleData={_.map(this.state.styleData, style => style.photos).map(arr => arr[0].thumbnail_url)} selectStyle={this.handleSelectStyle}/>
+          <StyleSelector styleImgs={_.map(this.state.styleData, style => style.photos).map(arr => arr[0].thumbnail_url)}
+            selectStyle={this.handleSelectStyle}
+            styleName={this.state.styleData[this.state.currentPhoto] !== undefined ?
+            this.state.styleData[this.state.selectedStyle].name : null}
+            />
           <AddToCart productName={this.state.productData.name} styleData={this.state.styleData} />
         </div>
       </div>
