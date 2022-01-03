@@ -24,6 +24,7 @@ class Overview extends React.Component {
     this.grabStylesData = this.grabStylesData.bind(this);
     this.cycleForward = this.cycleForward.bind(this);
     this.cycleBackward = this.cycleBackward.bind(this);
+    this.handleSelectStyle = this.handleSelectStyle.bind(this);
   }
 
   async grabProductData() {
@@ -74,6 +75,14 @@ class Overview extends React.Component {
     null
   }
 
+  handleSelectStyle(e) {
+    let currentStyle = e.target.id;
+    this.setState({
+      selectedStyle: currentStyle,
+      photo: this.state.styleData[currentStyle].photos[this.state.currentPhoto].url
+    })
+  }
+
   componentDidMount() {
     this.grabProductData();
     this.grabStylesData();
@@ -87,7 +96,7 @@ class Overview extends React.Component {
           <ProductInfo itemid={this.props.itemid} productData={this.state.productData} />
           <ImageGallery styleData={this.state.styleData} photo={this.state.photo}
             forward={this.cycleForward} backward={this.cycleBackward} />
-          <StyleSelector styleData={_.map(this.state.styleData, style => style.photos).map(arr => arr[0].thumbnail_url)}/>
+          <StyleSelector styleData={_.map(this.state.styleData, style => style.photos).map(arr => arr[0].thumbnail_url)} selectStyle={this.handleSelectStyle}/>
           <AddToCart productName={this.state.productData.name} styleData={this.state.styleData} />
         </div>
       </div>
