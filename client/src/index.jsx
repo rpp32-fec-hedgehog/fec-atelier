@@ -27,7 +27,7 @@ class App extends React.Component {
           <Overview itemid={this.state.item_id} />
         </div>
         <div className="main">
-          {/* <QA itemid={this.state.item_id} /> */}
+          <QA itemid={this.state.item_id} />
           <div className="ratings">
           <Ratings itemid={this.state.item_id} />
           </div>
