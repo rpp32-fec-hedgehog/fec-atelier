@@ -45,7 +45,7 @@ class Ratings extends React.Component {
   render(props) {
 
     return (
-      <div className="ratings-widget">
+      <div data-testid="ratings" className="ratings-widget">
         <h1>Ratings & Reviews</h1>
         <RatingsList ratings={this.state.ratings}></RatingsList>
       </div>
