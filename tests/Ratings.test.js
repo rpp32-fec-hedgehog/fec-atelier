@@ -17,21 +17,15 @@ import RatingsList from '../client/src/components/Ratings/components/RatingsList
 import IndividualReview from '../client/src/components/Ratings/components/IndividualReview.jsx';
 
 jest.mock('axios');
-// beforeAll((done) => {
-//   done();
-// })
 
-// afterAll((done) => {
-//   done();
-// })
-
-xdescribe('Ratings & Reviews', function() {
+describe('Ratings & Reviews', function() {
   describe('Render Ratings Component', function () {
 
     test('should Render the Ratings Component', function() {
       axios.get.mockResolvedValueOnce(reviewData);
       render(<Ratings />);
-      expect(screen.getByText('Ratings & Reviews')).toBeInTheDocument();
+      const RatingsElement = screen.getByTestId('ratings');
+      expect(RatingsElement).toBeInTheDocument();
     })
 
     test('should Render the Ratings List Component', function() {
