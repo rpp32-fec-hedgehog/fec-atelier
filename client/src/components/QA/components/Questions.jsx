@@ -40,17 +40,17 @@ class Questions extends React.Component {
   questionIsHelpful(e) {
     e.preventDefault();
 
-    let question_id = e.target; //need to access question id
-    console.log('QID ', question_id);
+    let questionClasses = e.target.className;
+    let secondClass = questionClasses.split(' ')[1];
+    let question_id = secondClass.split('-')[2];
 
-    // $.ajax({
-    //   url: '/qa/questions/'.concat(question_id, '/helpful'),
-    //   method: 'PUT',
-    //   success: data => {
-    //     console.log('POST ', data);
-    //   }
-    // })
-
+    $.ajax({
+      url: '/qa/questions/'.concat(question_id, '/helpful'),
+      method: 'PUT',
+      success: data => {
+        console.log('CLIENT POST ', data);
+      }
+    })
   }
 
   render() {
@@ -61,7 +61,8 @@ class Questions extends React.Component {
             <li key={'q-'.concat(q.question_id)}>
               <span className="q-body">Q: {q.question_body}</span>
               <span className="q-helpful">Helpful?</span>
-              <span className="q-help-count" onClick={this.questionIsHelpful.bind(this)}>
+              <span className={"q-help-count q-help-".concat(q.question_id)}
+                onClick={this.questionIsHelpful.bind(this)}>
                 Yes{`(${q.question_helpfulness})`}
               </span>
               <AnswerList answers={q.answers} questionId={q.question_id}/>
