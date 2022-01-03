@@ -50,14 +50,14 @@ app.get('/relatedItems', (req, res) => {
 
 app.get('/qa/questions/:product_id', function(req, res) {
   let product = req.params.product_id;
-  apiCalls.getProductQuestionData(product, (questions) => {
+  apiCalls.getProductQuestionData(product, questions => {
     res.send(questions);
   })
 })
 
 app.put('/qa/questions/:question_id/helpful', function(req, res) {
   let question = req.params.question_id;
-  apiCalls.markQuestionHelpful(question, (response) => {
+  apiCalls.markQuestionHelpful(question, response => {
     res.send(response);
   })
 })
