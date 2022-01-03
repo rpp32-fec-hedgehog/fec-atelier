@@ -55,7 +55,7 @@ class QA extends React.Component {
   render() {
     let state = this.state;
     return (
-      <div data-testid="qa">
+      <div data-testid="qa" id="qa">
         <h1>Questions and Answers</h1>
         <SearchQuestion searchQuestions={this.searchQuestions.bind(this)}/>
         <Questions questions={state.questions} />
