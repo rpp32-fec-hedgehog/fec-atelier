@@ -42,13 +42,15 @@ class Questions extends React.Component {
 
     let questionClasses = e.target.className;
     let secondClass = questionClasses.split(' ')[1];
-    let question_id = secondClass.split('-')[2];
+    let subClasses = secondClass.split('-')
+    let question_id = subClasses[2];
+    let questionHelpCount = subClasses[3];
 
     $.ajax({
       url: '/qa/questions/'.concat(question_id, '/helpful'),
       method: 'PUT',
-      success: data => {
-        console.log('CLIENT POST ', data);
+      error: (err) => {
+        throw err;
       }
     })
   }
@@ -61,7 +63,7 @@ class Questions extends React.Component {
             <li key={'q-'.concat(q.question_id)}>
               <span className="q-body">Q: {q.question_body}</span>
               <span className="q-helpful">Helpful?</span>
-              <span className={"q-help-count q-help-".concat(q.question_id)}
+              <span className={`q-help-count q-help-${q.question_id}-${q.question_helpfulness}`}
                 onClick={this.questionIsHelpful.bind(this)}>
                 Yes{`(${q.question_helpfulness})`}
               </span>

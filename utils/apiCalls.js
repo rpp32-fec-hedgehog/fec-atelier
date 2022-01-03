@@ -76,22 +76,42 @@ module.exports.getReviewsForOverview = getReviewsForOverview;
 // ========== Questions & Answers ========== //
 
 const getProductQuestionData = (product_id, callback) => {
-  let endpoint = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id='.concat(product_id);
+  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=${product_id}`;
 
   return axios.get(endpoint, {
     headers: {
       "Authorization": process.env.API_KEY
     }
   })
-    .then((res) => {
+    .then(res => {
       callback(res.data);
     })
-    .catch((err) => {
+    .catch(err => {
       callback(err);
     });
 }
 
 module.exports.getProductQuestionData = getProductQuestionData;
+
+const markQuestionHelpful = (question_id, callback) => {
+  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${question_id}/helpful`;
+
+  return axios.put(endpoint, {
+    question_helpfulness: 1
+  }, {
+    headers: {
+      "Authorization": process.env.API_KEY
+    }
+  })
+    .then(res => {
+      callback(res);
+    })
+    .catch(err => {
+      callback(err);
+    })
+}
+
+module.exports.markQuestionHelpful = markQuestionHelpful;
 
 // ========== Ratings & Reviews ========== //
 
