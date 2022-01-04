@@ -6,7 +6,7 @@ const product1Data = [
     "asker_name": "hello",
     "question_helpfulness": 1,
     "reported": false,
-    "answerData": {
+    "answers": {
       "5181392": {
         "id": 5181392,
         "body": "What do you want to ask?",
@@ -50,7 +50,7 @@ const product1Data = [
     "asker_name": "helsdfdsflo",
     "question_helpfulness": 2,
     "reported": false,
-    "answerData": {
+    "answers": {
       "5181410": {
         "id": 5181410,
         "body": "GOOD",
@@ -109,7 +109,7 @@ const product1Data = [
     "asker_name": "Jack",
     "question_helpfulness": 5,
     "reported": false,
-    "answerData": {
+    "answers": {
       "5181391": {
         "id": 5181391,
         "body": "Yes, we do!",
@@ -156,7 +156,7 @@ const product1Data = [
     "asker_name": "weewoo",
     "question_helpfulness": 0,
     "reported": false,
-    "answerData": {}
+    "answers": {}
   }
 ];
 
@@ -168,7 +168,7 @@ const product2Data = [
     "asker_name": "hello",
     "question_helpfulness": 1,
     "reported": false,
-    "answerData": {
+    "answers": {
       "5181392": {
         "id": 5181392,
         "body": "What do you want to ask?",
