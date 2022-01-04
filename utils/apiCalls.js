@@ -139,8 +139,8 @@ const reportAnswer = (answer_id, callback) => {
   })
 }
 
-const submitAnswer = (answer, callback) => {
-  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questions_id}/answers`;
+const submitAnswer = (question_id, answer, callback) => {
+  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${question_id}/answers`;
 
   return axios.post(endpoint, answer, {
     headers: {
