@@ -45,8 +45,10 @@ class AnswerQuestion extends React.Component {
   dataIsValid() {
     let validation = _.chain(_.values(this.state))
     .slice(0, 3)
-    .every(input => {
+    .every((input, index) => {
       if (input.length === 0) {
+        return false;
+      } else if (index === 2 && !this.emailIsValid()) {
         return false;
       } else {
         return true;
@@ -55,6 +57,19 @@ class AnswerQuestion extends React.Component {
     .value()
 
     return validation;
+  }
+
+  emailIsValid() {
+    let splitEmail = this.state.email.split('@');
+    if (splitEmail.length === 2) {
+      splitEmail[1] = splitEmail[1].split('.');
+      let flattenedEmail = _.flatten(splitEmail);
+      if (flattenedEmail.length === 3) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   submitAnswer(e) {
@@ -80,7 +95,7 @@ class AnswerQuestion extends React.Component {
         }
       })
     } else {
-      alert('mandatory field(s) empty');
+      alert('invalid field(s)');
     }
   }
 
