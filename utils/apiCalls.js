@@ -91,7 +91,6 @@ const getProductQuestionData = (product_id, callback) => {
     });
 }
 
-
 const markQuestionHelpful = (question_id, callback) => {
   let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${question_id}/helpful`;
 
