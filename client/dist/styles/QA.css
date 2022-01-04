@@ -11,6 +11,10 @@
   margin-left: 5px;
 }
 
+.answer-modal {
+  display: inline;
+}
+
 .add-answer {
   margin-left: 20px;
 }
@@ -26,3 +30,4 @@
 .report, .reported {
   margin-left: 20px
 }
+
