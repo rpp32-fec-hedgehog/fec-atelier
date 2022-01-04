@@ -1,7 +1,7 @@
 const reviewData = [
       {
           review_id: 1016934,
-          rating: 2,
+          rating: 2.5,
           summary: 'These pants are ok!',
           recommend: false,
           response: '',
@@ -38,7 +38,7 @@ const reviewData = [
       },
       {
           review_id: 1095025,
-          rating: 3,
+          rating: 3.25,
           summary: 'These are kinda cool',
           recommend: true,
           response: null,
