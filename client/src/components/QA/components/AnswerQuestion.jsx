@@ -41,9 +41,18 @@ class AnswerQuestion extends React.Component {
         <Modal
           isOpen={this.state.modalOpen}
           style={testStyles}
-          contentLabel="TEST MODAL"
+          contentLabel="Submit Your Answer"
         >
-          <h2>TEST MODAL</h2>
+          <h2>Submit Your Answer</h2>
+          <h4>PRODUCT NAME:QUESTION BODY HERE</h4>
+          <form>
+            <label htmlFor="your-answer">{'Your Answer (mandatory)'}</label>
+            <input type="text" className="modal your-answer"></input>
+
+            <label htmlFor="nickname-a">{'What is your nickname? (mandatory)'}</label>
+            <input type="text" className="modal nickname-a"></input>
+
+          </form>
           <button onClick={this.closeModal.bind(this)}>close</button>
         </Modal>
       </div>
