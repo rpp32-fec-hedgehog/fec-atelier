@@ -2,6 +2,7 @@ import React from 'react';
 import _ from 'underscore';
 import $ from 'jquery';
 import AnswerList from './AnswerList.jsx';
+import AnswerQuestion from './AnswerQuestion.jsx';
 
 class Questions extends React.Component {
   constructor(props) {
@@ -68,13 +69,12 @@ class Questions extends React.Component {
                 onClick={this.questionIsHelpful.bind(this)}>
                 Yes{`(${q.question_helpfulness})`}
               </span>
-              <span className="add-answer">Add Answer</span>
+              <AnswerQuestion />
               <AnswerList answers={q.answers} question_id={q.question_id}
                 updateAHelp={this.props.updateAHelp} />
             </li>
           </div>
         })}
-
       </ul>
     </div>];
 
