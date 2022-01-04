@@ -39,12 +39,12 @@ class AnswerList extends React.Component {
   render() {
     let base = _.map(this.sortAnswers(this.props.answers), (a) => {
       return <div key={'aBase-'.concat(a.id)} data-testid="answer-list">
-        <Answers answer={a} updateAHelp={this.props.updateAHelp} />
+        <Answers answer={a} updateAHelp={this.props.updateAHelp} question_id={this.props.question_id} />
       </div>
     })
 
     let moreAnswers = <button onClick={this.handleAnswers.bind(this)}
-      key={"more-a-".concat(this.props.questionId)}>
+      key={"more-a-".concat(this.props.question_id)}>
       See More Answers
     </button>;
 

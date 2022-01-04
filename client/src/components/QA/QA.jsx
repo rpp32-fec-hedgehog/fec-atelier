@@ -64,8 +64,25 @@ class QA extends React.Component {
     })
   }
 
-  updateAnswerHelp(answer_id) {
-    console.log('UPDATE ANSWER HELP');
+  updateAnswerHelp(answer_id, question_id) {
+    let updatedAnswers = _.map(this.state.originalQuestions, (q) => {
+      if (q.question_id === question_id) {
+        q.answers = _.each(q.answers, a => {
+          if (a.id === answer_id) {
+            a.helpfulness ++;
+          }
+        })
+
+        return q;
+      } else {
+        return q;
+      }
+    })
+
+    this.setState({
+      originalQuestions: updatedAnswers,
+      questions: updatedAnswers
+    })
   }
 
   componentDidMount() {

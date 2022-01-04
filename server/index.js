@@ -63,7 +63,7 @@ app.put('/qa/questions/:question_id/helpful', function(req, res) {
 })
 
 app.put('/qa/answers/:answer_id/helpful', function(req, res) {
-  let question = req.params.answer_id;
+  let answer = req.params.answer_id;
   apiCalls.markAnswerHelpful(answer, response => {
     res.send(response);
   })

@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'underscore';
+import $ from 'jquery';
 import moment from 'moment';
 
 let Answers = (props) => {
@@ -12,7 +13,22 @@ let Answers = (props) => {
   let answerIsHelpful = (e) => {
     e.preventDefault();
 
-    props.updateAHelp();
+    let answerClasses = e.target.className;
+    let secondClass = answerClasses.split(' ')[1];
+    let subClasses = secondClass.split('-');
+    let answer_id = Number(subClasses[2]);
+    let questionHelpCount = subClasses[3];
+
+    $.ajax({
+      url: `/qa/answers/${answer_id}/helpful`,
+      method: 'PUT',
+      success: () => {
+        props.updateAHelp(answer_id, props.question_id);
+      },
+      error: err => {
+        throw err;
+      }
+    })
   }
 
   return <ul className="answer" data-testid="answers">
