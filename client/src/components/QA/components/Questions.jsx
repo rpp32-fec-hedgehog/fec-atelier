@@ -42,7 +42,7 @@ class Questions extends React.Component {
 
     let questionClasses = e.target.className;
     let secondClass = questionClasses.split(' ')[1];
-    let subClasses = secondClass.split('-')
+    let subClasses = secondClass.split('-');
     let question_id = Number(subClasses[2]);
     let questionHelpCount = subClasses[3];
 
