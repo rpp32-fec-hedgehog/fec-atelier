@@ -39,7 +39,7 @@ class AnswerList extends React.Component {
   render() {
     let base = _.map(this.sortAnswers(this.props.answers), (a) => {
       return <div key={'aBase-'.concat(a.id)} data-testid="answer-list">
-        <Answers answer={a}/>
+        <Answers answer={a} updateAHelp={this.props.updateAHelp} />
       </div>
     })
 

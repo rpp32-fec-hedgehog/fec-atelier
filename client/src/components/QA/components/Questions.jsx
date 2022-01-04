@@ -50,13 +50,15 @@ class Questions extends React.Component {
       url: '/qa/questions/'.concat(question_id, '/helpful'),
       method: 'PUT',
       success: () => {
-        this.props.updateHelp(question_id);
+        this.props.updateQHelp(question_id);
       },
       error: err => {
         throw err;
       }
     })
   }
+
+
 
   render() {
     let base = [<div data-testid="questions" key="q-base">
@@ -70,7 +72,8 @@ class Questions extends React.Component {
                 onClick={this.questionIsHelpful.bind(this)}>
                 Yes{`(${q.question_helpfulness})`}
               </span>
-              <AnswerList answers={q.answers} questionId={q.question_id}/>
+              <AnswerList answers={q.answers} questionId={q.question_id}
+                updateAHelp={this.props.updateAHelp} />
             </li>
           </div>
         })}

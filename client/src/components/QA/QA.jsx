@@ -64,6 +64,10 @@ class QA extends React.Component {
     })
   }
 
+  updateAnswerHelp(answer_id) {
+    console.log('UPDATE ANSWER HELP');
+  }
+
   componentDidMount() {
     this.getQAData();
   }
@@ -74,7 +78,8 @@ class QA extends React.Component {
       <div data-testid="qa" id="qa">
         <h1>Questions and Answers</h1>
         <SearchQuestion searchQuestions={this.searchQuestions.bind(this)}/>
-        <Questions questions={state.questions} updateHelp={this.updateQuestionHelp.bind(this)} />
+        <Questions questions={state.questions} updateQHelp={this.updateQuestionHelp.bind(this)}
+          updateAHelp={this.updateAnswerHelp.bind(this)} />
       </div>
     )
   }
