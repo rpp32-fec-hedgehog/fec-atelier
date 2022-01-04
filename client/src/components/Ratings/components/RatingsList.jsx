@@ -9,7 +9,7 @@ const RatingsList = (props) => {
 
   let ratings = props.ratings.map((rating) => {
     return (
-      <IndividualReview key={rating.review_id} summary={rating.summary} date={rating.date} body={rating.body} recommend={rating.recommend} reviewer_name={rating.reviewer_name} response={rating.response} helpfulness={rating.helpfulness}></IndividualReview>
+      <IndividualReview key={rating.review_id} star_rating={rating.rating} summary={rating.summary} date={rating.date} body={rating.body} recommend={rating.recommend} reviewer_name={rating.reviewer_name} response={rating.response} helpfulness={rating.helpfulness}></IndividualReview>
     )
   });
 
