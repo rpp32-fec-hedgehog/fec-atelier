@@ -27,7 +27,26 @@ class Answers extends React.Component {
         this.props.updateAHelp(answer_id, this.props.question_id);
       },
       error: err => {
-        throw err;
+        alert(err);
+      }
+    })
+  }
+
+  report(e) {
+    e.preventDefault();
+
+    let reportClasses = e.target.className;
+    let secondClass = reportClasses.split(' ')[1];
+    let answer_id = Number(secondClass.split('-')[1]);
+
+    $.ajax({
+      url: `/qa/answers/${answer_id}/report`,
+      method: 'PUT',
+      success: () => {
+        this.setState({reported: true});
+      },
+      error: err => {
+        alert(err);
       }
     })
   }
@@ -39,8 +58,15 @@ class Answers extends React.Component {
       answerer = <b>{answerer}</b>
     }
 
+    let reportButton = <span className={`report report-${answer.id}`}
+      onClick={this.report.bind(this)}>Report
+    </span>
+    if (this.state.reported) {
+      reportButton = <span className="reported">Reported</span>
+    }
+
     return (<ul className="answer" data-testid="answers">
-      <div key={'a-'.concat(answer.id)} data-testid={answerer}>
+      <div key={`a-${answer.id}`} data-testid={answerer}>
         <li className="answer-body">A: {answer.body}</li>
         <span className="answerer">by {answerer}, {moment(answer.date).format('LL')}</span>
         <span className="a-helpful">Helpful?</span>
@@ -48,52 +74,10 @@ class Answers extends React.Component {
           onClick={this.answerIsHelpful.bind(this)}>
           Yes{`(${answer.helpfulness})`}
         </span>
-        <span className="report">Report</span>
+        {reportButton}
       </div>
     </ul>)
   }
 }
-
-// let Answers = (props) => {
-//   let answer = props.answer;
-//   let answerer = answer.answerer_name;
-//   if (answerer === 'Seller') {
-//     answerer = <b>{answerer}</b>
-//   }
-
-//   let answerIsHelpful = (e) => {
-//     e.preventDefault();
-
-//     let answerClasses = e.target.className;
-//     let secondClass = answerClasses.split(' ')[1];
-//     let subClasses = secondClass.split('-');
-//     let answer_id = Number(subClasses[2]);
-//     let questionHelpCount = subClasses[3];
-
-//     $.ajax({
-//       url: `/qa/answers/${answer_id}/helpful`,
-//       method: 'PUT',
-//       success: () => {
-//         props.updateAHelp(answer_id, props.question_id);
-//       },
-//       error: err => {
-//         throw err;
-//       }
-//     })
-//   }
-
-//   return <ul className="answer" data-testid="answers">
-//     <div key={'a-'.concat(answer.id)} data-testid={answerer}>
-//       <li className="answer-body">A: {answer.body}</li>
-//       <span className="answerer">by {answerer}, {moment(answer.date).format('LL')}</span>
-//       <span className="a-helpful">Helpful?</span>
-//       <span className={`a-help-count a-help-${answer.id}-${answer.helpfulness}`}
-//         onClick={answerIsHelpful}>
-//         Yes{`(${answer.helpfulness})`}
-//       </span>
-//       <span className="report">Report</span>
-//     </div>
-//   </ul>
-// }
 
 export default Answers;
