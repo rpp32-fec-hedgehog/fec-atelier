@@ -14,6 +14,10 @@ module.exports = {
         loader: 'babel-loader', // uses babel-loader for the specified file types (no ts-loader needed)
         exclude: /node_modules/,
         },
+        {
+          test: /\.css$/i,
+          use: ["style-loader", "css-loader"],
+        }
     ]
   }
 }
