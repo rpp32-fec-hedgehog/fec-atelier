@@ -53,7 +53,7 @@ class Questions extends React.Component {
         this.props.updateQHelp(question_id);
       },
       error: err => {
-        throw err;
+        alert(err);
       }
     })
   }
