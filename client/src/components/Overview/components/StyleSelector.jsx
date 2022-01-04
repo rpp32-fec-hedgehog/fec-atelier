@@ -11,7 +11,7 @@ class StyleSelector extends React.Component {
 
   render() {
     return (
-      <div className="styles-info" data-testid="style-selector" style={{border: "1px solid black"}}>
+      <div className="styles-info" data-testid="style-selector">
         <h4>Style {this.props.styleName}</h4>
         <div className="styles">
           {_.map(this.props.styleImgs, (style, index) => {
