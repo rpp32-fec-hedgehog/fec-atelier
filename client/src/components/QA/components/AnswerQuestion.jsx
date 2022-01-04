@@ -59,10 +59,18 @@ class AnswerQuestion extends React.Component {
 
   submitAnswer(e) {
     e.preventDefault();
+    let answerData = {
+      body: this.state.answer,
+      name: this.state.nickname,
+      email: this.state.email,
+      photos: this.state.photos
+    };
+
     if (this.dataIsValid()) {
       $.ajax({
         url: `/qa/question/${this.props.question_id}/answers`,
         method: 'POST',
+        data: answerData,
         success: () => {
           this.closeModal(e);
         },
