@@ -8,13 +8,17 @@
 }
 
 .q-help-count {
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .a-helpful {
-  margin-left: 25%;
+  margin-left: 10%;
 }
 
 .a-help-count {
-  margin-left: 10px;
+  margin-left: 5px;
+}
+
+.report {
+  margin-left: 20px
 }
