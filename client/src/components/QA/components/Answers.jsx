@@ -33,7 +33,6 @@ class Answers extends React.Component {
 
   report(e) {
     e.preventDefault();
-
     let reportClasses = e.target.className;
     let secondClass = reportClasses.split(' ')[1];
     let answer_id = Number(secondClass.split('-')[1]);
