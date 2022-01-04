@@ -109,8 +109,27 @@ const markQuestionHelpful = (question_id, callback) => {
   })
 }
 
+const markAnswerHelpful = (answer_id, callback) => {
+  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answer_id}/helpful`;
+
+  return axios.put(endpoint, {
+    helpfulness: 1
+  }, {
+    headers: {
+      "Authorization": process.env.API_KEY
+    }
+  })
+  .then(res => {
+    callback(res);
+  })
+  .catch(err => {
+    callback(err);
+  })
+}
+
 module.exports.getProductQuestionData = getProductQuestionData;
 module.exports.markQuestionHelpful = markQuestionHelpful;
+module.exports.markAnswerHelpful = markAnswerHelpful;
 
 // ========== Ratings & Reviews ========== //
 

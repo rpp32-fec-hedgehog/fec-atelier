@@ -64,6 +64,27 @@ class QA extends React.Component {
     })
   }
 
+  updateAnswerHelp(answer_id, question_id) {
+    let updatedAnswers = _.map(this.state.originalQuestions, (q) => {
+      if (q.question_id === question_id) {
+        q.answers = _.each(q.answers, a => {
+          if (a.id === answer_id) {
+            a.helpfulness ++;
+          }
+        })
+
+        return q;
+      } else {
+        return q;
+      }
+    })
+
+    this.setState({
+      originalQuestions: updatedAnswers,
+      questions: updatedAnswers
+    })
+  }
+
   componentDidMount() {
     this.getQAData();
   }
@@ -74,7 +95,8 @@ class QA extends React.Component {
       <div data-testid="qa" id="qa">
         <h1>Questions and Answers</h1>
         <SearchQuestion searchQuestions={this.searchQuestions.bind(this)}/>
-        <Questions questions={state.questions} updateHelp={this.updateQuestionHelp.bind(this)} />
+        <Questions questions={state.questions} updateQHelp={this.updateQuestionHelp.bind(this)}
+          updateAHelp={this.updateAnswerHelp.bind(this)} />
       </div>
     )
   }
