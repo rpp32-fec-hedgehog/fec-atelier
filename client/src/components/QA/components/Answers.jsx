@@ -13,7 +13,6 @@ class Answers extends React.Component {
 
   answerIsHelpful(e) {
     e.preventDefault();
-
     let answerClasses = e.target.className;
     let secondClass = answerClasses.split(' ')[1];
     let subClasses = secondClass.split('-');
