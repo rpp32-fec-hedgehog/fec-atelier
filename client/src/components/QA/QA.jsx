@@ -37,7 +37,7 @@ class QA extends React.Component {
 
   getQAData() {
     $.ajax({
-      url: '/qa/questions/'.concat(this.props.itemid),
+      url: `/qa/questions/${this.props.itemid}`,
       method: 'GET',
       success: (data) => {
         this.setState({
