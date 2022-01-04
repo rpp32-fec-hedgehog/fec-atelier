@@ -139,10 +139,27 @@ const reportAnswer = (answer_id, callback) => {
   })
 }
 
+const submitAnswer = (answer, callback) => {
+  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questions_id}/answers`;
+
+  return axios.post(endpoint, answer, {
+    headers: {
+      "Authorization": process.env.API_KEY
+    }
+  })
+  .then(res => {
+    callback(res);
+  })
+  .catch(err => {
+    callback(err);
+  })
+}
+
 module.exports.getProductQuestionData = getProductQuestionData;
 module.exports.markQuestionHelpful = markQuestionHelpful;
 module.exports.markAnswerHelpful = markAnswerHelpful;
 module.exports.reportAnswer = reportAnswer;
+module.exports.submitAnswer = submitAnswer;
 
 // ========== Ratings & Reviews ========== //
 
