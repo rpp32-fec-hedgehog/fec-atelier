@@ -1,5 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
+import _ from 'underscore';
+import $ from 'jquery';
 
 Modal.setAppElement('#app');
 
@@ -40,10 +42,37 @@ class AnswerQuestion extends React.Component {
     this.setState({email: e.target.value})
   }
 
-  submitAnswer() {
-    // validate data in state
-    // submit answer post request
-    // close modal
+  dataIsValid() {
+    let validation = _.chain(_.values(this.state))
+    .slice(0, 3)
+    .every(input => {
+      if (input.length === 0) {
+        return false;
+      } else {
+        return true;
+      }
+    })
+    .value()
+
+    return validation;
+  }
+
+  submitAnswer(e) {
+    e.preventDefault();
+    if (this.dataIsValid()) {
+      $.ajax({
+        url: `/qa/question/${this.props.question_id}/answers`,
+        method: 'POST',
+        success: () => {
+          this.closeModal(e);
+        },
+        error: err => {
+          alert(err);
+        }
+      })
+    } else {
+      alert('mandatory field(s) empty');
+    }
   }
 
   render() {
