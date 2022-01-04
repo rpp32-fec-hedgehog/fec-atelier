@@ -15,7 +15,6 @@ class Questions extends React.Component {
 
   handleQuestions(e) {
     e.preventDefault();
-
     if (this.props.questions.length > this.state.questionCount) {
       this.setState({
         questionCount: this.state.questionCount += 2
@@ -39,7 +38,6 @@ class Questions extends React.Component {
 
   questionIsHelpful(e) {
     e.preventDefault();
-
     let questionClasses = e.target.className;
     let secondClass = questionClasses.split(' ')[1];
     let subClasses = secondClass.split('-');
@@ -47,13 +45,13 @@ class Questions extends React.Component {
     let questionHelpCount = subClasses[3];
 
     $.ajax({
-      url: '/qa/questions/'.concat(question_id, '/helpful'),
+      url: `/qa/questions/${question_id}/helpful`,
       method: 'PUT',
       success: () => {
         this.props.updateQHelp(question_id);
       },
       error: err => {
-        throw err;
+        alert(err);
       }
     })
   }
@@ -63,7 +61,7 @@ class Questions extends React.Component {
       <ul>
         {this.sortByHelpfulness(this.props.questions).map(q => {
           return <div data-testid={q.question_body} key={q.question_body}>
-            <li key={'q-'.concat(q.question_id)}>
+            <li key={`q-${q.question_id}`}>
               <span className="q-body">Q: {q.question_body}</span>
               <span className="q-helpful">Helpful?</span>
               <span className={`q-help-count q-help-${q.question_id}-${q.question_helpfulness}`}

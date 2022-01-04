@@ -94,9 +94,7 @@ const getProductQuestionData = (product_id, callback) => {
 const markQuestionHelpful = (question_id, callback) => {
   let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${question_id}/helpful`;
 
-  return axios.put(endpoint, {
-    question_helpfulness: 1
-  }, {
+  return axios.put(endpoint, {}, {
     headers: {
       "Authorization": process.env.API_KEY
     }
@@ -112,9 +110,23 @@ const markQuestionHelpful = (question_id, callback) => {
 const markAnswerHelpful = (answer_id, callback) => {
   let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answer_id}/helpful`;
 
-  return axios.put(endpoint, {
-    helpfulness: 1
-  }, {
+  return axios.put(endpoint, {}, {
+    headers: {
+      "Authorization": process.env.API_KEY
+    }
+  })
+  .then(res => {
+    callback(res);
+  })
+  .catch(err => {
+    callback(err);
+  })
+}
+
+const reportAnswer = (answer_id, callback) => {
+  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answer_id}/report`;
+
+  return axios.put(endpoint, {}, {
     headers: {
       "Authorization": process.env.API_KEY
     }
@@ -130,6 +142,7 @@ const markAnswerHelpful = (answer_id, callback) => {
 module.exports.getProductQuestionData = getProductQuestionData;
 module.exports.markQuestionHelpful = markQuestionHelpful;
 module.exports.markAnswerHelpful = markAnswerHelpful;
+module.exports.reportAnswer = reportAnswer;
 
 // ========== Ratings & Reviews ========== //
 
