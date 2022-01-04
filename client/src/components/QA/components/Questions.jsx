@@ -58,8 +58,6 @@ class Questions extends React.Component {
     })
   }
 
-
-
   render() {
     let base = [<div data-testid="questions" key="q-base">
       <ul>
