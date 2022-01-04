@@ -10,17 +10,40 @@ class AnswerQuestion extends React.Component {
       answer: '',
       nickname: '',
       email: '',
-      photos: '',
+      photos: [],
       modalOpen: false
     };
   }
 
-  openModal() {
+  openModal(e) {
+    e.preventDefault();
     this.setState({modalOpen: true});
   }
 
-  closeModal() {
+  closeModal(e) {
+    e.preventDefault();
     this.setState({modalOpen: false});
+  }
+
+  handleAnswer(e) {
+    e.preventDefault();
+    this.setState({answer: e.target.value})
+  }
+
+  handleNickname(e) {
+    e.preventDefault();
+    this.setState({nickname: e.target.value})
+  }
+
+  handleEmail(e) {
+    e.preventDefault();
+    this.setState({email: e.target.value})
+  }
+
+  submitAnswer() {
+    // validate data in state
+    // submit answer post request
+    // close modal
   }
 
   render() {
@@ -47,13 +70,20 @@ class AnswerQuestion extends React.Component {
           <h4>PRODUCT NAME:QUESTION BODY HERE</h4>
           <form>
             <label htmlFor="your-answer">{'Your Answer (mandatory)'}</label>
-            <input type="text" className="modal your-answer"></input>
-
+            <input type="text" className="modal your-answer"
+              onChange={this.handleAnswer.bind(this)}>
+            </input>
             <label htmlFor="nickname-a">{'What is your nickname? (mandatory)'}</label>
-            <input type="text" className="modal nickname-a"></input>
-
+            <input type="text" className="modal nickname-a"
+              onChange={this.handleNickname.bind(this)}>
+            </input>
+            <label htmlFor="email-a">{'Your Email (mandatory)'}</label>
+            <input type="text" className="modal email-a"
+              onChange={this.handleEmail.bind(this)}>
+            </input>
           </form>
-          <button onClick={this.closeModal.bind(this)}>close</button>
+          <button onClick={this.closeModal.bind(this)}>Close</button>
+          <button onClick={this.submitAnswer.bind(this)}>Submit</button>
         </Modal>
       </div>
     )
