@@ -73,6 +73,7 @@ class AnswerQuestion extends React.Component {
         data: answerData,
         success: () => {
           this.closeModal(e);
+          this.props.getQAData();
         },
         error: err => {
           alert(err);
