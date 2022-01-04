@@ -1,5 +1,7 @@
 import React from 'react';
 import _ from 'underscore';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 class ImageGallery extends React.Component {
   constructor(props) {
@@ -14,11 +16,12 @@ class ImageGallery extends React.Component {
 
   render() {
     return (
-      <div className="Image-Gallery" data-testid="image-gallery" style={{border: "1px solid black"}}>
-        <h4>Image Gallery</h4>
-        <img className="main-gallery" src={this.props.photo}></img>
-        <button className='backward' onClick={this.props.backward}>backward</button>
-        <button className='forward' onClick={this.props.forward}>forward</button>
+      <div className="image-gallery">
+        <Carousel dynamicHeight="true">
+          {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(this.props.styleData[this.props.selectedStyle].photos, (photo) => {
+            return (<img className="image-gallery-thumbnail" src={photo.url} key={photo.url}></img>)
+          }) : null}
+        </Carousel>
       </div>
     )
   }

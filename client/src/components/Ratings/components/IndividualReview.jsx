@@ -1,9 +1,12 @@
 import React from 'react';
 import moment from 'moment';
+import StarRating from './StarRating.jsx';
+
 
 const IndividualReview = (props) => {
 
     const date = props.date;
+    const star_rating = props.star_rating;
     const summary = props.summary;
     const body = props.body;
     const reviewer_name = props.reviewer_name;
@@ -20,7 +23,7 @@ const IndividualReview = (props) => {
     return (
       <div data-testid="individual-review" className="individual-review">
         <li style={reviewStyle}>
-          <span> star rating goes here {moment(date).format('LL')} <br></br> <b>{summary}</b> <br></br> {body} <br></br>...should include pictures<br></br> {reviewer_name} <br></br> {response} <br></br> {recommend ? "I recommend this product!": null}</span>
+        <StarRating star_rating={star_rating}></StarRating><span>{moment(date).format('LL')} <br></br> <b>{summary}</b> <br></br> {body} <br></br>...should include pictures<br></br> {reviewer_name} <br></br> {response} <br></br> {recommend ? "I recommend this product!": null}</span>
         </li>
     </div>
     )
