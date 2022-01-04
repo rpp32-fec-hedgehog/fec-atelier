@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'underscore';
+import $ from 'jquery';
 import AnswerList from './AnswerList.jsx';
 
 class Questions extends React.Component {
@@ -28,12 +29,33 @@ class Questions extends React.Component {
 
   sortByHelpfulness(questions) {
     let sorted = _.chain(questions)
-      .sortBy((question) => { return question.question_helpfulness })
+      .sortBy(question => {return question.question_helpfulness})
       .reverse()
       .slice(0, this.state.questionCount)
       .value()
 
     return sorted;
+  }
+
+  questionIsHelpful(e) {
+    e.preventDefault();
+
+    let questionClasses = e.target.className;
+    let secondClass = questionClasses.split(' ')[1];
+    let subClasses = secondClass.split('-')
+    let question_id = Number(subClasses[2]);
+    let questionHelpCount = subClasses[3];
+
+    $.ajax({
+      url: '/qa/questions/'.concat(question_id, '/helpful'),
+      method: 'PUT',
+      success: () => {
+        this.props.updateHelp(question_id);
+      },
+      error: err => {
+        throw err;
+      }
+    })
   }
 
   render() {
@@ -42,7 +64,12 @@ class Questions extends React.Component {
         {this.sortByHelpfulness(this.props.questions).map(q => {
           return <div data-testid={q.question_body} key={q.question_body}>
             <li key={'q-'.concat(q.question_id)}>
-              Q: {q.question_body}
+              <span className="q-body">Q: {q.question_body}</span>
+              <span className="q-helpful">Helpful?</span>
+              <span className={`q-help-count q-help-${q.question_id}-${q.question_helpfulness}`}
+                onClick={this.questionIsHelpful.bind(this)}>
+                Yes{`(${q.question_helpfulness})`}
+              </span>
               <AnswerList answers={q.answers} questionId={q.question_id}/>
             </li>
           </div>
