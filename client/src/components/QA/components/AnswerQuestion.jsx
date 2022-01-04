@@ -40,7 +40,6 @@ class AnswerQuestion extends React.Component {
         <span className="add-answer" onClick={this.openModal.bind(this)}>Add Answer</span>
         <Modal
           isOpen={this.state.modalOpen}
-          onRequestClose={this.closeModal.bind(this)}
           style={testStyles}
           contentLabel="TEST MODAL"
         >
