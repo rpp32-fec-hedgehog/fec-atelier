@@ -69,7 +69,7 @@ class Questions extends React.Component {
                 onClick={this.questionIsHelpful.bind(this)}>
                 Yes{`(${q.question_helpfulness})`}
               </span>
-              <AnswerQuestion />
+              <AnswerQuestion question_id={q.question_id} />
               <AnswerList answers={q.answers} question_id={q.question_id}
                 updateAHelp={this.props.updateAHelp} />
             </li>
