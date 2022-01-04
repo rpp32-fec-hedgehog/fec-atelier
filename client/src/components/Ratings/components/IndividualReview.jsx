@@ -13,20 +13,15 @@ const IndividualReview = (props) => {
     const recommend = props.recommend;
     const response = props.response;
 
-    //const check_mark = [<path fill="none" stroke="black" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>]
-    //<img src="picture.jpg"></img>
-
     const reviewStyle = {
       border: '1px solid rgba(0, 0, 0, 1)',
-      width: '45%',
-      float: 'left',
       margin: '5px'
     };
 
     return (
       <div data-testid="individual-review" className="individual-review">
         <li style={reviewStyle}>
-        <span><StarRating star_rating={star_rating}></StarRating> {reviewer_name} {moment(date).format('LL')} <br></br> <b>{summary}</b> <br></br> {body} <br></br>...should include pictures<br></br> {response} <br></br> {recommend ? <img src={'images/transparent-background-check-mark.png'} alt='loading' width="10" height="10"/>: null}{recommend ? " I recommend this product.": null}</span>
+        <span><StarRating star_rating={star_rating}></StarRating> {reviewer_name}, {moment(date).format('LL')} <br></br> <b>{summary}</b> <br></br> {body} <br></br>...should include pictures<br></br> {response} <br></br> {recommend ? <img src={'images/transparent-background-check-mark.png'} alt='loading' width="10" height="10"/>: null}{recommend ? " I recommend this product.": null}</span>
         </li>
     </div>
     )
