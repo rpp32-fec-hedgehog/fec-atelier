@@ -84,13 +84,13 @@ class AskQuestion extends React.Component {
     return false;
   }
 
-  submitAnswer(e) {
+  submitQuestion(e) {
     e.preventDefault();
     let questionData = {
       body: this.state.question,
       name: this.state.nickname,
       email: this.state.email,
-      product_id: this.props.product_id;
+      product_id: this.props.product_id
     };
 
     if (this.dataIsValid()) {
@@ -132,7 +132,7 @@ class AskQuestion extends React.Component {
           contentLabel="Ask Your Question"
         >
           <h2>Ask Your Question</h2>
-          <h4>About the {this.state.product_id}</h4>
+          <h4>About the {this.state.product_name}</h4>
           <form>
           <label htmlFor="your-question">{'Your Question (mandatory)'}</label>
             <input type="text" className="modal your-question"
