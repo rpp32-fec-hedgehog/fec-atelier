@@ -11,6 +11,7 @@ class ImageGallery extends React.Component {
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
+
   openModal = (e) => {
     e.preventDefault();
     this.setState({
@@ -56,6 +57,5 @@ class ImageGallery extends React.Component {
     )
   }
 }
-
 
 export default ImageGallery;
