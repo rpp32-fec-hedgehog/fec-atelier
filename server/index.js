@@ -57,12 +57,6 @@ app.get('/relatedItems', (req, res) => {
     .catch(e => e);
 });
 
-//Product Styles
-app.get('/relatedItems/:productId', (req, res) => {
-
-  res.end();
-})
-
 // ========== Questions & Answers ========== //
 
 app.get('/qa/questions/:product_id', function(req, res) {
