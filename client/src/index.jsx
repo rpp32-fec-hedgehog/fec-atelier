@@ -27,16 +27,16 @@ class App extends React.Component {
           <div className="overview">
             <Overview itemid={this.state.item_id} />
           </div>
-          {/* <QA itemid={this.state.item_id} /> */}
+          <QA itemid={this.state.item_id} />
           <div className="ratings">
-          {/* <Ratings itemid={this.state.item_id} /> */}
+          <Ratings itemid={this.state.item_id} />
           </div>
         </div>
         <div>
-          {/* <RelatedItems itemId={this.state.item_id}/> */}
+          <RelatedItems itemId={this.state.item_id}/>
         </div>
         <div>
-          {/* <Outfits itemId={this.state.item_id}/> */}
+          <Outfits itemId={this.state.item_id}/>
         </div>
       </div>
     );

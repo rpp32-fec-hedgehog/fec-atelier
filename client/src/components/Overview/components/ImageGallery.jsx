@@ -1,32 +1,48 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Modal from 'react-modal';
 import _ from 'underscore';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
-import ExpandedView from './Modal.jsx';
+// import ExpandedView from './Modal.jsx';
 
-
-const ImageGallery = (props) => {
-  const [showModal, setShowModal] = useState(false);
-
-  const openModal = () => {
-    setShowModal(prev => !prev);
+class ImageGallery extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      modalOpen: false
+    }
+  }
+  openModal = (e) => {
+    e.preventDefault();
+    this.setState({
+      modalOpen: true
+    });
   }
 
-  return (
-    <div className="image-gallery">
-      <Carousel dynamicHeight="true" >
-        {props.styleData[props.selectedStyle] !== undefined ? _.map(props.styleData[props.selectedStyle].photos, (photo, index) => {
-          return (
-            <div key={index} onClick={openModal}>
-              <img className="image-gallery-thumbnail" src={photo.url}></img>
-            </div>
-          )
-        }) : null}
-      </Carousel>
-      <ExpandedView showModal={showModal} setShowModal={setShowModal}></ExpandedView>
-    </div>
-  )
+  closeModal = (e) => {
+    e.preventDefault();
+    this.setState({
+      modalOpen: false
+    });
+  }
+  render() {
+    return (
+      <div className="image-gallery">
+        <Carousel dynamicHeight="true" >
+          {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(this.props.styleData[this.props.selectedStyle].photos, (photo, index) => {
+            return (
+              <div key={index} onClick={this.openModal.bind(this)}>
+                <img className="image-gallery-thumbnail" src={photo.url}></img>
+              </div>
+            )
+          }) : null}
+        </Carousel>
+        <Modal isOpen={this.state.modalOpen}>Modal</Modal>
+      </div>
+    )
+  }
 }
+
 
 export default ImageGallery;

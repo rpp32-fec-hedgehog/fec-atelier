@@ -1,12 +1,12 @@
 import React from 'react';
-import Modal from 'react-modal';
+
 
 const ExpandedView = ({showModal, setShowModal}) => {
     return (
       <>
-        {showModal ? <div className="modal">Modal</div> : null}
+        {showModal ? <Modal className="modal">Modal</Modal> : null}
       </>
     )
 }
 
-export default Modal;
+export default ExpandedView;
