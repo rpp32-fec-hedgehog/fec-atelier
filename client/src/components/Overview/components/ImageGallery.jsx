@@ -1,30 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import _ from 'underscore';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 
-class ImageGallery extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      styles : {}
-    };
-  }
+import Modal from './Modal.jsx';
 
-  componentDidMount() {
-  }
 
-  render() {
-    return (
-      <div className="image-gallery">
-        <Carousel dynamicHeight="true">
-          {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(this.props.styleData[this.props.selectedStyle].photos, (photo) => {
-            return (<img className="image-gallery-thumbnail" src={photo.url} key={photo.url}></img>)
-          }) : null}
-        </Carousel>
-      </div>
-    )
+const ImageGallery = (props) => {
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal(prev => !prev);
   }
+  return (
+    <div className="image-gallery">
+      <Carousel dynamicHeight="true">
+        {props.styleData[props.selectedStyle] !== undefined ? _.map(props.styleData[props.selectedStyle].photos, (photo, index) => {
+          return (
+            <div key={index} onClick={openModal}>
+              <img className="image-gallery-thumbnail" src={photo.url}></img>
+            </div>
+          )
+        }) : null}
+      </Carousel>
+      <Modal></Modal>
+    </div>
+  )
 }
 
 export default ImageGallery;
