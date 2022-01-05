@@ -3,10 +3,52 @@
   margin-top: 30px;
 }
 
+.question {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.q-body {
+  font-weight: bold;
+}
+
 .q-helpful {
   margin-left: 50%;
 }
 
 .q-help-count {
-  margin-left: 10px;
+  margin-left: 5px;
+}
+
+.answer-modal {
+  display: inline;
+}
+
+.modal {
+  width: 100%;
+}
+
+.answer {
+  margin-top: 5px;
+  margin-bottom: 2px;
+}
+
+.add-answer {
+  margin-left: 20px;
+}
+
+.a-helpful {
+  margin-left: 10%;
+}
+
+.a-help-count {
+  margin-left: 5px;
+}
+
+.report, .reported {
+  margin-left: 20px
+}
+
+.ask-question, .more-q {
+  float: left;
 }

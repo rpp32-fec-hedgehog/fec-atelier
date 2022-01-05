@@ -6,12 +6,13 @@ const app = express();
 const port = 3000;
 
 const apiCalls = require('../utils/apiCalls.js');
-const { getRelated }= require('../utils/RelatedProducts');
+const { getRelatedImages, getRelatedItems, consolidateForState } = require('../utils/relatedProducts/serverHelpers');
 
 
 app.use(express.static(path.join(__dirname, '..', '/client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
 
 // ========== Shared ========== //
 
@@ -39,12 +40,22 @@ app.post('/cart', (req, res) => {
 
 // ========== Related Products ========== //
 
+//Related Products
 app.get('/relatedItems', (req, res) => {
   let item_id = req.query.item_id;
-  getRelated(item_id)
-    .then(e => res.status(200).send(e)).catch(e=>e);
+  getRelatedItems(item_id, process.env.API_KEY)
+    .then(relatedItems => {
+      getRelatedImages(relatedItems)
+        .then(styles => {
+          for (let i = 0; i < relatedItems.length; i++) {
+            relatedItems[i].styles = styles[i].results
+          }
+          res.status(200).send(relatedItems);
+        })
+        .catch(e => e);
+    })
+    .catch(e => e);
 });
-
 
 // ========== Questions & Answers ========== //
 
@@ -58,6 +69,35 @@ app.get('/qa/questions/:product_id', function(req, res) {
 app.put('/qa/questions/:question_id/helpful', function(req, res) {
   let question = req.params.question_id;
   apiCalls.markQuestionHelpful(question, response => {
+    res.send(response);
+  })
+})
+
+app.put('/qa/answers/:answer_id/helpful', function(req, res) {
+  let answer = req.params.answer_id;
+  apiCalls.markAnswerHelpful(answer, response => {
+    res.send(response);
+  })
+})
+
+app.put('/qa/answers/:answer_id/report', function(req, res) {
+  let answer = req.params.answer_id;
+  apiCalls.reportAnswer(answer, response => {
+    res.send(response);
+  })
+})
+
+app.post('/qa/question/:question_id/answers', function(req, res) {
+  let question_id = req.params.question_id;
+  let answer = req.body;
+  apiCalls.submitAnswer(question_id, answer, response => {
+    res.send(response);
+  })
+})
+
+app.post('/qa/questions', function(req, res) {
+  let question = req.body;
+  apiCalls.submitQuestion(question, response => {
     res.send(response);
   })
 })

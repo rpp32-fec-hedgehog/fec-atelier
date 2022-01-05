@@ -1,4 +1,9 @@
 import React from 'react';
+import Modal from 'react-modal';
+import _ from 'underscore';
+import $ from 'jquery';
+
+Modal.setAppElement('#app');
 
 class AskQuestion extends React.Component {
   constructor(props) {
@@ -6,14 +11,145 @@ class AskQuestion extends React.Component {
     this.state = {
       question: '',
       nickname: '',
-      email: ''
+      email: '',
+      product_name: '',
+      modalOpen: false
     };
   }
 
+  openModal(e) {
+    e.preventDefault();
+    $.ajax({
+      url: `/products/${this.props.product_id}`,
+      method: 'GET',
+      success: data => {
+        this.setState({
+          modalOpen: true,
+          product_name: data.name
+        });
+      },
+      error: err => {
+        alert(err);
+      }
+    })
+  }
+
+  closeModal(e) {
+    e.preventDefault();
+    this.setState({modalOpen: false});
+  }
+
+  handleQuestion(e) {
+    e.preventDefault();
+    this.setState({question: e.target.value})
+  }
+
+  handleNickname(e) {
+    e.preventDefault();
+    this.setState({nickname: e.target.value})
+  }
+
+  handleEmail(e) {
+    e.preventDefault();
+    this.setState({email: e.target.value})
+  }
+
+  dataIsValid() {
+    let validation = _.chain(_.values(this.state))
+    .slice(0, 3)
+    .every((input, index) => {
+      if (input.length === 0) {
+        return false;
+      } else if (index === 2 && !this.emailIsValid()) {
+        return false;
+      } else {
+        return true;
+      }
+    })
+    .value()
+
+    return validation;
+  }
+
+  emailIsValid() {
+    let splitEmail = this.state.email.split('@');
+    if (splitEmail.length === 2) {
+      splitEmail[1] = splitEmail[1].split('.');
+      let flattenedEmail = _.flatten(splitEmail);
+      if (flattenedEmail.length === 3) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  submitQuestion(e) {
+    e.preventDefault();
+    let questionData = {
+      body: this.state.question,
+      name: this.state.nickname,
+      email: this.state.email,
+      product_id: this.props.product_id
+    };
+
+    if (this.dataIsValid()) {
+      $.ajax({
+        url: `/qa/questions`,
+        method: 'POST',
+        data: questionData,
+        success: () => {
+          this.closeModal(e);
+          this.props.getQAData();
+        },
+        error: err => {
+          alert(err);
+        }
+      })
+    } else {
+      alert('invalid field(s)');
+    }
+  }
+
   render() {
+    const testStyles = {
+      content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
+      }
+    };
+
     return (
-      <div data-testid="ask-question">
-        put your question here
+      <div className="question-modal">
+        <button className="ask-question-btn" onClick={this.openModal.bind(this)}>Ask a Question</button>
+        <Modal
+          isOpen={this.state.modalOpen}
+          style={testStyles}
+          contentLabel="Ask Your Question"
+        >
+          <h2>Ask Your Question</h2>
+          <h4>About the {this.state.product_name}</h4>
+          <form>
+          <label htmlFor="your-question">{'Your Question (mandatory)'}</label>
+            <input type="text" className="modal your-question"
+              onChange={this.handleQuestion.bind(this)}>
+            </input>
+            <label htmlFor="nickname-q">{'What is your nickname? (mandatory)'}</label>
+            <input type="text" className="modal nickname-q"
+              onChange={this.handleNickname.bind(this)}>
+            </input>
+            <label htmlFor="email-q">{'Your Email (mandatory)'}</label>
+            <input type="text" className="modal email-q"
+              onChange={this.handleEmail.bind(this)}>
+            </input>
+          </form>
+          <button onClick={this.closeModal.bind(this)}>Close</button>
+          <button onClick={this.submitQuestion.bind(this)}>Submit Question</button>
+        </Modal>
       </div>
     )
   }
