@@ -11,7 +11,7 @@ const StarRating = (props) => {
     }
   }
 
-  console.log('stars array: ', stars);
+  // console.log('stars array: ', stars);
 
   return (
     <div>

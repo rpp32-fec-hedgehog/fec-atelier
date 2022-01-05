@@ -76,6 +76,14 @@ app.put('/qa/answers/:answer_id/report', function(req, res) {
   })
 })
 
+app.post('/qa/question/:question_id/answers', function(req, res) {
+  let question_id = req.params.question_id;
+  let answer = req.body;
+  apiCalls.submitAnswer(question_id, answer, response => {
+    res.send(response);
+  })
+})
+
 // ========== Ratings & Reviews ========== //
 
 app.get('/ratings', function(req, res, next) {

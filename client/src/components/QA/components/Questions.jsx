@@ -2,6 +2,7 @@ import React from 'react';
 import _ from 'underscore';
 import $ from 'jquery';
 import AnswerList from './AnswerList.jsx';
+import AnswerQuestion from './AnswerQuestion.jsx';
 
 class Questions extends React.Component {
   constructor(props) {
@@ -60,7 +61,7 @@ class Questions extends React.Component {
     let base = [<div data-testid="questions" key="q-base">
       <ul>
         {this.sortByHelpfulness(this.props.questions).map(q => {
-          return <div data-testid={q.question_body} key={q.question_body}>
+          return <div className="question" data-testid={q.question_body} key={q.question_body}>
             <li key={`q-${q.question_id}`}>
               <span className="q-body">Q: {q.question_body}</span>
               <span className="q-helpful">Helpful?</span>
@@ -68,12 +69,14 @@ class Questions extends React.Component {
                 onClick={this.questionIsHelpful.bind(this)}>
                 Yes{`(${q.question_helpfulness})`}
               </span>
+              <AnswerQuestion question_id={q.question_id} getQAData={this.props.getQAData}
+                product_id={this.props.product_id}
+                question_body={q.question_body} />
               <AnswerList answers={q.answers} question_id={q.question_id}
                 updateAHelp={this.props.updateAHelp} />
             </li>
           </div>
         })}
-
       </ul>
     </div>];
 
