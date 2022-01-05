@@ -12,7 +12,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      item_id: 59564
+      item_id: 59557
     };
   }
 
@@ -23,10 +23,10 @@ class App extends React.Component {
     return (
       <div>
         <h1>Atelier</h1>
-        <div className="overview">
-          <Overview itemid={this.state.item_id} />
-        </div>
         <div className="main">
+          <div className="overview">
+            <Overview itemid={this.state.item_id} />
+          </div>
           <QA itemid={this.state.item_id} />
           <div className="ratings">
           <Ratings itemid={this.state.item_id} />

@@ -5,13 +5,60 @@
 }
 
 /* Image Gallery */
+.main-gallery {
+  height: auto;
+  width: 30%;
+}
 .image-gallery {
   height: auto;
-  width: auto;
+  width: 40%;
 }
-.carousel-root {
-  width: 25%;
-  height: auto;
+
+.image-gallery-thumbnail {
+  width: 25px;
+  height: 25px;
+}
+
+/* Modal */
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+}
+
+.modal-image {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+
+}
+
+.modal-forward {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.modal-back {
+  position: relative;
+  left: 40%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.modal-radio-button {
+  position: relative;
+  left: 35%;
+  top: 95%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 /* Style Selector */

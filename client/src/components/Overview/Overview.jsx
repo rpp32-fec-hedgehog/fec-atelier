@@ -23,6 +23,9 @@ class Overview extends React.Component {
     this.grabProductData = this.grabProductData.bind(this);
     this.grabStylesData = this.grabStylesData.bind(this);
     this.handleSelectStyle = this.handleSelectStyle.bind(this);
+    this.cycleForward = this.cycleForward.bind(this);
+    this.cycleBackward = this.cycleBackward.bind(this);
+    this.changePhoto = this.changePhoto.bind(this);
   }
 
   async grabProductData() {
@@ -49,6 +52,36 @@ class Overview extends React.Component {
       .catch((err) => {
         console.error(err.message);
       });
+  }
+
+  cycleForward(e) {
+    let current = this.state.currentPhoto;
+    let max = this.state.numberOfPhotos;
+    this.state.currentPhoto < max - 1 ?
+    this.setState({
+      photo: this.state.styleData[this.state.selectedStyle].photos[current + 1].url,
+      currentPhoto: this.state.currentPhoto + 1
+    }) :
+    null
+  }
+
+  cycleBackward(e) {
+    let current = this.state.currentPhoto;
+    let max = this.state.numberOfPhotos;
+    this.state.currentPhoto > 0 ?
+    this.setState({
+      photo: this.state.styleData[this.state.selectedStyle].photos[current - 1].url,
+      currentPhoto: this.state.currentPhoto - 1
+    }) :
+    null
+  }
+
+  changePhoto = (e) => {
+    e.preventDefault();
+    this.setState({
+      photo: this.state.styleData[this.state.selectedStyle].photos[e.target.id].url,
+      currentPhoto: Number(e.target.id)
+    });
   }
 
   handleSelectStyle(e) {
@@ -80,8 +113,9 @@ class Overview extends React.Component {
               this.state.styleData[this.state.selectedStyle].sale_price : null} />
 
           <ImageGallery styleData={this.state.styleData} photo={this.state.photo}
-            selectedStyle={this.state.selectedStyle}/>
-
+            selectedStyle={this.state.selectedStyle}
+            forward={this.cycleForward} backward={this.cycleBackward}
+            changePhoto={this.changePhoto}/>
           <StyleSelector styleImgs={_.map(this.state.styleData, style => style.photos).map(arr => arr[0].thumbnail_url)}
             selectStyle={this.handleSelectStyle}
             styleName={this.state.styleData[this.state.currentPhoto] !== undefined ?
