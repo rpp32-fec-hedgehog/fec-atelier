@@ -70,7 +70,8 @@ class Questions extends React.Component {
                 Yes{`(${q.question_helpfulness})`}
               </span>
               <AnswerQuestion question_id={q.question_id} getQAData={this.props.getQAData}
-                product_id={this.props.product_id} />
+                product_id={this.props.product_id}
+                question_body={q.question_body} />
               <AnswerList answers={q.answers} question_id={q.question_id}
                 updateAHelp={this.props.updateAHelp} />
             </li>

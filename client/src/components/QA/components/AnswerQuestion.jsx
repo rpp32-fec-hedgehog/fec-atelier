@@ -133,7 +133,7 @@ class AnswerQuestion extends React.Component {
           contentLabel="Submit Your Answer"
         >
           <h2>Submit Your Answer</h2>
-          <h4>{this.state.product_name}:QUESTION BODY HERE</h4>
+          <h4>{this.state.product_name}: {this.props.question_body}</h4>
           <form>
             <label htmlFor="your-answer">{'Your Answer (mandatory)'}</label>
             <input type="text" className="modal your-answer"
