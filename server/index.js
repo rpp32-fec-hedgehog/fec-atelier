@@ -112,6 +112,13 @@ app.get('/ratings', function(req, res, next) {
   )
 })
 
+app.get('/reviews/meta', (req, res, next) => {
+  apiCalls.getReviewsMetaByItem(req.headers.item_id, (err, results) => {
+    console.log('ratings meta at server: ', results);
+    res.send(results);
+  })
+})
+
 app.post('/reviews/meta', (req, res) => {
   let product = req.body.data.product_id;
   apiCalls.getReviewsForOverview(product, (reviewsData) => {

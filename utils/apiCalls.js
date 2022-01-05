@@ -200,17 +200,18 @@ const getReviewsByItem = (product_id, callback) => {
 }
 
 const getReviewsMetaByItem = (product_id, callback) => {
-  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${product_id}`;
+  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${product_id}`;
   return axios.get(endpoint, {
     headers : {
       "Authorization" : process.env.API_KEY
     }
   })
-  .then((metadata => {
-    console.log('metadata recieved by apiCalls: ', metadata);
+  .then((response => {
+    //console.log('metadata recieved by apiCalls: ', metadata.data);
+    callback(null, response.data);
   }))
   .catch((err) => {
-    // console.log('Error fetching the ratings metadata: ', err)
+    console.log('Error fetching the ratings metadata: ', err)
   })
 }
 
