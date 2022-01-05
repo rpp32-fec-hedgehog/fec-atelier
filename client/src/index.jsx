@@ -23,20 +23,20 @@ class App extends React.Component {
     return (
       <div>
         <h1>Atelier</h1>
-        <div className="overview">
-          <Overview itemid={this.state.item_id} />
-        </div>
         <div className="main">
-          <QA itemid={this.state.item_id} />
+          <div className="overview">
+            <Overview itemid={this.state.item_id} />
+          </div>
+          {/* <QA itemid={this.state.item_id} /> */}
           <div className="ratings">
-          <Ratings itemid={this.state.item_id} />
+          {/* <Ratings itemid={this.state.item_id} /> */}
           </div>
         </div>
         <div>
-          <RelatedItems itemId={this.state.item_id}/>
+          {/* <RelatedItems itemId={this.state.item_id}/> */}
         </div>
         <div>
-          <Outfits itemId={this.state.item_id}/>
+          {/* <Outfits itemId={this.state.item_id}/> */}
         </div>
       </div>
     );

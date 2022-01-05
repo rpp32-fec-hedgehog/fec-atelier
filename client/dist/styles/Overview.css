@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: 0;
+  position: static;
 }
 
 /* Image Gallery */
@@ -9,9 +10,23 @@
   height: auto;
   width: auto;
 }
+/*
+.carousel.carousel-slider {
+  width: 50%
+} */
 .carousel-root {
   width: 25%;
   height: auto;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 'white';
 }
 
 /* Style Selector */
