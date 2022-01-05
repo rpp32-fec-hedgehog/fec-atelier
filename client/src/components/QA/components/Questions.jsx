@@ -3,6 +3,7 @@ import _ from 'underscore';
 import $ from 'jquery';
 import AnswerList from './AnswerList.jsx';
 import AnswerQuestion from './AnswerQuestion.jsx';
+import AskQuestion from './AskQuestion.jsx';
 
 class Questions extends React.Component {
   constructor(props) {
@@ -82,11 +83,12 @@ class Questions extends React.Component {
 
     let totalQs = this.props.questions.length;
     let more = <button key="more-q" onClick={this.handleQuestions.bind(this)}>More Answered Questions</button>;
+    let addQuestion = <AskQuestion key="ask-q" />
 
     if (totalQs > this.state.questionCount && totalQs > 2) {
-      return base.concat(more);
+      return base.concat(more, addQuestion);
     } else {
-      return base;
+      return base.concat(addQuestion);
     }
   }
 }
