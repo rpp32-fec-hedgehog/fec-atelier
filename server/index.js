@@ -84,6 +84,13 @@ app.post('/qa/question/:question_id/answers', function(req, res) {
   })
 })
 
+app.post('/qa/questions', function(req, res) {
+  let question = req.body;
+  apiCalls.submitQuestion(question, response => {
+    res.send(response);
+  })
+})
+
 // ========== Ratings & Reviews ========== //
 
 app.get('/ratings', function(req, res, next) {
