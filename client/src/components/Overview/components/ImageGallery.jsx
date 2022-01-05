@@ -46,6 +46,11 @@ class ImageGallery extends React.Component {
         <Modal isOpen={this.state.modalOpen} className="modal">
           <button onClick={this.closeModal}>X</button>
           <img className="modal-image" src={this.props.photo}></img>
+          {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(this.props.styleData[this.props.selectedStyle].photos, (photo, index) => {
+              return (
+                <img className="image-gallery-thumbnail" src={photo.url} key={index} id={index} onClick={this.props.changePhoto}></img>
+              )
+            }) : null}
         </Modal>
       </div>
     )
