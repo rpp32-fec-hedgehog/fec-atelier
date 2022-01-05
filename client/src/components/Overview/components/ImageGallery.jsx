@@ -19,11 +19,11 @@ const ImageGallery = (props) => {
           return (
             <div key={index} onClick={openModal}>
               <img className="image-gallery-thumbnail" src={photo.url}></img>
+              <Modal showModal={showModal} setShowModal={setShowModal}></Modal>
             </div>
           )
         }) : null}
       </Carousel>
-      <Modal></Modal>
     </div>
   )
 }

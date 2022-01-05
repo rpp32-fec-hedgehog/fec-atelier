@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Modal = (props) => {
+const Modal = ({showModal, setShowModal}) => {
     return (
-      <>
-        <div>Modal</div>
+      < className="modal">
+        {showModal ? <div>Modal</div> : null}
       </>
     )
 
