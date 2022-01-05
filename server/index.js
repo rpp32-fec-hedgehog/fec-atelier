@@ -6,7 +6,7 @@ const app = express();
 const port = 3000;
 
 const apiCalls = require('../utils/apiCalls.js');
-const { getRelatedImages, getRelatedItems, consolidateForState }= require('../utils/relatedProducts/serverHelpers');
+const { getRelatedImages, getRelatedItems, consolidateForState } = require('../utils/relatedProducts/serverHelpers');
 
 
 app.use(express.static(path.join(__dirname, '..', '/client/dist')));
