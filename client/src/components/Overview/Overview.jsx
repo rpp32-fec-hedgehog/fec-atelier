@@ -23,6 +23,9 @@ class Overview extends React.Component {
     this.grabProductData = this.grabProductData.bind(this);
     this.grabStylesData = this.grabStylesData.bind(this);
     this.handleSelectStyle = this.handleSelectStyle.bind(this);
+    this.cycleForward = this.cycleForward.bind(this);
+    this.cycleBackward = this.cycleBackward.bind(this);
+    this.changePhoto = this.changePhoto.bind(this);
   }
 
   async grabProductData() {
@@ -51,6 +54,36 @@ class Overview extends React.Component {
       });
   }
 
+  cycleForward(e) {
+    let current = this.state.currentPhoto;
+    let max = this.state.numberOfPhotos;
+    this.state.currentPhoto < max - 1 ?
+    this.setState({
+      photo: this.state.styleData[this.state.selectedStyle].photos[current + 1].url,
+      currentPhoto: this.state.currentPhoto + 1
+    }) :
+    null
+  }
+
+  cycleBackward(e) {
+    let current = this.state.currentPhoto;
+    let max = this.state.numberOfPhotos;
+    this.state.currentPhoto > 0 ?
+    this.setState({
+      photo: this.state.styleData[this.state.selectedStyle].photos[current - 1].url,
+      currentPhoto: this.state.currentPhoto - 1
+    }) :
+    null
+  }
+
+  changePhoto = (e) => {
+    e.preventDefault();
+    this.setState({
+      photo: this.state.styleData[this.state.selectedStyle].photos[e.target.id].url,
+      currentPhoto: Number(e.target.id)
+    });
+  }
+
   handleSelectStyle(e) {
     let current = this.state.currentPhoto;
     let currentStyle = e.target.id;
@@ -72,14 +105,22 @@ class Overview extends React.Component {
       <div data-testid='overview-widget'>
         <div>
           <h1>Overview</h1>
-          <ProductInfo itemid={this.props.itemid} productData={this.state.productData} />
+
+          <ProductInfo itemid={this.props.itemid} productData={this.state.productData}
+            originalPrice={this.state.styleData[this.state.selectedStyle] !== undefined ?
+              this.state.styleData[this.state.selectedStyle].original_price : null}
+            salePrice={this.state.styleData[this.state.selectedStyle] !== undefined ?
+              this.state.styleData[this.state.selectedStyle].sale_price : null} />
+
           <ImageGallery styleData={this.state.styleData} photo={this.state.photo}
-            selectedStyle={this.state.selectedStyle}/>
+            selectedStyle={this.state.selectedStyle}
+            forward={this.cycleForward} backward={this.cycleBackward}
+            changePhoto={this.changePhoto}/>
           <StyleSelector styleImgs={_.map(this.state.styleData, style => style.photos).map(arr => arr[0].thumbnail_url)}
             selectStyle={this.handleSelectStyle}
             styleName={this.state.styleData[this.state.currentPhoto] !== undefined ?
-            this.state.styleData[this.state.selectedStyle].name : null}
-            />
+            this.state.styleData[this.state.selectedStyle].name : null} />
+
           <AddToCart productName={this.state.productData.name} styleData={this.state.styleData} />
         </div>
       </div>

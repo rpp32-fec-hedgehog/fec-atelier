@@ -13,6 +13,7 @@ class ProductInfo extends React.Component {
     this.getStarCount = this.getStarCount.bind(this);
     this.grabReviews = this.grabReviews.bind(this);
     this.calculateStarRating = this.calculateStarRating.bind(this);
+    this.getPrice = this.getPrice.bind(this);
   }
 
   async grabReviews() {
@@ -45,13 +46,35 @@ class ProductInfo extends React.Component {
     totalStars = (_.reduce(this.state.starCount, (memo, num) => {
       return parseInt(memo) + parseInt(num);
     }, 0)) * 5;
-
     for (let i = 0; i < this.state.starCount.length; i++) {
       actual += ((i+1) * parseInt(this.state.starCount[i]));
     };
-
     outOfFiveStars = Math.ceil(((actual/totalStars) * 5) / .25) * .25;
     return outOfFiveStars.toString();
+  }
+
+  getPrice() {
+    let ogStyles = {
+      'textDecoration': 'line-through'
+    }
+    let saleStyles = {
+      'color': 'red'
+    }
+    if (this.props.salePrice !== null) {
+      return (
+        <div>
+          <div className="og-price" style={ogStyles}>{this.props.originalPrice}</div>
+          <div className="sale-price" style={saleStyles}>{this.props.salePrice}</div>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <div className="og-price">{this.props.originalPrice}</div>
+          <div className="sale-price">{this.props.salePrice}</div>
+        </div>
+      )
+    }
   }
 
   componentDidMount() {
@@ -74,7 +97,7 @@ class ProductInfo extends React.Component {
           : null
         }
         {this.props.productData ? <div>{this.props.productData.category}</div> : null}
-        {this.props.productData ? <div>{this.props.productData.default_price}</div> : null}
+        {this.getPrice()}
         {this.props.productData ? <div>{this.props.productData.name}</div> : null}
         {this.props.productData ? <div>{this.props.productData.description}</div> : null}
     </div>
