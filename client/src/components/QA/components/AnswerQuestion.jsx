@@ -13,13 +13,26 @@ class AnswerQuestion extends React.Component {
       nickname: '',
       email: '',
       photos: [],
+      product_name: '',
       modalOpen: false
     };
   }
 
   openModal(e) {
     e.preventDefault();
-    this.setState({modalOpen: true});
+    $.ajax({
+      url: `/products/${this.props.product_id}`,
+      method: 'GET',
+      success: data => {
+        this.setState({
+          modalOpen: true,
+          product_name: data.name
+        });
+      },
+      error: err => {
+        alert(err);
+      }
+    })
   }
 
   closeModal(e) {
@@ -120,7 +133,7 @@ class AnswerQuestion extends React.Component {
           contentLabel="Submit Your Answer"
         >
           <h2>Submit Your Answer</h2>
-          <h4>PRODUCT NAME:QUESTION BODY HERE</h4>
+          <h4>{this.state.product_name}:QUESTION BODY HERE</h4>
           <form>
             <label htmlFor="your-answer">{'Your Answer (mandatory)'}</label>
             <input type="text" className="modal your-answer"

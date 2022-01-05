@@ -96,7 +96,8 @@ class QA extends React.Component {
         <SearchQuestion searchQuestions={this.searchQuestions.bind(this)}/>
         <Questions questions={state.questions} updateQHelp={this.updateQuestionHelp.bind(this)}
           updateAHelp={this.updateAnswerHelp.bind(this)}
-          getQAData={this.getQAData.bind(this)} />
+          getQAData={this.getQAData.bind(this)}
+          product_id={this.props.itemid} />
       </div>
     )
   }
