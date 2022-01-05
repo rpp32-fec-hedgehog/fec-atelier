@@ -23,6 +23,8 @@ class Overview extends React.Component {
     this.grabProductData = this.grabProductData.bind(this);
     this.grabStylesData = this.grabStylesData.bind(this);
     this.handleSelectStyle = this.handleSelectStyle.bind(this);
+    this.cycleForward = this.cycleForward.bind(this);
+    this.cycleBackward = this.cycleBackward.bind(this);
   }
 
   async grabProductData() {
@@ -51,6 +53,28 @@ class Overview extends React.Component {
       });
   }
 
+  cycleForward(e) {
+    let current = this.state.currentPhoto;
+    let max = this.state.numberOfPhotos;
+    this.state.currentPhoto < max - 1 ?
+    this.setState({
+      photo: this.state.styleData[this.state.selectedStyle].photos[current + 1].url,
+      currentPhoto: this.state.currentPhoto + 1
+    }) :
+    null
+  }
+
+  cycleBackward(e) {
+    let current = this.state.currentPhoto;
+    let max = this.state.numberOfPhotos;
+    this.state.currentPhoto > 0 ?
+    this.setState({
+      photo: this.state.styleData[this.state.selectedStyle].photos[current - 1].url,
+      currentPhoto: this.state.currentPhoto - 1
+    }) :
+    null
+  }
+
   handleSelectStyle(e) {
     let current = this.state.currentPhoto;
     let currentStyle = e.target.id;
@@ -74,7 +98,8 @@ class Overview extends React.Component {
           <h1>Overview</h1>
           <ProductInfo itemid={this.props.itemid} productData={this.state.productData} />
           <ImageGallery styleData={this.state.styleData} photo={this.state.photo}
-            selectedStyle={this.state.selectedStyle}/>
+            selectedStyle={this.state.selectedStyle}
+            forward={this.cycleForward} backward={this.cycleBackward} />
           <StyleSelector styleImgs={_.map(this.state.styleData, style => style.photos).map(arr => arr[0].thumbnail_url)}
             selectStyle={this.handleSelectStyle}
             styleName={this.state.styleData[this.state.currentPhoto] !== undefined ?

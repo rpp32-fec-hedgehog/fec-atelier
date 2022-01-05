@@ -6,18 +6,16 @@
 }
 
 /* Image Gallery */
+.main-gallery {
+  height: auto;
+  width: 40%;
+}
 .image-gallery {
   height: auto;
-  width: auto;
+  width: 40%;
 }
 /*
-.carousel.carousel-slider {
-  width: 50%
-} */
-.carousel-root {
-  width: 25%;
-  height: auto;
-}
+
 
 /* Modal */
 .modal {

@@ -30,9 +30,22 @@ class ImageGallery extends React.Component {
   }
   render() {
     return (
-      <div className="image-gallery">
-        <Carousel dynamicHeight="true" >
-          {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(this.props.styleData[this.props.selectedStyle].photos, (photo, index) => {
+      <div className="Image-Gallery" data-testid="image-gallery" style={{border: "1px solid black"}}>
+        <h4>Image Gallery</h4>
+        <div onClick={this.openModal}>
+          <img className="main-gallery" src={this.props.photo}></img>
+        </div>
+        <button className='backward' onClick={this.props.backward}>backward</button>
+        <button className='forward' onClick={this.props.forward}>forward</button>
+        <Modal isOpen={this.state.modalOpen}>
+          <button onClick={this.closeModal}>X</button>
+          <img className="modal-image" src={this.props.photo}></img>
+        </Modal>
+      </div>
+
+      /* <div className="image-gallery">
+         <Carousel dynamicHeight="true">
+           {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(this.props.styleData[this.props.selectedStyle].photos, (photo, index) => {
             return (
               <div key={index} onClick={this.openModal}>
                 <img className="image-gallery-thumbnail" src={photo.url}></img>
@@ -52,7 +65,7 @@ class ImageGallery extends React.Component {
             }) : null}
           </Carousel>
         </Modal>
-      </div>
+      </div> */
     )
   }
 }
