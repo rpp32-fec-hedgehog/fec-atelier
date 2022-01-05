@@ -48,3 +48,7 @@
 .report, .reported {
   margin-left: 20px
 }
+
+.ask-question, .more-q {
+  float: left;
+}

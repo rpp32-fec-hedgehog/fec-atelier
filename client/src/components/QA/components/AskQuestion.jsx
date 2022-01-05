@@ -12,8 +12,8 @@ class AskQuestion extends React.Component {
 
   render() {
     return (
-      <div key="ask-q" data-testid="ask-question">
-        put your question here
+      <div className="question-modal">
+        <button className="ask-question-btn">Add A Question</button>
       </div>
     )
   }
