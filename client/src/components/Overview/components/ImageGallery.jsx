@@ -38,7 +38,17 @@ class ImageGallery extends React.Component {
             )
           }) : null}
         </Carousel>
-        <Modal isOpen={this.state.modalOpen}>Modal</Modal>
+        <Modal isOpen={this.state.modalOpen}>
+        <Carousel dynamicHeight="true" >
+          {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(this.props.styleData[this.props.selectedStyle].photos, (photo, index) => {
+            return (
+              <div key={index} onClick={this.openModal.bind(this)}>
+                <img className="image-gallery-thumbnail" src={photo.url}></img>
+              </div>
+            )
+          }) : null}
+        </Carousel>
+        </Modal>
       </div>
     )
   }
