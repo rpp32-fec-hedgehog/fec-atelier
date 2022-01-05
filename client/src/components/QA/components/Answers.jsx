@@ -65,7 +65,7 @@ class Answers extends React.Component {
 
     return (<ul className="answer" data-testid="answers">
       <div key={`a-${answer.id}`} data-testid={answerer}>
-        <li className="answer-body">A: {answer.body}</li>
+        <li className="answer-body"><b>A: </b>{answer.body}</li>
         <span className="answerer">by {answerer}, {moment(answer.date).format('LL')}</span>
         <span className="a-helpful">Helpful?</span>
         <span className={`a-help-count a-help-${answer.id}-${answer.helpfulness}`}
