@@ -61,7 +61,7 @@ class Questions extends React.Component {
     let base = [<div data-testid="questions" key="q-base">
       <ul>
         {this.sortByHelpfulness(this.props.questions).map(q => {
-          return <div data-testid={q.question_body} key={q.question_body}>
+          return <div className="question" data-testid={q.question_body} key={q.question_body}>
             <li key={`q-${q.question_id}`}>
               <span className="q-body">Q: {q.question_body}</span>
               <span className="q-helpful">Helpful?</span>
