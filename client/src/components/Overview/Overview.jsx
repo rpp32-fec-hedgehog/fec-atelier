@@ -72,14 +72,21 @@ class Overview extends React.Component {
       <div data-testid='overview-widget'>
         <div>
           <h1>Overview</h1>
-          <ProductInfo itemid={this.props.itemid} productData={this.state.productData} />
+
+          <ProductInfo itemid={this.props.itemid} productData={this.state.productData}
+            originalPrice={this.state.styleData[this.state.selectedStyle] !== undefined ?
+              this.state.styleData[this.state.selectedStyle].original_price : null}
+            salePrice={this.state.styleData[this.state.selectedStyle] !== undefined ?
+              this.state.styleData[this.state.selectedStyle].sale_price : null} />
+
           <ImageGallery styleData={this.state.styleData} photo={this.state.photo}
             selectedStyle={this.state.selectedStyle}/>
+
           <StyleSelector styleImgs={_.map(this.state.styleData, style => style.photos).map(arr => arr[0].thumbnail_url)}
             selectStyle={this.handleSelectStyle}
             styleName={this.state.styleData[this.state.currentPhoto] !== undefined ?
-            this.state.styleData[this.state.selectedStyle].name : null}
-            />
+            this.state.styleData[this.state.selectedStyle].name : null} />
+
           <AddToCart productName={this.state.productData.name} styleData={this.state.styleData} />
         </div>
       </div>

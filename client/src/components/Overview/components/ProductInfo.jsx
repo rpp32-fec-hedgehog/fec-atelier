@@ -74,7 +74,7 @@ class ProductInfo extends React.Component {
           : null
         }
         {this.props.productData ? <div>{this.props.productData.category}</div> : null}
-        {this.props.productData ? <div>{this.props.productData.default_price}</div> : null}
+        {this.props.productData ? this.props.salePrice !== null ? <div>{this.props.salePrice}</div> : <div>{this.props.originalPrice}</div> : null}
         {this.props.productData ? <div>{this.props.productData.name}</div> : null}
         {this.props.productData ? <div>{this.props.productData.description}</div> : null}
     </div>
