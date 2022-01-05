@@ -3,13 +3,13 @@ import $ from 'jquery';
 import ProductCard from './Product-Card.jsx';
 import { Carousel } from '@trendyol-js/react-carousel';
 import { Item } from  './Product-Card.jsx';
-import {  }
+// import { getRelatedItemPhotos, getRelatedItems } from '../../../../utils/RelatedProducts.js';
 
 class RelatedItems extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      currentItem : 90,
+      currentItem : props.itemId,
       relatedItems : []
     };
   }
@@ -20,8 +20,7 @@ class RelatedItems extends React.Component {
       method: 'GET',
       data: {item_id: this.state.currentItem},
       success: data => {
-        this.setState({relatedItems: data});
-
+        this.setState({relatedItems: data})
       }
     })
   }
@@ -35,10 +34,9 @@ class RelatedItems extends React.Component {
       <Carousel show={3.5} slide={3} transition={0.5}>
         {this.state.relatedItems.map(item => {
           i++;
-          return (<ProductCard item={item} key={i}/>)
+          return (<ProductCard item={item} key={i} type={'related'}/>)
         })}
       </Carousel>
-
     )
   }
 }
