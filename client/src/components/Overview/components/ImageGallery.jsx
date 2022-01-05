@@ -12,6 +12,8 @@ class ImageGallery extends React.Component {
     this.state = {
       modalOpen: false
     }
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
   openModal = (e) => {
     e.preventDefault();
@@ -32,22 +34,23 @@ class ImageGallery extends React.Component {
         <Carousel dynamicHeight="true" >
           {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(this.props.styleData[this.props.selectedStyle].photos, (photo, index) => {
             return (
-              <div key={index} onClick={this.openModal.bind(this)}>
+              <div key={index} onClick={this.openModal}>
                 <img className="image-gallery-thumbnail" src={photo.url}></img>
               </div>
             )
           }) : null}
         </Carousel>
         <Modal isOpen={this.state.modalOpen}>
-        <Carousel dynamicHeight="true" >
-          {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(this.props.styleData[this.props.selectedStyle].photos, (photo, index) => {
-            return (
-              <div key={index} onClick={this.openModal.bind(this)}>
-                <img className="image-gallery-thumbnail" src={photo.url}></img>
-              </div>
-            )
-          }) : null}
-        </Carousel>
+          <button onClick={this.closeModal}>X</button>
+          <Carousel dynamicHeight="true" >
+            {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(this.props.styleData[this.props.selectedStyle].photos, (photo, index) => {
+              return (
+                <div key={index} onClick={this.openModal}>
+                  <img className="image-gallery-thumbnail" src={photo.url}></img>
+                </div>
+              )
+            }) : null}
+          </Carousel>
         </Modal>
       </div>
     )
