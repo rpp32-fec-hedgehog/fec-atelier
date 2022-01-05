@@ -2,7 +2,6 @@ import React from 'react';
 import $ from 'jquery';
 
 const ProductCard = (props) => {
-  console.log('Here are the props: ', props)
   if (props.type === 'related') {
     return (
       <div className='related'>
