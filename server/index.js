@@ -61,9 +61,44 @@ app.get('/relatedItems', (req, res) => {
 
 app.get('/qa/questions/:product_id', function(req, res) {
   let product = req.params.product_id;
-
-  apiCalls.getProductQuestionData(product, (questions) => {
+  apiCalls.getProductQuestionData(product, questions => {
     res.send(questions);
+  })
+})
+
+app.put('/qa/questions/:question_id/helpful', function(req, res) {
+  let question = req.params.question_id;
+  apiCalls.markQuestionHelpful(question, response => {
+    res.send(response);
+  })
+})
+
+app.put('/qa/answers/:answer_id/helpful', function(req, res) {
+  let answer = req.params.answer_id;
+  apiCalls.markAnswerHelpful(answer, response => {
+    res.send(response);
+  })
+})
+
+app.put('/qa/answers/:answer_id/report', function(req, res) {
+  let answer = req.params.answer_id;
+  apiCalls.reportAnswer(answer, response => {
+    res.send(response);
+  })
+})
+
+app.post('/qa/question/:question_id/answers', function(req, res) {
+  let question_id = req.params.question_id;
+  let answer = req.body;
+  apiCalls.submitAnswer(question_id, answer, response => {
+    res.send(response);
+  })
+})
+
+app.post('/qa/questions', function(req, res) {
+  let question = req.body;
+  apiCalls.submitQuestion(question, response => {
+    res.send(response);
   })
 })
 

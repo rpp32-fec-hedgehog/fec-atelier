@@ -16,7 +16,6 @@ class QA extends React.Component {
 
   searchQuestions(e) {
     e.preventDefault();
-
     let text = e.target.value;
     if (text.length >= 3) {
       this.setState({
@@ -37,14 +36,51 @@ class QA extends React.Component {
 
   getQAData() {
     $.ajax({
-      url: '/qa/questions/'.concat(this.props.itemid),
+      url: `/qa/questions/${this.props.itemid}`,
       method: 'GET',
-      success: (data) => {
+      success: data => {
         this.setState({
           questions: data.results,
           originalQuestions: data.results
         })
       }
+    })
+  }
+
+  updateQuestionHelp(question_id) {
+    let updatedQuestions = _.map(this.state.originalQuestions, q => {
+      if (q.question_id === question_id) {
+        q.question_helpfulness ++;
+        return q;
+      } else {
+        return q;
+      }
+    })
+
+    this.setState({
+      originalQuestions: updatedQuestions,
+      questions: updatedQuestions
+    })
+  }
+
+  updateAnswerHelp(answer_id, question_id) {
+    let updatedAnswers = _.map(this.state.originalQuestions, q => {
+      if (q.question_id === question_id) {
+        q.answers = _.each(q.answers, a => {
+          if (a.id === answer_id) {
+            a.helpfulness ++;
+          }
+        })
+
+        return q;
+      } else {
+        return q;
+      }
+    })
+
+    this.setState({
+      originalQuestions: updatedAnswers,
+      questions: updatedAnswers
     })
   }
 
@@ -55,10 +91,13 @@ class QA extends React.Component {
   render() {
     let state = this.state;
     return (
-      <div data-testid="qa">
+      <div data-testid="qa" id="qa">
         <h1>Questions and Answers</h1>
         <SearchQuestion searchQuestions={this.searchQuestions.bind(this)}/>
-        <Questions questions={state.questions} />
+        <Questions questions={state.questions} updateQHelp={this.updateQuestionHelp.bind(this)}
+          updateAHelp={this.updateAnswerHelp.bind(this)}
+          getQAData={this.getQAData.bind(this)}
+          product_id={this.props.itemid} />
       </div>
     )
   }

@@ -158,9 +158,7 @@ const product1Data = [
     "reported": false,
     "answers": {}
   }
-]
-
-module.exports.product1Data = product1Data;
+];
 
 const product2Data = [
   {
@@ -207,6 +205,53 @@ const product2Data = [
       }
     }
   }
-]
+];
 
+const answerData = {
+  "question": "553704",
+  "page": 1,
+  "count": 5,
+  "results": [
+      {
+          "answer_id": 5181393,
+          "body": "I think you might want to ask, Is this good?",
+          "date": "2021-11-18T00:00:00.000Z",
+          "answerer_name": "abby",
+          "helpfulness": 1,
+          "photos": []
+      },
+      {
+          "answer_id": 5181394,
+          "body": "Right?",
+          "date": "2021-11-18T00:00:00.000Z",
+          "answerer_name": "anny",
+          "helpfulness": 1,
+          "photos": []
+      },
+      {
+          "answer_id": 5181392,
+          "body": "What do you want to ask?",
+          "date": "2021-11-18T00:00:00.000Z",
+          "answerer_name": "jack",
+          "helpfulness": 0,
+          "photos": []
+      },
+      {
+          "answer_id": 5181456,
+          "body": "good good good good pizza shoes",
+          "date": "2021-11-21T00:00:00.000Z",
+          "answerer_name": "pizza",
+          "helpfulness": 0,
+          "photos": [
+              {
+                  "id": 4620673,
+                  "url": "https://ucarecdn.com/87015f51-7e80-4761-833c-74581e0be910/"
+              }
+          ]
+      }
+  ]
+};
+
+module.exports.product1Data = product1Data;
 module.exports.product2Data = product2Data;
+module.exports.answerData = answerData;

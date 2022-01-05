@@ -1,0 +1,20 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: 0;
+}
+
+/* Image Gallery */
+.image-gallery {
+  height: auto;
+  width: auto;
+}
+.carousel-root {
+  width: 25%;
+  height: auto;
+}
+
+/* Style Selector */
+.style-img {
+  width: 5%;
+}

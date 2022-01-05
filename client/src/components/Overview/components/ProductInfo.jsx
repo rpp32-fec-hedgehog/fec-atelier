@@ -62,7 +62,7 @@ class ProductInfo extends React.Component {
 
   render() {
     return (
-      <div className="product-info" data-testid="product-info" style={{border: "1px solid black"}}>
+      <div className="product-info" data-testid="product-info">
         <h4>Product Info</h4>
         {this.state.starCount.length ?
           <div className="star-rating" data-testid="star-rating">
