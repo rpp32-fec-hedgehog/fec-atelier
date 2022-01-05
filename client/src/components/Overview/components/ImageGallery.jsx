@@ -1,10 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
 import _ from 'underscore';
-import { Carousel } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-
-// import ExpandedView from './Modal.jsx';
 
 class ImageGallery extends React.Component {
   constructor(props) {
@@ -36,7 +32,7 @@ class ImageGallery extends React.Component {
         <div>
           {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(this.props.styleData[this.props.selectedStyle].photos, (photo, index) => {
               return (
-                <img className="image-gallery-thumbnail" src={photo.url} key={index} id={index} onClick={this.props.changePhoto}></img>
+                <img  className="image-gallery-thumbnail" src={photo.url} key={index} id={index} onClick={this.props.changePhoto}></img>
               )
             }) : null}
           <img className="main-gallery" src={this.props.photo} onClick={this.openModal}></img>
@@ -45,12 +41,16 @@ class ImageGallery extends React.Component {
         </div>
         <Modal isOpen={this.state.modalOpen} className="modal">
           <button onClick={this.closeModal}>X</button>
-          <img className="modal-image" src={this.props.photo}></img>
+          <div>
+            <button className='modal-back' onClick={this.props.backward}>backward</button>
+            <button className='modal-forward' onClick={this.props.forward}>forward</button>
+            <img className="modal-image" src={this.props.photo}></img>
           {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(this.props.styleData[this.props.selectedStyle].photos, (photo, index) => {
               return (
-                <img className="image-gallery-thumbnail" src={photo.url} key={index} id={index} onClick={this.props.changePhoto}></img>
+                <input className="modal-radio-button" type="radio" key={index} id={index} onClick={this.props.changePhoto}></input>
               )
             }) : null}
+          </div>
         </Modal>
       </div>
     )

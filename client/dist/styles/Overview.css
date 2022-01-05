@@ -29,7 +29,6 @@
   transform: translate(-50%, -50%);
   width: 90%;
   height: 90%;
-  background: 'white';
 }
 
 .modal-image {
@@ -37,7 +36,30 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 75%;
+  width: 70%;
+
+}
+.modal-forward {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.modal-back {
+  position: relative;
+  left: 40%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.modal-radio-button {
+  position: relative;
+  left: 35%;
+  top: 95%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 /* Style Selector */
