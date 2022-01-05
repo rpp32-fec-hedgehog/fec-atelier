@@ -135,6 +135,7 @@ const reportAnswer = (answer_id, callback) => {
     callback(res);
   })
   .catch(err => {
+
     callback(err);
   })
 }
