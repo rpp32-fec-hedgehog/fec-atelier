@@ -3,6 +3,7 @@ import _ from 'underscore';
 import $ from 'jquery';
 import AnswerList from './AnswerList.jsx';
 import AnswerQuestion from './AnswerQuestion.jsx';
+import AskQuestion from './AskQuestion.jsx';
 
 class Questions extends React.Component {
   constructor(props) {
@@ -61,7 +62,9 @@ class Questions extends React.Component {
     let base = [<div data-testid="questions" key="q-base">
       <ul>
         {this.sortByHelpfulness(this.props.questions).map(q => {
-          return <div className="question" data-testid={q.question_body} key={q.question_body}>
+          return <div className="question" data-testid={q.question_body}
+            key={`${q.question_body}-${q.question_id}`}
+          >
             <li key={`q-${q.question_id}`}>
               <span className="q-body">Q: {q.question_body}</span>
               <span className="q-helpful">Helpful?</span>
@@ -81,12 +84,17 @@ class Questions extends React.Component {
     </div>];
 
     let totalQs = this.props.questions.length;
-    let more = <button key="more-q" onClick={this.handleQuestions.bind(this)}>More Answered Questions</button>;
-
+    let more = <button key="more-q" className="more-q"
+      onClick={this.handleQuestions.bind(this)}>
+        More Answered Questions
+      </button>;
+    let addQuestion = <AskQuestion key="ask-question" className="ask-question"
+      getQAData={this.props.getQAData}
+      product_id={this.props.product_id} />
     if (totalQs > this.state.questionCount && totalQs > 2) {
-      return base.concat(more);
+      return base.concat(more, addQuestion);
     } else {
-      return base;
+      return base.concat(addQuestion);
     }
   }
 }
