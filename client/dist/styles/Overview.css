@@ -2,17 +2,21 @@
   padding: 0;
   margin: 0;
   box-sizing: 0;
-  position: static;
 }
 
 /* Image Gallery */
 .main-gallery {
   height: auto;
-  width: 40%;
+  width: 30%;
 }
 .image-gallery {
   height: auto;
   width: 40%;
+}
+
+.image-gallery-thumbnail {
+  width: 25px;
+  height: 25px;
 }
 /*
 

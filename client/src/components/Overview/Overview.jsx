@@ -25,6 +25,7 @@ class Overview extends React.Component {
     this.handleSelectStyle = this.handleSelectStyle.bind(this);
     this.cycleForward = this.cycleForward.bind(this);
     this.cycleBackward = this.cycleBackward.bind(this);
+    this.changePhoto = this.changePhoto.bind(this);
   }
 
   async grabProductData() {
@@ -75,6 +76,15 @@ class Overview extends React.Component {
     null
   }
 
+  changePhoto = (e) => {
+    console.log(e.target.id)
+    e.preventDefault();
+    this.setState({
+      photo: this.state.styleData[this.state.selectedStyle].photos[e.target.id].url,
+      currentPhoto: Number(e.target.id)
+    });
+  }
+
   handleSelectStyle(e) {
     let current = this.state.currentPhoto;
     let currentStyle = e.target.id;
@@ -99,7 +109,8 @@ class Overview extends React.Component {
           <ProductInfo itemid={this.props.itemid} productData={this.state.productData} />
           <ImageGallery styleData={this.state.styleData} photo={this.state.photo}
             selectedStyle={this.state.selectedStyle}
-            forward={this.cycleForward} backward={this.cycleBackward} />
+            forward={this.cycleForward} backward={this.cycleBackward}
+            changePhoto={this.changePhoto}/>
           <StyleSelector styleImgs={_.map(this.state.styleData, style => style.photos).map(arr => arr[0].thumbnail_url)}
             selectStyle={this.handleSelectStyle}
             styleName={this.state.styleData[this.state.currentPhoto] !== undefined ?
