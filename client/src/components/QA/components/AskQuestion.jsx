@@ -142,6 +142,7 @@ class AskQuestion extends React.Component {
             <input type="text" className="qa-modal nickname-q" maxLength="60" placeholder="Example: jackson11!"
               onChange={this.handleNickname.bind(this)}>
             </input>
+            <div>For privacy reasons, do not use your full name or email address</div>
             <label htmlFor="email-q">{'Your Email (mandatory)'}</label>
             <input type="text" className="qa-modal email-q"
               onChange={this.handleEmail.bind(this)}>
