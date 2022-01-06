@@ -72,8 +72,17 @@ button:hover {
 
 /* Add to cart */
 .add-to-myoutfit {
+
   border: none;
   margin: 0;
   padding: 0;
   background: transparent;
+}
+
+.add-to-myoutfit:hover {color: #8e9efa}
+
+.add-to-myoutfit:active {
+  color: #8e9efa;
+  box-shadow: 0 1px #666;
+  transform: translateY(1px);
 }

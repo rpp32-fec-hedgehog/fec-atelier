@@ -92,7 +92,6 @@ class AddToCart extends React.Component {
   render() {
     return (
       <div className="add-to-cart" data-testid="add-to-cart">
-        <h4>Add To Cart Area</h4>
         <div className="size-selector"> Select a Size
           <select value={this.state.selectedSize} onChange={this.selectSize}>
             <option value="default">-</option>
@@ -113,7 +112,9 @@ class AddToCart extends React.Component {
         </div>
 
         <button onClick={this.addToCart} >Add To Cart</button>
-        <FontAwesomeIcon className="add-to-myoutfit" icon={faStar} onClick={this.addToMyOutfit}></FontAwesomeIcon>
+        <div> Add To My Outfit
+          <FontAwesomeIcon className="add-to-myoutfit" icon={faStar} onClick={this.addToMyOutfit}></FontAwesomeIcon>
+        </div>
       </div>
     )
   }
