@@ -48,7 +48,7 @@
   width: 100%;
 }
 
-.your-question {
+.your-question, .your-answer {
   height: 125px;
 }
 

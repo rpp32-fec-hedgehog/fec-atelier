@@ -14,7 +14,8 @@ class AnswerQuestion extends React.Component {
       email: '',
       photos: [],
       product_name: '',
-      modalOpen: false
+      modalOpen: false,
+      invalid: ''
     };
   }
 
@@ -37,7 +38,7 @@ class AnswerQuestion extends React.Component {
 
   closeModal(e) {
     e.preventDefault();
-    this.setState({modalOpen: false});
+    this.setState({modalOpen: false, invalid: ''});
   }
 
   handleAnswer(e) {
@@ -108,7 +109,7 @@ class AnswerQuestion extends React.Component {
         }
       })
     } else {
-      alert('invalid field(s)');
+      this.setState({invalid: 'You must enter the following:'});
     }
   }
 
@@ -134,11 +135,12 @@ class AnswerQuestion extends React.Component {
         >
           <h2>Submit Your Answer</h2>
           <h4>{this.state.product_name}: {this.props.question_body}</h4>
+          <div className="invalid-a">{this.state.invalid}</div>
           <form>
             <label htmlFor="your-answer">{'Your Answer (mandatory)'}</label>
-            <input type="text" className="qa-modal your-answer"
+            <textarea className="qa-modal your-answer" maxlength="1000"
               onChange={this.handleAnswer.bind(this)}>
-            </input>
+            </textarea>
             <label htmlFor="nickname-a">{'What is your nickname? (mandatory)'}</label>
             <input type="text" className="qa-modal nickname-a"
               onChange={this.handleNickname.bind(this)}>
