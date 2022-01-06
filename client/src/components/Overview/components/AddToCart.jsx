@@ -1,31 +1,37 @@
 import React from 'react';
 import axios from 'axios';
 import _ from 'underscore';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 class AddToCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sku: 2122777, // default value purely for testing
-      selectedSize: '-',
-      selectedQuantity : 8, // again using the default value (this will be updated as sku changes)
-      cart: {},
-      myOutfit: [],
-      sizes: ['S','XS','M','L','XL','XXL'],
-      quantities: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+      sku: 2122777,
+      selectedSize: undefined,
+      selectedQuantity : 0,
+      totalQuantity: null,
+      myOutfit: []
     };
     this.addToCart = this.addToCart.bind(this);
     this.addToMyOutfit = this.addToMyOutfit.bind(this);
     this.selectSize = this.selectSize.bind(this);
     this.selectQuantity = this.selectQuantity.bind(this);
+    this.getSizes = this.getSizes.bind(this);
+    this.mapQuantity = this.mapQuantity.bind(this);
   }
 
   addToCart() {
+    if (this.state.selectedSize === undefined) {
+      alert('Please select a size');
+      return;
+    }
     axios.post('/cart', {
-      'sku_id' : this.state.sku // sku will update when size and styles are selected
+      'sku_id' : this.state.sku
     })
     .then((result) => {
-      alert(`${this.props.productName} added to Cart`);
+      alert(`x${this.state.selectedQuantity} ${this.props.productName} size ${this.state.selectedSize} added to Cart`);
     })
   }
 
@@ -43,9 +49,26 @@ class AddToCart extends React.Component {
   }
 
   selectSize(e) {
-    this.setState({
-      selectedSize: e.target.value
-    })
+    let entries = Object.entries(this.props.styleData.skus)
+    for (let i = 0; i < entries.length; i++) {
+      if (entries[i][1].size === e.target.value) {
+        this.setState({
+          selectedSize: e.target.value,
+          sku: entries[i][0],
+          totalQuantity: entries[i][1].quantity,
+          selectedQuantity: 1
+        })
+      }
+    }
+  }
+
+  getSizes() {
+    let sizes = [];
+    let values = _.values(this.props.styleData.skus)
+    for (let i = 0; i < values.length; i++) {
+      sizes.push(values[i].size)
+    };
+    return sizes;
   }
 
   selectQuantity(e) {
@@ -54,32 +77,46 @@ class AddToCart extends React.Component {
     })
   }
 
+  mapQuantity() {
+    let quantity = []
+    for (let i = 1; i <= this.state.totalQuantity; i++) {
+      if (i <= 15) {
+        if (i <= this.state.totalQuantity) {
+          quantity.push(i)
+        }
+      }
+    }
+    return quantity;
+  }
+
   render() {
     return (
       <div className="add-to-cart" data-testid="add-to-cart">
-        <h4>Add To Cart Area</h4>
         <div className="size-selector"> Select a Size
           <select value={this.state.selectedSize} onChange={this.selectSize}>
             <option value="default">-</option>
-            {this.state.sizes.map((size) => {
-              return (<option key={size} value={size}>{size}</option>)
-            })}
+            {this.props.styleData !== undefined ? _.map(this.getSizes(), (size, index) => {
+              return (<option key={index} value={size}>{size}</option>)
+            }) : null
+          }
           </select>
         </div>
 
         <div className="qty-selector"> Select a Quantity
-          <select onChange={this.selectQuantity}>
-            <option value="default">-</option>
-            {this.state.quantities.map((number) => {
-              while(number <= this.state.selectedQuantity) {
-                return (<option key={number} value={number}>{number}</option>)
-              }
-            })}
+          <select onChange={this.selectQuantity} disabled={!this.state.selectedSize}>
+            {!this.state.selectedSize ? <option value="default">-</option> :
+              this.state.totalQuantity !== 0 ? _.map(this.mapQuantity(), (number, index) => {
+                return (<option key={index} value={number}>{number}</option>)
+                  }) : <option value='outOfStock'>Out Of Stock</option>}
           </select>
         </div>
+        <div> Add To Cart
+          <FontAwesomeIcon className="add-button" icon={faShoppingCart} onClick={this.addToCart}></FontAwesomeIcon>
+        </div>
 
-        <button onClick={this.addToCart}>Add To Cart</button>
-        <button onClick={this.addToMyOutfit}>Add To My Outfit</button>
+        <div className="add-to-my-outfit"> Add To My Outfit
+          <FontAwesomeIcon className="add-button" icon={faStar} onClick={this.addToMyOutfit}></FontAwesomeIcon>
+        </div>
       </div>
     )
   }

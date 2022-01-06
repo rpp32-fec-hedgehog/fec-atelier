@@ -1,7 +1,11 @@
+/* General */
 * {
   padding: 0;
   margin: 0;
   box-sizing: 0;
+}
+button:hover {
+    background: #394048;
 }
 
 /* Image Gallery */
@@ -20,7 +24,7 @@
 }
 
 /* Modal */
-.modal {
+.modal-gallery {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -64,4 +68,23 @@
 /* Style Selector */
 .style-img {
   width: 5%;
+}
+
+/* Add to cart */
+.add-to-my-outfit {
+  border: 2px solid black
+}
+.add-button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.add-button:hover {color: #8e9efa}
+
+.add-button:active {
+  color: #8e9efa;
+  box-shadow: 0 1px rgb(214, 211, 211);
+  transform: translateY(1px);
 }
