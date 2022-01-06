@@ -82,7 +82,6 @@ class AddToCart extends React.Component {
 
         <button onClick={this.addToCart}>Add To Cart</button>
         <FontAwesomeIcon className="add-to-myoutfit" icon={faStar} onClick={this.addToMyOutfit}></FontAwesomeIcon>
-        {/* <button className="add-to-myoutfit" onClick={this.addToMyOutfit}><img src='http://imgur.com/I0EwG.png'></img>></button> */}
       </div>
     )
   }

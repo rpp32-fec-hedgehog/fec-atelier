@@ -24,7 +24,7 @@ button:hover {
 }
 
 /* Modal */
-.modal {
+.modal-gallery {
   position: absolute;
   left: 50%;
   top: 50%;
