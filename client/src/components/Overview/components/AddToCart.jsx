@@ -10,9 +10,8 @@ class AddToCart extends React.Component {
     this.state = {
       sku: 2122777,
       selectedSize: '-',
-      // update this with what user selects, max based on sku
       selectedQuantity : 0,
-      totalQuantity: 0,
+      totalQuantity: null,
       myOutfit: [],
       // map sizes out based on what we get. (shoes, clothes, etc)
       quantities: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
@@ -22,6 +21,7 @@ class AddToCart extends React.Component {
     this.selectSize = this.selectSize.bind(this);
     this.selectQuantity = this.selectQuantity.bind(this);
     this.getSizes = this.getSizes.bind(this);
+    this.mapQuantity = this.mapQuantity.bind(this);
   }
 
   addToCart() {
@@ -57,7 +57,7 @@ class AddToCart extends React.Component {
         })
       }
     }
-    console.log(this.state.totalQuantity)
+    console.log('in select size', this.state.totalQuantity)
   }
 
   getSizes() {
@@ -76,11 +76,26 @@ class AddToCart extends React.Component {
   }
 
   mapQuantity() {
-    this.state.totalQuantity.map((qty, index) => {
-      while (qty <= this.state.totalQuantity) {
-        return (<option key={index} value={qty}>{qty}</option>)
+    // for (var i = 0; i < this.state.totalQuantity; i++) {
+    //   console.log(i)
+    //   return (<option key={i} value={i}>{i}</option>)
+    //   if (i === 15) {
+    //     break;
+    //   }
+    // }
+    let quantity = []
+    for (let i = 1; i <= this.state.totalQuantity; i++) {
+      if (i <= 15) {
+        if (i <= this.state.totalQuantity) {
+          quantity.push(i)
+        }
       }
-    })
+    }
+    return quantity;
+    console.log(quantity)
+
+    // return quantity
+
   }
 
   render() {
@@ -100,7 +115,9 @@ class AddToCart extends React.Component {
         <div className="qty-selector"> Select a Quantity
           <select onChange={this.selectQuantity}>
             <option value="default">-</option>
-            {this.state.totalQuantity > 0 ? this.mapQuantity() : null}
+            {this.state.totalQuantity !== null ? _.map(this.mapQuantity(), (number, index) => {
+              return (<option key={index} value={number}>{number}</option>)
+              }) : <option value='outOfStock'>Out Of Stock</option>}
           </select>
         </div>
 
