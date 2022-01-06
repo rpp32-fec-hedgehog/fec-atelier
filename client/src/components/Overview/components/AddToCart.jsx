@@ -9,7 +9,7 @@ class AddToCart extends React.Component {
     super(props);
     this.state = {
       sku: 2122777,
-      selectedSize: null,
+      selectedSize: undefined,
       selectedQuantity : 0,
       totalQuantity: null,
       myOutfit: []
@@ -23,6 +23,10 @@ class AddToCart extends React.Component {
   }
 
   addToCart() {
+    if (this.state.selectedSize === undefined) {
+      alert('Please select a size');
+      return;
+    }
     axios.post('/cart', {
       'sku_id' : this.state.sku
     })
@@ -107,7 +111,7 @@ class AddToCart extends React.Component {
           </select>
         </div>
 
-        <button onClick={this.addToCart}>Add To Cart</button>
+        <button onClick={this.addToCart} >Add To Cart</button>
         <FontAwesomeIcon className="add-to-myoutfit" icon={faStar} onClick={this.addToMyOutfit}></FontAwesomeIcon>
       </div>
     )
