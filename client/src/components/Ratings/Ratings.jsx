@@ -72,9 +72,8 @@ class Ratings extends React.Component {
 
     return (
       <div data-testid="ratings" className="ratings-widget">
-        <h3>Ratings & Reviews</h3>
-        <RatingsMeta ratings_meta={this.state.ratings_meta}></RatingsMeta>
-        <RatingsList ratings={this.state.ratings}></RatingsList>
+        <h3>RATINGS & REVIEWS</h3>
+        <RatingsMeta className="ratings_meta" ratings_meta={this.state.ratings_meta}></RatingsMeta><RatingsList className="ratings_list" ratings={this.state.ratings}></RatingsList>
       </div>
     );
   }
