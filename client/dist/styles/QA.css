@@ -31,6 +31,15 @@
 .answer {
   margin-top: 5px;
   margin-bottom: 2px;
+  list-style-type: none;
+}
+
+.a-label {
+  float: left;
+}
+
+.answer-list {
+  margin-left: 20px
 }
 
 .add-answer {
