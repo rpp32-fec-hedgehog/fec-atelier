@@ -12,8 +12,8 @@ const RatingsMeta = (props) => {
   let divisor = 0;
   let recommend_total = 0;
   let count = 0;
-  let didRecommend = 0;
-  let percentRecommending = 0;
+  let did_recommend = 0;
+  let percent_recommending = 0;
 
   for (const key in ratings) {
     ratings_total += key * ratings[key];
@@ -25,19 +25,22 @@ const RatingsMeta = (props) => {
   for (const key in recommended) {
     recommend_total += parseInt(recommended[key]);
     if (count === 1) {
-      didRecommend = parseInt(recommended[key]);
+      did_recommend = parseInt(recommended[key]);
     }
     count = 1;
   }
 
-
-  percentRecommending = (didRecommend / recommend_total * 100).toFixed(0);
-  console.log('recommending: ', didRecommend, recommend_total);
+  percent_recommending = (did_recommend / recommend_total * 100).toFixed(0);
 
   return(
-    <div data-testid="ratings-breakdown" className="ratings_breakdown">
+    <div data-testid="ratings-breakdown" className="ratings_meta">
       <h1 className="ratings_average">{ratings_average}</h1><span className="ratings_breakdown_stars">  <StarRating star_rating={ratings_average}></StarRating></span>
-      <br></br><br></br><br></br> <span className="percent_recommending">{percentRecommending}% of reviews recommend this product.</span>
+      <br></br> <span className="percent_recommending">{percent_recommending}% of reviews recommend this product.</span>
+      <br></br><br></br>5 stars<span className="star_bar"></span><br></br>
+      <br></br>4 stars<br></br>
+      <br></br>3 stars<br></br>
+      <br></br>2 stars<br></br>
+      <br></br>1 star
     </div>
   )
 

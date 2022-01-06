@@ -13,14 +13,9 @@ const IndividualReview = (props) => {
     const recommend = props.recommend;
     const response = props.response;
 
-    const reviewStyle = {
-      border: '1px solid rgba(0, 0, 0, 1)',
-      margin: '5px'
-    };
-
     return (
       <div data-testid="individual-review" className="individual_review">
-        <li style={reviewStyle}>
+        <li>
         <span className="user_star_rating"><StarRating star_rating={star_rating}></StarRating><span className="user_name_date">{reviewer_name}, {moment(date).format('LL')}</span>
         <br></br> <b>{summary}</b><br></br> {body}
         <br></br>...should include pictures
