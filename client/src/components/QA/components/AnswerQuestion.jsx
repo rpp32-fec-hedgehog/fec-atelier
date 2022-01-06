@@ -86,6 +86,10 @@ class AnswerQuestion extends React.Component {
     return false;
   }
 
+  addPhotos() {
+
+  }
+
   submitAnswer(e) {
     e.preventDefault();
     let answerData = {
@@ -151,6 +155,11 @@ class AnswerQuestion extends React.Component {
               onChange={this.handleEmail.bind(this)}>
             </input>
             <div className="privacy-msg">For authentication reasons, you will not be emailed</div>
+
+            <label for="qa-img">Upload Photos</label>
+            <input type="file" id="qa-img" name="qa-img" accept="image/*"></input>
+            <button onClick={this.addPhotos.bind(this)}>Add Photos</button>
+
           </form>
           <button onClick={this.closeModal.bind(this)}>Close</button>
           <button onClick={this.submitAnswer.bind(this)}>Submit</button>
