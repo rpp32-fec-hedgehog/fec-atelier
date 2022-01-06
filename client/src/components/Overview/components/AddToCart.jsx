@@ -8,11 +8,13 @@ class AddToCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sku: 2122777, // default value purely for testing
+      sku: 2122777,
       selectedSize: '-',
-      selectedQuantity : 8, // again using the default value (this will be updated as sku changes)
+      // update this with what user selects, max based on sku
+      selectedQuantity : 8,
       cart: {},
       myOutfit: [],
+      // map sizes out based on what we get. (shoes, clothes, etc)
       sizes: ['S','XS','M','L','XL','XXL'],
       quantities: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
     };

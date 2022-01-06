@@ -116,12 +116,13 @@ class Overview extends React.Component {
             selectedStyle={this.state.selectedStyle}
             forward={this.cycleForward} backward={this.cycleBackward}
             changePhoto={this.changePhoto}/>
+
           <StyleSelector styleImgs={_.map(this.state.styleData, style => style.photos).map(arr => arr[0].thumbnail_url)}
             selectStyle={this.handleSelectStyle}
             styleName={this.state.styleData[this.state.currentPhoto] !== undefined ?
             this.state.styleData[this.state.selectedStyle].name : null} />
 
-          <AddToCart productName={this.state.productData.name} styleData={this.state.styleData} />
+          <AddToCart productName={this.state.productData.name} styleData={this.state.styleData[this.state.selectedStyle]} />
         </div>
       </div>
     )
