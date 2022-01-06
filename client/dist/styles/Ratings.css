@@ -1,1 +1,9 @@
+.ratings_meta {
+  float: right;
+  width: 20%;
+}
 
+.ratings_list {
+  float: right;
+  width: 80%;
+}

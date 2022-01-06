@@ -1,6 +1,7 @@
 import React from 'react';
 import { getReviewsByItem, getReviewsMetaByItem } from '../../../.././utils/apiCalls.js';
 import RatingsList from './components/RatingsList.jsx';
+import RatingsMeta from './components/RatingsBreakdown.jsx';
 import axios from 'axios';
 
 class Ratings extends React.Component {
@@ -8,9 +9,11 @@ class Ratings extends React.Component {
     super(props);
     this.state = {
       item_id: 59557,
-      ratings: [{review_id: 1, summary: 'summary1'}, {review_id: 2, summary: 'summary2'}]
+      ratings: [{review_id: 1, summary: 'summary1'}, {review_id: 2, summary: 'summary2'}],
+      ratings_meta: {}
     };
     this.getAllReviews = this.getAllReviews.bind(this);
+    this.getReviewsMeta = this.getReviewsMeta.bind(this);
   }
 
   handleSubmit(e) {
@@ -23,6 +26,14 @@ class Ratings extends React.Component {
         console.log('client reports retrieve reviews error: ', error);
       } else {
         this.setState({ratings: result});
+      }
+    })
+
+    this.getReviewsMeta(this.props.itemid, (error, result) => {
+      if (error) {
+        console.log('client reports retrieve reviews meta error: ', error);
+      } else {
+        this.setState({ratings_meta: result});
       }
     })
   }
@@ -42,12 +53,27 @@ class Ratings extends React.Component {
       })
   }
 
+  getReviewsMeta(item_id, callback) {
+    axios.get('/reviews/meta', {
+      headers : {
+        "item_id" : item_id
+      }
+    })
+      .then((response) => {
+        callback(null, response.data);
+      })
+      .catch((error) => {
+        console.log('ratings meta failure in client from axios: ', error);
+        callback(error);
+      })
+  }
+
   render(props) {
 
     return (
       <div data-testid="ratings" className="ratings-widget">
-        <h1>Ratings & Reviews</h1>
-        <RatingsList ratings={this.state.ratings}></RatingsList>
+        <h3>RATINGS & REVIEWS</h3>
+        <RatingsMeta className="ratings_meta" ratings_meta={this.state.ratings_meta}></RatingsMeta><RatingsList className="ratings_list" ratings={this.state.ratings}></RatingsList>
       </div>
     );
   }
