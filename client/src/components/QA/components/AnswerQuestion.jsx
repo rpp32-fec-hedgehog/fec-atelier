@@ -136,15 +136,15 @@ class AnswerQuestion extends React.Component {
           <h4>{this.state.product_name}: {this.props.question_body}</h4>
           <form>
             <label htmlFor="your-answer">{'Your Answer (mandatory)'}</label>
-            <input type="text" className="modal your-answer"
+            <input type="text" className="qa-modal your-answer"
               onChange={this.handleAnswer.bind(this)}>
             </input>
             <label htmlFor="nickname-a">{'What is your nickname? (mandatory)'}</label>
-            <input type="text" className="modal nickname-a"
+            <input type="text" className="qa-modal nickname-a"
               onChange={this.handleNickname.bind(this)}>
             </input>
             <label htmlFor="email-a">{'Your Email (mandatory)'}</label>
-            <input type="text" className="modal email-a"
+            <input type="text" className="qa-modal email-a"
               onChange={this.handleEmail.bind(this)}>
             </input>
           </form>
