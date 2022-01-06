@@ -139,7 +139,7 @@ class AskQuestion extends React.Component {
               onChange={this.handleQuestion.bind(this)}>
             </textarea>
             <label htmlFor="nickname-q">{'What is your nickname? (mandatory)'}</label>
-            <input type="text" className="qa-modal nickname-q"
+            <input type="text" className="qa-modal nickname-q" maxLength="60" placeholder="Example: jackson11!"
               onChange={this.handleNickname.bind(this)}>
             </input>
             <label htmlFor="email-q">{'Your Email (mandatory)'}</label>
