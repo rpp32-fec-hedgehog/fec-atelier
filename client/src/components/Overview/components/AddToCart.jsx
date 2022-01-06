@@ -12,11 +12,8 @@ class AddToCart extends React.Component {
       selectedSize: '-',
       // update this with what user selects, max based on sku
       selectedQuantity : 8,
-      cart: {},
       myOutfit: [],
       // map sizes out based on what we get. (shoes, clothes, etc)
-      testSizes: [],
-      sizes: ['S','XS','M','L','XL','XXL'],
       quantities: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
     };
     this.addToCart = this.addToCart.bind(this);
@@ -49,11 +46,15 @@ class AddToCart extends React.Component {
   }
 
   selectSize(e) {
-
-    this.setState({
-      selectedSize: e.target.value
-    })
-
+    let entries = Object.entries(this.props.styleData.skus)
+    for (let i = 0; i < entries.length; i++) {
+      if (entries[i][1].size === e.target.value) {
+        this.setState({
+          selectedSize: e.target.value,
+          sku: entries[i][0]
+        })
+      }
+    }
   }
 
   selectQuantity(e) {
@@ -72,8 +73,6 @@ class AddToCart extends React.Component {
   }
 
   render() {
-    this.props.styleData !== undefined ? console.log('sizes ', this.getSizes()) : null
-
     return (
       <div className="add-to-cart" data-testid="add-to-cart">
         <h4>Add To Cart Area</h4>

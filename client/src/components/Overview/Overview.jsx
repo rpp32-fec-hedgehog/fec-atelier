@@ -122,8 +122,7 @@ class Overview extends React.Component {
             styleName={this.state.styleData[this.state.currentPhoto] !== undefined ?
             this.state.styleData[this.state.selectedStyle].name : null} />
 
-          <AddToCart productName={this.state.productData.name} styleData={this.state.styleData[this.state.selectedStyle]}
-            styleSizes={this.state.styleData[this.state.selectedStyle]}/>
+          <AddToCart productName={this.state.productData.name} styleData={this.state.styleData[this.state.selectedStyle]}/>
         </div>
       </div>
     )
