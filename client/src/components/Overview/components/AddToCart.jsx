@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import _ from 'underscore';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 class AddToCart extends React.Component {
   constructor(props) {
@@ -79,7 +81,8 @@ class AddToCart extends React.Component {
         </div>
 
         <button onClick={this.addToCart}>Add To Cart</button>
-        <button onClick={this.addToMyOutfit}>Add To My Outfit</button>
+        <FontAwesomeIcon className="add-to-myoutfit" icon={faStar} onClick={this.addToMyOutfit}></FontAwesomeIcon>
+        {/* <button className="add-to-myoutfit" onClick={this.addToMyOutfit}><img src='http://imgur.com/I0EwG.png'></img>></button> */}
       </div>
     )
   }

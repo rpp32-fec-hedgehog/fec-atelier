@@ -1,7 +1,11 @@
+/* General */
 * {
   padding: 0;
   margin: 0;
   box-sizing: 0;
+}
+button:hover {
+    background: #394048;
 }
 
 /* Image Gallery */
@@ -64,4 +68,12 @@
 /* Style Selector */
 .style-img {
   width: 5%;
+}
+
+/* Add to cart */
+.add-to-myoutfit {
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
 }
