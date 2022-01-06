@@ -13,7 +13,8 @@ class AskQuestion extends React.Component {
       nickname: '',
       email: '',
       product_name: '',
-      modalOpen: false
+      modalOpen: false,
+      invalid: ''
     };
   }
 
@@ -36,7 +37,7 @@ class AskQuestion extends React.Component {
 
   closeModal(e) {
     e.preventDefault();
-    this.setState({modalOpen: false});
+    this.setState({modalOpen: false, invalid: ''});
   }
 
   handleQuestion(e) {
@@ -107,7 +108,7 @@ class AskQuestion extends React.Component {
         }
       })
     } else {
-      alert('invalid field(s)');
+      this.setState({invalid: 'You must enter the following:'});
     }
   }
 
@@ -133,19 +134,22 @@ class AskQuestion extends React.Component {
         >
           <h2>Ask Your Question</h2>
           <h4>About the {this.state.product_name}</h4>
+          <div className="invalid-q">{this.state.invalid}</div>
           <form>
           <label htmlFor="your-question">{'Your Question (mandatory)'}</label>
-            <input type="text" className="qa-modal your-question"
+            <textarea className="qa-modal your-question" maxlength="1000"
               onChange={this.handleQuestion.bind(this)}>
-            </input>
+            </textarea>
             <label htmlFor="nickname-q">{'What is your nickname? (mandatory)'}</label>
-            <input type="text" className="qa-modal nickname-q"
+            <input type="text" className="qa-modal nickname-q" maxlength="60" placeholder="Example: jackson11!"
               onChange={this.handleNickname.bind(this)}>
             </input>
+            <div className="privacy-msg">For privacy reasons, do not use your full name or email address</div>
             <label htmlFor="email-q">{'Your Email (mandatory)'}</label>
-            <input type="text" className="qa-modal email-q"
+            <input type="text" className="qa-modal email-q" maxlength="60" placeholder="Example: jack@email.com"
               onChange={this.handleEmail.bind(this)}>
             </input>
+            <div className="privacy-msg">For authentication reasons, you will not be emailed</div>
           </form>
           <button onClick={this.closeModal.bind(this)}>Close</button>
           <button onClick={this.submitQuestion.bind(this)}>Submit Question</button>

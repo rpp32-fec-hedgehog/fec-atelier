@@ -14,7 +14,8 @@ class AnswerQuestion extends React.Component {
       email: '',
       photos: [],
       product_name: '',
-      modalOpen: false
+      modalOpen: false,
+      invalid: ''
     };
   }
 
@@ -37,7 +38,7 @@ class AnswerQuestion extends React.Component {
 
   closeModal(e) {
     e.preventDefault();
-    this.setState({modalOpen: false});
+    this.setState({modalOpen: false, invalid: ''});
   }
 
   handleAnswer(e) {
@@ -108,7 +109,7 @@ class AnswerQuestion extends React.Component {
         }
       })
     } else {
-      alert('invalid field(s)');
+      this.setState({invalid: 'You must enter the following:'});
     }
   }
 
@@ -134,19 +135,22 @@ class AnswerQuestion extends React.Component {
         >
           <h2>Submit Your Answer</h2>
           <h4>{this.state.product_name}: {this.props.question_body}</h4>
+          <div className="invalid-a">{this.state.invalid}</div>
           <form>
             <label htmlFor="your-answer">{'Your Answer (mandatory)'}</label>
-            <input type="text" className="qa-modal your-answer"
+            <textarea className="qa-modal your-answer" maxlength="1000"
               onChange={this.handleAnswer.bind(this)}>
-            </input>
+            </textarea>
             <label htmlFor="nickname-a">{'What is your nickname? (mandatory)'}</label>
-            <input type="text" className="qa-modal nickname-a"
+            <input type="text" className="qa-modal nickname-a" maxlength="60" placeholder='Example: jack543!'
               onChange={this.handleNickname.bind(this)}>
             </input>
+            <div className="privacy-msg">For privacy reasons, do not use your full name or email address</div>
             <label htmlFor="email-a">{'Your Email (mandatory)'}</label>
-            <input type="text" className="qa-modal email-a"
+            <input type="text" className="qa-modal email-a" maxlength="60" placeholder='Example: jack@email.com'
               onChange={this.handleEmail.bind(this)}>
             </input>
+            <div className="privacy-msg">For authentication reasons, you will not be emailed</div>
           </form>
           <button onClick={this.closeModal.bind(this)}>Close</button>
           <button onClick={this.submitAnswer.bind(this)}>Submit</button>

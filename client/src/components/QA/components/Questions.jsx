@@ -75,8 +75,11 @@ class Questions extends React.Component {
               <AnswerQuestion question_id={q.question_id} getQAData={this.props.getQAData}
                 product_id={this.props.product_id}
                 question_body={q.question_body} />
-              <AnswerList answers={q.answers} question_id={q.question_id}
-                updateAHelp={this.props.updateAHelp} />
+              <div>
+                <span className="a-label">A: </span>
+                <AnswerList answers={q.answers} question_id={q.question_id}
+                  updateAHelp={this.props.updateAHelp} />
+              </div>
             </li>
           </div>
         })}
