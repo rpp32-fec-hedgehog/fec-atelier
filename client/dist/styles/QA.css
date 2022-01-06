@@ -38,6 +38,11 @@
   margin-left: 10%;
 }
 
+.a-photo {
+  width: 4%;
+  height: 4%;
+}
+
 /* ========== Modals ========== */
 
 .answer-modal {

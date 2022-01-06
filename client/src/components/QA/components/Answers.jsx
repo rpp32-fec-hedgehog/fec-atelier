@@ -70,6 +70,9 @@ class Answers extends React.Component {
     return (<ul className="answer" data-testid="answers">
       <div key={`a-${answer.id}`} data-testid={answerer}>
         <li className="answer-body">{answer.body}</li>
+        <div>{_.map(answer.photos, photo => {
+          return <img className="a-photo" src={photo}></img>
+        })}</div>
         <span className="answerer">by {answerer}, {moment(answer.date).format('LL')}</span>
         <span className="a-helpful">Helpful?</span>
         <span className={`a-help-count a-help-${answer.id}-${answer.helpfulness}`}
