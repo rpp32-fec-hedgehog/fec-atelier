@@ -17,8 +17,8 @@ const RatingsMeta = (props) => {
   const ratings_average = (Math.ceil( ratings_total / divisor * 10 ) / 10).toFixed(1);
 
   return(
-    <div data-testid="ratings-breakdown" className="ratings-breakdown">
-      <h1>{ratings_average} <StarRating star_rating={ratings_average}></StarRating></h1>
+    <div data-testid="ratings-breakdown" className="ratings_breakdown">
+      <h1 className="ratings_average">{ratings_average}</h1><span className="ratings_breakdown_stars">  <StarRating star_rating={ratings_average}></StarRating></span>
     </div>
   )
 
