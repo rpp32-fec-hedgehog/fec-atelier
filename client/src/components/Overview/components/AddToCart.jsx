@@ -11,7 +11,8 @@ class AddToCart extends React.Component {
       sku: 2122777,
       selectedSize: '-',
       // update this with what user selects, max based on sku
-      selectedQuantity : 8,
+      selectedQuantity : 0,
+      totalQuantity: 0,
       myOutfit: [],
       // map sizes out based on what we get. (shoes, clothes, etc)
       quantities: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
@@ -51,16 +52,12 @@ class AddToCart extends React.Component {
       if (entries[i][1].size === e.target.value) {
         this.setState({
           selectedSize: e.target.value,
-          sku: entries[i][0]
+          sku: entries[i][0],
+          totalQuantity: entries[i][1].quantity
         })
       }
     }
-  }
-
-  selectQuantity(e) {
-    this.setState({
-      selectedQuantity: e.target.value
-    })
+    console.log(this.state.totalQuantity)
   }
 
   getSizes() {
@@ -70,6 +67,20 @@ class AddToCart extends React.Component {
       sizes.push(values[i].size)
     };
     return sizes;
+  }
+
+  selectQuantity(e) {
+    this.setState({
+      selectedQuantity: e.target.value
+    })
+  }
+
+  mapQuantity() {
+    this.state.totalQuantity.map((qty, index) => {
+      while (qty <= this.state.totalQuantity) {
+        return (<option key={index} value={qty}>{qty}</option>)
+      }
+    })
   }
 
   render() {
@@ -89,11 +100,7 @@ class AddToCart extends React.Component {
         <div className="qty-selector"> Select a Quantity
           <select onChange={this.selectQuantity}>
             <option value="default">-</option>
-            {this.state.quantities.map((number) => {
-              while(number <= this.state.selectedQuantity) {
-                return (<option key={number} value={number}>{number}</option>)
-              }
-            })}
+            {this.state.totalQuantity > 0 ? this.mapQuantity() : null}
           </select>
         </div>
 
