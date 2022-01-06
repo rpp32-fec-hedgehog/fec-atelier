@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import _ from 'underscore';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 class AddToCart extends React.Component {
   constructor(props) {
@@ -110,10 +110,12 @@ class AddToCart extends React.Component {
                   }) : <option value='outOfStock'>Out Of Stock</option>}
           </select>
         </div>
+        <div> Add To Cart
+          <FontAwesomeIcon className="add-button" icon={faShoppingCart} onClick={this.addToCart}></FontAwesomeIcon>
+        </div>
 
-        <button onClick={this.addToCart} >Add To Cart</button>
-        <div> Add To My Outfit
-          <FontAwesomeIcon className="add-to-myoutfit" icon={faStar} onClick={this.addToMyOutfit}></FontAwesomeIcon>
+        <div className="add-to-my-outfit"> Add To My Outfit
+          <FontAwesomeIcon className="add-button" icon={faStar} onClick={this.addToMyOutfit}></FontAwesomeIcon>
         </div>
       </div>
     )

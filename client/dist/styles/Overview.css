@@ -71,18 +71,20 @@ button:hover {
 }
 
 /* Add to cart */
-.add-to-myoutfit {
-
+.add-to-my-outfit {
+  border: 2px solid black
+}
+.add-button {
   border: none;
   margin: 0;
   padding: 0;
   background: transparent;
 }
 
-.add-to-myoutfit:hover {color: #8e9efa}
+.add-button:hover {color: #8e9efa}
 
-.add-to-myoutfit:active {
+.add-button:active {
   color: #8e9efa;
-  box-shadow: 0 1px #666;
+  box-shadow: 0 1px rgb(214, 211, 211);
   transform: translateY(1px);
 }
