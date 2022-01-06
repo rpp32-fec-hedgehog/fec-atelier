@@ -9,12 +9,10 @@ class AddToCart extends React.Component {
     super(props);
     this.state = {
       sku: 2122777,
-      selectedSize: '-',
+      selectedSize: null,
       selectedQuantity : 0,
       totalQuantity: null,
-      myOutfit: [],
-      // map sizes out based on what we get. (shoes, clothes, etc)
-      quantities: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+      myOutfit: []
     };
     this.addToCart = this.addToCart.bind(this);
     this.addToMyOutfit = this.addToMyOutfit.bind(this);
@@ -26,10 +24,10 @@ class AddToCart extends React.Component {
 
   addToCart() {
     axios.post('/cart', {
-      'sku_id' : this.state.sku // sku will update when size and styles are selected
+      'sku_id' : this.state.sku
     })
     .then((result) => {
-      alert(`${this.props.productName} added to Cart`);
+      alert(`x${this.state.selectedQuantity} ${this.props.productName} size ${this.state.selectedSize} added to Cart`);
     })
   }
 
@@ -57,7 +55,6 @@ class AddToCart extends React.Component {
         })
       }
     }
-    console.log('in select size', this.state.totalQuantity)
   }
 
   getSizes() {
@@ -76,13 +73,6 @@ class AddToCart extends React.Component {
   }
 
   mapQuantity() {
-    // for (var i = 0; i < this.state.totalQuantity; i++) {
-    //   console.log(i)
-    //   return (<option key={i} value={i}>{i}</option>)
-    //   if (i === 15) {
-    //     break;
-    //   }
-    // }
     let quantity = []
     for (let i = 1; i <= this.state.totalQuantity; i++) {
       if (i <= 15) {
@@ -92,10 +82,6 @@ class AddToCart extends React.Component {
       }
     }
     return quantity;
-    console.log(quantity)
-
-    // return quantity
-
   }
 
   render() {
@@ -113,11 +99,11 @@ class AddToCart extends React.Component {
         </div>
 
         <div className="qty-selector"> Select a Quantity
-          <select onChange={this.selectQuantity}>
-            <option value="default">-</option>
-            {this.state.totalQuantity !== null ? _.map(this.mapQuantity(), (number, index) => {
-              return (<option key={index} value={number}>{number}</option>)
-              }) : <option value='outOfStock'>Out Of Stock</option>}
+          <select onChange={this.selectQuantity} disabled={!this.state.selectedSize}>
+            {!this.state.selectedSize ? <option value="default">-</option> :
+              this.state.totalQuantity !== 0 ? _.map(this.mapQuantity(), (number, index) => {
+                return (<option key={index} value={number}>{number}</option>)
+                  }) : <option value='outOfStock'>Out Of Stock</option>}
           </select>
         </div>
 
