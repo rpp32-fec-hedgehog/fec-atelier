@@ -130,23 +130,3 @@ class Overview extends React.Component {
 }
 
 export default Overview;
-
-  // "productName": "Kristopher Sunglasses",
-  // "styleData": {
-  //   "style_id": 370181,
-  //   "name": "Plum",
-  //   "original_price": "4.00",
-  //   "sale_price": null,
-  //   "default?": true,
-  //   "photos": "[{…}]",
-  //   "skus": "{2150905: {…}}"
-  // },
-  // "styleSizes": {
-  //   "style_id": 370181,
-  //   "name": "Plum",
-  //   "original_price": "4.00",
-  //   "sale_price": null,
-  //   "default?": true,
-  //   "photos": "[{…}]",
-  //   "skus": "{2150905: {…}}"
-  // }
