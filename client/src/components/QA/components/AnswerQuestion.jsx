@@ -142,13 +142,15 @@ class AnswerQuestion extends React.Component {
               onChange={this.handleAnswer.bind(this)}>
             </textarea>
             <label htmlFor="nickname-a">{'What is your nickname? (mandatory)'}</label>
-            <input type="text" className="qa-modal nickname-a"
+            <input type="text" className="qa-modal nickname-a" maxlength="60" placeholder='Example: jack543!'
               onChange={this.handleNickname.bind(this)}>
             </input>
+            <div className="privacy-msg">For privacy reasons, do not use your full name or email address</div>
             <label htmlFor="email-a">{'Your Email (mandatory)'}</label>
-            <input type="text" className="qa-modal email-a"
+            <input type="text" className="qa-modal email-a" maxlength="60" placeholder='Example: jack@email.com'
               onChange={this.handleEmail.bind(this)}>
             </input>
+            <div className="privacy-msg">For authentication reasons, you will not be emailed</div>
           </form>
           <button onClick={this.closeModal.bind(this)}>Close</button>
           <button onClick={this.submitAnswer.bind(this)}>Submit</button>
