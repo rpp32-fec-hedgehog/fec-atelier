@@ -55,7 +55,8 @@ class AddToCart extends React.Component {
         this.setState({
           selectedSize: e.target.value,
           sku: entries[i][0],
-          totalQuantity: entries[i][1].quantity
+          totalQuantity: entries[i][1].quantity,
+          selectedQuantity: 1
         })
       }
     }
