@@ -1,1 +1,15 @@
+.product_card {
+  border: 1px solid black;
+  padding: 2px;
+  margin: 2px
+}
 
+.related_product {
+  height: 75%;
+  width: auto
+}
+
+.related_product_image {
+  height: 40%;
+  width: auto
+}

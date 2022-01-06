@@ -27,7 +27,7 @@ class RelatedItems extends React.Component {
 
   render() {
     if (!this.state.relatedItems.length) {
-      return <div className="blankLoad"></div>
+      return <div className="blank_Load">Testing</div>
     }
     let i=0;
     return (
