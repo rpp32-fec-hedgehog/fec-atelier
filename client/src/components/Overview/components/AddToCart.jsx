@@ -15,6 +15,7 @@ class AddToCart extends React.Component {
       cart: {},
       myOutfit: [],
       // map sizes out based on what we get. (shoes, clothes, etc)
+      testSizes: [],
       sizes: ['S','XS','M','L','XL','XXL'],
       quantities: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
     };
@@ -22,6 +23,7 @@ class AddToCart extends React.Component {
     this.addToMyOutfit = this.addToMyOutfit.bind(this);
     this.selectSize = this.selectSize.bind(this);
     this.selectQuantity = this.selectQuantity.bind(this);
+    this.getSizes = this.getSizes.bind(this);
   }
 
   addToCart() {
@@ -47,9 +49,11 @@ class AddToCart extends React.Component {
   }
 
   selectSize(e) {
+
     this.setState({
       selectedSize: e.target.value
     })
+
   }
 
   selectQuantity(e) {
@@ -58,16 +62,28 @@ class AddToCart extends React.Component {
     })
   }
 
+  getSizes() {
+    let sizes = [];
+    let values = _.values(this.props.styleData.skus)
+    for (let i = 0; i < values.length; i++) {
+      sizes.push(values[i].size)
+    };
+    return sizes;
+  }
+
   render() {
+    this.props.styleData !== undefined ? console.log('sizes ', this.getSizes()) : null
+
     return (
       <div className="add-to-cart" data-testid="add-to-cart">
         <h4>Add To Cart Area</h4>
         <div className="size-selector"> Select a Size
           <select value={this.state.selectedSize} onChange={this.selectSize}>
             <option value="default">-</option>
-            {this.state.sizes.map((size) => {
-              return (<option key={size} value={size}>{size}</option>)
-            })}
+            {this.props.styleData !== undefined ? _.map(this.getSizes(), (size, index) => {
+              return (<option key={index} value={size}>{size}</option>)
+            }) : null
+          }
           </select>
         </div>
 
