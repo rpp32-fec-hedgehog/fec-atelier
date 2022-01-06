@@ -7,7 +7,8 @@ class Answers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reported: false
+      reported: false,
+      votes: []
     };
   }
 
@@ -19,16 +20,19 @@ class Answers extends React.Component {
     let answer_id = Number(subClasses[2]);
     let questionHelpCount = subClasses[3];
 
-    $.ajax({
-      url: `/qa/answers/${answer_id}/helpful`,
-      method: 'PUT',
-      success: () => {
-        this.props.updateAHelp(answer_id, this.props.question_id);
-      },
-      error: err => {
-        alert(err);
-      }
-    })
+    if (!this.state.votes.includes(answer_id)) {
+      $.ajax({
+        url: `/qa/answers/${answer_id}/helpful`,
+        method: 'PUT',
+        success: () => {
+          this.setState({votes: this.state.votes.push(answer_id)})
+          this.props.updateAHelp(answer_id, this.props.question_id);
+        },
+        error: err => {
+          alert(err);
+        }
+      })
+    }
   }
 
   report(e) {
@@ -65,7 +69,7 @@ class Answers extends React.Component {
 
     return (<ul className="answer" data-testid="answers">
       <div key={`a-${answer.id}`} data-testid={answerer}>
-        <li className="answer-body"><b>A: </b>{answer.body}</li>
+        <li className="answer-body">{answer.body}</li>
         <span className="answerer">by {answerer}, {moment(answer.date).format('LL')}</span>
         <span className="a-helpful">Helpful?</span>
         <span className={`a-help-count a-help-${answer.id}-${answer.helpfulness}`}

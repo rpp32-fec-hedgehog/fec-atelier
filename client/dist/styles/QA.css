@@ -3,6 +3,8 @@
   margin-top: 30px;
 }
 
+/* ========== Questions ========== */
+
 .question {
   margin-top: 5px;
   margin-bottom: 10px;
@@ -16,9 +18,27 @@
   margin-left: 50%;
 }
 
-.q-help-count {
-  margin-left: 5px;
+/* ========== Answers ========== */
+
+.answer {
+  margin-top: 5px;
+  margin-bottom: 2px;
+  list-style-type: none;
 }
+
+.a-label {
+  float: left;
+}
+
+.answer-list {
+  margin-left: 20px
+}
+
+.a-helpful {
+  margin-left: 10%;
+}
+
+/* ========== Modals ========== */
 
 .answer-modal {
   display: inline;
@@ -28,17 +48,14 @@
   width: 100%;
 }
 
-.answer {
-  margin-top: 5px;
-  margin-bottom: 2px;
+.your-question, .your-answer {
+  height: 125px;
 }
 
-.add-answer {
-  margin-left: 20px;
-}
+/* ========== Clickables ========== */
 
-.a-helpful {
-  margin-left: 10%;
+.q-help-count {
+  margin-left: 5px;
 }
 
 .a-help-count {
@@ -47,6 +64,10 @@
 
 .report, .reported {
   margin-left: 20px
+}
+
+.add-answer {
+  margin-left: 20px;
 }
 
 .ask-question, .more-q {

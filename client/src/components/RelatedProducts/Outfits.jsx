@@ -8,18 +8,22 @@ class Outfits extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      outfitItems: []
+      outfitItems: [{item: 1},{item: 2},{item: 3},{item: 4},{item: 4}]
     };
   }
 
   render() {
     if (!this.state.outfitItems.length) {
-      return <div>There are no items in your Outfitterer yet</div>
+      return <div></div>
     }
+    let i=0;
     return (
-    <Carousel>
-      <Product-Card>Testing</Product-Card>
-    </Carousel>
+      <Carousel show={3.5} slide={3} transition={0.5}>
+        {this.state.outfitItems.map(item => {
+          i++;
+          return (<ProductCard item={item} key={i} type={'outfit'}/>)
+        })}
+      </Carousel>
     )
   }
 }

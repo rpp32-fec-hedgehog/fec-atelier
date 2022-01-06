@@ -37,7 +37,7 @@ class AnswerList extends React.Component {
 
   render() {
     let base = _.map(this.sortAnswers(this.props.answers), (a) => {
-      return <div key={`aBase-${a.id}`} data-testid="answer-list">
+      return <div key={`aBase-${a.id}`} data-testid="answer-list" className="answer-list">
         <Answers answer={a} updateAHelp={this.props.updateAHelp} question_id={this.props.question_id} />
       </div>
     })
