@@ -11,7 +11,8 @@ class Questions extends React.Component {
     this.state = {
       sortedQuestions: [],
       totalQuestions: 0,
-      questionCount: 2
+      questionCount: 2,
+      votes: []
     };
   }
 
@@ -46,16 +47,19 @@ class Questions extends React.Component {
     let question_id = Number(subClasses[2]);
     let questionHelpCount = subClasses[3];
 
-    $.ajax({
-      url: `/qa/questions/${question_id}/helpful`,
-      method: 'PUT',
-      success: () => {
-        this.props.updateQHelp(question_id);
-      },
-      error: err => {
-        alert(err);
-      }
-    })
+    if (!this.state.votes.includes(question_id)) {
+      $.ajax({
+        url: `/qa/questions/${question_id}/helpful`,
+        method: 'PUT',
+        success: () => {
+          this.setState({votes: this.state.votes.push(question_id)})
+          this.props.updateQHelp(question_id);
+        },
+        error: err => {
+          alert(err);
+        }
+      })
+    }
   }
 
   render() {
