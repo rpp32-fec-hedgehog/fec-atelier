@@ -135,9 +135,9 @@ class AskQuestion extends React.Component {
           <h4>About the {this.state.product_name}</h4>
           <form>
           <label htmlFor="your-question">{'Your Question (mandatory)'}</label>
-            <input type="textarea" className="qa-modal your-question"
+            <textarea className="qa-modal your-question" maxlength="1000"
               onChange={this.handleQuestion.bind(this)}>
-            </input>
+            </textarea>
             <label htmlFor="nickname-q">{'What is your nickname? (mandatory)'}</label>
             <input type="text" className="qa-modal nickname-q"
               onChange={this.handleNickname.bind(this)}>

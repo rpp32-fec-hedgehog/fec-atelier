@@ -48,6 +48,10 @@
   width: 100%;
 }
 
+.your-question {
+  height: 125px;
+}
+
 /* ========== Clickables ========== */
 
 .q-help-count {
