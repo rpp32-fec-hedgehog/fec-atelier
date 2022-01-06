@@ -87,6 +87,7 @@ class Overview extends React.Component {
   handleSelectStyle(e) {
     let current = this.state.currentPhoto;
     let currentStyle = e.target.id;
+    console.log('current style', currentStyle)
     let currentPhoto = this.state.currentPhoto;
     this.setState({
       selectedStyle: currentStyle,
