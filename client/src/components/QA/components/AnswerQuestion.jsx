@@ -16,7 +16,8 @@ class AnswerQuestion extends React.Component {
       photos: [],
       product_name: '',
       modalOpen: false,
-      invalid: ''
+      invalid: '',
+      addPhoto: <button onClick={this.addPhotos.bind(this)}>Add Photos</button>
     };
   }
 
@@ -90,8 +91,30 @@ class AnswerQuestion extends React.Component {
   addPhotos(e) {
     e.preventDefault();
     const client = filestack.init(process.env.FILESTACK_API_KEY);
-    client.picker().open();
-    // console.log(FILESTACK_API_KEY);
+    let options = {
+      fromSources: ['local_file_system'],
+      accept: ['image/*'],
+      maxFiles: 5,
+      disableTransformer: true,
+      onFileSelected: file => {
+        if (file.size > 1000 * 1000) {
+          alert('File too big, select something smaller than 1MB');
+        }
+      },
+      onFileUploadFinished: file => {
+        let updatedPhotos = this.state.photos.slice();
+        updatedPhotos.push(file.url);
+        this.setState({photos: updatedPhotos});
+        if (this.state.photos.length === 5) {
+          this.setState({addPhoto: <></>})
+        }
+      },
+      onFileUploadFailed: file => {
+        alert('File upload failed');
+      }
+    };
+
+    client.picker(options).open();
   }
 
   submitAnswer(e) {
@@ -133,10 +156,6 @@ class AnswerQuestion extends React.Component {
       }
     };
 
-    // <label for="qa-img">Upload Photos</label>
-    // <input type="file" id="qa-img" name="qa-img" accept="image/*"></input>
-    // <button onClick={this.addPhotos.bind(this)}>Add Photos</button>
-
     return (
       <div className="answer-modal">
         <span className="add-answer" onClick={this.openModal.bind(this)}>Add Answer</span>
@@ -163,8 +182,12 @@ class AnswerQuestion extends React.Component {
               onChange={this.handleEmail.bind(this)}>
             </input>
             <div className="privacy-msg">For authentication reasons, you will not be emailed</div>
-
-            <button onClick={this.addPhotos.bind(this)}>Add Photos</button>
+            <div className="qa-thumbnails">{_.map(this.state.photos, photo => {
+              return <img className="a-thumbnail" key={photo} src={photo}></img>
+            })}</div>
+            <div className="add-a-photo">
+              {this.state.addPhoto}
+            </div>
 
           </form>
           <button onClick={this.closeModal.bind(this)}>Close</button>
