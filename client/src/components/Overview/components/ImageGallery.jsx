@@ -29,22 +29,23 @@ class ImageGallery extends React.Component {
   }
 
   render() {
-    const highlight = {
-      border: '1px solid black'
-    }
+    let range = this.props.styleData[this.props.selectedStyle] !== undefined ?
+    this.props.max + 1 <= this.props.styleData[this.props.selectedStyle].photos.length ?
+    this.props.styleData[this.props.selectedStyle].photos.slice(this.props.currentPhoto, this.props.max + 1)
+    : this.props.styleData[this.props.selectedStyle].photos.slice(-7) : null
+
+    console.log(range)
     return (
       <>
         <div className="image-gallery" data-testid="image-gallery">
           <div className="image-gallery-container">
             <div className="thumbnail-list">
-
-              {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(this.props.styleData[this.props.selectedStyle].photos, (photo, index) => {
+              {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(range, (photo, index) => {
                 return this.props.currentPhoto === index ?
                   (<img className="image-gallery-thumbnail" src={photo.url} key={index} id={index} onClick={this.props.changePhoto} style={{border: '3px solid #8e9efa'}}></img>) :
                   (<img className="image-gallery-thumbnail" src={photo.url} key={index} id={index} onClick={this.props.changePhoto}></img>)
                 }) : null
               }
-
             </div>
             <img className="main-gallery" src={this.props.photo} onClick={this.openModal}></img>
             {this.props.currentPhoto === 0 ?

@@ -18,7 +18,8 @@ class Overview extends React.Component {
       photo: '',
       selectedStyle: 0,
       currentPhoto: 0,
-      numberOfPhotos: 0
+      numberOfPhotos: 0,
+      maxIndex: 6
     };
     this.grabProductData = this.grabProductData.bind(this);
     this.grabStylesData = this.grabStylesData.bind(this);
@@ -60,7 +61,9 @@ class Overview extends React.Component {
     this.state.currentPhoto < max - 1 ?
     this.setState({
       photo: this.state.styleData[this.state.selectedStyle].photos[current + 1].url,
-      currentPhoto: this.state.currentPhoto + 1
+      currentPhoto: this.state.currentPhoto + 1,
+      minIndex: this.state.minIndex + 1,
+      maxIndex: this.state.maxIndex + 1
     }) :
     null
   }
@@ -71,7 +74,9 @@ class Overview extends React.Component {
     this.state.currentPhoto > 0 ?
     this.setState({
       photo: this.state.styleData[this.state.selectedStyle].photos[current - 1].url,
-      currentPhoto: this.state.currentPhoto - 1
+      currentPhoto: this.state.currentPhoto - 1,
+      minIndex: this.state.minIndex - 1,
+      maxIndex: this.state.maxIndex - 1
     }) :
     null
   }
@@ -114,7 +119,8 @@ class Overview extends React.Component {
           selectedStyle={this.state.selectedStyle}
           forward={this.cycleForward} backward={this.cycleBackward}
           changePhoto={this.changePhoto}
-          currentPhoto={this.state.currentPhoto}/>
+          currentPhoto={this.state.currentPhoto}
+          max={this.state.maxIndex}/>
 
         <StyleSelector styleImgs={_.map(this.state.styleData, style => style.photos).map(arr => arr[0].thumbnail_url)}
           selectStyle={this.handleSelectStyle}
