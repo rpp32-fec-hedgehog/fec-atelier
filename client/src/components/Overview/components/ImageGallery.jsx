@@ -1,6 +1,8 @@
 import React from 'react';
 import Modal from 'react-modal';
 import _ from 'underscore';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
 class ImageGallery extends React.Component {
   constructor(props) {
@@ -37,14 +39,16 @@ class ImageGallery extends React.Component {
               )
             }) : null}
           <img className="main-gallery" src={this.props.photo} onClick={this.openModal}></img>
-          <button className='backward' onClick={this.props.backward}>backward</button>
-          <button className='forward' onClick={this.props.forward}>forward</button>
+          <FontAwesomeIcon className='backward' onClick={this.props.backward} icon={faAngleLeft}></FontAwesomeIcon>
+          <FontAwesomeIcon className='forward' onClick={this.props.forward} icon={faAngleRight}></FontAwesomeIcon>
+
         </div>
         <Modal isOpen={this.state.modalOpen} className="modal-gallery">
           <button onClick={this.closeModal}>X</button>
           <div>
-            <button className='modal-back' onClick={this.props.backward}>backward</button>
-            <button className='modal-forward' onClick={this.props.forward}>forward</button>
+            <FontAwesomeIcon className='modal-back' onClick={this.props.backward} icon={faAngleLeft}></FontAwesomeIcon>
+            <FontAwesomeIcon className='modal-forward' onClick={this.props.forward} icon={faAngleRight}></FontAwesomeIcon>
+
             <img className="modal-image" src={this.props.photo}></img>
           {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(this.props.styleData[this.props.selectedStyle].photos, (photo, index) => {
               return (
