@@ -90,31 +90,31 @@ class AnswerQuestion extends React.Component {
 
   addPhotos(e) {
     e.preventDefault();
-    const client = filestack.init(process.env.FILESTACK_API_KEY);
-    let options = {
-      fromSources: ['local_file_system'],
-      accept: ['image/*'],
-      maxFiles: 5,
-      disableTransformer: true,
-      onFileSelected: file => {
-        if (file.size > 1000 * 1000) {
-          alert('File too big, select something smaller than 1MB');
-        }
-      },
-      onFileUploadFinished: file => {
-        let updatedPhotos = this.state.photos.slice();
-        updatedPhotos.push(file.url);
-        this.setState({photos: updatedPhotos});
-        if (this.state.photos.length === 5) {
-          this.setState({addPhoto: <></>})
-        }
-      },
-      onFileUploadFailed: file => {
-        alert('File upload failed');
-      }
-    };
+    // const client = filestack.init(process.env.FILESTACK_API_KEY);
+    // let options = {
+    //   fromSources: ['local_file_system'],
+    //   accept: ['image/*'],
+    //   maxFiles: 5,
+    //   disableTransformer: true,
+    //   onFileSelected: file => {
+    //     if (file.size > 1000 * 1000) {
+    //       alert('File too big, select something smaller than 1MB');
+    //     }
+    //   },
+    //   onFileUploadFinished: file => {
+    //     let updatedPhotos = this.state.photos.slice();
+    //     updatedPhotos.push(file.url);
+    //     this.setState({photos: updatedPhotos});
+    //     if (this.state.photos.length === 5) {
+    //       this.setState({addPhoto: <></>})
+    //     }
+    //   },
+    //   onFileUploadFailed: file => {
+    //     alert('File upload failed');
+    //   }
+    // };
 
-    client.picker(options).open();
+    // client.picker(options).open();
   }
 
   submitAnswer(e) {
