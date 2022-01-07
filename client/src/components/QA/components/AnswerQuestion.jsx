@@ -132,6 +132,7 @@ class AnswerQuestion extends React.Component {
         method: 'POST',
         data: answerData,
         success: () => {
+          this.setState({invalid: '', photos: []})
           this.closeModal(e);
           this.props.getQAData();
         },
@@ -188,7 +189,6 @@ class AnswerQuestion extends React.Component {
             <div className="add-a-photo">
               {this.state.addPhoto}
             </div>
-
           </form>
           <button onClick={this.closeModal.bind(this)}>Close</button>
           <button onClick={this.submitAnswer.bind(this)}>Submit</button>
