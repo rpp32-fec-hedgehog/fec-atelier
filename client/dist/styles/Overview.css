@@ -11,10 +11,9 @@ button:hover {
 /* Image Gallery */
 .main-gallery {
   height: auto;
-  max-width: 150px;
+  max-width: 450px;
 }
 .image-gallery {
-  font-size: 20px;
   height: auto;
   width: 40%;
 }
@@ -22,10 +21,6 @@ button:hover {
 .image-gallery-thumbnail {
   width: 25px;
   height: 25px;
-}
-
-.backward {
-  size: 20px;
 }
 
 /* Modal */

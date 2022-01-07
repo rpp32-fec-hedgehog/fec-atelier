@@ -35,20 +35,20 @@ class ImageGallery extends React.Component {
         <div>
           {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(this.props.styleData[this.props.selectedStyle].photos, (photo, index) => {
               return (
-                <img  className="image-gallery-thumbnail" src={photo.url} key={index} id={index} onClick={this.props.changePhoto}></img>
+                  <img  className="image-gallery-thumbnail" src={photo.url} key={index} id={index} onClick={this.props.changePhoto}></img>
               )
             }) : null}
           <img className="main-gallery" src={this.props.photo} onClick={this.openModal}></img>
           <FontAwesomeIcon className='backward' onClick={this.props.backward} icon={faAngleLeft} size='2x'></FontAwesomeIcon>
           <FontAwesomeIcon className='forward' onClick={this.props.forward} icon={faAngleRight} size='2x'></FontAwesomeIcon>
-
         </div>
+
+
         <Modal isOpen={this.state.modalOpen} className="modal-gallery">
           <button onClick={this.closeModal}>X</button>
           <div>
             <FontAwesomeIcon className='modal-back' onClick={this.props.backward} icon={faAngleLeft} size='2x'></FontAwesomeIcon>
             <FontAwesomeIcon className='modal-forward' onClick={this.props.forward} icon={faAngleRight} size='2x'></FontAwesomeIcon>
-
             <img className="modal-image" src={this.props.photo}></img>
           {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(this.props.styleData[this.props.selectedStyle].photos, (photo, index) => {
               return (
