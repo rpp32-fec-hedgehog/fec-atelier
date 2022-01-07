@@ -32,8 +32,7 @@ class ImageGallery extends React.Component {
     return (
       <>
         <div className="image-gallery" data-testid="image-gallery">
-          <h4>Image Gallery</h4>
-          <div>
+          <div className="image-gallery-container">
             <div className="thumbnail-list">
               {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(this.props.styleData[this.props.selectedStyle].photos, (photo, index) => {
                   return (
