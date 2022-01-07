@@ -12,15 +12,28 @@ class Questions extends React.Component {
       sortedQuestions: [],
       totalQuestions: 0,
       questionCount: 2,
+      questionTracker: 1,
       votes: []
     };
   }
 
   handleQuestions(e) {
     e.preventDefault();
+    let tracker;
+    if (this.state.questionTracker === 1) {
+      tracker = 2;
+    } else if (this.state.questionTracker === 2) {
+      tracker = 1;
+    }
+
+    if (tracker === 2) {
+      this.props.getQAData();
+    }
+
     if (this.props.questions.length > this.state.questionCount) {
       this.setState({
-        questionCount: this.state.questionCount += 2
+        questionCount: this.state.questionCount += 2,
+        questionTracker: tracker
       })
     } else {
       this.setState({
@@ -90,7 +103,7 @@ class Questions extends React.Component {
       </ul>
     </div>];
 
-    let totalQs = this.props.questions.length;
+    // let totalQs = this.props.questions.length;
     let more = <button key="more-q" className="more-q"
       onClick={this.handleQuestions.bind(this)}>
         More Answered Questions
@@ -98,7 +111,7 @@ class Questions extends React.Component {
     let addQuestion = <AskQuestion key="ask-question" className="ask-question"
       getQAData={this.props.getQAData}
       product_id={this.props.product_id} />
-    if (totalQs > this.state.questionCount && totalQs > 2) {
+    if (this.props.questions.length > this.state.questionCount && this.props.questions.length > 2) {
       return base.concat(more, addQuestion);
     } else {
       return base.concat(addQuestion);
