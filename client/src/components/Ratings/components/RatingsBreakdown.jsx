@@ -1,13 +1,13 @@
 import React from 'react';
 import StarRating from './StarRating.jsx';
 import StarCount from './StarCountBar.jsx';
+import ProductBreakdowns from './ProductBreakdown.jsx';
 
 const RatingsMeta = (props) => {
 
-  //console.log('ratings metadata: ', props.ratings_meta);
-
   const ratings = props.ratings_meta.ratings;
   const recommended = props.ratings_meta.recommended;
+  const characteristics = props.ratings_meta.characteristics;
 
   let ratings_total = 0;
   let divisor = 0;
@@ -17,6 +17,7 @@ const RatingsMeta = (props) => {
   let percent_recommending = 0;
   let stars_count = [0, 0, 0, 0, 0];
   let star_count_list = [];
+  let characteristics_list = [];
 
   for (const key in ratings) {
     ratings_total += key * ratings[key];
@@ -46,12 +47,25 @@ const RatingsMeta = (props) => {
     )
   });
 
+  for (const key in characteristics) {
+    characteristics[key]['inner_characteristic'] = key;
+    characteristics_list.push(characteristics[key]);
+  }
+
+  let product_breakdowns = characteristics_list.map((characteristic) => {
+      return (
+          <ProductBreakdowns key={characteristic.id} star_number={characteristic.value} star_count={characteristic.inner_characteristic}></ProductBreakdowns>
+      )
+    });
+
   return(
     <div data-testid="ratings-breakdown" className="ratings_meta">
       <h1 className="ratings_average">{ratings_average}</h1><span className="ratings_breakdown_stars">  <StarRating star_rating={ratings_average}></StarRating></span>
       <br></br> <span className="percent_recommending">{percent_recommending}% of reviews recommend this product.</span><br></br>
-      <ul>{star_counts}</ul>
+      <ul className="star_count_list" >{star_counts}</ul>
+      <ProductBreakdowns characteristics_list={characteristics_list}></ProductBreakdowns>
     </div>
+
   )
 }
 

@@ -1,4 +1,5 @@
 .ratings_meta {
+  /* display: flex; */
   float: left;
   width: 25%;
 }
@@ -6,6 +7,10 @@
 .ratings_list {
   float: right;
   width: 70%;
+  list-style-type: none;
+}
+
+.star_count_list {
   list-style-type: none;
 }
 
@@ -63,6 +68,16 @@
 }
 
 .star_bar:before {
+  content:"";
+  float: right;
+  position: absolute;
+  width: 400px;
+  height: 15px;
+  z-index:-1;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="40" ><rect fill="gray" stroke-width="0" width="400" height="30"/></svg>');
+}
+
+.characteristic {
   content:"";
   float: right;
   position: absolute;
