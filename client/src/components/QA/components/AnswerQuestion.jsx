@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import _ from 'underscore';
 import $ from 'jquery';
+import FILESTACK_API_KEY from '../../../../../env/config.js';
 
 Modal.setAppElement('#app');
 
@@ -86,8 +87,11 @@ class AnswerQuestion extends React.Component {
     return false;
   }
 
-  addPhotos() {
-
+  addPhotos(e) {
+    e.preventDefault();
+    const client = filestack.init(process.env.FILESTACK_API_KEY);
+    client.picker().open();
+    // console.log(FILESTACK_API_KEY);
   }
 
   submitAnswer(e) {
@@ -129,6 +133,10 @@ class AnswerQuestion extends React.Component {
       }
     };
 
+    // <label for="qa-img">Upload Photos</label>
+    // <input type="file" id="qa-img" name="qa-img" accept="image/*"></input>
+    // <button onClick={this.addPhotos.bind(this)}>Add Photos</button>
+
     return (
       <div className="answer-modal">
         <span className="add-answer" onClick={this.openModal.bind(this)}>Add Answer</span>
@@ -156,8 +164,6 @@ class AnswerQuestion extends React.Component {
             </input>
             <div className="privacy-msg">For authentication reasons, you will not be emailed</div>
 
-            <label for="qa-img">Upload Photos</label>
-            <input type="file" id="qa-img" name="qa-img" accept="image/*"></input>
             <button onClick={this.addPhotos.bind(this)}>Add Photos</button>
 
           </form>
