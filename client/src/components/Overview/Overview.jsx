@@ -93,6 +93,7 @@ class Overview extends React.Component {
       photo: this.state.styleData[currentStyle].photos[current].url,
       numberOfPhotos: this.state.styleData[currentPhoto].photos.map(style => style.photos).length
     });
+
   }
 
   componentDidMount() {
@@ -120,7 +121,8 @@ class Overview extends React.Component {
           <StyleSelector styleImgs={_.map(this.state.styleData, style => style.photos).map(arr => arr[0].thumbnail_url)}
             selectStyle={this.handleSelectStyle}
             styleName={this.state.styleData[this.state.currentPhoto] !== undefined ?
-            this.state.styleData[this.state.selectedStyle].name : null} />
+            this.state.styleData[this.state.selectedStyle].name : null}
+            selectedStyle={Number(this.state.selectedStyle)}/>
 
           <AddToCart productName={this.state.productData.name} styleData={this.state.styleData[this.state.selectedStyle]}/>
         </div>
