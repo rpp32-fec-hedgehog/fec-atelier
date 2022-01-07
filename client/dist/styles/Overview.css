@@ -73,6 +73,14 @@ button:hover {
   height: 40px;
 }
 
+.style-img-background {
+  z-index: 1;
+}
+
+.checkmark {
+  position: inline;
+}
+
 /* Add to cart */
 .add-to-my-outfit {
   border: 2px solid black
