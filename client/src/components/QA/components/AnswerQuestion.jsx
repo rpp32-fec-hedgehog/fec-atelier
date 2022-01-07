@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import _ from 'underscore';
 import $ from 'jquery';
-import FILESTACK_API_KEY from '../../../../../env/config.js';
+// import FILESTACK_API_KEY from '../../../../../env/config.js';
 
 Modal.setAppElement('#app');
 
