@@ -46,13 +46,13 @@ class ImageGallery extends React.Component {
 
         <Modal isOpen={this.state.modalOpen} className="modal-gallery">
           <button onClick={this.closeModal}>X</button>
-          <div>
-            <FontAwesomeIcon className='modal-back' onClick={this.props.backward} icon={faAngleLeft} size='2x'></FontAwesomeIcon>
-            <FontAwesomeIcon className='modal-forward' onClick={this.props.forward} icon={faAngleRight} size='2x'></FontAwesomeIcon>
+          <div className="modal-buttons">
+            <FontAwesomeIcon className='modal-back' onClick={this.props.backward} icon={faAngleLeft} size='2x' color="white"></FontAwesomeIcon>
+            <FontAwesomeIcon className='modal-forward' onClick={this.props.forward} icon={faAngleRight} size='2x' color="white"></FontAwesomeIcon>
             <img className="modal-image" src={this.props.photo}></img>
           {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(this.props.styleData[this.props.selectedStyle].photos, (photo, index) => {
-              return (
-                <input className="modal-radio-button" type="radio" key={index} id={index} onClick={this.props.changePhoto}></input>
+            return (
+              <input className="modal-radio-button" type="radio" key={index} id={index} onClick={this.props.changePhoto}></input>
               )
             }) : null}
           </div>
