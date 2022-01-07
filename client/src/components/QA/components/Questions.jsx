@@ -80,7 +80,7 @@ class Questions extends React.Component {
                 product_id={this.props.product_id}
                 question_body={q.question_body} />
               <div>
-                <span className="a-label">A: </span>
+                <span className="a-label"><b>A: </b></span>
                 <AnswerList answers={q.answers} question_id={q.question_id}
                   updateAHelp={this.props.updateAHelp} />
               </div>
