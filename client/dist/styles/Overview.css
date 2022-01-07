@@ -7,6 +7,7 @@
 .overview {
   padding: 0;
   margin: 0;
+  border: 0;
   box-sizing: 0;
   display: grid;
   grid-template-columns: 50% 50%;
@@ -52,16 +53,17 @@ button:hover {
 }
 
 .thumbnail-list {
+  max-height: 100%;
   grid-row-start: 1;
-  grid-row-end: 11;
+  grid-row-end: 8;
   grid-column-start: 1;
   grid-column-end: 2;
   z-index: 3;
 }
 
 .image-gallery-thumbnail {
-  width: 40px;
-  height: 40px;
+  width: 25px;
+  height: 25px;
   border-radius: 35%;
   padding: 5px;
 }
