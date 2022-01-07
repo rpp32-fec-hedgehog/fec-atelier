@@ -28,13 +28,24 @@ class ImageGallery extends React.Component {
     });
   }
 
+  /*
+  make an object with index: value key pairs
+  obj = {
+    0: url,
+    1: url,
+    2: url...
+  }
+  === [url, url, url...]
+
+  fill new array with correct index: value pairs based on
+  */
   render() {
+    let test = this.props.styleData[this.props.selectedStyle] !== undefined ? {...this.props.styleData[this.props.selectedStyle].photos} : null
+
     let range = this.props.styleData[this.props.selectedStyle] !== undefined ?
     this.props.max + 1 <= this.props.styleData[this.props.selectedStyle].photos.length ?
     this.props.styleData[this.props.selectedStyle].photos.slice(this.props.currentPhoto, this.props.max + 1)
     : this.props.styleData[this.props.selectedStyle].photos.slice(-7) : null
-
-    console.log(range)
     return (
       <>
         <div className="image-gallery" data-testid="image-gallery">
