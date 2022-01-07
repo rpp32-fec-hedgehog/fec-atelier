@@ -104,28 +104,24 @@ class Overview extends React.Component {
   render() {
     return (
       <div data-testid='overview-widget' className="overview">
-        <div>
-          <h1>Overview</h1>
+        <ProductInfo itemid={this.props.itemid} productData={this.state.productData}
+          originalPrice={this.state.styleData[this.state.selectedStyle] !== undefined ?
+            this.state.styleData[this.state.selectedStyle].original_price : null}
+          salePrice={this.state.styleData[this.state.selectedStyle] !== undefined ?
+            this.state.styleData[this.state.selectedStyle].sale_price : null} />
 
-          <ProductInfo itemid={this.props.itemid} productData={this.state.productData}
-            originalPrice={this.state.styleData[this.state.selectedStyle] !== undefined ?
-              this.state.styleData[this.state.selectedStyle].original_price : null}
-            salePrice={this.state.styleData[this.state.selectedStyle] !== undefined ?
-              this.state.styleData[this.state.selectedStyle].sale_price : null} />
+        <ImageGallery styleData={this.state.styleData} photo={this.state.photo}
+          selectedStyle={this.state.selectedStyle}
+          forward={this.cycleForward} backward={this.cycleBackward}
+          changePhoto={this.changePhoto}/>
 
-          <ImageGallery styleData={this.state.styleData} photo={this.state.photo}
-            selectedStyle={this.state.selectedStyle}
-            forward={this.cycleForward} backward={this.cycleBackward}
-            changePhoto={this.changePhoto}/>
+        <StyleSelector styleImgs={_.map(this.state.styleData, style => style.photos).map(arr => arr[0].thumbnail_url)}
+          selectStyle={this.handleSelectStyle}
+          styleName={this.state.styleData[this.state.selectedStyle] !== undefined ?
+          this.state.styleData[this.state.selectedStyle].name : null}
+          selectedStyle={Number(this.state.selectedStyle)}/>
 
-          <StyleSelector styleImgs={_.map(this.state.styleData, style => style.photos).map(arr => arr[0].thumbnail_url)}
-            selectStyle={this.handleSelectStyle}
-            styleName={this.state.styleData[this.state.currentPhoto] !== undefined ?
-            this.state.styleData[this.state.selectedStyle].name : null}
-            selectedStyle={Number(this.state.selectedStyle)}/>
-
-          <AddToCart productName={this.state.productData.name} styleData={this.state.styleData[this.state.selectedStyle]}/>
-        </div>
+        <AddToCart productName={this.state.productData.name} styleData={this.state.styleData[this.state.selectedStyle]}/>
       </div>
     )
   }

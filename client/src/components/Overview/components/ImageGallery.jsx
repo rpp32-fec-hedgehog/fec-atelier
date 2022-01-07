@@ -31,7 +31,7 @@ class ImageGallery extends React.Component {
   render() {
     return (
       <>
-        <div className="Image-Gallery" data-testid="image-gallery" style={{border: "1px solid black"}}>
+        <div className="image-gallery" data-testid="image-gallery">
           <h4>Image Gallery</h4>
           <div>
             <div className="thumbnail-list">
