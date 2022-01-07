@@ -40,7 +40,7 @@ class ImageGallery extends React.Component {
           <button className='backward' onClick={this.props.backward}>backward</button>
           <button className='forward' onClick={this.props.forward}>forward</button>
         </div>
-        <Modal isOpen={this.state.modalOpen} className="modal">
+        <Modal isOpen={this.state.modalOpen} className="modal-gallery">
           <button onClick={this.closeModal}>X</button>
           <div>
             <button className='modal-back' onClick={this.props.backward}>backward</button>

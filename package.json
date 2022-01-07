@@ -35,6 +35,9 @@
     "webpack-cli": "^4.9.1"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.16",
     "@trendyol-js/react-carousel": "^2.0.1",
     "axios": "^0.24.0",
     "cookie-parser": "^1.4.6",
@@ -44,6 +47,7 @@
     "moment": "^2.29.1",
     "path": "^0.12.7",
     "react": "^17.0.2",
+    "react-checkmark": "^1.4.0",
     "react-dom": "^17.0.2",
     "react-modal": "^3.14.4",
     "react-responsive-carousel": "^3.2.22",

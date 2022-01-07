@@ -38,6 +38,11 @@
   margin-left: 10%;
 }
 
+.a-photo {
+  width: 4%;
+  height: 4%;
+}
+
 /* ========== Modals ========== */
 
 .answer-modal {
@@ -50,6 +55,11 @@
 
 .your-question, .your-answer {
   height: 125px;
+}
+
+.a-thumbnail {
+  width: 4%;
+  height: 4%;
 }
 
 /* ========== Clickables ========== */
