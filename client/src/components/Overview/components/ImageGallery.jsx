@@ -29,20 +29,31 @@ class ImageGallery extends React.Component {
   }
 
   render() {
+    const highlight = {
+      border: '1px solid black'
+    }
     return (
       <>
         <div className="image-gallery" data-testid="image-gallery">
           <div className="image-gallery-container">
             <div className="thumbnail-list">
+
               {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(this.props.styleData[this.props.selectedStyle].photos, (photo, index) => {
-                  return (
-                      <img  className="image-gallery-thumbnail" src={photo.url} key={index} id={index} onClick={this.props.changePhoto}></img>
-                  )
-                }) : null}
+                return this.props.currentPhoto === index ?
+                  (<img className="image-gallery-thumbnail" src={photo.url} key={index} id={index} onClick={this.props.changePhoto} style={{border: '3px solid #8e9efa'}}></img>) :
+                  (<img className="image-gallery-thumbnail" src={photo.url} key={index} id={index} onClick={this.props.changePhoto}></img>)
+                }) : null
+              }
+
             </div>
             <img className="main-gallery" src={this.props.photo} onClick={this.openModal}></img>
-            <FontAwesomeIcon className='backward' onClick={this.props.backward} icon={faAngleLeft} size='2x'></FontAwesomeIcon>
-            <FontAwesomeIcon className='forward' onClick={this.props.forward} icon={faAngleRight} size='2x'></FontAwesomeIcon>
+            {this.props.currentPhoto === 0 ?
+            <FontAwesomeIcon className='backward' onClick={this.props.backward} icon={faAngleLeft} size='2x' style={{display: 'none'}}></FontAwesomeIcon> :
+            <FontAwesomeIcon className='backward' onClick={this.props.backward} icon={faAngleLeft} size='2x'></FontAwesomeIcon>}
+            {this.props.styleData[this.props.selectedStyle] !== undefined && this.props.currentPhoto === this.props.styleData[this.props.selectedStyle].photos.length - 1 ?
+              <FontAwesomeIcon className='forward' onClick={this.props.forward} icon={faAngleRight} size='2x' style={{display: 'none'}}></FontAwesomeIcon> :
+              <FontAwesomeIcon className='forward' onClick={this.props.forward} icon={faAngleRight} size='2x'></FontAwesomeIcon>
+            }
           </div>
         </div>
 

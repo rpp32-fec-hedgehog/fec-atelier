@@ -113,7 +113,8 @@ class Overview extends React.Component {
         <ImageGallery styleData={this.state.styleData} photo={this.state.photo}
           selectedStyle={this.state.selectedStyle}
           forward={this.cycleForward} backward={this.cycleBackward}
-          changePhoto={this.changePhoto}/>
+          changePhoto={this.changePhoto}
+          currentPhoto={this.state.currentPhoto}/>
 
         <StyleSelector styleImgs={_.map(this.state.styleData, style => style.photos).map(arr => arr[0].thumbnail_url)}
           selectStyle={this.handleSelectStyle}

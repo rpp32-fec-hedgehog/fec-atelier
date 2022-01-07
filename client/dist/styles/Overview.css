@@ -48,6 +48,7 @@ button:hover {
   grid-row-end: 11;
   grid-column-start: 1;
   grid-column-end: 11;
+  cursor: zoom-in;
 }
 
 .thumbnail-list {
@@ -68,17 +69,19 @@ button:hover {
 .forward {
   grid-row-start: 5;
   grid-column-start: 10;
+  color: #8e9efa;
 }
 .backward {
   grid-row-start: 5;
   grid-column-start: 2;
+  color: #8e9efa;
 }
 .forward:hover {
-  color: #8e9efa;
+  color: #d9dade;
 }
 
 .backward:hover {
-  color: #8e9efa;
+  color: #d9dade;
 }
 
 
