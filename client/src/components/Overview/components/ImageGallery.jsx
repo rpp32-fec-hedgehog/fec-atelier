@@ -30,17 +30,21 @@ class ImageGallery extends React.Component {
 
   render() {
     return (
-      <div className="Image-Gallery" data-testid="image-gallery" style={{border: "1px solid black"}}>
-        <h4>Image Gallery</h4>
-        <div>
-          {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(this.props.styleData[this.props.selectedStyle].photos, (photo, index) => {
-              return (
-                  <img  className="image-gallery-thumbnail" src={photo.url} key={index} id={index} onClick={this.props.changePhoto}></img>
-              )
-            }) : null}
-          <img className="main-gallery" src={this.props.photo} onClick={this.openModal}></img>
-          <FontAwesomeIcon className='backward' onClick={this.props.backward} icon={faAngleLeft} size='2x'></FontAwesomeIcon>
-          <FontAwesomeIcon className='forward' onClick={this.props.forward} icon={faAngleRight} size='2x'></FontAwesomeIcon>
+      <>
+        <div className="Image-Gallery" data-testid="image-gallery" style={{border: "1px solid black"}}>
+          <h4>Image Gallery</h4>
+          <div>
+            <div className="thumbnail-list">
+              {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(this.props.styleData[this.props.selectedStyle].photos, (photo, index) => {
+                  return (
+                      <img  className="image-gallery-thumbnail" src={photo.url} key={index} id={index} onClick={this.props.changePhoto}></img>
+                  )
+                }) : null}
+            </div>
+            <img className="main-gallery" src={this.props.photo} onClick={this.openModal}></img>
+            <FontAwesomeIcon className='backward' onClick={this.props.backward} icon={faAngleLeft} size='2x'></FontAwesomeIcon>
+            <FontAwesomeIcon className='forward' onClick={this.props.forward} icon={faAngleRight} size='2x'></FontAwesomeIcon>
+          </div>
         </div>
 
 
@@ -57,7 +61,7 @@ class ImageGallery extends React.Component {
             }) : null}
           </div>
         </Modal>
-      </div>
+      </>
     )
   }
 }

@@ -103,7 +103,7 @@ class Overview extends React.Component {
 
   render() {
     return (
-      <div data-testid='overview-widget'>
+      <div data-testid='overview-widget' className="overview">
         <div>
           <h1>Overview</h1>
 
