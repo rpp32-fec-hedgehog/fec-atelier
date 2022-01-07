@@ -1,17 +1,16 @@
 .ratings_meta {
   float: left;
-  width: 35%;
+  width: 25%;
 }
 
 .ratings_list {
   float: right;
-  width: 65%;
+  width: 70%;
   list-style-type: none;
 }
 
 .user_name_date {
   float: right;
-  width: 60%;
 }
 
 .star_ratings {
@@ -55,22 +54,20 @@
 }
 
 .star_bar {
-  width: 125px;
+  width: 200px;
+  left: 45px;
   float: right;
-  height: 35px;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="40" viewBox="-40 -40 600 100"><rect fill="green" stroke="black" stroke-width="1" width="400" height="30"/></svg>');
-  position:relative;
+  height: 15px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="40" ><rect fill="green" stroke-width="0" width="400" height="30"/></svg>');
+  position: absolute;
 }
 
 .star_bar:before {
   content:"";
   float: right;
-  position:absolute;
-  top:0;
-  bottom:0;
-  left:0;
-  width: 250px;
-  height: 35px;
+  position: absolute;
+  width: 400px;
+  height: 15px;
   z-index:-1;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="40" viewBox="-40 -40 600 100"><rect fill="gray" stroke="black" stroke-width="1" width="400" height="30"/></svg>');
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="40" ><rect fill="gray" stroke-width="0" width="400" height="30"/></svg>');
 }
