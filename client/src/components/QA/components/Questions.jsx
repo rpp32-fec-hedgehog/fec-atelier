@@ -93,7 +93,7 @@ class Questions extends React.Component {
       </ul>
     </div>];
 
-    // let totalQs = this.props.questions.length;
+    let totalQs = this.props.questions.length;
     let more = <button key="more-q" className="more-q"
       onClick={this.handleQuestions.bind(this)}>
         More Answered Questions
@@ -101,7 +101,7 @@ class Questions extends React.Component {
     let addQuestion = <AskQuestion key="ask-question" className="ask-question"
       getQAData={this.props.getQAData}
       product_id={this.props.product_id} />
-    if (this.props.questions.length > this.state.questionCount && this.props.questions.length > 2) {
+    if (totalQs > this.state.questionCount && totalQs > 2) {
       return base.concat(more, addQuestion);
     } else {
       return base.concat(addQuestion);
