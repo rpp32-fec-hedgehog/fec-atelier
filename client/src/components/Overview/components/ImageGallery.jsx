@@ -40,19 +40,23 @@ class ImageGallery extends React.Component {
   fill new array with correct index: value pairs based on
   */
   render() {
-    let test = this.props.styleData[this.props.selectedStyle] !== undefined ? {...this.props.styleData[this.props.selectedStyle].photos} : null
+    let currentPhoto = this.props.currentPhoto
+    let subtractor = this.props.styleData[this.props.selectedStyle] !== undefined ? this.props.styleData[this.props.selectedStyle].photos.length - 7 : null
+    let thumbnailIndex = currentPhoto >= subtractor ? currentPhoto -= subtractor : 0
 
     let range = this.props.styleData[this.props.selectedStyle] !== undefined ?
     this.props.max + 1 <= this.props.styleData[this.props.selectedStyle].photos.length ?
-    this.props.styleData[this.props.selectedStyle].photos.slice(this.props.currentPhoto, this.props.max + 1)
+    this.props.styleData[this.props.selectedStyle].photos.slice(this.props.currentPhoto, this.props.currentPhoto + 7)
     : this.props.styleData[this.props.selectedStyle].photos.slice(-7) : null
+
+
     return (
       <>
         <div className="image-gallery" data-testid="image-gallery">
           <div className="image-gallery-container">
             <div className="thumbnail-list">
               {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(range, (photo, index) => {
-                return this.props.currentPhoto === index ?
+                return thumbnailIndex === index ?
                   (<img className="image-gallery-thumbnail" src={photo.url} key={index} id={index} onClick={this.props.changePhoto} style={{border: '3px solid #8e9efa'}}></img>) :
                   (<img className="image-gallery-thumbnail" src={photo.url} key={index} id={index} onClick={this.props.changePhoto}></img>)
                 }) : null
@@ -71,7 +75,7 @@ class ImageGallery extends React.Component {
 
 
         <Modal isOpen={this.state.modalOpen} className="modal-gallery">
-          <button onClick={this.closeModal}>X</button>
+          <button className="modal-close" onClick={this.closeModal}>X</button>
           <div className="modal-buttons">
             <FontAwesomeIcon className='modal-back' onClick={this.props.backward} icon={faAngleLeft} size='2x' color="white"></FontAwesomeIcon>
             <FontAwesomeIcon className='modal-forward' onClick={this.props.forward} icon={faAngleRight} size='2x' color="white"></FontAwesomeIcon>
