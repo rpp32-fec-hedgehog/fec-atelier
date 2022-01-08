@@ -80,7 +80,7 @@ class Overview extends React.Component {
     }) :
     null
   }
-
+// current - target
   changePhoto = (e) => {
     e.preventDefault();
     this.setState({
