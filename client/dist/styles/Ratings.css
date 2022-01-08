@@ -1,7 +1,8 @@
 .ratings_meta {
   /* display: flex; */
   float: left;
-  width: 25%;
+  width: 20%;
+  margin-left: 25px;
 }
 
 .ratings_list {
@@ -12,10 +13,16 @@
 
 .star_count_list {
   list-style-type: none;
+  margin-bottom: 25px;
 }
 
+.ratings_average {
+  font-weight: bold;
+  font-size: xx-large;
+}
 .user_name_date {
   float: right;
+  width: 30%;
 }
 
 .star_ratings {
@@ -25,19 +32,37 @@
 .individual_review {
   border-bottom: 1px solid rgba(0, 0, 0, 1);
   margin: 5px;
-};
+}
 
-.ratings_average {
+.individual_star_rating {
   float: left;
+  z-index: -1;
 }
 
 .ratings_breakdown_stars {
-  float: left;
-  width: 20%;
+  width: 15%;
 }
 
 .percent_recommending {
   float: left;
+}
+
+.product_breakdown {
+  list-style-type: none;
+  float: left;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.triangle {
+  z-index: 0;
+  margin-left: 0;
 }
 
 .rating{
@@ -60,8 +85,7 @@
 
 .star_bar {
   width: 200px;
-  left: 45px;
-  float: right;
+  left: 70px;
   height: 15px;
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="40" ><rect fill="green" stroke-width="0" width="400" height="30"/></svg>');
   position: absolute;
@@ -69,7 +93,6 @@
 
 .star_bar:before {
   content:"";
-  float: right;
   position: absolute;
   width: 400px;
   height: 15px;
@@ -78,11 +101,9 @@
 }
 
 .characteristic {
-  content:"";
   float: right;
-  position: absolute;
-  width: 400px;
+  width: 445px;
   height: 15px;
   z-index:-1;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="40" ><rect fill="gray" stroke-width="0" width="400" height="30"/></svg>');
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="40" ><rect fill="gray" stroke-width="0" width="400" height="15"/></svg>');
 }
