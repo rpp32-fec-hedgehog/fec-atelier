@@ -61,8 +61,10 @@
 }
 
 .triangle {
+  width: 20px;
+  height: 15px;
   z-index: 0;
-  margin-left: 0;
+  position: absolute;
 }
 
 .rating{
