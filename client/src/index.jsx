@@ -14,9 +14,15 @@ class App extends React.Component {
     this.state = {
       item_id: Math.floor(Math.random() * (60563 - 59553 + 1)) + 59553
     };
+    this.changeProduct = this.changeProduct.bind(this);
   }
 
-  componentDidMount() {
+  // componentDidMount() {
+  // }
+
+  viewRelatedProduct(id) {
+    console.log(this);
+    this.setState({ item_id: 59556 });
   }
 
   render() {
@@ -25,18 +31,20 @@ class App extends React.Component {
         <h1>Atelier</h1>
         <div className="main">
           <div className="overview">
-            <Overview itemid={this.state.item_id} />
+            {/* <Overview itemid={this.state.item_id} /> */}
           </div>
-          <QA itemid={this.state.item_id} />
+          {/* <QA itemid={this.state.item_id} /> */}
           <div className="ratings">
-          <Ratings itemid={this.state.item_id} />
+            {/* <Ratings itemid={this.state.item_id} /> */}
           </div>
         </div>
         <div>
-          <RelatedItems itemId={this.state.item_id}/>
+          <RelatedItems
+            itemId={this.state.item_id}
+            changeItem={this.viewRelatedProduct} />
         </div>
         <div>
-          <Outfits itemId={this.state.item_id}/>
+          {/* <Outfits itemId={this.state.item_id} /> */}
         </div>
       </div>
     );
