@@ -108,7 +108,7 @@
 }
 
 .characteristic {
-  float: right;
+  float: left;
   width: 445px;
   height: 15px;
   z-index:-1;
