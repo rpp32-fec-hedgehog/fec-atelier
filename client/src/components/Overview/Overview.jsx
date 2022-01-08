@@ -83,10 +83,9 @@ class Overview extends React.Component {
 
   changePhoto = (e) => {
     e.preventDefault();
-    console.log(e.target.id)
     this.setState({
-      photo: this.state.styleData[this.state.selectedStyle].photos[e.target.id].url,
-      currentPhoto: Number(e.target.id)
+      photo: this.state.styleData[this.state.selectedStyle].photos[Number(e.target.id) + this.state.currentPhoto].url,
+      currentPhoto: Number(e.target.id) + this.state.currentPhoto
     });
   }
 
