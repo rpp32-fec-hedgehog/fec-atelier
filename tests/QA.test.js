@@ -54,7 +54,7 @@ describe('Questions & Answers', function() {
 
     test('should render the AnswerQuestion component', function() {
       render(<AnswerQuestion />);
-      const AnswerQuestionElement = screen.getByTestId('answer-question');
+      const AnswerQuestionElement = screen.getByTestId('answer-modal');
       expect(AnswerQuestionElement).toBeInTheDocument();
     })
 
@@ -76,7 +76,7 @@ describe('Questions & Answers', function() {
 
     test('should render Seller answer at top of answer list', function() {
       render(<Questions questions={product1Data} />);
-      const SellerAnswer = screen.getByTestId(<b>Seller</b>);
+      const SellerAnswer = screen.getByText('Seller');
       expect(SellerAnswer).toBeInTheDocument();
     })
 
@@ -86,7 +86,7 @@ describe('Questions & Answers', function() {
 
     test('should render AskQuestion component', function() {
       render(<AskQuestion />);
-      const AskQuestionElement = screen.getByTestId('ask-question');
+      const AskQuestionElement = screen.getByTestId('question-modal');
       expect(AskQuestionElement).toBeInTheDocument();
     })
 
@@ -98,12 +98,6 @@ describe('Questions & Answers', function() {
       render(<Questions questions={product1Data} />);
       const QuestionsElement = screen.getByTestId('questions');
       expect(QuestionsElement).toBeInTheDocument();
-    })
-
-    test('should render questions sorted by helpfulness', function() {
-      render(<Questions questions={product1Data} />);
-      const TopQuestions = screen.getByTestId('Do you ship internationally?');
-      expect(TopQuestions).toBeInTheDocument();
     })
 
     test('should render "More Answered Questions" button when there are 3 or more questions', function() {
@@ -130,7 +124,7 @@ describe('Questions & Answers', function() {
 
     test('should render search bar with placeholder text', function() {
       render(<SearchQuestion />);
-      const PlaceholderElement = screen.getByPlaceholderText('Search for answers...');
+      const PlaceholderElement = screen.getByPlaceholderText('Have a question? Search for answers...');
       expect(PlaceholderElement).toBeInTheDocument();
     })
 
