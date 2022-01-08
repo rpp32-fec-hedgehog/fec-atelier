@@ -42,16 +42,6 @@ class Questions extends React.Component {
     }
   }
 
-  sortByHelpfulness(questions) {
-    let sorted = _.chain(questions)
-      .sortBy(question => {return question.question_helpfulness})
-      .reverse()
-      .slice(0, this.state.questionCount)
-      .value()
-
-    return sorted;
-  }
-
   questionIsHelpful(e) {
     e.preventDefault();
     let questionClasses = e.target.className;
@@ -78,7 +68,7 @@ class Questions extends React.Component {
   render() {
     let base = [<div data-testid="questions" key="q-base">
       <ul>
-        {this.sortByHelpfulness(this.props.questions).map(q => {
+        {_.map(this.props.questions.slice(0, this.state.questionCount), q => {
           return <div className="question" data-testid={q.question_body}
             key={`${q.question_body}-${q.question_id}`}
           >
