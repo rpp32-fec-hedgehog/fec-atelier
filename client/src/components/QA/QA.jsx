@@ -97,7 +97,7 @@ class QA extends React.Component {
     let state = this.state;
     return (
       <div data-testid="qa" id="qa">
-        <h1>Questions and Answers</h1>
+        <span className="qa-title">Questions and Answers</span>
         <SearchQuestion searchQuestions={this.searchQuestions.bind(this)}/>
         <Questions questions={state.questions} updateQHelp={this.updateQuestionHelp.bind(this)}
           updateAHelp={this.updateAnswerHelp.bind(this)}
