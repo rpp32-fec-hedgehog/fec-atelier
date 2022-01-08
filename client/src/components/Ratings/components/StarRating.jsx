@@ -6,9 +6,7 @@ const StarRating = (props) => {
   const ratingWidth = roundedRating * 15;
 
   return (
-    <span>
       <div className="rating" style={{width: ratingWidth}}></div>
-    </span>
   );
 
 }

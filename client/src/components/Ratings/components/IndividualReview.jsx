@@ -17,8 +17,8 @@ const IndividualReview = (props) => {
       <div data-testid="individual-review" className="individual_review">
         <li>
           <div>
-          <span className="individual_star_rating"><StarRating star_rating={star_rating}></StarRating></span><span className="user_name_date">{reviewer_name}, {moment(date).format('LL')}</span>
-        </div>
+            <span className="individual_star_rating"><StarRating star_rating={star_rating}></StarRating></span><span className="user_name_date">{reviewer_name}, {moment(date).format('LL')}</span>
+          </div>
         <br></br> <b>{summary}</b><br></br> {body}
         <br></br>...should include pictures
         <br></br> {response}
