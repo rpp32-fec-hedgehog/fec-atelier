@@ -15,9 +15,11 @@ class App extends React.Component {
       // item_id: Math.floor(Math.random() * (60563 - 59553 + 1)) + 59553
       item_id: 59557
     };
+    this.changeProduct = this.changeProduct.bind(this);
   }
 
-  componentDidMount() {
+  changeProduct(id) {
+    this.setState({ item_id: id });
   }
 
   render() {
@@ -30,14 +32,16 @@ class App extends React.Component {
           </div>
           <QA itemid={this.state.item_id} />
           <div className="ratings">
-          <Ratings itemid={this.state.item_id} />
+            <Ratings itemid={this.state.item_id} />
           </div>
         </div>
         <div>
-          <RelatedItems itemId={this.state.item_id}/>
+          <RelatedItems
+            itemId={this.state.item_id}
+            changeProduct={this.changeProduct} />
         </div>
         <div>
-          <Outfits itemId={this.state.item_id}/>
+          <Outfits itemId={this.state.item_id} />
         </div>
       </div>
     );
