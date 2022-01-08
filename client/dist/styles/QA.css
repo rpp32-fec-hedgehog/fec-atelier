@@ -1,6 +1,12 @@
+/* ========== General ========== */
+
 #qa {
-  border: 2px solid black;
+  width: 866px;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 30px;
+  margin-bottom: 30px;
+  display: block;
 }
 
 /* ========== Questions ========== */
@@ -42,6 +48,22 @@
 .a-photo {
   width: 4%;
   height: 4%;
+}
+
+/* ========== Search Bar ========== */
+
+.qa-search-bar {
+  width: 100%;
+  height: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.qa-search-bar::placeholder {
+  padding-left: 10px;
 }
 
 /* ========== Modals ========== */
