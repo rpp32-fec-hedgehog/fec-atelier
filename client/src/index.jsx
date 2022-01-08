@@ -17,12 +17,8 @@ class App extends React.Component {
     this.changeProduct = this.changeProduct.bind(this);
   }
 
-  // componentDidMount() {
-  // }
-
-  viewRelatedProduct(id) {
-    console.log(this);
-    this.setState({ item_id: 59556 });
+  changeProduct(id) {
+    this.setState({ item_id: id });
   }
 
   render() {
@@ -31,20 +27,20 @@ class App extends React.Component {
         <h1>Atelier</h1>
         <div className="main">
           <div className="overview">
-            {/* <Overview itemid={this.state.item_id} /> */}
+            <Overview itemid={this.state.item_id} />
           </div>
-          {/* <QA itemid={this.state.item_id} /> */}
+          <QA itemid={this.state.item_id} />
           <div className="ratings">
-            {/* <Ratings itemid={this.state.item_id} /> */}
+            <Ratings itemid={this.state.item_id} />
           </div>
         </div>
         <div>
           <RelatedItems
             itemId={this.state.item_id}
-            changeItem={this.viewRelatedProduct} />
+            changeProduct={this.changeProduct} />
         </div>
         <div>
-          {/* <Outfits itemId={this.state.item_id} /> */}
+          <Outfits itemId={this.state.item_id} />
         </div>
       </div>
     );

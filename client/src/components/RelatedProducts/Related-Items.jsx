@@ -6,14 +6,12 @@ import { Item } from './Product-Card.jsx';
 
 class RelatedItems extends React.Component {
   constructor(props) {
-    console.log('Item Id', props.itemId)
     super(props)
     this.state = {
       currentItem: props.itemId,
       relatedItems: []
     };
-    this.onclick = this.onclick.bind(this);
-    this.changeProduct = props.changeItem;
+    this.changeProduct = props.changeProduct;
   }
 
   componentDidMount() {
@@ -27,9 +25,6 @@ class RelatedItems extends React.Component {
     })
   }
 
-  onclick() {
-    this.changeProduct()
-  }
 
   render() {
     if (!this.state.relatedItems.length) {
@@ -50,7 +45,7 @@ class RelatedItems extends React.Component {
             item={item}
             key={i}
             type={'related'}
-            // updateProduct={this.changeProduct}
+            changeProduct={this.changeProduct}
           />)
         })}
       </Carousel>

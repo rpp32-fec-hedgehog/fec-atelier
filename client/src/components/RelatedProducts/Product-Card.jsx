@@ -3,20 +3,19 @@ import $ from 'jquery';
 
 class ProductCard extends React.Component {
   constructor(props) {
-    console.log('How many times?')
     super(props)
     this.state = {
       type: props.type,
       key: props.i,
       item: props.item
     };
-    this.newThing = this.newThing.bind(this);
-    // this.newProduct = props.updateProduct
+    this.handleClick = this.handleClick.bind(this);
+    this.changeProduct = props.changeProduct
   }
 
-  newThing(e) {
+  handleClick(e) {
     e.preventDefault();
-    this.newProduct(this.props.item.id);
+    this.changeProduct(this.props.item.id);
   }
 
   render() {
@@ -24,7 +23,7 @@ class ProductCard extends React.Component {
       return (
         <div
           className='product_card related_product'
-          // onClick={this.newThing}
+          onClick={this.handleClick}
           item={this.state.id}>
 
           <span>
