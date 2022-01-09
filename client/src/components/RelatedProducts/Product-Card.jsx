@@ -1,33 +1,63 @@
 import React from 'react';
 import $ from 'jquery';
 
-const ProductCard = (props) => {
-  if (props.type === 'related') {
-    return (
-      <div className='product_card related_product'>
-        <img className="related_product_image" src={props.item.styles[0].photos[0].thumbnail_url} />
-        <li key={props.i}>{props.item.category}</li>
-        <li key={props.i}>{props.item.name}</li>
-        <li key={props.i}>{props.item.default_price}</li>
-        <li key={props.i}>{props.item.slogan}</li>
+class ProductCard extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      type: props.type,
+      key: props.i,
+      item: props.item
+    };
+    this.handleClick = this.handleClick.bind(this);
+    this.changeProduct = props.changeProduct
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+    this.changeProduct(this.props.item.id);
+  }
+
+  render() {
+    if (this.state.type === 'related') {
+      return (
+        <div
+          className='product_card related_product'
+          onClick={this.handleClick}
+          item={this.state.id}>
+
+          <span>
+            <img
+              className="related_product_image"
+              src={this.state.item.styles[0].photos[0].thumbnail_url}
+            />
+            <ul>
+              <li>{this.state.item.category}</li>
+              <li>{this.state.item.name}</li>
+              <li>{this.state.item.default_price}</li>
+              <li>{this.state.item.slogan}</li>
+            </ul>
+          </span>
+
+        </div>
+      )
+    } else {
+      return (
+      <div className="product_card">
+        <div>
+          <div>Pending Item Image</div>
+          <img placeholder="Images Will Import as outfit items are added"/>
+        </div>
+        <ul>
+          <li key={this.state.i}>Item Catergory</li>
+          <li key={this.state.i}>Item Name</li>
+          <li key={this.state.i}>Item Price</li>
+          <li key={this.state.i}>Fancy Item Slogan</li>
+        </ul>
       </div>
-    )
-  } else {
-    return (
-    <div className="product_card">
-      <div>
-        <div>Pending Item Image</div>
-        <img placeholder="Images Will Import as outfit items are added"/>
-      </div>
-      <ul>
-        <li key={props.i}>Item Catergory</li>
-        <li key={props.i}>Item Name</li>
-        <li key={props.i}>Item Price</li>
-        <li key={props.i}>Fancy Item Slogan</li>
-      </ul>
-    </div>
-    )
+      )
+    }
   }
 };
 
-export default ProductCard
+export default ProductCard;

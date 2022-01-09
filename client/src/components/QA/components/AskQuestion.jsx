@@ -3,8 +3,6 @@ import Modal from 'react-modal';
 import _ from 'underscore';
 import $ from 'jquery';
 
-Modal.setAppElement('#app');
-
 class AskQuestion extends React.Component {
   constructor(props) {
     super(props);
@@ -125,7 +123,7 @@ class AskQuestion extends React.Component {
     };
 
     return (
-      <div className="question-modal">
+      <div className="question-modal" data-testid="question-modal">
         <button className="ask-question-btn" onClick={this.openModal.bind(this)}>Ask a Question</button>
         <Modal
           isOpen={this.state.modalOpen}

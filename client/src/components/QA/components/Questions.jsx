@@ -12,31 +12,34 @@ class Questions extends React.Component {
       sortedQuestions: [],
       totalQuestions: 0,
       questionCount: 2,
+      questionTracker: 1,
       votes: []
     };
   }
 
   handleQuestions(e) {
     e.preventDefault();
+    let tracker;
+    if (this.state.questionTracker === 1) {
+      tracker = 2;
+    } else if (this.state.questionTracker === 2) {
+      tracker = 1;
+    }
+
+    if (tracker === 2) {
+      this.props.getQAData();
+    }
+
     if (this.props.questions.length > this.state.questionCount) {
       this.setState({
-        questionCount: this.state.questionCount += 2
+        questionCount: this.state.questionCount += 2,
+        questionTracker: tracker
       })
     } else {
       this.setState({
         questionCount: this.state.questionCount -= 2
       })
     }
-  }
-
-  sortByHelpfulness(questions) {
-    let sorted = _.chain(questions)
-      .sortBy(question => {return question.question_helpfulness})
-      .reverse()
-      .slice(0, this.state.questionCount)
-      .value()
-
-    return sorted;
   }
 
   questionIsHelpful(e) {
@@ -65,7 +68,7 @@ class Questions extends React.Component {
   render() {
     let base = [<div data-testid="questions" key="q-base">
       <ul>
-        {this.sortByHelpfulness(this.props.questions).map(q => {
+        {_.map(this.props.questions.slice(0, this.state.questionCount), q => {
           return <div className="question" data-testid={q.question_body}
             key={`${q.question_body}-${q.question_id}`}
           >
@@ -80,7 +83,7 @@ class Questions extends React.Component {
                 product_id={this.props.product_id}
                 question_body={q.question_body} />
               <div>
-                <span className="a-label">A: </span>
+                <span className="a-label"><b>A: </b></span>
                 <AnswerList answers={q.answers} question_id={q.question_id}
                   updateAHelp={this.props.updateAHelp} />
               </div>

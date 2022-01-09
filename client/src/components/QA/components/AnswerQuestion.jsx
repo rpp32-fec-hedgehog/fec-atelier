@@ -4,8 +4,6 @@ import _ from 'underscore';
 import $ from 'jquery';
 // import FILESTACK_API_KEY from '../../../../../env/config.js';
 
-Modal.setAppElement('#app');
-
 class AnswerQuestion extends React.Component {
   constructor(props) {
     super(props);
@@ -158,7 +156,7 @@ class AnswerQuestion extends React.Component {
     };
 
     return (
-      <div className="answer-modal">
+      <div className="answer-modal" data-testid="answer-modal">
         <span className="add-answer" onClick={this.openModal.bind(this)}>Add Answer</span>
         <Modal
           isOpen={this.state.modalOpen}
