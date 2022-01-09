@@ -2,6 +2,7 @@
 
 #qa {
   width: 866px;
+  max-height: 99vh;
   margin-left: auto;
   margin-right: auto;
   margin-top: 30px;
@@ -17,8 +18,9 @@
 /* ========== Questions ========== */
 
 .q-base {
-  max-height: 100%;
-  overflow: auto;
+  max-height: 75vh;
+  overflow-y: auto;
+  margin-bottom: 15px;
 }
 
 .question {
@@ -30,6 +32,7 @@
 .q-body {
   font-size: 15px;
   font-weight: bold;
+  margin-bottom: 15px;
 }
 
 .q-helpful {
