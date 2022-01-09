@@ -93,7 +93,7 @@ class QA extends React.Component {
     this.getQAData();
   }
 
-  UNSAFE_componentWillUpdate() {
+  componentWillUpdate() {
     this.getQAData();
   }
 
