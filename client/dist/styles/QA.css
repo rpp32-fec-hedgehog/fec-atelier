@@ -75,8 +75,16 @@
   margin-left: 20px
 }
 
+.answer-body {
+  font-size: 12px;
+}
+
+.answerer {
+  font-size: 11px;
+}
+
 .a-helpful {
-  margin-left: 10%;
+  font-size: 11px;
 }
 
 .a-photo {
@@ -153,11 +161,11 @@ input[type=text] {
 }
 
 .a-help-count {
-  margin-left: 5px;
+  font-size: 11px;
 }
 
 .report, .reported {
-  margin-left: 20px
+  font-size: 11px;
 }
 
 .ask-question, .more-q {
