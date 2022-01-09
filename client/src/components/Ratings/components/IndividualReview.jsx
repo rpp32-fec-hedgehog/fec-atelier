@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import StarRating from './StarRating.jsx';
+import ReviewImages from './ReviewImages.jsx'
 
 class IndividualReview extends React.Component {
   constructor(props) {
@@ -34,6 +35,7 @@ class IndividualReview extends React.Component {
       const response = this.props.response;
       const body = this.state.body;
       const truncatedBody = this.state.truncatedBody;
+      const photos = this.props.photos;
 
       return (
         <div data-testid="individual-review" className="individual_review">
@@ -43,7 +45,7 @@ class IndividualReview extends React.Component {
             </div>
           <br></br><b>{summary}</b>
           {this.state.truncated ? <div>{truncatedBody}<br></br><button onClick={this.showMore.bind(this)} >Show More</button></div>: <div>{body}</div>}
-          <br></br>...should include pictures
+          <br></br><ReviewImages photos={photos}></ReviewImages>
           <br></br> {recommend ? <img src={'images/transparent-background-check-mark.png'} alt='loading' width="10" height="10"/>: null}{recommend ? " I recommend this product.": null}
           <br></br><br></br>
           {response ? <div className="review_response">Response from seller:<br></br>{response}</div>: null}

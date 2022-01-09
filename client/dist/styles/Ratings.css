@@ -59,8 +59,12 @@
 
 .review_response {
   background-color: rgb(196, 230, 218);
-  /* margin-left: 25px;
-  margin-right: 25px; */
+}
+
+.review_image {
+  max-width: 3%;
+  height: auto;
+  float: left;
 }
 
 .left {
