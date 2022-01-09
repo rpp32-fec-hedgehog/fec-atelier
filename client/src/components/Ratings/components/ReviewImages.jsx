@@ -14,7 +14,6 @@ class ReviewImages extends React.Component {
 
   openModal = (e) => {
     e.preventDefault();
-    console.log('synthetic event: ', e.target.dataset.mssg);
     this.setState({
       modalOpen: true,
       activePicURL: e.target.dataset.mssg
@@ -45,7 +44,6 @@ class ReviewImages extends React.Component {
               </ul>
             </div>
             <Modal isOpen={this.state.modalOpen} className="modalWindow">
-              {/* <button onClick={this.closeModal}>Close</button> */}
               <img className="modal_image" src={this.state.activePicURL} onClick={this.closeModal}></img>
             </Modal>
           </div>
