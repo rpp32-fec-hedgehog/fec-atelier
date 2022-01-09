@@ -102,13 +102,13 @@ describe('Questions & Answers', function() {
 
     test('should render "More Answered Questions" button when there are 3 or more questions', function() {
       render(<Questions questions={product1Data} />);
-      const TopQuestions = screen.getByText('More Answered Questions');
+      const TopQuestions = screen.getByText('MORE ANSWERED QUESTIONS');
       expect(TopQuestions).toBeInTheDocument();
     })
 
     test('should NOT render "More Answered Questions" button when there are 2 or less questions', function() {
       render(<Questions questions={product2Data} />);
-      const TopQuestions = screen.queryByText('More Answered Questions');
+      const TopQuestions = screen.queryByText('MORE ANSWERED QUESTIONS');
       expect(TopQuestions).toBeNull();
     })
 
@@ -124,7 +124,7 @@ describe('Questions & Answers', function() {
 
     test('should render search bar with placeholder text', function() {
       render(<SearchQuestion />);
-      const PlaceholderElement = screen.getByPlaceholderText('Have a question? Search for answers...');
+      const PlaceholderElement = screen.getByPlaceholderText('HAVE A QUESTION? SEARCH FOR ANSWERS...');
       expect(PlaceholderElement).toBeInTheDocument();
     })
 
