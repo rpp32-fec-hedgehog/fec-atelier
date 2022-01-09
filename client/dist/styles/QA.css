@@ -2,6 +2,7 @@
 
 #qa {
   width: 866px;
+  max-height: 99vh;
   margin-left: auto;
   margin-right: auto;
   margin-top: 30px;
@@ -16,6 +17,12 @@
 
 /* ========== Questions ========== */
 
+.q-base {
+  max-height: 75vh;
+  overflow-y: auto;
+  margin-bottom: 15px;
+}
+
 .question {
   margin-top: 5px;
   margin-bottom: 10px;
@@ -23,11 +30,33 @@
 }
 
 .q-body {
+  font-size: 15px;
   font-weight: bold;
+  margin-bottom: 15px;
 }
 
 .q-helpful {
-  margin-left: 50%;
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.q-header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.q-bar {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+
+.vertical-bar {
+  font-size: 11px;
+  font-weight: lighter;
+  margin-top: 3px;
 }
 
 /* ========== Answers ========== */
@@ -69,7 +98,7 @@
 
 .qa-search-bar {
   width: 95%;
-  height: 52px;
+  height: 53px;
   border: 0px;
   outline: none;
 }
@@ -114,7 +143,13 @@ input[type=text] {
 /* ========== Clickables ========== */
 
 .q-help-count {
-  margin-left: 5px;
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.add-answer {
+  font-size: 11px;
+  margin: 0 auto;
 }
 
 .a-help-count {
@@ -125,10 +160,37 @@ input[type=text] {
   margin-left: 20px
 }
 
-.add-answer {
-  margin-left: 20px;
-}
-
 .ask-question, .more-q {
   float: left;
+}
+
+.more-q {
+  width: 239px;
+  height: 55px;
+  background-color: white;
+  border: 1px solid black;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ask-question-btn {
+  width: 179px;
+  height: 55px;
+  margin-left: 16px;
+  background-color: white;
+  border: 1px solid black;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.more-q:hover, .ask-question-btn:hover {
+  background: lightgray;
+}
+
+.more-q:active, .ask-question-btn:active {
+  background: gray;
+}
+
+.qa-plus-icon {
+  font-size: 14px;
 }

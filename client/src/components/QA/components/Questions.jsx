@@ -66,22 +66,27 @@ class Questions extends React.Component {
   }
 
   render() {
-    let base = [<div data-testid="questions" key="q-base">
+    let base = [<div data-testid="questions" key="q-base" className="q-base">
       <ul>
         {_.map(this.props.questions.slice(0, this.state.questionCount), q => {
           return <div className="question" data-testid={q.question_body}
             key={`${q.question_body}-${q.question_id}`}
           >
             <li key={`q-${q.question_id}`}>
-              <span className="q-body">Q: {q.question_body}</span>
-              <span className="q-helpful">Helpful?</span>
-              <span className={`q-help-count q-help-${q.question_id}-${q.question_helpfulness}`}
-                onClick={this.questionIsHelpful.bind(this)}>
-                Yes{`(${q.question_helpfulness})`}
-              </span>
-              <AnswerQuestion question_id={q.question_id} getQAData={this.props.getQAData}
-                product_id={this.props.product_id}
-                question_body={q.question_body} />
+              <div className="q-header">
+                <span className="q-body">Q: {q.question_body}</span>
+                <div className="q-bar">
+                  <span className="q-helpful">Helpful?</span>
+                  <span className={`q-help-count q-help-${q.question_id}-${q.question_helpfulness}`}
+                    onClick={this.questionIsHelpful.bind(this)}>
+                    <u>Yes</u>&nbsp;{`(${q.question_helpfulness})`}
+                  </span>
+                  <span className="vertical-bar">|</span>
+                  <AnswerQuestion question_id={q.question_id} getQAData={this.props.getQAData}
+                    product_id={this.props.product_id}
+                    question_body={q.question_body} />
+                </div>
+              </div>
               <div>
                 <span className="a-label"><b>A: </b></span>
                 <AnswerList answers={q.answers} question_id={q.question_id}
@@ -96,7 +101,7 @@ class Questions extends React.Component {
     let totalQs = this.props.questions.length;
     let more = <button key="more-q" className="more-q"
       onClick={this.handleQuestions.bind(this)}>
-        More Answered Questions
+        MORE ANSWERED QUESTIONS
       </button>;
     let addQuestion = <AskQuestion key="ask-question" className="ask-question"
       getQAData={this.props.getQAData}

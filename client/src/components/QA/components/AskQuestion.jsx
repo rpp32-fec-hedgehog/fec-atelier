@@ -2,6 +2,8 @@ import React from 'react';
 import Modal from 'react-modal';
 import _ from 'underscore';
 import $ from 'jquery';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faPlus} from '@fortawesome/free-solid-svg-icons'
 
 class AskQuestion extends React.Component {
   constructor(props) {
@@ -124,7 +126,10 @@ class AskQuestion extends React.Component {
 
     return (
       <div className="question-modal" data-testid="question-modal">
-        <button className="ask-question-btn" onClick={this.openModal.bind(this)}>Ask a Question</button>
+        <button className="ask-question-btn" onClick={this.openModal.bind(this)}>
+          ASK A QUESTION&nbsp;&nbsp;&nbsp;
+          <FontAwesomeIcon className="qa-plus-icon" icon={faPlus}></FontAwesomeIcon>
+        </button>
         <Modal
           isOpen={this.state.modalOpen}
           style={testStyles}

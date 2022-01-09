@@ -157,7 +157,7 @@ class AnswerQuestion extends React.Component {
 
     return (
       <div className="answer-modal" data-testid="answer-modal">
-        <span className="add-answer" onClick={this.openModal.bind(this)}>Add Answer</span>
+        <span className="add-answer" onClick={this.openModal.bind(this)}><u>Add Answer</u></span>
         <Modal
           isOpen={this.state.modalOpen}
           style={testStyles}
