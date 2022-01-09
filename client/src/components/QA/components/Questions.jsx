@@ -73,15 +73,20 @@ class Questions extends React.Component {
             key={`${q.question_body}-${q.question_id}`}
           >
             <li key={`q-${q.question_id}`}>
-              <span className="q-body">Q: {q.question_body}</span>
-              <span className="q-helpful">Helpful?</span>
-              <span className={`q-help-count q-help-${q.question_id}-${q.question_helpfulness}`}
-                onClick={this.questionIsHelpful.bind(this)}>
-                Yes{`(${q.question_helpfulness})`}
-              </span>
-              <AnswerQuestion question_id={q.question_id} getQAData={this.props.getQAData}
-                product_id={this.props.product_id}
-                question_body={q.question_body} />
+              <div className="q-header">
+                <span className="q-body">Q: {q.question_body}</span>
+                <div className="q-bar">
+                  <span className="q-helpful">Helpful?</span>
+                  <span className={`q-help-count q-help-${q.question_id}-${q.question_helpfulness}`}
+                    onClick={this.questionIsHelpful.bind(this)}>
+                    <u>Yes</u>&nbsp;{`(${q.question_helpfulness})`}
+                  </span>
+                  <span className="vertical-bar">|</span>
+                  <AnswerQuestion question_id={q.question_id} getQAData={this.props.getQAData}
+                    product_id={this.props.product_id}
+                    question_body={q.question_body} />
+                </div>
+              </div>
               <div>
                 <span className="a-label"><b>A: </b></span>
                 <AnswerList answers={q.answers} question_id={q.question_id}
