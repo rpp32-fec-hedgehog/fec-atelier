@@ -13,6 +13,7 @@ class ReviewImages extends React.Component {
 
   openModal = (e) => {
     e.preventDefault();
+    console.log('synthetic event: ', e.target.dataset.mssg);
     this.setState({
       modalOpen: true
     });
@@ -29,7 +30,6 @@ class ReviewImages extends React.Component {
 
     if (this.props.photos) {
       if (this.props.photos.length > 0) {
-        console.log('review image props: ', this.props.photos);
         const photos = this.props.photos;
         return (
           <div className="reviewImages" data-testid="review-images">
@@ -37,13 +37,10 @@ class ReviewImages extends React.Component {
               <ul className="product_breakdown">
                 {photos.map((url) =>
                   <li key={url.id}>
-                    <img className="review_image" src={url.url} alt="Loading"></img>
+                    <img className="review_image" src={url.url} alt="Loading" data-mssg={url.id} onClick={this.openModal}></img>
                   </li>
                 )}
               </ul>
-              {/* <ul>
-                {this.props.photos ? <li><img src={this.props.photos[0].url} alt="Loading" style="width:20%"></img></li>: null}
-              </ul> */}
             </div>
             <Modal isOpen={this.state.modalOpen} className="modalWindow">
               <button onClick={this.closeModal}>X</button>
