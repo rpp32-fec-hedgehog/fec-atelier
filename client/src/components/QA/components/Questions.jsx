@@ -96,7 +96,7 @@ class Questions extends React.Component {
     let totalQs = this.props.questions.length;
     let more = <button key="more-q" className="more-q"
       onClick={this.handleQuestions.bind(this)}>
-        More Answered Questions
+        MORE ANSWERED QUESTIONS
       </button>;
     let addQuestion = <AskQuestion key="ask-question" className="ask-question"
       getQAData={this.props.getQAData}
