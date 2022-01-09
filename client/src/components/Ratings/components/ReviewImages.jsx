@@ -5,7 +5,8 @@ class ReviewImages extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      modalOpen: false
+      modalOpen: false,
+      activePicURL: ''
     }
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -15,7 +16,8 @@ class ReviewImages extends React.Component {
     e.preventDefault();
     console.log('synthetic event: ', e.target.dataset.mssg);
     this.setState({
-      modalOpen: true
+      modalOpen: true,
+      activePicURL: e.target.dataset.mssg
     });
   }
 
@@ -37,13 +39,14 @@ class ReviewImages extends React.Component {
               <ul className="product_breakdown">
                 {photos.map((url) =>
                   <li key={url.id}>
-                    <img className="review_image" src={url.url} alt="Loading" data-mssg={url.id} onClick={this.openModal}></img>
+                    <img className="review_image" src={url.url} alt="Loading" data-mssg={url.url} onClick={this.openModal}></img>
                   </li>
                 )}
               </ul>
             </div>
             <Modal isOpen={this.state.modalOpen} className="modalWindow">
-              <button onClick={this.closeModal}>X</button>
+              {/* <button onClick={this.closeModal}>Close</button> */}
+              <img className="modal_image" src={this.state.activePicURL} onClick={this.closeModal}></img>
             </Modal>
           </div>
         )
