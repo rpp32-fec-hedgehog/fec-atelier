@@ -92,10 +92,6 @@ class QA extends React.Component {
     this.getQAData();
   }
 
-  // componentWillUpdate() {
-  //   this.getQAData();
-  // }
-
   render() {
     let state = this.state;
     return (
