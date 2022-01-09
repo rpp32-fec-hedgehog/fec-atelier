@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductBreakdownItem from './ProductBreakdownItem.jsx'
+import ProductBreakdownItem from './ProductBreakdownItem.jsx';
 
 const ProductBreakdowns = (props) => {
 
