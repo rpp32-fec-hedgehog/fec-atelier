@@ -73,13 +73,17 @@ class Answers extends React.Component {
         <div>{_.map(answer.photos, photo => {
           return <img className="a-photo" key={photo} src={photo}></img>
         })}</div>
-        <span className="answerer">by {answerer}, {moment(answer.date).format('LL')}</span>
-        <span className="a-helpful">Helpful?</span>
-        <span className={`a-help-count a-help-${answer.id}-${answer.helpfulness}`}
-          onClick={this.answerIsHelpful.bind(this)}>
-          Yes{`(${answer.helpfulness})`}
-        </span>
-        {reportButton}
+        <div className="a-bar">
+          <span className="answerer">by {answerer}, {moment(answer.date).format('LL')}</span>
+          <span className="a-vertical-bar">|</span>
+          <span className="a-helpful">Helpful?</span>
+          <span className={`a-help-count a-help-${answer.id}-${answer.helpfulness}`}
+            onClick={this.answerIsHelpful.bind(this)}>
+            Yes{`(${answer.helpfulness})`}
+          </span>
+          <span className="a-vertical-bar">|</span>
+          {reportButton}
+        </div>
       </div>
     </ul>)
   }
