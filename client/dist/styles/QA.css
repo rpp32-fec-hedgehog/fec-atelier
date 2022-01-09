@@ -11,7 +11,7 @@
 }
 
 .qa-title {
-  font-size: 15px;
+  font-size: 13px;
 }
 
 /* ========== Questions ========== */
@@ -61,7 +61,7 @@
   width: 100%;
   margin-top: 15px;
   margin-bottom: 15px;
-  border: 2px solid black;
+  border: 1px solid black;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -69,7 +69,7 @@
 
 .qa-search-bar {
   width: 95%;
-  height: 40px;
+  height: 53px;
   border: 0px;
   outline: none;
 }
@@ -131,4 +131,35 @@ input[type=text] {
 
 .ask-question, .more-q {
   float: left;
+}
+
+.more-q {
+  width: 239px;
+  height: 55px;
+  background-color: white;
+  border: 1px solid black;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ask-question-btn {
+  width: 179px;
+  height: 55px;
+  margin-left: 16px;
+  background-color: white;
+  border: 1px solid black;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.more-q:hover, .ask-question-btn:hover {
+  background: lightgray;
+}
+
+.more-q:active, .ask-question-btn:active {
+  background: gray;
+}
+
+.qa-plus-icon {
+  font-size: 14px;
 }
