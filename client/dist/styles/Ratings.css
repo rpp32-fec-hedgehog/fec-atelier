@@ -57,6 +57,12 @@
   float: left;
 }
 
+.review_response {
+  background-color: rgb(196, 230, 218);
+  /* margin-left: 25px;
+  margin-right: 25px; */
+}
+
 .left {
   float: left;
 }

@@ -9,7 +9,7 @@ class Ratings extends React.Component {
     super(props);
     this.state = {
       item_id: 59557,
-      ratings: [{review_id: 1, summary: 'summary1'}, {review_id: 2, summary: 'summary2'}],
+      ratings: [{review_id: 1, summary: 'summary1', body: 'body1'}, {review_id: 2, summary: 'summary2', body: 'body2'}],
       ratings_meta: {}
     };
     this.getAllReviews = this.getAllReviews.bind(this);
