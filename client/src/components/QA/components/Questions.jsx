@@ -66,7 +66,7 @@ class Questions extends React.Component {
   }
 
   render() {
-    let base = [<div data-testid="questions" key="q-base">
+    let base = [<div data-testid="questions" key="q-base" className="q-base">
       <ul>
         {_.map(this.props.questions.slice(0, this.state.questionCount), q => {
           return <div className="question" data-testid={q.question_body}

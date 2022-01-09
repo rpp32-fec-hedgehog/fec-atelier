@@ -11,7 +11,7 @@ class QA extends React.Component {
     this.state = {
       originalQuestions: [],
       questions: [],
-      page: 0
+      page: 1
     };
   }
 
@@ -36,20 +36,19 @@ class QA extends React.Component {
   }
 
   getQAData() {
-    if (this.state.originalQuestions.length % 2 !== 1) {
-      $.ajax({
-        url: `/qa/questions/${this.props.itemid}/${this.state.page + 1}`,
-        method: 'GET',
-        success: data => {
-          let newQuestions = _.flatten(this.state.originalQuestions.slice().concat(data.results));
-          this.setState({
-            questions: newQuestions,
-            originalQuestions: newQuestions,
-            page: this.state.page + 1
-          })
-        }
-      })
-    }
+    $.ajax({
+      url: `/qa/questions/${this.props.itemid}/${this.state.page}`,
+      method: 'GET',
+      success: data => {
+        let newQuestions = _.flatten(this.state.originalQuestions.slice().concat(data.results));
+        let newPage = this.state.page + 1;
+        this.setState({
+          questions: newQuestions,
+          originalQuestions: newQuestions,
+          page: newPage
+        })
+      }
+    })
   }
 
   updateQuestionHelp(question_id) {
