@@ -57,7 +57,7 @@ class Answers extends React.Component {
     let answer = this.props.answer;
     let answerer = answer.answerer_name;
     if (answerer === 'Seller') {
-      answerer = <b>{answerer}</b>
+      answerer = <b>Seller</b>
     }
 
     let reportButton = <span className={`report report-${answer.id}`}

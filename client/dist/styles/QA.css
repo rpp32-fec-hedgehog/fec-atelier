@@ -1,6 +1,17 @@
+/* ========== General ========== */
+
 #qa {
-  border: 2px solid black;
+  width: 866px;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 30px;
+  margin-bottom: 30px;
+  display: block;
+  font-family: sans-serif;
+}
+
+.qa-title {
+  font-size: 13px;
 }
 
 /* ========== Questions ========== */
@@ -42,6 +53,43 @@
 .a-photo {
   width: 4%;
   height: 4%;
+}
+
+/* ========== Search Bar ========== */
+
+.qa-search {
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border: 1px solid black;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.qa-search-bar {
+  width: 95%;
+  height: 52px;
+  border: 0px;
+  outline: none;
+}
+
+.qa-search-bar::placeholder {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+input[type=text] {
+  padding-left: 10px;
+  font-size: 16px;
+}
+
+.q-search-icon {
+  padding-right: 10px;
+  margin-top: auto;
+  margin-bottom: auto;
+  display: inline-block;
+  font-size: 14px;
 }
 
 /* ========== Modals ========== */

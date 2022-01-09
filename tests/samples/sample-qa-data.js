@@ -35,7 +35,7 @@ const product1Data = [
         "id": 5181456,
         "body": "good good good good pizza shoes",
         "date": "2021-11-21T00:00:00.000Z",
-        "answerer_name": "pizza",
+        "answerer_name": "Seller",
         "helpfulness": 0,
         "photos": [
           "https://ucarecdn.com/87015f51-7e80-4761-833c-74581e0be910/"
