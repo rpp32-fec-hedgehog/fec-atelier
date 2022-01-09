@@ -124,7 +124,7 @@ class AskQuestion extends React.Component {
 
     return (
       <div className="question-modal" data-testid="question-modal">
-        <button className="ask-question-btn" onClick={this.openModal.bind(this)}>Ask a Question</button>
+        <button className="ask-question-btn" onClick={this.openModal.bind(this)}>ASK A QUESTION</button>
         <Modal
           isOpen={this.state.modalOpen}
           style={testStyles}
