@@ -25,14 +25,11 @@
 
 .question {
   list-style-type: none;
-  /* margin-top: 15px;
-  margin-bottom: 15px; */
 }
 
 .q-body {
   font-size: 15px;
   font-weight: bold;
-  /* margin-bottom: 15px; */
 }
 
 .q-helpful {
@@ -178,7 +175,7 @@
   font-weight: bold;
 }
 
-input[type=text] {
+input.qa-search-bar {
   padding-left: 10px;
   font-size: 16px;
 }
@@ -191,18 +188,93 @@ input[type=text] {
   font-size: 14px;
 }
 
-/* ========== Modals ========== */
+/* ========== Question Modal ========== */
 
-.answer-modal {
-  display: inline;
+.your-question, .your-answer {
+  height: 125px;
 }
 
 .qa-modal {
   width: 100%;
 }
 
-.your-question, .your-answer {
-  height: 125px;
+.close-qa-modal {
+  font-size: 13px;
+  cursor: default;
+}
+
+.close-qa-modal:active {
+  color: gray;
+}
+
+.q-modal-top {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.q-modal-ask {
+  font-size: 13px;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.q-modal-form {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 15px;
+}
+
+.q-modal-input {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 7px;
+}
+
+.your-q-label, .nickname-q-label, .email-q-label {
+  font-size: 12px;
+}
+
+.your-q {
+  font-family: sans-serif;
+  font-size: 13px;
+  display: flex;
+  width: 755px;
+  height: 120px;
+  padding: 3px;
+  border: 1px solid black;
+}
+
+.q-modal-sub-form {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.nickname-q, .email-q {
+  font-family: sans-serif;
+  width: 365px;
+  border: 1px solid black;
+}
+
+input.nickname-q, input.email-q {
+  font-size: 13px;
+  padding: 3px;
+}
+
+.nickname-q::placeholder, .email-q::placeholder {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.privacy-msg {
+  font-size: 11px;
+}
+
+/* ========== Answer Modal ========== */
+
+.answer-modal {
+  display: inline;
 }
 
 .a-modal-thumbnail {
