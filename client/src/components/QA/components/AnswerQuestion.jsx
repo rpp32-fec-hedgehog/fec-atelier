@@ -2,7 +2,9 @@ import React from 'react';
 import Modal from 'react-modal';
 import _ from 'underscore';
 import $ from 'jquery';
-// import FILESTACK_API_KEY from '../../../../../env/config.js';
+// import API_KEYS from '../../../../../env/config.js';
+
+// Modal.setAppElement('#app');
 
 class AnswerQuestion extends React.Component {
   constructor(props) {
@@ -15,7 +17,8 @@ class AnswerQuestion extends React.Component {
       product_name: '',
       modalOpen: false,
       invalid: '',
-      addPhoto: <button onClick={this.addPhotos.bind(this)}>Add Photos</button>
+      thumbnails: <></>,
+      addPhoto: <button className="add-a-photo" onClick={this.addPhotos.bind(this)}>ADD PHOTOS</button>
     };
   }
 
@@ -88,7 +91,7 @@ class AnswerQuestion extends React.Component {
 
   addPhotos(e) {
     e.preventDefault();
-    // const client = filestack.init(process.env.FILESTACK_API_KEY);
+    // const client = filestack.init(API_KEYS.FILESTACK_API_KEY);
     // let options = {
     //   fromSources: ['local_file_system'],
     //   accept: ['image/*'],
@@ -102,7 +105,12 @@ class AnswerQuestion extends React.Component {
     //   onFileUploadFinished: file => {
     //     let updatedPhotos = this.state.photos.slice();
     //     updatedPhotos.push(file.url);
-    //     this.setState({photos: updatedPhotos});
+
+    //     let updatedThumbnails = <div className="a-modal-thumbnails">{_.map(updatedPhotos, photo => {
+    //       return <img className="a-modal-thumbnail" key={photo} src={photo}></img>
+    //     })}</div>
+
+    //     this.setState({photos: updatedPhotos, thumbnails: updatedThumbnails});
     //     if (this.state.photos.length === 5) {
     //       this.setState({addPhoto: <></>})
     //     }
@@ -139,19 +147,22 @@ class AnswerQuestion extends React.Component {
         }
       })
     } else {
-      this.setState({invalid: 'You must enter the following:'});
+      this.setState({invalid: <div className="invalid-qa">You must enter the following:</div>});
     }
   }
 
   render() {
-    const testStyles = {
+    const modalStyle = {
       content: {
         top: '50%',
         left: '50%',
         right: 'auto',
         bottom: 'auto',
         marginRight: '-50%',
-        transform: 'translate(-50%, -50%)'
+        transform: 'translate(-50%, -50%)',
+        border: '1px solid #000',
+        borderRadius: '0px',
+        fontFamily: 'sans-serif'
       }
     };
 
@@ -160,36 +171,44 @@ class AnswerQuestion extends React.Component {
         <span className="add-answer" onClick={this.openModal.bind(this)}><u>Add Answer</u></span>
         <Modal
           isOpen={this.state.modalOpen}
-          style={testStyles}
+          style={modalStyle}
           contentLabel="Submit Your Answer"
         >
-          <h2>Submit Your Answer</h2>
-          <h4>{this.state.product_name}: {this.props.question_body}</h4>
-          <div className="invalid-a">{this.state.invalid}</div>
-          <form>
-            <label htmlFor="your-answer">{'Your Answer (mandatory)'}</label>
-            <textarea className="qa-modal your-answer" maxLength="1000"
-              onChange={this.handleAnswer.bind(this)}>
-            </textarea>
-            <label htmlFor="nickname-a">{'What is your nickname? (mandatory)'}</label>
-            <input type="text" className="qa-modal nickname-a" maxLength="60" placeholder='Example: jack543!'
-              onChange={this.handleNickname.bind(this)}>
-            </input>
-            <div className="privacy-msg">For privacy reasons, do not use your full name or email address</div>
-            <label htmlFor="email-a">{'Your Email (mandatory)'}</label>
-            <input type="text" className="qa-modal email-a" maxLength="60" placeholder='Example: jack@email.com'
-              onChange={this.handleEmail.bind(this)}>
-            </input>
-            <div className="privacy-msg">For authentication reasons, you will not be emailed</div>
-            <div className="qa-thumbnails">{_.map(this.state.photos, photo => {
-              return <img className="a-modal-thumbnail" key={photo} src={photo}></img>
-            })}</div>
-            <div className="add-a-photo">
-              {this.state.addPhoto}
+          <div className='qa-modal-top'>
+            <span className="q-modal-answer">Submit your answer</span>
+            <span className="close-qa-modal" onClick={this.closeModal.bind(this)}>X</span>
+          </div>
+          <span className="a-modal-subtitle">{this.state.product_name}: {this.props.question_body}</span>
+          {this.state.invalid}
+          <div className="qa-modal-form">
+            <div className="qa-modal-input">
+              <label className="qa-modal-label" htmlFor="your-a">{'Your Answer (mandatory)'}</label>
+              <textarea className="qa-modal your-a" maxLength="1000"
+                onChange={this.handleAnswer.bind(this)}>
+              </textarea>
             </div>
-          </form>
-          <button onClick={this.closeModal.bind(this)}>Close</button>
-          <button onClick={this.submitAnswer.bind(this)}>Submit</button>
+            <div className="qa-modal-sub-form">
+              <div className="qa-modal-input">
+                <label className="qa-modal-label" htmlFor="nickname-a">{'What is your nickname? (mandatory)'}</label>
+                <input type="text" className="qa-modal nickname-a" maxLength="60" placeholder='Example: jack543!'
+                  onChange={this.handleNickname.bind(this)}>
+                </input>
+                <div className="privacy-msg">For privacy reasons, do not use your full name or email address</div>
+              </div>
+              <div className="qa-modal-input">
+                <label className="qa-modal-label" htmlFor="email-a">{'Your Email (mandatory)'}</label>
+                <input type="text" className="qa-modal email-a" maxLength="60" placeholder='Example: jack@email.com'
+                  onChange={this.handleEmail.bind(this)}>
+                </input>
+                <div className="privacy-msg">For authentication reasons, you will not be emailed</div>
+              </div>
+            </div>
+            {this.state.thumbnails}
+            <div className="a-modal-buttons">
+              {this.state.addPhoto}
+              <button className="qa-modal-submit" onClick={this.submitAnswer.bind(this)}>SUBMIT ANSWER</button>
+            </div>
+          </div>
         </Modal>
       </div>
     )
