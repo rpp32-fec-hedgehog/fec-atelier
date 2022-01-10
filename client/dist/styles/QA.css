@@ -37,6 +37,7 @@
 
 .q-helpful {
   font-size: 11px;
+  margin-top: 1px;
 }
 
 .q-helpful-bar {
@@ -59,7 +60,6 @@
 .vertical-bar {
   font-size: 11px;
   font-weight: lighter;
-  margin-bottom: 20px;
 }
 
 /* ========== Answers ========== */
@@ -85,10 +85,12 @@
 
 .answerer {
   font-size: 11px;
+  margin-top: 1px;
 }
 
 .a-helpful {
   font-size: 11px;
+  margin-top: 1px;
 }
 
 .a-helpful-bar {
@@ -104,7 +106,6 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
-  align-self: baseline;
   gap: 10px;
   margin-top: 15px;
   margin-bottom: 15px;
@@ -170,19 +171,23 @@ input[type=text] {
 
 .q-help-count {
   font-size: 11px;
+  margin-top: 1px;
 }
 
 .add-answer {
   display: flex;
   font-size: 11px;
+  margin-top: 1px;
 }
 
 .a-help-count {
   font-size: 11px;
+  margin-top: 1px;
 }
 
 .report, .reported {
   font-size: 11px;
+  margin-top: 1px;
 }
 
 .ask-question, .more-q {
