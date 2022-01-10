@@ -37,7 +37,10 @@
 
 .q-helpful {
   font-size: 11px;
-  margin-top: 4px;
+}
+
+.q-helpful-bar {
+  display: flex;
 }
 
 .q-header {
@@ -56,7 +59,7 @@
 .vertical-bar {
   font-size: 11px;
   font-weight: lighter;
-  margin-top: 3px;
+  margin-bottom: 20px;
 }
 
 /* ========== Answers ========== */
@@ -101,6 +104,7 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
+  align-self: baseline;
   gap: 10px;
   margin-top: 15px;
   margin-bottom: 15px;
@@ -166,12 +170,11 @@ input[type=text] {
 
 .q-help-count {
   font-size: 11px;
-  margin-top: 4px;
 }
 
 .add-answer {
+  display: flex;
   font-size: 11px;
-  margin: 0 auto;
 }
 
 .a-help-count {
