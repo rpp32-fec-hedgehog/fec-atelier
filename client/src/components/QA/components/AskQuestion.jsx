@@ -139,13 +139,13 @@ class AskQuestion extends React.Component {
           style={modalStyle}
           contentLabel="Ask Your Question"
         >
-          <div className="q-modal-top">
-            <span className="q-modal-ask">Ask your question about the {this.state.product_name}</span>
+          <div className="qa-modal-top">
+            <span className="qa-modal-ask">Ask your question about the {this.state.product_name}</span>
             <span className="close-qa-modal" onClick={this.closeModal.bind(this)}>X</span>
           </div>
           {this.state.invalid}
-          <div className="q-modal-form">
-            <div className="q-modal-input">
+          <div className="qa-modal-form">
+            <div className="qa-modal-input">
               <label className="your-q-label" htmlFor="your-q">{'Your Question (mandatory)'}</label>
               <textarea className="your-q" maxLength="1000"
                 onChange={this.handleQuestion.bind(this)}>
