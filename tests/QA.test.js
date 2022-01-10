@@ -38,13 +38,13 @@ describe('Questions & Answers', function() {
 
     test('should render the "See More Answers" button when there are more than 2 answers', function() {
       render(<AnswerList questionId="553704" answers={Object.values(product1Data[0]['answers'])} />)
-      const AnswerListElement = screen.getByText('See More Answers');
+      const AnswerListElement = screen.getByText('SEE MORE ANSWERS');
       expect(AnswerListElement).toBeInTheDocument();
     })
 
     test('should NOT render the "See More Answers" button when there are less than 2 answers', function() {
       render(<AnswerList questionId="553773" answers={Object.values(product1Data[3]['answers'])} />)
-      const AnswerListElement = screen.queryByText('See More Answers');
+      const AnswerListElement = screen.queryByText('SEE MORE ANSWERS');
       expect(AnswerListElement).toBeNull();
     })
 
