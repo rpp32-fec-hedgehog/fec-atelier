@@ -140,7 +140,7 @@ class AskQuestion extends React.Component {
           contentLabel="Ask Your Question"
         >
           <div className="qa-modal-top">
-            <span className="qa-modal-ask">Ask your question about the {this.state.product_name}</span>
+            <span className="q-modal-ask">Ask your question about the {this.state.product_name}</span>
             <span className="close-qa-modal" onClick={this.closeModal.bind(this)}>X</span>
           </div>
           {this.state.invalid}
@@ -152,14 +152,14 @@ class AskQuestion extends React.Component {
               </textarea>
             </div>
             <div className="q-modal-sub-form">
-              <div className="q-modal-input">
+              <div className="qa-modal-input">
                 <label className="qa-modal-label" htmlFor="nickname-q">{'What is your nickname? (mandatory)'}</label>
                 <input type="text" className="nickname-q" maxLength="60" placeholder="Example: jackson11!"
                   onChange={this.handleNickname.bind(this)}>
                 </input>
                 <div className="privacy-msg">For privacy reasons, do not use your full name or email address</div>
               </div>
-              <div className="q-modal-input">
+              <div className="qa-modal-input">
                 <label className="qa-modal-label" htmlFor="email-q">{'Your Email (mandatory)'}</label>
                 <input type="text" className="qa-modal email-q" maxLength="60" placeholder="Example: jack@email.com"
                   onChange={this.handleEmail.bind(this)}>
