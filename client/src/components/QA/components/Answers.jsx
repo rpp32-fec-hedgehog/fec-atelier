@@ -75,13 +75,15 @@ class Answers extends React.Component {
         })}</div>
         <div className="a-bar">
           <span className="answerer">by {answerer}, {moment(answer.date).format('LL')}</span>
-          <span className="a-vertical-bar">|</span>
-          <span className="a-helpful">Helpful?</span>
-          <span className={`a-help-count a-help-${answer.id}-${answer.helpfulness}`}
-            onClick={this.answerIsHelpful.bind(this)}>
-            Yes{`(${answer.helpfulness})`}
-          </span>
-          <span className="a-vertical-bar">|</span>
+          <span className="vertical-bar">|</span>
+          <div className="a-helpful-bar">
+            <span className="a-helpful">Helpful?</span>&nbsp;
+            <span className={`a-help-count a-help-${answer.id}-${answer.helpfulness}`}
+              onClick={this.answerIsHelpful.bind(this)}>
+              <u>Yes</u>&nbsp;{`(${answer.helpfulness})`}
+            </span>
+          </div>
+          <span className="vertical-bar">|</span>
           {reportButton}
         </div>
       </div>

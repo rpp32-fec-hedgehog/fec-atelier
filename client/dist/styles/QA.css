@@ -76,7 +76,8 @@
 }
 
 .answer-body {
-  font-size: 12px;
+  font-size: 13px;
+  margin-bottom: 15px;
 }
 
 .answerer {
@@ -87,9 +88,22 @@
   font-size: 11px;
 }
 
+.a-helpful-bar {
+  display: flex;
+}
+
 .a-photo {
   width: 4%;
   height: 4%;
+}
+
+.a-bar {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 /* ========== Search Bar ========== */
