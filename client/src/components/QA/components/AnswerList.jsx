@@ -42,10 +42,10 @@ class AnswerList extends React.Component {
       </div>
     })
 
-    let moreAnswers = <button onClick={this.handleAnswers.bind(this)}
+    let moreAnswers = <span className="a-more" onClick={this.handleAnswers.bind(this)}
       key={`more-a-${this.props.question_id}`}>
-      See More Answers
-    </button>;
+      SEE MORE ANSWERS
+    </span>;
 
     if (this.state.totalAnswers > 2 && !this.state.expanded) {
       return base.concat(moreAnswers);
