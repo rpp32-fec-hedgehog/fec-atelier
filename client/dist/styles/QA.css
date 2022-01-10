@@ -213,6 +213,11 @@ input.qa-search-bar {
   justify-content: space-between;
 }
 
+.invalid-qa {
+  font-size: 13px;
+  margin-bottom: 15px;
+}
+
 .q-modal-ask {
   font-size: 13px;
   display: block;
@@ -271,6 +276,19 @@ input.nickname-q, input.email-q {
   font-size: 11px;
 }
 
+.qa-modal-submit {
+  width: 239px;
+  height: 55px;
+  background-color: white;
+  border: 1px solid black;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* ========== Answer Modal ========== */
 
 .answer-modal {
@@ -303,11 +321,11 @@ input.nickname-q, input.email-q {
   font-weight: bold;
 }
 
-.more-q:hover, .ask-question-btn:hover {
+.more-q:hover, .ask-question-btn:hover, .qa-modal-submit:hover {
   background: lightgray;
 }
 
-.more-q:active, .ask-question-btn:active {
+.more-q:active, .ask-question-btn:active, .qa-modal-submit:active {
   background: gray;
 }
 

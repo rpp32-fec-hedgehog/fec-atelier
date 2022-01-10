@@ -108,7 +108,7 @@ class AskQuestion extends React.Component {
         }
       })
     } else {
-      this.setState({invalid: 'You must enter the following:'});
+      this.setState({invalid: <div className="invalid-qa">You must enter the following:</div>});
     }
   }
 
@@ -143,7 +143,7 @@ class AskQuestion extends React.Component {
             <span className="q-modal-ask">Ask your question about the {this.state.product_name}</span>
             <span className="close-qa-modal" onClick={this.closeModal.bind(this)}>X</span>
           </div>
-          <div className="invalid-q">{this.state.invalid}</div>
+          {this.state.invalid}
           <div className="q-modal-form">
             <div className="q-modal-input">
               <label className="your-q-label" htmlFor="your-q">{'Your Question (mandatory)'}</label>
@@ -167,8 +167,8 @@ class AskQuestion extends React.Component {
                 <div className="privacy-msg">For authentication reasons, you will not be emailed</div>
               </div>
             </div>
+            <button className="qa-modal-submit" onClick={this.submitQuestion.bind(this)}>SUBMIT QUESTION</button>
           </div>
-          <button onClick={this.submitQuestion.bind(this)}>Submit Question</button>
         </Modal>
       </div>
     )
