@@ -68,8 +68,8 @@ class Answers extends React.Component {
     }
 
     return (<ul className="answer" data-testid="answers">
-      <div key={`a-${answer.id}`} data-testid={answerer}>
-        <li className="answer-body">{answer.body}</li>
+      <li key={`a-${answer.id}`} data-testid={answerer}>
+        <span className="answer-body">{answer.body}</span>
         <div>{_.map(answer.photos, photo => {
           return <img className="a-thumbnail" key={photo} src={photo}></img>
         })}</div>
@@ -86,7 +86,7 @@ class Answers extends React.Component {
           <span className="vertical-bar">|</span>
           {reportButton}
         </div>
-      </div>
+      </li>
     </ul>)
   }
 }
