@@ -24,20 +24,35 @@
 }
 
 .question {
-  margin-top: 5px;
-  margin-bottom: 10px;
   list-style-type: none;
+  /* margin-top: 15px;
+  margin-bottom: 15px; */
 }
 
 .q-body {
   font-size: 15px;
   font-weight: bold;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
 }
 
 .q-helpful {
   font-size: 11px;
-  margin-top: 4px;
+  margin-top: 1px;
+}
+
+.q-help-count {
+  font-size: 11px;
+  margin-top: 1px;
+}
+
+.add-answer {
+  display: flex;
+  font-size: 11px;
+  margin-top: 1px;
+}
+
+.q-helpful-bar {
+  display: flex;
 }
 
 .q-header {
@@ -56,14 +71,11 @@
 .vertical-bar {
   font-size: 11px;
   font-weight: lighter;
-  margin-top: 3px;
 }
 
 /* ========== Answers ========== */
 
 .answer {
-  margin-top: 5px;
-  margin-bottom: 2px;
   list-style-type: none;
 }
 
@@ -72,16 +84,74 @@
 }
 
 .answer-list {
-  margin-left: 20px
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.answer-body {
+  display: flex;
+  font-size: 13px;
+  margin-top: 12px;
+  margin-bottom: 10px;
+}
+
+.answerer {
+  font-size: 11px;
+  margin-top: 1px;
 }
 
 .a-helpful {
-  margin-left: 10%;
+  font-size: 11px;
+  margin-top: 1px;
 }
 
-.a-photo {
-  width: 4%;
-  height: 4%;
+.a-help-count {
+  font-size: 11px;
+  margin-top: 1px;
+}
+
+.report, .reported {
+  font-size: 11px;
+  margin-top: 1px;
+}
+
+.ask-question, .more-q {
+  float: left;
+}
+
+.a-helpful-bar {
+  display: flex;
+}
+
+.a-thumbnail {
+  width: 85px;
+  height: 54px;
+  box-sizing: border-box;
+  border: 1px solid black;
+}
+
+.a-thumbnails {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.a-bar {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.a-more {
+  display: flex;
+  font-size: 10px;
+  font-weight: bold;
+  margin-left: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 /* ========== Search Bar ========== */
@@ -135,34 +205,12 @@ input[type=text] {
   height: 125px;
 }
 
-.a-thumbnail {
+.a-modal-thumbnail {
   width: 4%;
   height: 4%;
 }
 
-/* ========== Clickables ========== */
-
-.q-help-count {
-  font-size: 11px;
-  margin-top: 4px;
-}
-
-.add-answer {
-  font-size: 11px;
-  margin: 0 auto;
-}
-
-.a-help-count {
-  margin-left: 5px;
-}
-
-.report, .reported {
-  margin-left: 20px
-}
-
-.ask-question, .more-q {
-  float: left;
-}
+/* ========== Buttons ========== */
 
 .more-q {
   width: 239px;

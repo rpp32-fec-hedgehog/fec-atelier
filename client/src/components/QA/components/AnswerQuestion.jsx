@@ -182,7 +182,7 @@ class AnswerQuestion extends React.Component {
             </input>
             <div className="privacy-msg">For authentication reasons, you will not be emailed</div>
             <div className="qa-thumbnails">{_.map(this.state.photos, photo => {
-              return <img className="a-thumbnail" key={photo} src={photo}></img>
+              return <img className="a-modal-thumbnail" key={photo} src={photo}></img>
             })}</div>
             <div className="add-a-photo">
               {this.state.addPhoto}

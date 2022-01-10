@@ -76,11 +76,13 @@ class Questions extends React.Component {
               <div className="q-header">
                 <span className="q-body">Q: {q.question_body}</span>
                 <div className="q-bar">
-                  <span className="q-helpful">Helpful?</span>
-                  <span className={`q-help-count q-help-${q.question_id}-${q.question_helpfulness}`}
-                    onClick={this.questionIsHelpful.bind(this)}>
-                    <u>Yes</u>&nbsp;{`(${q.question_helpfulness})`}
-                  </span>
+                  <div className="q-helpful-bar">
+                    <span className="q-helpful">Helpful?</span>&nbsp;
+                    <span className={`q-help-count q-help-${q.question_id}-${q.question_helpfulness}`}
+                      onClick={this.questionIsHelpful.bind(this)}>
+                      <u>Yes</u>&nbsp;{`(${q.question_helpfulness})`}
+                    </span>
+                  </div>
                   <span className="vertical-bar">|</span>
                   <AnswerQuestion question_id={q.question_id} getQAData={this.props.getQAData}
                     product_id={this.props.product_id}
