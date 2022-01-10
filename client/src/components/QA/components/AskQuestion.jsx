@@ -5,7 +5,7 @@ import $ from 'jquery';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlus} from '@fortawesome/free-solid-svg-icons'
 
-Modal.setAppElement('#app');
+// Modal.setAppElement('#app');
 
 class AskQuestion extends React.Component {
   constructor(props) {
