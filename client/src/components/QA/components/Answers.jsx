@@ -8,7 +8,8 @@ class Answers extends React.Component {
     super(props);
     this.state = {
       reported: false,
-      votes: []
+      votes: [],
+      thumbnails: <></>
     };
   }
 
@@ -53,6 +54,15 @@ class Answers extends React.Component {
     })
   }
 
+  componentDidMount() {
+    let answer = this.props.answer;
+    if (answer.photos.length > 0) {
+      this.setState({thumbnails: <div className="a-thumbnails">{_.map(answer.photos, photo => {
+        return <img className="a-thumbnail" key={photo} src={photo}></img>
+      })}</div>})
+    }
+  }
+
   render() {
     let answer = this.props.answer;
     let answerer = answer.answerer_name;
@@ -70,9 +80,7 @@ class Answers extends React.Component {
     return (<ul className="answer" data-testid="answers">
       <li key={`a-${answer.id}`} data-testid={answerer}>
         <span className="answer-body">{answer.body}</span>
-        <div className="a-thumbnails">{_.map(answer.photos, photo => {
-          return <img className="a-thumbnail" key={photo} src={photo}></img>
-        })}</div>
+        {this.state.thumbnails}
         <div className="a-bar">
           <span className="answerer">by {answerer}, {moment(answer.date).format('LL')}</span>
           <span className="vertical-bar">|</span>
