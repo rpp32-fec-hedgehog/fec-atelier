@@ -70,7 +70,7 @@ class Answers extends React.Component {
     return (<ul className="answer" data-testid="answers">
       <li key={`a-${answer.id}`} data-testid={answerer}>
         <span className="answer-body">{answer.body}</span>
-        <div>{_.map(answer.photos, photo => {
+        <div className="a-thumbnails">{_.map(answer.photos, photo => {
           return <img className="a-thumbnail" key={photo} src={photo}></img>
         })}</div>
         <div className="a-bar">

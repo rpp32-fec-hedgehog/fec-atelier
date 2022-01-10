@@ -76,8 +76,6 @@
 /* ========== Answers ========== */
 
 .answer {
-  margin-top: 5px;
-  margin-bottom: 2px;
   list-style-type: none;
 }
 
@@ -91,7 +89,6 @@
 
 .answer-body {
   font-size: 13px;
-  margin-bottom: 15px;
 }
 
 .answerer {
@@ -123,22 +120,18 @@
 }
 
 .a-thumbnail {
-  width: 25px;
-  height: 25px;
-  overflow: hidden;
+  width: 85px;
+  height: 54px;
+  box-sizing: border-box;
+  border: 1px solid black;
 }
 
-.a-thumbnail img {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: auto;
-  height: 100%;
-}
-
-.a-thumbnail img.portrait {
-  width: 100%;
-  height: auto;
+.a-thumbnails {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  gap: 14px;
+  margin-top: 15px;
 }
 
 .a-bar {
@@ -201,7 +194,7 @@ input[type=text] {
   height: 125px;
 }
 
-.a-thumbnail {
+.a-modal-thumbnail {
   width: 4%;
   height: 4%;
 }
