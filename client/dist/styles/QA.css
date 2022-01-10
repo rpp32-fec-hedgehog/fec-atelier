@@ -40,6 +40,17 @@
   margin-top: 1px;
 }
 
+.q-help-count {
+  font-size: 11px;
+  margin-top: 1px;
+}
+
+.add-answer {
+  display: flex;
+  font-size: 11px;
+  margin-top: 1px;
+}
+
 .q-helpful-bar {
   display: flex;
 }
@@ -93,13 +104,41 @@
   margin-top: 1px;
 }
 
+.a-help-count {
+  font-size: 11px;
+  margin-top: 1px;
+}
+
+.report, .reported {
+  font-size: 11px;
+  margin-top: 1px;
+}
+
+.ask-question, .more-q {
+  float: left;
+}
+
 .a-helpful-bar {
   display: flex;
 }
 
-.a-photo {
-  width: 4%;
-  height: 4%;
+.a-thumbnail {
+  width: 25px;
+  height: 25px;
+  overflow: hidden;
+}
+
+.a-thumbnail img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: auto;
+  height: 100%;
+}
+
+.a-thumbnail img.portrait {
+  width: 100%;
+  height: auto;
 }
 
 .a-bar {
@@ -168,31 +207,6 @@ input[type=text] {
 }
 
 /* ========== Clickables ========== */
-
-.q-help-count {
-  font-size: 11px;
-  margin-top: 1px;
-}
-
-.add-answer {
-  display: flex;
-  font-size: 11px;
-  margin-top: 1px;
-}
-
-.a-help-count {
-  font-size: 11px;
-  margin-top: 1px;
-}
-
-.report, .reported {
-  font-size: 11px;
-  margin-top: 1px;
-}
-
-.ask-question, .more-q {
-  float: left;
-}
 
 .more-q {
   width: 239px;
