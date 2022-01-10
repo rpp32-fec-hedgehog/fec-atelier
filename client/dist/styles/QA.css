@@ -120,7 +120,7 @@
   display: flex;
 }
 
-.a-thumbnail {
+.a-thumbnail, .a-modal-thumbnail {
   width: 85px;
   height: 54px;
   box-sizing: border-box;
@@ -190,10 +190,6 @@ input.qa-search-bar {
 
 /* ========== Question Modal ========== */
 
-.your-question, .your-answer {
-  height: 125px;
-}
-
 .qa-modal {
   width: 100%;
 }
@@ -207,7 +203,7 @@ input.qa-search-bar {
   color: gray;
 }
 
-.q-modal-top {
+.qa-modal-top {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -218,51 +214,51 @@ input.qa-search-bar {
   margin-bottom: 15px;
 }
 
-.q-modal-ask {
+.q-modal-ask, .q-modal-answer, .a-modal-subtitle {
   font-size: 13px;
   display: block;
   margin-bottom: 15px;
 }
 
-.q-modal-form {
+.qa-modal-form {
   display: flex;
   flex-flow: column nowrap;
   gap: 15px;
 }
 
-.q-modal-input {
+.qa-modal-input {
   display: flex;
   flex-flow: column nowrap;
   gap: 7px;
 }
 
-.your-q-label, .nickname-q-label, .email-q-label {
+.qa-modal-label {
   font-size: 12px;
 }
 
-.your-q {
+.your-q, .your-a {
   font-family: sans-serif;
   font-size: 13px;
   display: flex;
   width: 755px;
-  height: 120px;
+  height: 135px;
   padding: 3px;
   border: 1px solid black;
 }
 
-.q-modal-sub-form {
+.qa-modal-sub-form {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
 }
 
-.nickname-q, .email-q {
+.nickname-q, .email-q, .nickname-a, .email-a {
   font-family: sans-serif;
   width: 365px;
   border: 1px solid black;
 }
 
-input.nickname-q, input.email-q {
+input.nickname-q, input.email-q, input.nickname-a, input.email-a {
   font-size: 13px;
   padding: 3px;
 }
@@ -276,7 +272,12 @@ input.nickname-q, input.email-q {
   font-size: 11px;
 }
 
-.qa-modal-submit {
+.a-modal-buttons {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.qa-modal-submit, .add-a-photo {
   width: 239px;
   height: 55px;
   background-color: white;
@@ -289,15 +290,11 @@ input.nickname-q, input.email-q {
   margin-right: auto;
 }
 
-/* ========== Answer Modal ========== */
-
-.answer-modal {
-  display: inline;
-}
-
-.a-modal-thumbnail {
-  width: 4%;
-  height: 4%;
+.a-modal-thumbnails {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  gap: 14px;
 }
 
 /* ========== Buttons ========== */
@@ -321,11 +318,11 @@ input.nickname-q, input.email-q {
   font-weight: bold;
 }
 
-.more-q:hover, .ask-question-btn:hover, .qa-modal-submit:hover {
+.more-q:hover, .ask-question-btn:hover, .qa-modal-submit:hover, .add-a-photo:hover {
   background: lightgray;
 }
 
-.more-q:active, .ask-question-btn:active, .qa-modal-submit:active {
+.more-q:active, .ask-question-btn:active, .qa-modal-submit:active, .add-a-photo:active {
   background: gray;
 }
 
