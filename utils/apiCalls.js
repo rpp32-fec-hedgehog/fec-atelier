@@ -75,8 +75,8 @@ module.exports.getReviewsForOverview = getReviewsForOverview;
 
 // ========== Questions & Answers ========== //
 
-const getProductQuestionData = (product_id, callback) => {
-  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=${product_id}`;
+const getProductQuestionData = (product_id, page, callback) => {
+  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=${product_id}&page=${page}`;
 
   return axios.get(endpoint, {
     headers: {

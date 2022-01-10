@@ -8,7 +8,8 @@ class Answers extends React.Component {
     super(props);
     this.state = {
       reported: false,
-      votes: []
+      votes: [],
+      thumbnails: <></>
     };
   }
 
@@ -53,11 +54,20 @@ class Answers extends React.Component {
     })
   }
 
+  componentDidMount() {
+    let answer = this.props.answer;
+    if (answer.photos.length > 0) {
+      this.setState({thumbnails: <div className="a-thumbnails">{_.map(answer.photos, photo => {
+        return <img className="a-thumbnail" key={photo} src={photo}></img>
+      })}</div>})
+    }
+  }
+
   render() {
     let answer = this.props.answer;
     let answerer = answer.answerer_name;
     if (answerer === 'Seller') {
-      answerer = <b>{answerer}</b>
+      answerer = <b>Seller</b>
     }
 
     let reportButton = <span className={`report report-${answer.id}`}
@@ -68,19 +78,23 @@ class Answers extends React.Component {
     }
 
     return (<ul className="answer" data-testid="answers">
-      <div key={`a-${answer.id}`} data-testid={answerer}>
-        <li className="answer-body">{answer.body}</li>
-        <div>{_.map(answer.photos, photo => {
-          return <img className="a-photo" key={photo} src={photo}></img>
-        })}</div>
-        <span className="answerer">by {answerer}, {moment(answer.date).format('LL')}</span>
-        <span className="a-helpful">Helpful?</span>
-        <span className={`a-help-count a-help-${answer.id}-${answer.helpfulness}`}
-          onClick={this.answerIsHelpful.bind(this)}>
-          Yes{`(${answer.helpfulness})`}
-        </span>
-        {reportButton}
-      </div>
+      <li key={`a-${answer.id}`} data-testid={answerer}>
+        <span className="answer-body">{answer.body}</span>
+        {this.state.thumbnails}
+        <div className="a-bar">
+          <span className="answerer">by {answerer}, {moment(answer.date).format('LL')}</span>
+          <span className="vertical-bar">|</span>
+          <div className="a-helpful-bar">
+            <span className="a-helpful">Helpful?</span>&nbsp;
+            <span className={`a-help-count a-help-${answer.id}-${answer.helpfulness}`}
+              onClick={this.answerIsHelpful.bind(this)}>
+              <u>Yes</u>&nbsp;{`(${answer.helpfulness})`}
+            </span>
+          </div>
+          <span className="vertical-bar">|</span>
+          {reportButton}
+        </div>
+      </li>
     </ul>)
   }
 }

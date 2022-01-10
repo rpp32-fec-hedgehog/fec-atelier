@@ -12,31 +12,34 @@ class Questions extends React.Component {
       sortedQuestions: [],
       totalQuestions: 0,
       questionCount: 2,
+      questionTracker: 1,
       votes: []
     };
   }
 
   handleQuestions(e) {
     e.preventDefault();
+    let tracker;
+    if (this.state.questionTracker === 1) {
+      tracker = 2;
+    } else if (this.state.questionTracker === 2) {
+      tracker = 1;
+    }
+
+    if (tracker === 2) {
+      this.props.getQAData();
+    }
+
     if (this.props.questions.length > this.state.questionCount) {
       this.setState({
-        questionCount: this.state.questionCount += 2
+        questionCount: this.state.questionCount += 2,
+        questionTracker: tracker
       })
     } else {
       this.setState({
         questionCount: this.state.questionCount -= 2
       })
     }
-  }
-
-  sortByHelpfulness(questions) {
-    let sorted = _.chain(questions)
-      .sortBy(question => {return question.question_helpfulness})
-      .reverse()
-      .slice(0, this.state.questionCount)
-      .value()
-
-    return sorted;
   }
 
   questionIsHelpful(e) {
@@ -63,24 +66,31 @@ class Questions extends React.Component {
   }
 
   render() {
-    let base = [<div data-testid="questions" key="q-base">
+    let base = [<div data-testid="questions" key="q-base" className="q-base">
       <ul>
-        {this.sortByHelpfulness(this.props.questions).map(q => {
+        {_.map(this.props.questions.slice(0, this.state.questionCount), q => {
           return <div className="question" data-testid={q.question_body}
             key={`${q.question_body}-${q.question_id}`}
           >
             <li key={`q-${q.question_id}`}>
-              <span className="q-body">Q: {q.question_body}</span>
-              <span className="q-helpful">Helpful?</span>
-              <span className={`q-help-count q-help-${q.question_id}-${q.question_helpfulness}`}
-                onClick={this.questionIsHelpful.bind(this)}>
-                Yes{`(${q.question_helpfulness})`}
-              </span>
-              <AnswerQuestion question_id={q.question_id} getQAData={this.props.getQAData}
-                product_id={this.props.product_id}
-                question_body={q.question_body} />
+              <div className="q-header">
+                <span className="q-body">Q: {q.question_body}</span>
+                <div className="q-bar">
+                  <div className="q-helpful-bar">
+                    <span className="q-helpful">Helpful?</span>&nbsp;
+                    <span className={`q-help-count q-help-${q.question_id}-${q.question_helpfulness}`}
+                      onClick={this.questionIsHelpful.bind(this)}>
+                      <u>Yes</u>&nbsp;{`(${q.question_helpfulness})`}
+                    </span>
+                  </div>
+                  <span className="vertical-bar">|</span>
+                  <AnswerQuestion question_id={q.question_id} getQAData={this.props.getQAData}
+                    product_id={this.props.product_id}
+                    question_body={q.question_body} />
+                </div>
+              </div>
               <div>
-                <span className="a-label">A: </span>
+                <span className="a-label"><b>A: </b></span>
                 <AnswerList answers={q.answers} question_id={q.question_id}
                   updateAHelp={this.props.updateAHelp} />
               </div>
@@ -93,7 +103,7 @@ class Questions extends React.Component {
     let totalQs = this.props.questions.length;
     let more = <button key="more-q" className="more-q"
       onClick={this.handleQuestions.bind(this)}>
-        More Answered Questions
+        MORE ANSWERED QUESTIONS
       </button>;
     let addQuestion = <AskQuestion key="ask-question" className="ask-question"
       getQAData={this.props.getQAData}

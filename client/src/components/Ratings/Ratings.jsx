@@ -9,7 +9,7 @@ class Ratings extends React.Component {
     super(props);
     this.state = {
       item_id: 59557,
-      ratings: [{review_id: 1, summary: 'summary1'}, {review_id: 2, summary: 'summary2'}],
+      ratings: [{review_id: 1, summary: 'summary1', body: 'body1'}, {review_id: 2, summary: 'summary2', body: 'body2'}],
       ratings_meta: {}
     };
     this.getAllReviews = this.getAllReviews.bind(this);
@@ -73,7 +73,7 @@ class Ratings extends React.Component {
     return (
       <div data-testid="ratings" className="ratings-widget">
         <h3>RATINGS & REVIEWS</h3>
-        <RatingsMeta className="ratings_meta" ratings_meta={this.state.ratings_meta}></RatingsMeta><RatingsList className="ratings_list" ratings={this.state.ratings}></RatingsList>
+        <br></br><RatingsMeta className="ratings_meta" ratings_meta={this.state.ratings_meta}></RatingsMeta><RatingsList className="ratings_list" ratings={this.state.ratings}></RatingsList>
       </div>
     );
   }

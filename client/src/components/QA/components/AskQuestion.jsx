@@ -2,8 +2,10 @@ import React from 'react';
 import Modal from 'react-modal';
 import _ from 'underscore';
 import $ from 'jquery';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faPlus} from '@fortawesome/free-solid-svg-icons'
 
-Modal.setAppElement('#app');
+// Modal.setAppElement('#app');
 
 class AskQuestion extends React.Component {
   constructor(props) {
@@ -108,51 +110,67 @@ class AskQuestion extends React.Component {
         }
       })
     } else {
-      this.setState({invalid: 'You must enter the following:'});
+      this.setState({invalid: <div className="invalid-qa">You must enter the following:</div>});
     }
   }
 
   render() {
-    const testStyles = {
+    const modalStyle = {
       content: {
         top: '50%',
         left: '50%',
         right: 'auto',
         bottom: 'auto',
+        // width: '50%',
         marginRight: '-50%',
-        transform: 'translate(-50%, -50%)'
+        transform: 'translate(-50%, -50%)',
+        border: '1px solid #000',
+        borderRadius: '0px',
+        fontFamily: 'sans-serif'
       }
     };
 
     return (
-      <div className="question-modal">
-        <button className="ask-question-btn" onClick={this.openModal.bind(this)}>Ask a Question</button>
+      <div className="question-modal" data-testid="question-modal">
+        <button className="ask-question-btn" onClick={this.openModal.bind(this)}>
+          ASK A QUESTION&nbsp;&nbsp;&nbsp;
+          <FontAwesomeIcon className="qa-plus-icon" icon={faPlus}></FontAwesomeIcon>
+        </button>
         <Modal
           isOpen={this.state.modalOpen}
-          style={testStyles}
+          style={modalStyle}
           contentLabel="Ask Your Question"
         >
-          <h2>Ask Your Question</h2>
-          <h4>About the {this.state.product_name}</h4>
-          <div className="invalid-q">{this.state.invalid}</div>
-          <form>
-          <label htmlFor="your-question">{'Your Question (mandatory)'}</label>
-            <textarea className="qa-modal your-question" maxLength="1000"
-              onChange={this.handleQuestion.bind(this)}>
-            </textarea>
-            <label htmlFor="nickname-q">{'What is your nickname? (mandatory)'}</label>
-            <input type="text" className="qa-modal nickname-q" maxLength="60" placeholder="Example: jackson11!"
-              onChange={this.handleNickname.bind(this)}>
-            </input>
-            <div className="privacy-msg">For privacy reasons, do not use your full name or email address</div>
-            <label htmlFor="email-q">{'Your Email (mandatory)'}</label>
-            <input type="text" className="qa-modal email-q" maxLength="60" placeholder="Example: jack@email.com"
-              onChange={this.handleEmail.bind(this)}>
-            </input>
-            <div className="privacy-msg">For authentication reasons, you will not be emailed</div>
-          </form>
-          <button onClick={this.closeModal.bind(this)}>Close</button>
-          <button onClick={this.submitQuestion.bind(this)}>Submit Question</button>
+          <div className="qa-modal-top">
+            <span className="q-modal-ask">Ask your question about the {this.state.product_name}</span>
+            <span className="close-qa-modal" onClick={this.closeModal.bind(this)}>X</span>
+          </div>
+          {this.state.invalid}
+          <div className="qa-modal-form">
+            <div className="qa-modal-input">
+              <label className="qa-modal-label" htmlFor="your-q">{'Your Question (mandatory)'}</label>
+              <textarea className="your-q" maxLength="1000"
+                onChange={this.handleQuestion.bind(this)}>
+              </textarea>
+            </div>
+            <div className="qa-modal-sub-form">
+              <div className="qa-modal-input">
+                <label className="qa-modal-label" htmlFor="nickname-q">{'What is your nickname? (mandatory)'}</label>
+                <input type="text" className="nickname-q" maxLength="60" placeholder="Example: jackson11!"
+                  onChange={this.handleNickname.bind(this)}>
+                </input>
+                <div className="privacy-msg">For privacy reasons, do not use your full name or email address</div>
+              </div>
+              <div className="qa-modal-input">
+                <label className="qa-modal-label" htmlFor="email-q">{'Your Email (mandatory)'}</label>
+                <input type="text" className="qa-modal email-q" maxLength="60" placeholder="Example: jack@email.com"
+                  onChange={this.handleEmail.bind(this)}>
+                </input>
+                <div className="privacy-msg">For authentication reasons, you will not be emailed</div>
+              </div>
+            </div>
+            <button className="qa-modal-submit" onClick={this.submitQuestion.bind(this)}>SUBMIT QUESTION</button>
+          </div>
         </Modal>
       </div>
     )

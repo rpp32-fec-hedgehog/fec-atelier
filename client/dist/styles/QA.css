@@ -1,28 +1,78 @@
+/* ========== General ========== */
+
 #qa {
-  border: 2px solid black;
+  width: 866px;
+  max-height: 99vh;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 30px;
+  margin-bottom: 30px;
+  display: block;
+  font-family: sans-serif;
+}
+
+.qa-title {
+  font-size: 13px;
 }
 
 /* ========== Questions ========== */
 
+.q-base {
+  max-height: 75vh;
+  overflow-y: auto;
+  margin-bottom: 15px;
+}
+
 .question {
-  margin-top: 5px;
-  margin-bottom: 10px;
+  list-style-type: none;
 }
 
 .q-body {
+  font-size: 15px;
   font-weight: bold;
 }
 
 .q-helpful {
-  margin-left: 50%;
+  font-size: 11px;
+  margin-top: 1px;
+}
+
+.q-help-count {
+  font-size: 11px;
+  margin-top: 1px;
+}
+
+.add-answer {
+  display: flex;
+  font-size: 11px;
+  margin-top: 1px;
+}
+
+.q-helpful-bar {
+  display: flex;
+}
+
+.q-header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.q-bar {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+
+.vertical-bar {
+  font-size: 11px;
+  font-weight: lighter;
 }
 
 /* ========== Answers ========== */
 
 .answer {
-  margin-top: 5px;
-  margin-bottom: 2px;
   list-style-type: none;
 }
 
@@ -31,55 +81,251 @@
 }
 
 .answer-list {
-  margin-left: 20px
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.answer-body {
+  display: flex;
+  font-size: 13px;
+  margin-top: 12px;
+  margin-bottom: 10px;
+}
+
+.answerer {
+  font-size: 11px;
+  margin-top: 1px;
 }
 
 .a-helpful {
-  margin-left: 10%;
+  font-size: 11px;
+  margin-top: 1px;
 }
 
-.a-photo {
-  width: 4%;
-  height: 4%;
+.a-help-count {
+  font-size: 11px;
+  margin-top: 1px;
 }
 
-/* ========== Modals ========== */
-
-.answer-modal {
-  display: inline;
+.report, .reported {
+  font-size: 11px;
+  margin-top: 1px;
 }
+
+.ask-question, .more-q {
+  float: left;
+}
+
+.a-helpful-bar {
+  display: flex;
+}
+
+.a-thumbnail, .a-modal-thumbnail {
+  width: 85px;
+  height: 54px;
+  box-sizing: border-box;
+  border: 1px solid black;
+}
+
+.a-thumbnails {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.a-bar {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.a-more {
+  display: flex;
+  font-size: 10px;
+  font-weight: bold;
+  margin-left: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+/* ========== Search Bar ========== */
+
+.qa-search {
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border: 1px solid black;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.qa-search-bar {
+  width: 95%;
+  height: 53px;
+  border: 0px;
+  outline: none;
+}
+
+.qa-search-bar::placeholder {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+input.qa-search-bar {
+  padding-left: 10px;
+  font-size: 16px;
+}
+
+.q-search-icon {
+  padding-right: 10px;
+  margin-top: auto;
+  margin-bottom: auto;
+  display: inline-block;
+  font-size: 14px;
+}
+
+/* ========== Question Modal ========== */
 
 .qa-modal {
   width: 100%;
 }
 
-.your-question, .your-answer {
-  height: 125px;
+.close-qa-modal {
+  font-size: 13px;
+  cursor: default;
 }
 
-.a-thumbnail {
-  width: 4%;
-  height: 4%;
+.close-qa-modal:active {
+  color: gray;
 }
 
-/* ========== Clickables ========== */
-
-.q-help-count {
-  margin-left: 5px;
+.qa-modal-top {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
 }
 
-.a-help-count {
-  margin-left: 5px;
+.invalid-qa {
+  font-size: 13px;
+  margin-bottom: 15px;
 }
 
-.report, .reported {
-  margin-left: 20px
+.q-modal-ask, .q-modal-answer, .a-modal-subtitle {
+  font-size: 13px;
+  display: block;
+  margin-bottom: 15px;
 }
 
-.add-answer {
-  margin-left: 20px;
+.qa-modal-form {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 15px;
 }
 
-.ask-question, .more-q {
-  float: left;
+.qa-modal-input {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 7px;
+}
+
+.qa-modal-label {
+  font-size: 12px;
+}
+
+.your-q, .your-a {
+  font-family: sans-serif;
+  font-size: 13px;
+  display: flex;
+  width: 755px;
+  height: 135px;
+  padding: 3px;
+  border: 1px solid black;
+}
+
+.qa-modal-sub-form {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.nickname-q, .email-q, .nickname-a, .email-a {
+  font-family: sans-serif;
+  width: 365px;
+  border: 1px solid black;
+}
+
+input.nickname-q, input.email-q, input.nickname-a, input.email-a {
+  font-size: 13px;
+  padding: 3px;
+}
+
+.nickname-q::placeholder, .email-q::placeholder {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.privacy-msg {
+  font-size: 11px;
+}
+
+.a-modal-buttons {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.qa-modal-submit, .add-a-photo {
+  width: 239px;
+  height: 55px;
+  background-color: white;
+  border: 1px solid black;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.a-modal-thumbnails {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+/* ========== Buttons ========== */
+
+.more-q {
+  width: 239px;
+  height: 55px;
+  background-color: white;
+  border: 1px solid black;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ask-question-btn {
+  width: 179px;
+  height: 55px;
+  margin-left: 16px;
+  background-color: white;
+  border: 1px solid black;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.more-q:hover, .ask-question-btn:hover, .qa-modal-submit:hover, .add-a-photo:hover {
+  background: lightgray;
+}
+
+.more-q:active, .ask-question-btn:active, .qa-modal-submit:active, .add-a-photo:active {
+  background: gray;
+}
+
+.qa-plus-icon {
+  font-size: 14px;
 }
