@@ -46,8 +46,7 @@ class Overview extends React.Component {
       .then((result) => {
         this.setState({
           styleData : result.data.results,
-          photo: result.data.results[0].photos[0].url,
-          numberOfPhotos: result.data.results[0].photos.map(style => style.photos).length
+          photo: result.data.results[0].photos[0].url
         });
       })
       .catch((err) => {
@@ -57,7 +56,6 @@ class Overview extends React.Component {
 
   cycleForward(e) {
     let current = this.state.currentPhoto;
-    let max = this.state.numberOfPhotos;
     this.state.currentPhoto < max - 1 ?
     this.setState({
       photo: this.state.styleData[this.state.selectedStyle].photos[current + 1].url,
@@ -70,7 +68,6 @@ class Overview extends React.Component {
 
   cycleBackward(e) {
     let current = this.state.currentPhoto;
-    let max = this.state.numberOfPhotos;
     this.state.currentPhoto > 0 ?
     this.setState({
       photo: this.state.styleData[this.state.selectedStyle].photos[current - 1].url,
@@ -80,13 +77,22 @@ class Overview extends React.Component {
     }) :
     null
   }
-// current - target
+
   changePhoto = (e) => {
     e.preventDefault();
-    this.setState({
-      photo: this.state.styleData[this.state.selectedStyle].photos[Number(e.target.id) + this.state.currentPhoto].url,
-      currentPhoto: Number(e.target.id) + this.state.currentPhoto
-    });
+
+    if (this.state.currentPhoto >= this.state.styleData[this.state.selectedStyle].photos.length - 7) {
+      let subtractor = this.state.styleData[this.state.selectedStyle].photos.length - 7
+      this.setState((state, props) => ({
+        photo: state.styleData[state.selectedStyle].photos[Number(e.target.id) + subtractor].url,
+        currentPhoto: Number(e.target.id) + subtractor
+      }))
+    } else {
+      this.setState((state, props) => ({
+        photo: state.styleData[state.selectedStyle].photos[Number(e.target.id) + state.currentPhoto].url,
+        currentPhoto: Number(e.target.id) + state.currentPhoto
+      }))
+    }
   }
 
   handleSelectStyle(e) {
@@ -95,10 +101,8 @@ class Overview extends React.Component {
     let currentPhoto = this.state.currentPhoto;
     this.setState({
       selectedStyle: currentStyle,
-      photo: this.state.styleData[currentStyle].photos[current].url,
-      numberOfPhotos: this.state.styleData[currentPhoto].photos.map(style => style.photos).length
+      photo: this.state.styleData[currentStyle].photos[current].url
     });
-
   }
 
   componentDidMount() {

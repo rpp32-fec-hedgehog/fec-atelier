@@ -31,28 +31,14 @@ class ImageGallery extends React.Component {
   render() {
 
     let currentPhoto = this.props.currentPhoto
-    let subtractor = this.props.styleData[this.props.selectedStyle] !== undefined ? this.props.styleData[this.props.selectedStyle].photos.length - 6 : null
+    let subtractor = this.props.styleData[this.props.selectedStyle] !== undefined ? this.props.styleData[this.props.selectedStyle].photos.length - 7 : null
 
-    /*
-    Need to make the thumbnailIndex equal to the index that was clicked on.
-    When the sliced array is at the back of the original array then the index will suffice
+    let thumbnailIndex = currentPhoto > subtractor ? currentPhoto - subtractor : 0;
 
-
-    This works already
-    When still slicing (array is not shifted all the way over)
-    The photo clicked should slice the array to be the index of 0 and be highlighted
-    */
-    // let thumbnailIndex = this.props.max + 1 <= this.props.styleData[this.props.selectedStyle].photos.length ?
-    // currentPhoto >= subtractor ? currentPhoto -= subtractor : 0 :
-
-    let thumbnailIndex = currentPhoto >= subtractor ? currentPhoto -= subtractor : 0
-
-// ?? = 5 > 4 ? 5 - 4
     let range = this.props.styleData[this.props.selectedStyle] !== undefined ?
-    this.props.max + 1 <= this.props.styleData[this.props.selectedStyle].photos.length ?
+    this.props.currentPhoto < this.props.styleData[this.props.selectedStyle].photos.length - 7 ?
     this.props.styleData[this.props.selectedStyle].photos.slice(this.props.currentPhoto, this.props.currentPhoto + 7)
-    : this.props.styleData[this.props.selectedStyle].photos.slice(-7) : null
-
+    : (this.props.styleData[this.props.selectedStyle].photos.slice(-7)) : null
 
     return (
       <>

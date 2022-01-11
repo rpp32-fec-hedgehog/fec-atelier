@@ -32,7 +32,7 @@ class App extends React.Component {
           </div>
           <QA itemid={this.state.item_id} />
           <div className="ratings">
-            <Ratings itemid={this.state.item_id} />
+            {/* <Ratings itemid={this.state.item_id} /> */}
           </div>
         </div>
         <div>
