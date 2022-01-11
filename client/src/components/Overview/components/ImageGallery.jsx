@@ -64,13 +64,13 @@ class ImageGallery extends React.Component {
         </div>
 
 
-        <Modal isOpen={this.state.modalOpen} className="modal-gallery">
+        <Modal isOpen={this.state.modalOpen} ariaHideApp={false} className="modal-gallery">
           <button className="modal-close" onClick={this.closeModal}>X</button>
           <div className="modal-buttons">
             <FontAwesomeIcon className='modal-back' onClick={this.props.backward} icon={faAngleLeft} size='2x' color="white"></FontAwesomeIcon>
             <FontAwesomeIcon className='modal-forward' onClick={this.props.forward} icon={faAngleRight} size='2x' color="white"></FontAwesomeIcon>
             <img className="modal-image" src={this.props.photo}></img>
-          {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(this.props.styleData[this.props.selectedStyle].photos, (photo, index) => {
+          {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(range, (photo, index) => {
             return (
               <input className="modal-radio-button" type="radio" key={index} id={index} onClick={this.props.changePhoto}></input>
               )
