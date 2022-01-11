@@ -140,7 +140,7 @@ class AskQuestion extends React.Component {
           <div className="qa-modal-form" data-testid="qa-modal-form">
             <div className="qa-modal-input">
               <label className="qa-modal-label" htmlFor="your-q">{'Your Question (mandatory)'}</label>
-              <textarea className="your-q" maxLength="1000"
+              <textarea className="your-q" data-testid="your-q" maxLength="1000"
                 onChange={this.handleQuestion.bind(this)}>
               </textarea>
             </div>
