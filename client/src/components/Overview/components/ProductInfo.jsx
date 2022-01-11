@@ -84,15 +84,16 @@ class ProductInfo extends React.Component {
   }
 
   render() {
+    let numReviews = _.reduce(this.state.starCount, (memo, num) => {
+      return parseInt(memo) + parseInt(num);
+        }, 0)
     return (
       <div className="product-info" data-testid="product-info">
         <h4>Product Info</h4>
         {this.state.starCount.length ?
           <div className="star-rating" data-testid="star-rating">
-            {this.calculateStarRating()} Stars //
-            {(_.reduce(this.state.starCount, (memo, num) => {
-              return parseInt(memo) + parseInt(num);
-                }, 0))} Reviews
+            {this.calculateStarRating()}
+            <a href="#reviews-link">{` Read all ${numReviews} reviews`}</a>
           </div>
           : null
         }
