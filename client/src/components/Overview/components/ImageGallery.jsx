@@ -56,7 +56,7 @@ class ImageGallery extends React.Component {
     let frame, modalImage, posX, posY;
     this.state.zoom ? (
       posX = e.nativeEvent.offsetX,
-      posY = e.nativeEvent.offsetY,
+      posY = e.nativeEvent.offsetY
     ) : null
   }
 
