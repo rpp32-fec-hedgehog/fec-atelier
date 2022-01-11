@@ -8,6 +8,7 @@ import ProductInfo from './components/ProductInfo.jsx';
 import StyleSelector from './components/StyleSelector.jsx';
 import AddToCart from './components/AddToCart.jsx';
 import ImageGallery from './components/ImageGallery.jsx';
+import ProductDescription from './components/ProductDescription.jsx'
 
 class Overview extends React.Component {
   constructor(props) {
@@ -126,6 +127,9 @@ class Overview extends React.Component {
 
         <AddToCart productName={this.state.productData.name} styleData={this.state.styleData[this.state.selectedStyle]}
         addToOutfit={this.props.addToOutfit}/>
+
+        {this.state.productData.description !== undefined ?
+        <ProductDescription desc={this.state.productData.description}></ProductDescription> : null}
       </div>
     )
   }

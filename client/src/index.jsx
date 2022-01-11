@@ -55,12 +55,12 @@ class App extends React.Component {
           </div>
         </div>
         <div>
-          <RelatedItems
+          {/* <RelatedItems
             itemId={this.state.item_id}
-            changeProduct={this.changeProduct} />
+            changeProduct={this.changeProduct} /> */}
         </div>
         <div>
-          <Outfits itemId={this.state.item_id} />
+          {/* <Outfits itemId={this.state.item_id} /> */}
         </div>
       </div>
     );
