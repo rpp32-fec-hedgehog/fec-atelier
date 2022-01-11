@@ -12,7 +12,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      item_id: Math.floor(Math.random() * (60563 - 59553 + 1)) + 59553
+      // item_id: Math.floor(Math.random() * (60563 - 59553 + 1)) + 59553
+      item_id: 59557
     };
     this.changeProduct = this.changeProduct.bind(this);
   }
@@ -27,12 +28,12 @@ class App extends React.Component {
       <div>
         <h1>Atelier</h1>
         <div className="main">
-          <div className="overview">
+          <div className="overview-widget">
             <Overview itemid={this.state.item_id} />
           </div>
           <QA itemid={this.state.item_id} />
           <div className="ratings">
-            <Ratings itemid={this.state.item_id} />
+            {/* <Ratings itemid={this.state.item_id} /> */}
           </div>
         </div>
         <div>
