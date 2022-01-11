@@ -10,7 +10,7 @@
   box-sizing: 0;
   display: grid;
   grid-template-columns: 50% 50%;
-  grid-template-rows: 50% 25% 10% 15%;
+  grid-template-rows: 32% 33% 35%;
 }
 button:hover {
   background: #8e9efa;
@@ -19,40 +19,42 @@ button:hover {
 
 /* Product Info */
 .product-info {
-  font-size: 40px;
+  font-size: 20px;
   grid-column-start: 2;
   grid-row-start: 1;
   grid-row-end: 2;
-  overflow-y: hidden;
   border: 1px solid black;
+  margin: 5px
 }
 /* Product Description */
 .product-description {
+  margin-top: 10px;
+  font-size: 30px;
   grid-column-start: 1;
   grid-row-start: 3;
   grid-row-end: 4;
-  margin-top: 5px;
-  font-size: 30px;
 }
 
 
 /* Image Gallery */
 .image-gallery-container {
+  margin-right: 5px;
+  display: grid;
   grid-column-start: 1;
   grid-row-start: 1;
-  grid-row-end: 2;
+  grid-row-end: 3;
   border: 1px solid black;
-  display: grid;
   grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
   grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
 }
 .main-gallery {
-  max-height: 100%;
-  max-width: 100%;
+  display: grid;
   grid-row-start: 1;
   grid-row-end: 11;
   grid-column-start: 1;
   grid-column-end: 11;
+  max-height: 500px;
+  max-width: 100%;
   cursor: zoom-in;
 }
 .thumbnail-list {
@@ -142,12 +144,25 @@ button:hover {
 
 
 /* Style Selector */
+.styles-info {
+  grid-column-start: 2;
+  grid-row-start: 2;
+
+  height:auto;
+  background-color: rgb(114, 114, 114);
+
+  border: 1px solid black;
+  margin: 5px;
+}
 
 .style-img-container{
   position: relative;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  grid-column-start: 2;
+  grid-row-start: 3;
+  grid-row-end: 3;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
 }
@@ -171,26 +186,18 @@ button:hover {
 .style-img {
   border-radius: 50%;
   padding: 2px;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   margin-top: 0px;
 }
 .checkmark {
   position: absolute;
 }
-.styles-info {
-  grid-column-start: 2;
-  grid-row-start: 2;
-
-  height:auto;
-  background-color: rgb(114, 114, 114);
-
-  border: 1px solid black;
-  margin-bottom: 5px;
-}
 
 /* Add to cart */
 .add-to-cart {
+  font-size: 20px;
+  margin: 5px;
   grid-column-start: 2;
   grid-row-start: 3;
   grid-row-end: 4;
