@@ -15,6 +15,7 @@ class ImageGallery extends React.Component {
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.zoomIn = this.zoomIn.bind(this);
+    this.zoomOut = this.zoomOut.bind(this);
     this.trackPosition = this.trackPosition.bind(this);
   }
 
@@ -26,7 +27,6 @@ class ImageGallery extends React.Component {
   }
 
   closeModal = (e) => {
-    e.preventDefault();
     this.setState({
       modalOpen: false
     });
@@ -52,8 +52,8 @@ class ImageGallery extends React.Component {
 
   zoomOut = (e) => {
     e.preventDefault();
-    var pre = document.getElementById("preview");
-    pre.style.visibility = "hidden";
+    let modalImage = $(".zoom-frame");
+    modalImage.css('display', 'none')
   }
 
   trackPosition = (e) => {
@@ -88,6 +88,11 @@ class ImageGallery extends React.Component {
 
     return (
       <>
+              {this.state.zoom ? (
+            <div className="zoom-frame" onMouseMove={this.trackPosition} onClick={this.zoomIn}>
+              <button onClick={this.zoomOut}>X</button>
+            </div>
+         ) : null}
         <div className="image-gallery" data-testid="image-gallery">
           <div className="image-gallery-container">
 
@@ -120,11 +125,10 @@ class ImageGallery extends React.Component {
             <FontAwesomeIcon className='modal-forward' onClick={this.props.forward} icon={faAngleRight} size='2x' color="white"></FontAwesomeIcon>
 
 
+            {/* conditionally render this based on if the user zooms? */}
 
-            <div className="zoom-frame" onMouseMove={this.trackPosition} onClick={this.zoomIn}>
-              <img className="modal-image" src={this.props.photo} onClick={this.zoomIn}></img>
-            </div>
 
+            <img className="modal-image" src={this.props.photo} onClick={this.zoomIn}></img>
 
           {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(range, (photo, index) => {
             return (<input className="modal-radio-button" type="radio" key={index} id={index} onClick={this.props.changePhoto}></input>)

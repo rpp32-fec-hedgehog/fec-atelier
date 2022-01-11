@@ -87,7 +87,12 @@ button:hover {
   color: #d9dade;
 }
 
-
+.zoom-frame {
+  z-index: 5;
+  width: 700px;
+  height: 500px;
+  border: solid 2px red;
+}
 
 /* Modal */
 .modal-gallery {
