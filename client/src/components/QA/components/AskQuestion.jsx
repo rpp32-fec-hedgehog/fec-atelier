@@ -22,19 +22,10 @@ class AskQuestion extends React.Component {
 
   openModal(e) {
     e.preventDefault();
-    $.ajax({
-      url: `/products/${this.props.product_id}`,
-      method: 'GET',
-      success: data => {
-        this.setState({
-          modalOpen: true,
-          product_name: data.name
-        });
-      },
-      error: err => {
-        alert(err);
-      }
-    })
+    this.setState({
+      modalOpen: true,
+      product_name: this.props.product_name
+    });
   }
 
   closeModal(e) {
@@ -143,10 +134,10 @@ class AskQuestion extends React.Component {
         >
           <div className="qa-modal-top">
             <span className="q-modal-ask">Ask your question about the {this.state.product_name}</span>
-            <span className="close-qa-modal" onClick={this.closeModal.bind(this)}>X</span>
+            <span className="close-qa-modal" data-testid="close-qa-modal" onClick={this.closeModal.bind(this)}>X</span>
           </div>
           {this.state.invalid}
-          <div className="qa-modal-form">
+          <div className="qa-modal-form" data-testid="qa-modal-form">
             <div className="qa-modal-input">
               <label className="qa-modal-label" htmlFor="your-q">{'Your Question (mandatory)'}</label>
               <textarea className="your-q" maxLength="1000"

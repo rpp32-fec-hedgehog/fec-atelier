@@ -89,10 +89,16 @@ describe('Questions & Answers', function() {
   })
 
   describe('AskQuestion Component', function() {
+    render(<AskQuestion product_id={59557} />);
 
     test('should render AskQuestion component', function() {
-      render(<AskQuestion />);
       const AskQuestionElement = screen.getByTestId('question-modal');
+      expect(AskQuestionElement).toBeInTheDocument();
+    })
+
+    test('should open modal when "Ask a question" is clicked', async function() {
+      fireEvent.click(await screen.findByText('ASK A QUESTION'));
+      const AskQuestionElement = (await screen.findByTestId('qa-modal-form'));
       expect(AskQuestionElement).toBeInTheDocument();
     })
 

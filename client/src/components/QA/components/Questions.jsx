@@ -107,7 +107,8 @@ class Questions extends React.Component {
       </button>;
     let addQuestion = <AskQuestion key="ask-question" className="ask-question"
       getQAData={this.props.getQAData}
-      product_id={this.props.product_id} />
+      product_id={this.props.product_id}
+      product_name={this.props.product_name} />
     if (totalQs > this.state.questionCount && totalQs > 2) {
       return base.concat(more, addQuestion);
     } else {
