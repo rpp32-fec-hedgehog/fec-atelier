@@ -6,7 +6,7 @@ const app = express();
 const port = 3000;
 
 const apiCalls = require('../utils/apiCalls.js');
-const { getRelatedImages, getRelatedItems, consolidateForState } = require('../utils/relatedProducts/serverHelpers');
+const rp = require('../utils/relatedProducts/serverHelpers');
 
 
 app.use(express.static(path.join(__dirname, '..', '/client/dist')));
@@ -43,17 +43,22 @@ app.post('/cart', (req, res) => {
 //Related Products
 app.get('/relatedItems', (req, res) => {
   let item_id = req.query.item_id;
-  getRelatedItems(item_id, process.env.API_KEY)
-    .then(relatedItems => {
-      getRelatedImages(relatedItems)
-        .then(styles => {
-          for (let i = 0; i < relatedItems.length; i++) {
-            relatedItems[i].styles = styles[i].results
-          }
-          res.status(200).send(relatedItems);
-        })
-        .catch(e => e);
+
+  // get the related item IDs
+  rp.getRelatedItems(item_id)
+
+    // Get the item details of all related items in the array
+    .then(relatedItems => rp.getSingleItemDetails(relatedItems)
+
+    // Get the images for the styles
+    .then(items => {
+      rp.getRelatedImages(items)
+      .then(productArray => {
+        res.status(200).send(productArray);
+      })
     })
+    .catch(e=>e)
+    )
     .catch(e => e);
 });
 
