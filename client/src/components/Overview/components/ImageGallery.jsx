@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import _ from 'underscore';
+import $ from 'jquery';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -8,10 +9,13 @@ class ImageGallery extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      modalOpen: false
+      modalOpen: false,
+      zoom: false
     }
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.zoomIn = this.zoomIn.bind(this);
+    this.trackPosition = this.trackPosition.bind(this);
   }
 
   openModal = (e) => {
@@ -26,6 +30,48 @@ class ImageGallery extends React.Component {
     this.setState({
       modalOpen: false
     });
+  }
+
+  zoomIn = (e) => {
+    e.preventDefault();
+    let modalImage = $(".modal-image");
+    let frame = $(".zoom-frame");
+    if (this.state.zoom === false) {
+      modalImage.css('transform', 'scaled(2.5)');
+      modalImage.css('cursor', 'zoom-out');
+      this.setState((state, props) => ({
+        zoom: !state.zoom
+      }))
+    } else {
+      frame.css('background-image', 'none');
+      modalImage.css('visibility', 'visible');
+      modalImage.css('transform', 'scale(1)');
+      modalImage.css('cursor', 'zoom-in');
+    }
+  }
+
+  zoomOut = (e) => {
+    e.preventDefault();
+    var pre = document.getElementById("preview");
+    pre.style.visibility = "hidden";
+  }
+
+  trackPosition = (e) => {
+    console.log('tracking'
+    )
+    let frame, modalImage, posX, posY;
+    this.state.zoom ? (
+      <Modal style={{display: 'inline-block'}} />,
+      frame = $(".zoom-frame"),
+      modalImage = $(".modal-image"),
+      modalImage.css('visability', 'hidden'),
+      frame.css('background-image', this.props.photo),
+      frame.css('background-repeat', 'no-repeat'),
+      frame.css('background-size', '900px'),
+      posX = e.nativeEvent.offsetX,
+      posY = e.nativeEvent.offsetY,
+      frame.css('background-position', `${-posX * 2.5}px ${-posY * 2.5}px`)
+    ) : null
   }
 
   render() {
@@ -44,6 +90,7 @@ class ImageGallery extends React.Component {
       <>
         <div className="image-gallery" data-testid="image-gallery">
           <div className="image-gallery-container">
+
             <div className="thumbnail-list">
               {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(range, (photo, index) => {
                 return thumbnailIndex === index ?
@@ -52,6 +99,7 @@ class ImageGallery extends React.Component {
                 }) : null
               }
             </div>
+
             <img className="main-gallery" src={this.props.photo} onClick={this.openModal}></img>
             {this.props.currentPhoto === 0 ?
             <FontAwesomeIcon className='backward' onClick={this.props.backward} icon={faAngleLeft} size='2x' style={{display: 'none'}}></FontAwesomeIcon> :
@@ -65,16 +113,23 @@ class ImageGallery extends React.Component {
 
 
         <Modal isOpen={this.state.modalOpen} ariaHideApp={false} className="modal-gallery">
+
           <button className="modal-close" onClick={this.closeModal}>X</button>
           <div className="modal-buttons">
             <FontAwesomeIcon className='modal-back' onClick={this.props.backward} icon={faAngleLeft} size='2x' color="white"></FontAwesomeIcon>
             <FontAwesomeIcon className='modal-forward' onClick={this.props.forward} icon={faAngleRight} size='2x' color="white"></FontAwesomeIcon>
-            <img className="modal-image" src={this.props.photo}></img>
+
+
+
+            <div className="zoom-frame" onMouseMove={this.trackPosition} onClick={this.zoomIn}>
+              <img className="modal-image" src={this.props.photo} onClick={this.zoomIn}></img>
+            </div>
+
+
           {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(range, (photo, index) => {
-            return (
-              <input className="modal-radio-button" type="radio" key={index} id={index} onClick={this.props.changePhoto}></input>
-              )
-            }) : null}
+            return (<input className="modal-radio-button" type="radio" key={index} id={index} onClick={this.props.changePhoto}></input>)
+              }) : null
+            }
           </div>
         </Modal>
       </>
