@@ -19,17 +19,10 @@ class Overview extends React.Component {
       selectedStyle: 0,
       currentPhoto: 0,
       numberOfPhotos: 0,
-      maxIndex: 6
     };
-    this.grabProductData = this.grabProductData.bind(this);
-    this.grabStylesData = this.grabStylesData.bind(this);
-    this.handleSelectStyle = this.handleSelectStyle.bind(this);
-    this.cycleForward = this.cycleForward.bind(this);
-    this.cycleBackward = this.cycleBackward.bind(this);
-    this.changePhoto = this.changePhoto.bind(this);
   }
 
-  async grabProductData() {
+  grabProductData = async () => {
     await axios.get(`products/${this.props.itemid}`)
       .then((result) => {
         this.setState({
@@ -41,12 +34,13 @@ class Overview extends React.Component {
       });
   }
 
-  async grabStylesData() {
+  grabStylesData = async () => {
     await axios.get(`products/${this.props.itemid}/styles`)
       .then((result) => {
         this.setState({
           styleData : result.data.results,
-          photo: result.data.results[0].photos[0].url
+          photo: result.data.results[0].photos[0].url,
+          numberOfPhotos: result.data.results[0].photos.map(style => style.photos).length
         });
       })
       .catch((err) => {
@@ -54,26 +48,26 @@ class Overview extends React.Component {
       });
   }
 
-  cycleForward(e) {
+  cycleForward = (e) => {
+    let max = this.state.numberOfPhotos;
     let current = this.state.currentPhoto;
     this.state.currentPhoto < max - 1 ?
     this.setState({
       photo: this.state.styleData[this.state.selectedStyle].photos[current + 1].url,
       currentPhoto: this.state.currentPhoto + 1,
-      minIndex: this.state.minIndex + 1,
-      maxIndex: this.state.maxIndex + 1
+      minIndex: this.state.minIndex + 1
     }) :
     null
   }
 
-  cycleBackward(e) {
+  cycleBackward = (e) => {
+    let max = this.state.numberOfPhotos;
     let current = this.state.currentPhoto;
     this.state.currentPhoto > 0 ?
     this.setState({
       photo: this.state.styleData[this.state.selectedStyle].photos[current - 1].url,
       currentPhoto: this.state.currentPhoto - 1,
-      minIndex: this.state.minIndex - 1,
-      maxIndex: this.state.maxIndex - 1
+      minIndex: this.state.minIndex - 1
     }) :
     null
   }
@@ -94,7 +88,7 @@ class Overview extends React.Component {
     }
   }
 
-  handleSelectStyle(e) {
+  handleSelectStyle = (e) => {
     let current = this.state.currentPhoto;
     let currentStyle = e.target.id;
     let currentPhoto = this.state.currentPhoto;
@@ -130,7 +124,8 @@ class Overview extends React.Component {
           this.state.styleData[this.state.selectedStyle].name : null}
           selectedStyle={Number(this.state.selectedStyle)}/>
 
-        <AddToCart productName={this.state.productData.name} styleData={this.state.styleData[this.state.selectedStyle]}/>
+        <AddToCart productName={this.state.productData.name} styleData={this.state.styleData[this.state.selectedStyle]}
+        addToOutfit={this.props.addToOutfit}/>
       </div>
     )
   }
