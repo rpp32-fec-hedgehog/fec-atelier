@@ -1,7 +1,16 @@
+.ratings_widget {
+  font-family: sans-serif;
+}
+
 .ratings_meta {
   float: left;
   width: 25%;
   margin-left: 25px;
+}
+
+.review_sort_bar {
+  float: left;
+  margin-left: 60px;
 }
 
 .ratings_list {
@@ -13,6 +22,7 @@
 .star_count_list {
   list-style-type: none;
   margin-bottom: 25px;
+  font-size: 13px;
 }
 
 .ratings_average {
@@ -80,6 +90,7 @@
   height: 15px;
   z-index: 0;
   position: absolute;
+  opacity: 0.5;
 }
 
 .rating{

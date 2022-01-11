@@ -8,40 +8,33 @@ class Ratings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      item_id: 59557,
-      ratings: [{review_id: 1, summary: 'summary1', body: 'body1'}, {review_id: 2, summary: 'summary2', body: 'body2'}],
+      item_id: this.props.itemId,
+      ratings: [],
       ratings_meta: {}
-    };
+    }
+
     this.getAllReviews = this.getAllReviews.bind(this);
     this.getReviewsMeta = this.getReviewsMeta.bind(this);
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-  }
-
   componentDidMount(props){
-    this.getAllReviews(this.props.itemid, (error, result) => {
-      if (error) {
-        console.log('client reports retrieve reviews error: ', error);
-      } else {
-        this.setState({ratings: result});
-      }
-    })
 
-    this.getReviewsMeta(this.props.itemid, (error, result) => {
+    this.getReviewsMeta(this.state.item_id, (error, result) => {
       if (error) {
         console.log('client reports retrieve reviews meta error: ', error);
       } else {
-        this.setState({ratings_meta: result});
+        this.setState({
+          ratings_meta: result
+        });
       }
     })
   }
 
-  getAllReviews(item_id, callback) {
-    axios.get('/ratings', {
+  async getAllReviews(item_id, sort, callback) {
+    await axios.get('/ratings', {
       headers : {
-        "item_id" : item_id
+        "item_id" : this.state.item_id,
+        "sort" : sort
       }
     })
       .then((response) => {
@@ -53,8 +46,8 @@ class Ratings extends React.Component {
       })
   }
 
-  getReviewsMeta(item_id, callback) {
-    axios.get('/reviews/meta', {
+  async getReviewsMeta(item_id, callback) {
+    await axios.get('/reviews/meta', {
       headers : {
         "item_id" : item_id
       }
@@ -68,12 +61,11 @@ class Ratings extends React.Component {
       })
   }
 
-  render(props) {
-
+  render() {
     return (
-      <div data-testid="ratings" className="ratings-widget">
+      <div data-testid="ratings" className="ratings_widget">
         <h3>RATINGS & REVIEWS</h3>
-        <br></br><RatingsMeta className="ratings_meta" ratings_meta={this.state.ratings_meta}></RatingsMeta><RatingsList className="ratings_list" ratings={this.state.ratings}></RatingsList>
+        <br></br><RatingsMeta className="ratings_meta" ratings_meta={this.state.ratings_meta}></RatingsMeta><RatingsList className="ratings_list" ratings_meta={this.state.ratings_meta} getAllReviews={this.getAllReviews.bind(this)}></RatingsList>
       </div>
     );
   }

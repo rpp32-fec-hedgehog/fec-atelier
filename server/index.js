@@ -106,11 +106,14 @@ app.post('/qa/questions', function(req, res) {
 // ========== Ratings & Reviews ========== //
 
 app.get('/ratings', function(req, res, next) {
-  apiCalls.getReviewsByItem(req.headers.item_id, (err, results) => {
+  apiCalls.getReviewsByItem(req.headers.item_id, req.headers.sort, (err, results) => {
+    if (err) {
+      console.log('error at server ratings retrieve: ', err);
+    } else {
       let ratings = results.data.results;
       res.send(ratings);
     }
-  )
+  })
 })
 
 app.get('/reviews/meta', (req, res, next) => {

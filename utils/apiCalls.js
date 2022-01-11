@@ -182,12 +182,12 @@ module.exports.submitQuestion = submitQuestion;
 
 // ========== Ratings & Reviews ========== //
 
-const getReviewsByItem = (product_id, callback) => {
-  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${product_id}`;
+const getReviewsByItem = (product_id, sortOrder, callback) => {
+  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?sort=${sortOrder}&product_id=${product_id}`;
+
   axios.get(endpoint, {
     headers : {
       Authorization : process.env.API_KEY,
-      sort: 'newest'
     }
   })
   .then((response) => {
