@@ -1,9 +1,8 @@
-/* General */
+/* General Styling*/
 .overview-widget {
   display: block;
   margin-bottom: 100px;
 }
-
 .overview {
   padding: 0;
   margin: 0;
@@ -13,10 +12,10 @@
   grid-template-columns: 50% 50%;
   grid-template-rows: 55% 30% 15%;
 }
-
 button:hover {
   background: #8e9efa;
 }
+
 
 /* Product Info */
 .product-info {
@@ -26,6 +25,7 @@ button:hover {
   overflow-y: hidden;
   border: 1px solid black;
 }
+
 
 /* Image Gallery */
 .image-gallery-container {
@@ -37,7 +37,6 @@ button:hover {
   grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
   grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
 }
-
 .main-gallery {
   max-height: 100%;
   max-width: 100%;
@@ -47,7 +46,6 @@ button:hover {
   grid-column-end: 11;
   cursor: zoom-in;
 }
-
 .thumbnail-list {
   max-height: 100%;
   grid-row-start: 1;
@@ -56,7 +54,6 @@ button:hover {
   grid-column-end: 2;
   z-index: 3;
 }
-
 .image-gallery-thumbnail {
   width: 30px;
   height: 30px;
@@ -64,7 +61,6 @@ button:hover {
   padding: 0px;
   margin-left: 3px;
 }
-
 .forward {
   grid-row-start: 5;
   grid-column-start: 10;
@@ -78,17 +74,16 @@ button:hover {
 .forward:hover {
   color: #d9dade;
 }
-
 .backward:hover {
   color: #d9dade;
 }
-
 .zoom-frame {
   z-index: 5;
   width: 700px;
   height: 500px;
   border: solid 2px red;
 }
+
 
 /* Modal */
 .modal-gallery {
@@ -100,7 +95,6 @@ button:hover {
   height: 95%;
   background-color: rgb(75, 75, 75);
 }
-
 .modal-image {
   position: absolute;
   left: 50%;
@@ -112,7 +106,6 @@ button:hover {
   max-height: 100%;
   cursor: zoom-in;
 }
-
 .modal-forward {
   position: relative;
   left: 50%;
@@ -120,7 +113,6 @@ button:hover {
   transform: translate(-50%, -50%);
   z-index: 2;
 }
-
 .modal-back {
   position: relative;
   left: 40%;
@@ -135,32 +127,51 @@ button:hover {
   transform: translate(-50%, -50%);
   z-index: 2;
 }
-
 .modal-close {
   z-index: 2;
 }
+
 
 /* Style Selector */
 .styles-info {
   grid-column-start: 2;
   grid-row-start: 2;
-  grid-row-end: 3;
   border: 1px solid black;
+  margin-bottom: 5px;
 }
-.style-img {
-  border-radius: 50%;
-  padding: 2px;
-  width: 50px;
-  height: 50px;
+.style-img-container{
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+}
+.style-name {
+  grid-row-start: 1;
+  grid-row-end: 3;
+  font-size: 50px;
+  margin-bottom: 20px;
+  padding: 0;
 }
 
 .style-img-background {
+  display: grid;
+  max-width: 100px;
+  max-height: 100px;
   z-index: 2;
+  margin-bottom: 5px;
+}
+.style-img {
+  border-radius: 30%;
+  padding: 2px;
+  width: 100px;
+  height: 100px;
+}
+.checkmark {
+  position: absolute;
 }
 
-.checkmark {
-  position: inline;
-}
 
 /* Add to cart */
 .add-to-cart {
@@ -169,16 +180,15 @@ button:hover {
   grid-row-end: 4;
   border: 1px solid black
 }
-
 .add-button {
   border: none;
   margin: 0;
   padding: 0;
   background: transparent;
 }
-
-.add-button:hover {color: #8e9efa}
-
+.add-button:hover {
+  color: #8e9efa
+}
 .add-button:active {
   color: #8e9efa;
   box-shadow: 0 1px rgb(214, 211, 211);
