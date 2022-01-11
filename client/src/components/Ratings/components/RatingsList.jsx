@@ -5,7 +5,7 @@ class RatingsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      item_id: 0,
+      item_id: this.props.ratings_meta.product_id,
       sort: 'relevant',
       ratings: []
     };
@@ -16,8 +16,7 @@ class RatingsList extends React.Component {
     e.preventDefault();
     this.setState({
       sort: e.target.value,
-      item_id: this.props.ratings_meta.product_id}, () => {
-        console.log('ratings list item id? ', this.state.item_id);
+    }, () => {
         this.props.getAllReviews(this.state.item_id, this.state.sort, (error, result) => {
           if (error) {
             console.log('ratings list reports retrieve reviews error: ', error);
@@ -25,20 +24,19 @@ class RatingsList extends React.Component {
             this.setState({ratings: result});
           }
         })
-      })
+      }
+    )
   }
 
   componentDidMount(props){
-    this.setState({item_id: this.props.ratings_meta.product_id}, () => {
-      this.props.getAllReviews(this.state.item_id, this.state.sort, (error, result) => {
-        if (error) {
-          console.log('client reports retrieve reviews error: ', error);
-        } else {
-          this.setState({ratings: result});
-        }
-        }
-      )
-    })
+    this.props.getAllReviews(this.state.item_id, this.state.sort, (error, result) => {
+      if (error) {
+        console.log('client reports retrieve reviews error: ', error);
+      } else {
+        this.setState({ratings: result});
+      }
+      }
+    )
   }
 
   render(props) {

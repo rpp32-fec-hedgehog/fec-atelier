@@ -207,7 +207,6 @@ const getReviewsMetaByItem = (product_id, callback) => {
     }
   })
   .then((response => {
-    //console.log('metadata recieved by apiCalls: ', metadata.data);
     callback(null, response.data);
   }))
   .catch((err) => {
