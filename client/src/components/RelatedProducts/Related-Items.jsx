@@ -20,11 +20,11 @@ class RelatedItems extends React.Component {
       method: 'GET',
       data: { item_id: this.state.currentItem },
       success: data => {
+        console.log('This is the data: ', data)
         this.setState({ relatedItems: data })
       }
     })
   }
-
 
   render() {
     if (!this.state.relatedItems.length) {
@@ -37,13 +37,12 @@ class RelatedItems extends React.Component {
       show={3.5}
       slide={3}
       transition={0.5}
-
       >
         {this.state.relatedItems.map(item => {
           i++;
           return (<ProductCard
             item={item}
-            key={i}
+            key={item.id}
             type={'related'}
             changeProduct={this.changeProduct}
           />)
