@@ -25,7 +25,6 @@ class RelatedItems extends React.Component {
     })
   }
 
-
   render() {
     if (!this.state.relatedItems.length) {
       return <div className="blank_Load">Testing</div>
@@ -37,13 +36,12 @@ class RelatedItems extends React.Component {
       show={3.5}
       slide={3}
       transition={0.5}
-
       >
         {this.state.relatedItems.map(item => {
           i++;
           return (<ProductCard
             item={item}
-            key={i}
+            key={item.id}
             type={'related'}
             changeProduct={this.changeProduct}
           />)
