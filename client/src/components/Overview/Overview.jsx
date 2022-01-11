@@ -19,7 +19,6 @@ class Overview extends React.Component {
       selectedStyle: 0,
       currentPhoto: 0,
       numberOfPhotos: 0,
-      maxIndex: 6
     };
     this.grabProductData = this.grabProductData.bind(this);
     this.grabStylesData = this.grabStylesData.bind(this);
@@ -46,7 +45,8 @@ class Overview extends React.Component {
       .then((result) => {
         this.setState({
           styleData : result.data.results,
-          photo: result.data.results[0].photos[0].url
+          photo: result.data.results[0].photos[0].url,
+          numberOfPhotos: result.data.results[0].photos.map(style => style.photos).length
         });
       })
       .catch((err) => {
@@ -55,25 +55,26 @@ class Overview extends React.Component {
   }
 
   cycleForward(e) {
+
+    let max = this.state.numberOfPhotos;
     let current = this.state.currentPhoto;
     this.state.currentPhoto < max - 1 ?
     this.setState({
       photo: this.state.styleData[this.state.selectedStyle].photos[current + 1].url,
       currentPhoto: this.state.currentPhoto + 1,
-      minIndex: this.state.minIndex + 1,
-      maxIndex: this.state.maxIndex + 1
+      minIndex: this.state.minIndex + 1
     }) :
     null
   }
 
   cycleBackward(e) {
+    let max = this.state.numberOfPhotos;
     let current = this.state.currentPhoto;
     this.state.currentPhoto > 0 ?
     this.setState({
       photo: this.state.styleData[this.state.selectedStyle].photos[current - 1].url,
       currentPhoto: this.state.currentPhoto - 1,
-      minIndex: this.state.minIndex - 1,
-      maxIndex: this.state.maxIndex - 1
+      minIndex: this.state.minIndex - 1
     }) :
     null
   }
