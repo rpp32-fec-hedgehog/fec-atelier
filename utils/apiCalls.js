@@ -182,8 +182,8 @@ module.exports.submitQuestion = submitQuestion;
 
 // ========== Ratings & Reviews ========== //
 
-const getReviewsByItem = (product_id, sortOrder, callback) => {
-  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?sort=${sortOrder}&product_id=${product_id}`;
+const getReviewsByItem = (product_id, sortOrder, count, callback) => {
+  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?count=${count}&sort=${sortOrder}&product_id=${product_id}`;
 
   axios.get(endpoint, {
     headers : {

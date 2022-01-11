@@ -7,7 +7,8 @@ class RatingsList extends React.Component {
     this.state = {
       item_id: this.props.ratings_meta.product_id,
       sort: 'relevant',
-      ratings: []
+      ratings: [],
+      count: this.props.count
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -17,9 +18,9 @@ class RatingsList extends React.Component {
     this.setState({
       sort: e.target.value,
     }, () => {
-        this.props.getAllReviews(this.state.item_id, this.state.sort, (error, result) => {
+        this.props.getAllReviews(this.state.item_id, this.state.sort, this.props.count, (error, result) => {
           if (error) {
-            console.log('ratings list reports retrieve reviews error: ', error);
+            console.log('ratings list reports retrieve reviews error: ', error.message);
           } else {
             this.setState({ratings: result});
           }
@@ -29,14 +30,14 @@ class RatingsList extends React.Component {
   }
 
   componentDidMount(props){
-    this.props.getAllReviews(this.state.item_id, this.state.sort, (error, result) => {
+
+    this.props.getAllReviews(this.state.item_id, this.state.sort, 2,  (error, result) => {
       if (error) {
-        console.log('client reports retrieve reviews error: ', error);
+        console.log('client reports retrieve reviews error: ', error.message);
       } else {
         this.setState({ratings: result});
       }
-      }
-    )
+    })
   }
 
   render(props) {

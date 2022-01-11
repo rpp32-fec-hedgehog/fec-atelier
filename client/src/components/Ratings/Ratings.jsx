@@ -10,9 +10,9 @@ class Ratings extends React.Component {
     this.state = {
       item_id: this.props.itemId,
       ratings: [],
-      ratings_meta: {}
+      ratings_meta: {},
+      count: 0
     }
-
     this.getAllReviews = this.getAllReviews.bind(this);
     this.getReviewsMeta = this.getReviewsMeta.bind(this);
   }
@@ -23,18 +23,27 @@ class Ratings extends React.Component {
       if (error) {
         console.log('client reports retrieve reviews meta error: ', error);
       } else {
+        let recommend_total = 0;
+        const recommended = result.recommended;
+
+        for (const key in recommended) {
+        recommend_total += parseInt(recommended[key]);
+        }
+
         this.setState({
-          ratings_meta: result
+          ratings_meta: result,
+          count: recommend_total
         });
       }
     })
   }
 
-  async getAllReviews(item_id, sort, callback) {
+  async getAllReviews(item_id, sort, count, callback) {
     await axios.get('/ratings', {
       headers : {
         "item_id" : this.state.item_id,
-        "sort" : sort
+        "sort" : sort,
+        "count" : count
       }
     })
       .then((response) => {
@@ -62,10 +71,11 @@ class Ratings extends React.Component {
   }
 
   render() {
+
     return (
       <div data-testid="ratings" className="ratings_widget">
         <h3>RATINGS & REVIEWS</h3>
-        <br></br><RatingsMeta className="ratings_meta" ratings_meta={this.state.ratings_meta}></RatingsMeta><RatingsList className="ratings_list" ratings_meta={this.state.ratings_meta} getAllReviews={this.getAllReviews.bind(this)}></RatingsList>
+        <br></br><RatingsMeta className="ratings_meta" ratings_meta={this.state.ratings_meta}></RatingsMeta><RatingsList className="ratings_list" ratings_meta={this.state.ratings_meta} count={this.state.count} getAllReviews={this.getAllReviews.bind(this)}></RatingsList>
       </div>
     );
   }
