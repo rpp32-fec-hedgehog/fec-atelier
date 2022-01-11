@@ -64,6 +64,28 @@ describe('Questions & Answers', function() {
       expect(AnswerQuestionElement).toBeInTheDocument();
     })
 
+    test('should render Add Answer button', async function() {
+      render(<AnswerQuestion product_id={59557} />);
+      fireEvent.click(await screen.findByTestId('add-answer'));
+      const AskQuestionElement = (await screen.findByText('Submit your answer'));
+      expect(AskQuestionElement).toBeInTheDocument();
+    })
+
+    // test('should open modal when "Ask a question" is clicked', async function() {
+    //   render(<AskQuestion product_id={59557} />);
+    //   fireEvent.click(await screen.findByText('ASK A QUESTION'));
+    //   const AskQuestionElement = (await screen.findByTestId('qa-modal-form'));
+    //   expect(AskQuestionElement).toBeInTheDocument();
+    // })
+
+    // test('should close modal when the close button is clicked', async function() {
+    //   render(<AskQuestion product_id={59557} />);
+    //   fireEvent.click(await screen.findByText('ASK A QUESTION'));
+    //   fireEvent.click(await screen.findByTestId('close-qa-modal'));
+    //   const AskQuestionElement = (await screen.queryByTestId('qa-modal-form'));
+    //   expect(AskQuestionElement).toBeNull();
+    // })
+
   })
 
   describe('Answers Component', function() {

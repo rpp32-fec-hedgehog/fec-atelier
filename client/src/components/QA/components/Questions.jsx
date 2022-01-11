@@ -91,7 +91,7 @@ class Questions extends React.Component {
               </div>
               <div>
                 <span className="a-label"><b>A: </b></span>
-                <AnswerList answers={q.answers} question_id={q.question_id}
+                <AnswerList answers={q.answers} question_id={q.question_id} product_name={this.props.product_name}
                   updateAHelp={this.props.updateAHelp} />
               </div>
             </li>
