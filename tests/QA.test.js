@@ -4,9 +4,11 @@
 
 import React from 'react';
 import _ from 'underscore';
+import 'regenerator-runtime/runtime.js';
 import '@testing-library/jest-dom';
+import {mount} from 'enzyme'
 import {render, screen, cleanup, fireEvent, waitFor} from '@testing-library/react';
-import {product1Data, product2Data} from './samples/sample-qa-data.js';
+import {product1Data, product1DataSorted, product2Data, product2DataSorted} from './samples/sample-qa-data.js';
 
 import QA from '../client/src/components/QA/QA.jsx';
 import AnswerList from '../client/src/components/QA/components/AnswerList.jsx';
@@ -24,6 +26,10 @@ describe('Questions & Answers', function() {
       render(<QA itemid={59557} />);
       const QAElement = screen.getByTestId('qa');
       expect(QAElement).toBeInTheDocument();
+    })
+
+    xtest('should sort questions by term', function() {
+
     })
 
   })
@@ -97,6 +103,12 @@ describe('Questions & Answers', function() {
     test('should render Questions components', function() {
       render(<Questions questions={product1Data} />);
       const QuestionsElement = screen.getByTestId('questions');
+      expect(QuestionsElement).toBeInTheDocument();
+    })
+
+    test('should render questions', function() {
+      render(<Questions questions={product1Data} />);
+      const QuestionsElement = screen.getByTestId('new sldkfjlsekjflsijefsef');
       expect(QuestionsElement).toBeInTheDocument();
     })
 
