@@ -37,15 +37,20 @@ class AddToCart extends React.Component {
 
   addToMyOutfit() {
     let newOutfit = this.state.myOutfit
-    _.contains(this.state.myOutfit, this.state.sku) ?
-      (newOutfit.splice(newOutfit.indexOf(this.state.sku), 1),
-        this.setState({
+    _.contains(this.state.myOutfit, Number(this.state.sku)) ?
+      (newOutfit.splice(newOutfit.indexOf(Number(this.state.sku)), 1),
+        this.setState((state, props) => ({
           myOutfit: newOutfit
-        })
-      ) :
-      this.setState({
-        myOutfit: this.state.myOutfit.concat([this.state.sku])
-      });
+        }), () => {
+          // console.log('removed from my outfit :',this.state.sku)
+          this.props.addToOutfit(Number(this.state.sku))
+        })) :
+      this.setState((state, props) => ({
+        myOutfit: state.myOutfit.concat([Number(state.sku)])
+      }), () => {
+        // console.log('added to my outfit :',this.state.sku)
+        this.props.addToOutfit(Number(this.state.sku))
+      })
   }
 
   selectSize(e) {

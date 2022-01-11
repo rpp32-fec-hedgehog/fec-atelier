@@ -131,7 +131,8 @@ class Overview extends React.Component {
           this.state.styleData[this.state.selectedStyle].name : null}
           selectedStyle={Number(this.state.selectedStyle)}/>
 
-        <AddToCart productName={this.state.productData.name} styleData={this.state.styleData[this.state.selectedStyle]}/>
+        <AddToCart productName={this.state.productData.name} styleData={this.state.styleData[this.state.selectedStyle]}
+        addToOutfit={this.props.addToOutfit}/>
       </div>
     )
   }
