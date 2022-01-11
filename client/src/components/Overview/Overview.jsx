@@ -80,7 +80,6 @@ class Overview extends React.Component {
 
   changePhoto = (e) => {
     e.preventDefault();
-
     if (this.state.currentPhoto >= this.state.styleData[this.state.selectedStyle].photos.length - 7) {
       let subtractor = this.state.styleData[this.state.selectedStyle].photos.length - 7
       this.setState((state, props) => ({
@@ -123,8 +122,7 @@ class Overview extends React.Component {
           selectedStyle={this.state.selectedStyle}
           forward={this.cycleForward} backward={this.cycleBackward}
           changePhoto={this.changePhoto}
-          currentPhoto={this.state.currentPhoto}
-          max={this.state.maxIndex}/>
+          currentPhoto={this.state.currentPhoto}/>
 
         <StyleSelector styleImgs={_.map(this.state.styleData, style => style.photos).map(arr => arr[0].thumbnail_url)}
           selectStyle={this.handleSelectStyle}
