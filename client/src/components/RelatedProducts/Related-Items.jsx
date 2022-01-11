@@ -20,7 +20,6 @@ class RelatedItems extends React.Component {
       method: 'GET',
       data: { item_id: this.state.currentItem },
       success: data => {
-        console.log('This is the data: ', data)
         this.setState({ relatedItems: data })
       }
     })
