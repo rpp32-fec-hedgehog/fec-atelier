@@ -40,7 +40,7 @@ button:hover {
 .image-gallery-container {
   grid-column-start: 1;
   grid-row-start: 1;
-  grid-row-end: 3;
+  grid-row-end: 2;
   border: 1px solid black;
   display: grid;
   grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
@@ -64,8 +64,8 @@ button:hover {
   z-index: 3;
 }
 .image-gallery-thumbnail {
-  width: 30px;
-  height: 30px;
+  width: 60px;
+  height: 60px;
   border-radius: 35%;
   padding: 0px;
   margin-left: 3px;
@@ -142,12 +142,7 @@ button:hover {
 
 
 /* Style Selector */
-.styles-info {
-  grid-column-start: 2;
-  grid-row-start: 2;
-  border: 1px solid black;
-  margin-bottom: 5px;
-}
+
 .style-img-container{
   position: relative;
   left: 50%;
@@ -183,7 +178,16 @@ button:hover {
 .checkmark {
   position: absolute;
 }
+.styles-info {
+  grid-column-start: 2;
+  grid-row-start: 2;
 
+  height:auto;
+  background-color: rgb(114, 114, 114);
+
+  border: 1px solid black;
+  margin-bottom: 5px;
+}
 
 /* Add to cart */
 .add-to-cart {
