@@ -169,7 +169,7 @@ class AnswerQuestion extends React.Component {
         >
           <div className='qa-modal-top'>
             <span className="q-modal-answer">Submit your answer</span>
-            <span className="close-qa-modal" onClick={this.closeModal.bind(this)}>X</span>
+            <span className="close-qa-modal" data-testid="close-qa-modal" onClick={this.closeModal.bind(this)}>X</span>
           </div>
           <span className="a-modal-subtitle">{this.state.product_name}: {this.props.question_body}</span>
           {this.state.invalid}
