@@ -59,7 +59,7 @@ class AddToCart extends React.Component {
     }
   }
 
-  getSizes =() => {
+  getSizes = () => {
     let sizes = [];
     let values = _.values(this.props.styleData.skus)
     for (let i = 0; i < values.length; i++) {
