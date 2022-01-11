@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import _ from 'underscore';
+import StarRating from '../../Ratings/components/StarRating.jsx'
 import "regenerator-runtime/runtime.js";
 
 class ProductInfo extends React.Component {
