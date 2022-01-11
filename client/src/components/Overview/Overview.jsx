@@ -20,15 +20,9 @@ class Overview extends React.Component {
       currentPhoto: 0,
       numberOfPhotos: 0,
     };
-    this.grabProductData = this.grabProductData.bind(this);
-    this.grabStylesData = this.grabStylesData.bind(this);
-    this.handleSelectStyle = this.handleSelectStyle.bind(this);
-    this.cycleForward = this.cycleForward.bind(this);
-    this.cycleBackward = this.cycleBackward.bind(this);
-    this.changePhoto = this.changePhoto.bind(this);
   }
 
-  async grabProductData() {
+  grabProductData = async () => {
     await axios.get(`products/${this.props.itemid}`)
       .then((result) => {
         this.setState({
@@ -40,7 +34,7 @@ class Overview extends React.Component {
       });
   }
 
-  async grabStylesData() {
+  grabStylesData = async () => {
     await axios.get(`products/${this.props.itemid}/styles`)
       .then((result) => {
         this.setState({
@@ -54,8 +48,7 @@ class Overview extends React.Component {
       });
   }
 
-  cycleForward(e) {
-
+  cycleForward =(e) => {
     let max = this.state.numberOfPhotos;
     let current = this.state.currentPhoto;
     this.state.currentPhoto < max - 1 ?
@@ -67,7 +60,7 @@ class Overview extends React.Component {
     null
   }
 
-  cycleBackward(e) {
+  cycleBackward = (e) => {
     let max = this.state.numberOfPhotos;
     let current = this.state.currentPhoto;
     this.state.currentPhoto > 0 ?
@@ -95,7 +88,7 @@ class Overview extends React.Component {
     }
   }
 
-  handleSelectStyle(e) {
+  handleSelectStyle = (e) => {
     let current = this.state.currentPhoto;
     let currentStyle = e.target.id;
     let currentPhoto = this.state.currentPhoto;

@@ -12,11 +12,6 @@ class ImageGallery extends React.Component {
       modalOpen: false,
       zoom: false
     }
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-    this.zoomIn = this.zoomIn.bind(this);
-    this.zoomOut = this.zoomOut.bind(this);
-    this.trackPosition = this.trackPosition.bind(this);
   }
 
   openModal = (e) => {
