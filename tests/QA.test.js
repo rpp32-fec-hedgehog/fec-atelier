@@ -28,10 +28,6 @@ describe('Questions & Answers', function() {
       expect(QAElement).toBeInTheDocument();
     })
 
-    xtest('should sort questions by term', function() {
-
-    })
-
   })
 
   describe('AnswerList Component', function() {
@@ -87,6 +83,7 @@ describe('Questions & Answers', function() {
 
     test('should render add photos button', async function() {
       render(<AnswerQuestion product_id={59557} />);
+      fireEvent.click(await screen.findByTestId('add-answer'));
       const AnswerQuestionElement = (await screen.findByText('ADD PHOTOS'));
       expect(AnswerQuestionElement).toBeInTheDocument();
     })
