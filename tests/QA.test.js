@@ -38,13 +38,13 @@ describe('Questions & Answers', function() {
 
     test('should render the "See More Answers" button when there are more than 2 answers', function() {
       render(<AnswerList questionId="553704" answers={Object.values(product1Data[0]['answers'])} />)
-      const AnswerListElement = screen.getByText('See More Answers');
+      const AnswerListElement = screen.getByText('SEE MORE ANSWERS');
       expect(AnswerListElement).toBeInTheDocument();
     })
 
     test('should NOT render the "See More Answers" button when there are less than 2 answers', function() {
       render(<AnswerList questionId="553773" answers={Object.values(product1Data[3]['answers'])} />)
-      const AnswerListElement = screen.queryByText('See More Answers');
+      const AnswerListElement = screen.queryByText('SEE MORE ANSWERS');
       expect(AnswerListElement).toBeNull();
     })
 
@@ -54,7 +54,7 @@ describe('Questions & Answers', function() {
 
     test('should render the AnswerQuestion component', function() {
       render(<AnswerQuestion />);
-      const AnswerQuestionElement = screen.getByTestId('answer-question');
+      const AnswerQuestionElement = screen.getByTestId('answer-modal');
       expect(AnswerQuestionElement).toBeInTheDocument();
     })
 
@@ -76,7 +76,7 @@ describe('Questions & Answers', function() {
 
     test('should render Seller answer at top of answer list', function() {
       render(<Questions questions={product1Data} />);
-      const SellerAnswer = screen.getByTestId(<b>Seller</b>);
+      const SellerAnswer = screen.getByText('Seller');
       expect(SellerAnswer).toBeInTheDocument();
     })
 
@@ -86,7 +86,7 @@ describe('Questions & Answers', function() {
 
     test('should render AskQuestion component', function() {
       render(<AskQuestion />);
-      const AskQuestionElement = screen.getByTestId('ask-question');
+      const AskQuestionElement = screen.getByTestId('question-modal');
       expect(AskQuestionElement).toBeInTheDocument();
     })
 
@@ -100,21 +100,15 @@ describe('Questions & Answers', function() {
       expect(QuestionsElement).toBeInTheDocument();
     })
 
-    test('should render questions sorted by helpfulness', function() {
-      render(<Questions questions={product1Data} />);
-      const TopQuestions = screen.getByTestId('Do you ship internationally?');
-      expect(TopQuestions).toBeInTheDocument();
-    })
-
     test('should render "More Answered Questions" button when there are 3 or more questions', function() {
       render(<Questions questions={product1Data} />);
-      const TopQuestions = screen.getByText('More Answered Questions');
+      const TopQuestions = screen.getByText('MORE ANSWERED QUESTIONS');
       expect(TopQuestions).toBeInTheDocument();
     })
 
     test('should NOT render "More Answered Questions" button when there are 2 or less questions', function() {
       render(<Questions questions={product2Data} />);
-      const TopQuestions = screen.queryByText('More Answered Questions');
+      const TopQuestions = screen.queryByText('MORE ANSWERED QUESTIONS');
       expect(TopQuestions).toBeNull();
     })
 
@@ -130,7 +124,7 @@ describe('Questions & Answers', function() {
 
     test('should render search bar with placeholder text', function() {
       render(<SearchQuestion />);
-      const PlaceholderElement = screen.getByPlaceholderText('Search for answers...');
+      const PlaceholderElement = screen.getByPlaceholderText('HAVE A QUESTION? SEARCH FOR ANSWERS...');
       expect(PlaceholderElement).toBeInTheDocument();
     })
 

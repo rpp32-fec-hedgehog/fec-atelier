@@ -64,9 +64,10 @@ app.get('/relatedItems', (req, res) => {
 
 // ========== Questions & Answers ========== //
 
-app.get('/qa/questions/:product_id', function(req, res) {
+app.get('/qa/questions/:product_id/:page', function(req, res) {
   let product = req.params.product_id;
-  apiCalls.getProductQuestionData(product, questions => {
+  let page = req.params.page;
+  apiCalls.getProductQuestionData(product, page, questions => {
     res.send(questions);
   })
 })
