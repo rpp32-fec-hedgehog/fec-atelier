@@ -106,7 +106,7 @@ app.post('/qa/questions', function(req, res) {
 // ========== Ratings & Reviews ========== //
 
 app.get('/ratings', function(req, res, next) {
-  console.log('headersCount: ', req.headers.count);
+
   apiCalls.getReviewsByItem(req.headers.item_id, req.headers.sort, req.headers.count, (err, results) => {
     if (err) {
       console.log('error at server ratings retrieve: ', err.message);

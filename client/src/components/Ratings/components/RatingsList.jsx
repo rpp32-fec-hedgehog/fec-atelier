@@ -8,9 +8,12 @@ class RatingsList extends React.Component {
       item_id: this.props.ratings_meta.product_id,
       sort: 'relevant',
       ratings: [],
-      count: this.props.count
+      count: this.props.count,
+      count_to_display: 2,
+      ratings_to_display: []
     };
     this.handleChange = this.handleChange.bind(this);
+    this.moreReviews = this.moreReviews.bind(this);
   }
 
   handleChange(e) {
@@ -22,7 +25,10 @@ class RatingsList extends React.Component {
           if (error) {
             console.log('ratings list reports retrieve reviews error: ', error.message);
           } else {
-            this.setState({ratings: result});
+            this.setState({
+              ratings: result,
+              ratings_to_display: result.slice(0, this.state.count_to_display)
+            });
           }
         })
       }
@@ -31,18 +37,35 @@ class RatingsList extends React.Component {
 
   componentDidMount(props){
 
-    this.props.getAllReviews(this.state.item_id, this.state.sort, 2,  (error, result) => {
+    this.props.getAllReviews(this.state.item_id, this.state.sort, 25, (error, result) => {
       if (error) {
         console.log('client reports retrieve reviews error: ', error.message);
       } else {
-        this.setState({ratings: result});
+        this.setState({
+          ratings: result,
+          ratings_to_display: result.slice(0, 2)
+        });
       }
     })
+  }
+
+  moreReviews() {
+    console.log('state when more reviews clicked: ', this.state);
+    let howMany = this.state.count_to_display + 2;
+    let reviewsToMove = this.state.ratings.slice(0, howMany);
+
+    this.setState((state, props) => ({
+      count_to_display: howMany,
+      ratings_to_display: reviewsToMove
+    }));
+
   }
 
   render(props) {
 
     let recommend_total = 0;
+    let count_to_display = this.state.count_to_display;
+    console.log('count to display in render: ', count_to_display);
 
     if (this.props.ratings_meta) {
       const recommended = this.props.ratings_meta.recommended;
@@ -52,16 +75,16 @@ class RatingsList extends React.Component {
       }
     }
 
-    let ratings = this.state.ratings.map((rating) => {
+    let ratings = this.state.ratings_to_display.map((rating) => {
       return (
           <IndividualReview key={rating.review_id} star_rating={rating.rating} summary={rating.summary} date={rating.date} body={rating.body} recommend={rating.recommend} reviewer_name={rating.reviewer_name} response={rating.response} helpfulness={rating.helpfulness} photos={rating.photos}></IndividualReview>
       )
     });
 
     return(
-      <div data-testid="ratings-list">
+      <div data-testid="ratings-list" className="ratings_list_widget">
         <div className="review_sort_bar">
-          <form onChange={this.handleChange}>
+          <form>
             <b>{recommend_total} <span>reviews, sorted by </span></b>
             <select value={this.state.sort} onChange={this.handleChange}>
               <option value="relevant">Relevant</option>
@@ -71,7 +94,12 @@ class RatingsList extends React.Component {
           </form>
             <br></br>
         </div>
-          <ul className="ratings_list">{ratings}</ul>
+          <div>
+            <ul className="ratings_list">{ratings}</ul>
+          </div>
+          <div>
+            {(count_to_display < recommend_total) ? <div><button onClick={this.moreReviews}>More Reviews</button></div>: <div>nope!</div>}
+          </div>
       </div>
     )
   }
