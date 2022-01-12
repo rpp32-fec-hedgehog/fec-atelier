@@ -76,11 +76,6 @@ class Questions extends React.Component {
   render() {
     let totalQs = this.props.questions.length;
     let more;
-    let addQuestion = <AskQuestion key="ask-question" className="ask-question"
-      getQAData={this.props.getQAData}
-      product_id={this.props.product_id}
-      product_name={this.props.product_name} />
-
     if (totalQs > this.state.questionCount && totalQs > 2) {
       more = <button key="more-q" className="more-q"
         onClick={this.handleQuestions.bind(this)}>
@@ -89,6 +84,11 @@ class Questions extends React.Component {
     } else {
       more = <></>
     }
+
+    // create separate tracker in state to check when rendering more questions button?
+    // stop slicing after first click
+    //
+
 
     return <div>
       <div key="questions" className="questions" data-testid="questions">
