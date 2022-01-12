@@ -65,6 +65,14 @@ class Questions extends React.Component {
     }
   }
 
+  answersExist(answers) {
+    if (_.values(answers).length === 0) {
+      return;
+    } else {
+      return <span className="a-label">A:</span>
+    }
+  }
+
   render() {
     let base = [<div key="questions" className="questions" data-testid="questions">
       <ul className="q-base">
@@ -93,7 +101,7 @@ class Questions extends React.Component {
                 </div>
               </div>
               <div className="a-label-list">
-                <span className="a-label">A:</span>
+                {this.answersExist(q.answers)}
                 <AnswerList answers={q.answers} question_id={q.question_id} product_name={this.props.product_name}
                   updateAHelp={this.props.updateAHelp} />
               </div>

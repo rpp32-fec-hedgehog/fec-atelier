@@ -39,11 +39,12 @@ class AnswerList extends React.Component {
 
   sortAnswers(answers) {
     let totalA = this.state.totalAnswers;
+    let answerValues = _.values(answers);
     if (!this.state.expanded) {
       totalA = 2;
     }
 
-    return _.chain(_.values(answers))
+    return _.chain(answerValues)
       .sortBy(answer => { return answer.helpfulness })
       .reverse()
       .partition(user => {
