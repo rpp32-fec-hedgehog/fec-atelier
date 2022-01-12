@@ -3,6 +3,7 @@ h1 {
   font-family: sans-serif;
   background-color: rgb(227, 227, 227);
   margin-left: 5px;
+  padding-left: 25px;
 }
 .overview-widget {
   display: block;
@@ -41,7 +42,6 @@ button:hover {
   display: inline-block;
   margin-left: 20px;
   margin-top: 15px;
-
 }
 .category {
   margin-left: 20px;
