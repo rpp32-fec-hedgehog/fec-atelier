@@ -1,4 +1,7 @@
 /* General Styling*/
+h1 {
+  font-family: sans-serif;
+}
 .overview-widget {
   display: block;
   margin-bottom: 100px;
@@ -90,7 +93,7 @@ button:hover {
   grid-column-start: 2;
   grid-row-start: 2;
   height:auto;
-  background-color: rgb(114, 114, 114);
+  background-color: rgb(204, 204, 204);
   border: 1px solid black;
   margin: 5px;
 }
@@ -170,7 +173,10 @@ button:hover {
   grid-row-end: 11;
   grid-column-start: 1;
   grid-column-end: 11;
+  height: auto;
+  width: auto;
   max-height: 500px;
+  max-width: 500px;
   max-width: 100%;
   cursor: zoom-in;
 }
@@ -205,6 +211,13 @@ button:hover {
 .backward:hover {
   color: #d9dade;
 }
+
+
+
+
+
+/* expanded view */
+
 .zoom-container {
   position: absolute;
   text-align: center;
@@ -244,4 +257,27 @@ button:hover {
   max-height: 95%;
   overflow: hidden;
   cursor: zoom-out;
+}
+
+#magnifying_area {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px;
+  height: 900px;
+  overflow: hidden;
+  position: absolute;
+  z-index: 5;
+  cursor: zoom-out;
+}
+
+#magnifying_img {
+  max-width: 100%;
+  min-width: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 6;
 }

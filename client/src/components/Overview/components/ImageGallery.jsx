@@ -6,6 +6,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
 class ImageGallery extends React.Component {
+
+  static magnifying_area = $('#magnigying_area');
+  static magnifying_img = $('magnifying_img');
+
   constructor(props) {
     super(props)
     this.state = {
@@ -45,8 +49,23 @@ class ImageGallery extends React.Component {
 
   zoomOut = (e) => {
     e.preventDefault();
-    let frame = $(".zoom-container");
-    frame.css('display', 'none')
+    if (this.state.zoom === false) {
+      this.setState((state, props) => ({
+        zoom: !state.zoom
+      }))
+    } else {
+      this.setState((state, props) => ({
+        zoom: !state.zoom
+      }))
+    }
+  }
+
+
+
+
+
+  zoomImage = () => {
+    magnifying_img.css({"transform": "translate(-50%, -50%)", "transform": "scale(2.5)"})
   }
 
   moveImage = () => {
@@ -65,6 +84,8 @@ class ImageGallery extends React.Component {
       }) : null
   }
 
+
+
   render() {
     let currentPhoto = this.props.currentPhoto
     let subtractor = this.props.styleData[this.props.selectedStyle] !== undefined ? this.props.styleData[this.props.selectedStyle].photos.length - 7 : null
@@ -77,11 +98,11 @@ class ImageGallery extends React.Component {
     return (
       <>
         {this.state.zoom ? (
-        <div className="zoom-container" onClick={this.zoomIn}>
-          {/* <div id="lens"></div> */}
-          <img id="featured" src={this.props.photo} onMouseMove={this.trackPosition}></img>
-          <button className="close-zoom" onClick={this.zoomOut}>X</button>
-        </div>
+
+        <figure id="magnifying_area" onClick={this.zoomOut} >
+          <img id="magnifying_img" src={this.props.photo} onClick={this.zoomOut} onmousemove={this.zoomImage}></img>
+        </figure>
+
          ) : null}
         <div className="image-gallery" data-testid="image-gallery">
           <div className="image-gallery-container">
