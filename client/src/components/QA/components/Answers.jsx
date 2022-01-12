@@ -77,10 +77,6 @@ class Answers extends React.Component {
 
   componentDidMount() {
     let answer = this.props.answer;
-<<<<<<< HEAD
-    // console.log('ANSWER ', answer);
-=======
->>>>>>> 1578fb30bbcd1e27b714454c110e63f2a7b3efe4
     if (answer.photos.length > 0) {
       this.setState({thumbnails: <div className="a-thumbnails">{_.map(answer.photos, photo => {
         return <img className="a-thumbnail" key={photo} src={photo} onClick={this.openModal.bind(this)}></img>
