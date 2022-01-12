@@ -54,10 +54,6 @@ class ImageGallery extends React.Component {
     }
   }
 
-
-
-
-
   zoomImage = (e) => {
     let magnifying_area = document.getElementById('magnifying_area')
     let magnifying_img = document.getElementById('magnifying_img')
@@ -79,17 +75,6 @@ class ImageGallery extends React.Component {
     let magnifying_img = document.getElementById('magnifying_img')
 
     magnifying_img.style.transform = 'translate(-50%, -50%) scale(1)'
-  }
-
-  trackPosition = (e) => {
-    let posX, posY;
-    this.state.zoom ?
-      this.setState((state, props) => ({
-        x: e.nativeEvent.offsetX,
-        y: e.nativeEvent.offsetY
-      }), () => {
-        this.moveImage();
-      }) : null
   }
 
   render() {
