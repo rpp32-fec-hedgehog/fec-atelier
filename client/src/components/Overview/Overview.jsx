@@ -8,7 +8,7 @@ import ProductInfo from './components/ProductInfo.jsx';
 import StyleSelector from './components/StyleSelector.jsx';
 import AddToCart from './components/AddToCart.jsx';
 import ImageGallery from './components/ImageGallery.jsx';
-import ProductDescription from './components/ProductDescription.jsx'
+import ProductDescription from './components/ProductDescription.jsx';
 
 class Overview extends React.Component {
   constructor(props) {

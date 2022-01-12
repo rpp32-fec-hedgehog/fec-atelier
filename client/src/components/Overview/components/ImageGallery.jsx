@@ -55,8 +55,8 @@ class ImageGallery extends React.Component {
   }
 
   zoomImage = (e) => {
-    let magnifying_area = document.getElementById('magnifying_area')
-    let magnifying_img = document.getElementById('magnifying_img')
+    let magnifying_area = document.getElementById('magnifying_area');
+    let magnifying_img = document.getElementById('magnifying_img');
 
     let clientX = e.clientX - magnifying_area.offsetLeft;
     let clientY = e.clientY - magnifying_area.offsetTop;
@@ -67,14 +67,14 @@ class ImageGallery extends React.Component {
     clientX = clientX / mWidth * 200;
     clientY = clientY / mHeight * 200;
 
-    magnifying_img.style.transform = `translate(-${clientX}%, -${clientY}%) scale(1.4)`
+    magnifying_img.style.transform = `translate(-${clientX}%, -${clientY}%) scale(1.4)`;
   }
 
   unzoomImage = (e) => {
-    let magnifying_area = document.getElementById('magnifying_area')
-    let magnifying_img = document.getElementById('magnifying_img')
+    let magnifying_area = document.getElementById('magnifying_area');
+    let magnifying_img = document.getElementById('magnifying_img');
 
-    magnifying_img.style.transform = 'translate(-50%, -50%) scale(1)'
+    magnifying_img.style.transform = 'translate(-50%, -50%) scale(1)';
   }
 
   render() {
