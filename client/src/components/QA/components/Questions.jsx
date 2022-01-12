@@ -66,8 +66,8 @@ class Questions extends React.Component {
   }
 
   render() {
-    let base = [<div data-testid="questions" key="q-base" className="q-base">
-      <ul>
+    let base = [<div key="questions" className="questions" data-testid="questions">
+      <ul className="q-base">
         {_.map(this.props.questions.slice(0, this.state.questionCount), q => {
           return <div className="question" data-testid={q.question_body}
             key={`${q.question_body}-${q.question_id}`}
@@ -89,7 +89,7 @@ class Questions extends React.Component {
                     question_body={q.question_body} />
                 </div>
               </div>
-              <div>
+              <div className="a-label-list">
                 <span className="a-label"><b>A: </b></span>
                 <AnswerList answers={q.answers} question_id={q.question_id} product_name={this.props.product_name}
                   updateAHelp={this.props.updateAHelp} />
