@@ -17,14 +17,21 @@
 
 /* ========== Questions ========== */
 
-.q-base {
+.questions {
   max-height: 75vh;
   overflow-y: auto;
   margin-bottom: 15px;
 }
 
-.question {
+.q-base {
+  padding: 0;
   list-style-type: none;
+}
+
+.q-label {
+  font-size: 15px;
+  font-weight: bold;
+  margin-right: 8px;
 }
 
 .q-body {
@@ -56,6 +63,7 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  margin-top: 15px;
 }
 
 .q-bar {
@@ -72,17 +80,28 @@
 
 /* ========== Answers ========== */
 
-.answer {
+.answers {
+  padding: 0;
   list-style-type: none;
 }
 
 .a-label {
-  float: left;
+  display: flex;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-right: 8px;
 }
 
-.answer-list {
-  margin-left: 20px;
-  margin-bottom: 15px;
+.a-label-list {
+  display: flex;
+  flex-flow: row nowrap;
+  /* justify-content: left; */
+}
+
+.a-list {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-top: 3px;
 }
 
 .answer-body {
@@ -146,9 +165,7 @@
   display: flex;
   font-size: 10px;
   font-weight: bold;
-  margin-left: 20px;
   margin-top: 15px;
-  margin-bottom: 15px;
 }
 
 /* ========== Search Bar ========== */
@@ -156,7 +173,6 @@
 .qa-search {
   width: 100%;
   margin-top: 15px;
-  margin-bottom: 15px;
   border: 1px solid black;
   display: flex;
   flex-flow: row nowrap;
@@ -188,7 +204,7 @@ input.qa-search-bar {
   font-size: 14px;
 }
 
-/* ========== Question Modal ========== */
+/* ========== Modals ========== */
 
 .qa-modal {
   width: 100%;
