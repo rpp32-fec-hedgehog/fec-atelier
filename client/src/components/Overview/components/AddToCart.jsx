@@ -88,10 +88,10 @@ class AddToCart extends React.Component {
 
   render() {
     return (
-      <div className="add-to-cart" data-testid="add-to-cart">
+      <div className="add-to-cart-area" data-testid="add-to-cart">
         <div>
           <select className="size-selector" value={this.state.selectedSize} onChange={this.selectSize}>
-            <option value="default">Size</option>
+            <option value="default">Select Size</option>
             {this.props.styleData !== undefined ? _.map(this.getSizes(), (size, index) => {
               return (<option key={index} value={size}>{size}</option>)
             }) : null
@@ -101,19 +101,17 @@ class AddToCart extends React.Component {
 
         <div>
           <select className="qty-selector" onChange={this.selectQuantity} disabled={!this.state.selectedSize}>
-            {!this.state.selectedSize ? <option value="default">QTY</option> :
+            {!this.state.selectedSize ? <option value="default">-</option> :
               this.state.totalQuantity !== 0 ? _.map(this.mapQuantity(), (number, index) => {
                 return (<option key={index} value={number}>{number}</option>)
                   }) : <option value='outOfStock'>Out Of Stock</option>}
           </select>
         </div>
-        <div> Add To Cart
-          <FontAwesomeIcon className="add-button" icon={faShoppingCart} onClick={this.addToCart}></FontAwesomeIcon>
+        <div className="add-to-bag"> Add To Bag
+          <FontAwesomeIcon className="add-to-bag-button" icon={faShoppingCart} onClick={this.addToCart}></FontAwesomeIcon>
         </div>
+        <FontAwesomeIcon className="my-outfit-btn" icon={faStar} onClick={this.addToMyOutfit}></FontAwesomeIcon>
 
-        <div className="add-to-my-outfit"> Add To My Outfit
-          <FontAwesomeIcon className="add-button" icon={faStar} onClick={this.addToMyOutfit}></FontAwesomeIcon>
-        </div>
       </div>
     )
   }
