@@ -39,20 +39,24 @@ class ImageGallery extends React.Component {
         zoom: !state.zoom
       }))
     }
+
+    let img;
+    let lens;
   }
 
   zoomOut = (e) => {
     e.preventDefault();
-    let frame = $(".zoom-frame");
+    let frame = $(".zoom-container");
     frame.css('display', 'none')
   }
 
   trackPosition = (e) => {
-    let frame, modalImage, posX, posY;
+    let posX, posY;
     this.state.zoom ? (
       posX = e.nativeEvent.offsetX,
       posY = e.nativeEvent.offsetY
-    ) : null
+      ) : null
+    console.log(posX, posY)
   }
 
   render() {
@@ -67,8 +71,10 @@ class ImageGallery extends React.Component {
     return (
       <>
         {this.state.zoom ? (
-        <div className="zoom-frame" onMouseMove={this.trackPosition} onClick={this.zoomIn}>
-          <button onClick={this.zoomOut}>X</button>
+        <div className="zoom-container" onClick={this.zoomIn}>
+          {/* <div id="lens"></div> */}
+          <img id="featured" src={this.props.photo} onMouseMove={this.trackPosition}></img>
+          <button className="close-zoom" onClick={this.zoomOut}>X</button>
         </div>
          ) : null}
         <div className="image-gallery" data-testid="image-gallery">
@@ -97,7 +103,6 @@ class ImageGallery extends React.Component {
           <div className="modal-buttons">
             <FontAwesomeIcon className='modal-back' onClick={this.props.backward} icon={faAngleLeft} size='2x' color="white"></FontAwesomeIcon>
             <FontAwesomeIcon className='modal-forward' onClick={this.props.forward} icon={faAngleRight} size='2x' color="white"></FontAwesomeIcon>
-            {/* conditionally render this based on if the user zooms? */}
             <img className="modal-image" src={this.props.photo} onClick={this.zoomIn}></img>
           {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(range, (photo, index) => {
             return (<input className="modal-radio-button" type="radio" key={index} id={index} onClick={this.props.changePhoto}></input>)
