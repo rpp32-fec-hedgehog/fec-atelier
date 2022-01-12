@@ -10,9 +10,7 @@ class ImageGallery extends React.Component {
     super(props)
     this.state = {
       modalOpen: false,
-      zoom: false,
-      x: 0,
-      y: 0
+      zoom: false
     }
   }
 
@@ -73,8 +71,7 @@ class ImageGallery extends React.Component {
     clientX = clientX / mWidth * 200;
     clientY = clientY / mHeight * 200;
 
-    magnifying_img.style.transform = `translate(-${clientX}%, -${clientY}%) scale(1.5)`
-    // magnifying_img.style.transform = `translate(-50%, -50%) scale(2.5)`
+    magnifying_img.style.transform = `translate(-${clientX}%, -${clientY}%) scale(1.4)`
   }
 
   unzoomImage = (e) => {
@@ -82,11 +79,6 @@ class ImageGallery extends React.Component {
     let magnifying_img = document.getElementById('magnifying_img')
 
     magnifying_img.style.transform = 'translate(-50%, -50%) scale(1)'
-  }
-
-  moveImage = () => {
-    let x = this.state.x
-    let y = this.state.y
   }
 
   trackPosition = (e) => {
@@ -100,8 +92,6 @@ class ImageGallery extends React.Component {
       }) : null
   }
 
-
-
   render() {
     let currentPhoto = this.props.currentPhoto
     let subtractor = this.props.styleData[this.props.selectedStyle] !== undefined ? this.props.styleData[this.props.selectedStyle].photos.length - 7 : null
@@ -114,17 +104,14 @@ class ImageGallery extends React.Component {
     return (
       <>
         {this.state.zoom ? (
-
         <figure id="magnifying_area">
           <img id="magnifying_img" src={this.props.photo} onClick={this.zoomOut} onMouseMove={this.zoomImage} onMouseLeave={this.unzoomImage}></img>
         </figure>
-
          ) : null}
         <div className="image-gallery" data-testid="image-gallery">
           <div className="image-gallery-container">
             <div className="thumbnail-list">
               {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(range, (photo, index) => {
-
                 return thumbnailIndex === index ?
                   (<img className="image-gallery-thumbnail" src={photo.url} key={index} id={index} style={{border: '3px solid #8e9efa'}}></img>) :
                   (<img className="image-gallery-thumbnail" src={photo.url} key={index} id={index} onClick={this.props.changePhoto}></img>)
