@@ -4,9 +4,11 @@
 
 import React from 'react';
 import _ from 'underscore';
+import 'regenerator-runtime/runtime.js';
 import '@testing-library/jest-dom';
+import {mount} from 'enzyme'
 import {render, screen, cleanup, fireEvent, waitFor} from '@testing-library/react';
-import {product1Data, product2Data} from './samples/sample-qa-data.js';
+import {product1Data, product1DataSorted, product2Data, product2DataSorted} from './samples/sample-qa-data.js';
 
 import QA from '../client/src/components/QA/QA.jsx';
 import AnswerList from '../client/src/components/QA/components/AnswerList.jsx';
@@ -58,6 +60,34 @@ describe('Questions & Answers', function() {
       expect(AnswerQuestionElement).toBeInTheDocument();
     })
 
+    test('should render Answer Question button', async function() {
+      render(<AnswerQuestion product_id={59557} />);
+      const AnswerQuestionElement = (await screen.findByText('Add Answer'));
+      expect(AnswerQuestionElement).toBeInTheDocument();
+    })
+
+    test('should open modal when "Ask a question" is clicked', async function() {
+      render(<AnswerQuestion product_id={59557} />);
+      fireEvent.click(await screen.findByTestId('add-answer'));
+      const AnswerQuestionElement = (await screen.findByText('Submit your answer'));
+      expect(AnswerQuestionElement).toBeInTheDocument();
+    })
+
+    test('should close modal when the close button is clicked', async function() {
+      render(<AnswerQuestion product_id={59557} />);
+      fireEvent.click(await screen.findByTestId('add-answer'));
+      fireEvent.click(await screen.findByTestId('close-qa-modal'));
+      const AnswerQuestionElement = (await screen.queryByTestId('qa-modal-form'));
+      expect(AnswerQuestionElement).toBeNull();
+    })
+
+    test('should render add photos button', async function() {
+      render(<AnswerQuestion product_id={59557} />);
+      fireEvent.click(await screen.findByTestId('add-answer'));
+      const AnswerQuestionElement = (await screen.findByText('ADD PHOTOS'));
+      expect(AnswerQuestionElement).toBeInTheDocument();
+    })
+
   })
 
   describe('Answers Component', function() {
@@ -90,6 +120,28 @@ describe('Questions & Answers', function() {
       expect(AskQuestionElement).toBeInTheDocument();
     })
 
+    test('should render Submit Question button', async function() {
+      render(<AskQuestion product_id={59557} />);
+      fireEvent.click(await screen.findByText('ASK A QUESTION'));
+      const AskQuestionElement = (await screen.findByText('SUBMIT QUESTION'));
+      expect(AskQuestionElement).toBeInTheDocument();
+    })
+
+    test('should open modal when "Ask a question" is clicked', async function() {
+      render(<AskQuestion product_id={59557} />);
+      fireEvent.click(await screen.findByText('ASK A QUESTION'));
+      const AskQuestionElement = (await screen.findByTestId('qa-modal-form'));
+      expect(AskQuestionElement).toBeInTheDocument();
+    })
+
+    test('should close modal when the close button is clicked', async function() {
+      render(<AskQuestion product_id={59557} />);
+      fireEvent.click(await screen.findByText('ASK A QUESTION'));
+      fireEvent.click(await screen.findByTestId('close-qa-modal'));
+      const AskQuestionElement = (await screen.queryByTestId('qa-modal-form'));
+      expect(AskQuestionElement).toBeNull();
+    })
+
   })
 
   describe('Questions Component', function() {
@@ -97,6 +149,12 @@ describe('Questions & Answers', function() {
     test('should render Questions components', function() {
       render(<Questions questions={product1Data} />);
       const QuestionsElement = screen.getByTestId('questions');
+      expect(QuestionsElement).toBeInTheDocument();
+    })
+
+    test('should render questions', function() {
+      render(<Questions questions={product1Data} />);
+      const QuestionsElement = screen.getByTestId('new sldkfjlsekjflsijefsef');
       expect(QuestionsElement).toBeInTheDocument();
     })
 
