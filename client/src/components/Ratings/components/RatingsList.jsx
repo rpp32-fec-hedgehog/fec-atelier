@@ -37,7 +37,7 @@ class RatingsList extends React.Component {
 
   componentDidMount(props){
 
-    this.props.getAllReviews(this.state.item_id, this.state.sort, 25, (error, result) => {
+    this.props.getAllReviews(this.state.item_id, this.state.sort, 100, (error, result) => {
       if (error) {
         console.log('client reports retrieve reviews error: ', error.message);
       } else {
@@ -50,7 +50,6 @@ class RatingsList extends React.Component {
   }
 
   moreReviews() {
-    console.log('state when more reviews clicked: ', this.state);
     let howMany = this.state.count_to_display + 2;
     let reviewsToMove = this.state.ratings.slice(0, howMany);
 
@@ -65,7 +64,6 @@ class RatingsList extends React.Component {
 
     let recommend_total = 0;
     let count_to_display = this.state.count_to_display;
-    console.log('count to display in render: ', count_to_display);
 
     if (this.props.ratings_meta) {
       const recommended = this.props.ratings_meta.recommended;
@@ -94,11 +92,11 @@ class RatingsList extends React.Component {
           </form>
             <br></br>
         </div>
-          <div>
+          <div className="visible_scrollbar">
             <ul className="ratings_list">{ratings}</ul>
           </div>
           <div>
-            {(count_to_display < recommend_total) ? <div><button onClick={this.moreReviews}>More Reviews</button></div>: <div>nope!</div>}
+            {(count_to_display < recommend_total) ? <div><button className="ratings_btn" onClick={this.moreReviews}>More Reviews</button></div>: null}
           </div>
       </div>
     )

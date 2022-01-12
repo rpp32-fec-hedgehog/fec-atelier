@@ -19,6 +19,10 @@ class ProductCard extends React.Component {
   }
 
   render() {
+    // if (!this.state.item.styles[0].photos[0].thumbnail_url) {
+    //   this.state.item.styles[0].photos[0].thumbnail_url =
+    // }
+    //console.log('State Props: ', this.state)
     if (this.state.type === 'related') {
       return (
         <div
@@ -29,13 +33,13 @@ class ProductCard extends React.Component {
           <span>
             <img
               className="related_product_image"
-              src={this.state.item.styles[0].photos[0].thumbnail_url}
+              src={this.state.item.thumbnail || null}
             />
             <ul>
-              <li>{this.state.item.category}</li>
-              <li>{this.state.item.name}</li>
-              <li>{this.state.item.default_price}</li>
-              <li>{this.state.item.slogan}</li>
+              <li>Catergory: {this.state.item.category}</li>
+              <li>Name: {this.state.item.name}</li>
+              <li>Price: ${this.state.item.default_price}</li>
+              <li>Slogan: {this.state.item.slogan}</li>
             </ul>
           </span>
 

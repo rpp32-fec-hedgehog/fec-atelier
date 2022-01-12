@@ -73,7 +73,8 @@ class Ratings extends React.Component {
   render() {
 
     return (
-      <div data-testid="ratings" className="ratings_widget">
+      <div data-testid="ratings" className="ratings-widget">
+        <a id="reviews-link"></a>
         <h3>RATINGS & REVIEWS</h3>
         <br></br><RatingsMeta className="ratings_meta" ratings_meta={this.state.ratings_meta}></RatingsMeta><RatingsList className="ratings_list" ratings_meta={this.state.ratings_meta} count={this.state.count} getAllReviews={this.getAllReviews.bind(this)}></RatingsList>
       </div>
