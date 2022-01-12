@@ -168,6 +168,29 @@
   margin-top: 15px;
 }
 
+/* ========== Answer Photos ========== */
+
+.a-thumbnail-modal {
+  display: flex;
+  flex-flow: column nowrap;
+  max-height: 100vh;
+  max-width: 100vh;
+}
+
+.close-a-thumbnail {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 13px;
+  cursor: default;
+  margin-right: -5px;
+  margin-bottom: 5px;
+}
+
+.a-clicked-thumbnail {
+  display: flex;
+  margin-right: 10px;
+}
+
 /* ========== Search Bar ========== */
 
 .qa-search {

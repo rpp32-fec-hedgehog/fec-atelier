@@ -112,7 +112,6 @@ class AskQuestion extends React.Component {
         left: '50%',
         right: 'auto',
         bottom: 'auto',
-        // width: '50%',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         border: '1px solid #000',
