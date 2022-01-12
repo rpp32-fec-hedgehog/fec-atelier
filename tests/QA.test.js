@@ -34,7 +34,7 @@ xdescribe('Questions & Answers', function() {
 
     test('should render the AnswerList component', function() {
       render(<AnswerList questionId="553704" answers={Object.values(product1Data[0]['answers'])} />)
-      const AnswerListElement = screen.getAllByTestId('answer-list');
+      const AnswerListElement = screen.getAllByTestId('a-list');
       expect(AnswerListElement.length > 0).toBe(true);
     })
 

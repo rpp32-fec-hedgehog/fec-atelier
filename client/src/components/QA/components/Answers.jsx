@@ -56,6 +56,7 @@ class Answers extends React.Component {
 
   componentDidMount() {
     let answer = this.props.answer;
+    console.log('ANSWER ', answer);
     if (answer.photos.length > 0) {
       this.setState({thumbnails: <div className="a-thumbnails">{_.map(answer.photos, photo => {
         return <img className="a-thumbnail" key={photo} src={photo}></img>
@@ -77,7 +78,7 @@ class Answers extends React.Component {
       reportButton = <span className="reported">Reported</span>
     }
 
-    return (<ul className="answer" data-testid="answers">
+    return (<ul className="answers" data-testid="answers">
       <li key={`a-${answer.id}`} data-testid={answerer}>
         <span className="answer-body">{answer.body}</span>
         {this.state.thumbnails}
