@@ -1,5 +1,4 @@
 import React from 'react';
-import { getReviewsByItem, getReviewsMetaByItem } from '../../../.././utils/apiCalls.js';
 import RatingsList from './components/RatingsList.jsx';
 import RatingsMeta from './components/RatingsBreakdown.jsx';
 import axios from 'axios';
@@ -15,6 +14,8 @@ class Ratings extends React.Component {
     }
     this.getAllReviews = this.getAllReviews.bind(this);
     this.getReviewsMeta = this.getReviewsMeta.bind(this);
+    this.chooseHelpful = this.chooseHelpful.bind(this);
+    this.putMarkHelpful = this.putMarkHelpful.bind(this);
   }
 
   componentDidMount(props){
@@ -36,6 +37,33 @@ class Ratings extends React.Component {
         });
       }
     })
+  }
+
+  chooseHelpful(review_id) {
+
+    this.putMarkHelpful(review_id, (error, result) => {
+      if (error) {
+        console.log('error at choose helpful in individual review: ', error);
+      } else {
+        //console.log('success marking helpful: ', result);
+      }
+    })
+  }
+
+  async putMarkHelpful(review_id, callback) {
+
+    await axios.put('/reviews/mark_helpful', {
+      data : {
+        "review_id" : review_id
+      }
+    })
+      .then((response) => {
+        callback(null, response.data);
+      })
+      .catch((error) => {
+        console.log('error putting helpful from individual review: ', error);
+        callback(error);
+      })
   }
 
   async getAllReviews(item_id, sort, count, callback) {
@@ -76,7 +104,7 @@ class Ratings extends React.Component {
       <div data-testid="ratings" className="ratings-widget">
         <a id="reviews-link"></a>
         <h3>RATINGS & REVIEWS</h3>
-        <br></br><RatingsMeta className="ratings_meta" ratings_meta={this.state.ratings_meta}></RatingsMeta><RatingsList className="ratings_list" ratings_meta={this.state.ratings_meta} count={this.state.count} getAllReviews={this.getAllReviews.bind(this)}></RatingsList>
+        <br></br><RatingsMeta className="ratings_meta" ratings_meta={this.state.ratings_meta}></RatingsMeta><RatingsList className="ratings_list" ratings_meta={this.state.ratings_meta} count={this.state.count} chooseHelpful={this.chooseHelpful} putMarkHelpful={this.putMarkHelpful} getAllReviews={this.getAllReviews.bind(this)}></RatingsList>
       </div>
     );
   }

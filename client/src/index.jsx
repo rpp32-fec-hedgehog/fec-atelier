@@ -14,6 +14,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       item_id: Math.floor(Math.random() * (60563 - 59553 + 1)) + 59553,
+      // item_id: 59557,
       myOutfit: []
     };
     this.changeProduct = this.changeProduct.bind(this);
@@ -30,14 +31,10 @@ class App extends React.Component {
       (newOutfit.splice(newOutfit.indexOf(sku), 1),
         this.setState((state, props) => ({
           myOutfit: newOutfit
-        }), () => {
-          console.log('removed from my outfit :',this.state.myOutfit)
-        })) :
+        }))) :
       this.setState((state, props) => ({
         myOutfit: state.myOutfit.concat([sku])
-      }), () => {
-        console.log('added to my outfit :',this.state.myOutfit)
-      })
+      }))
   }
 
   render() {

@@ -7,7 +7,6 @@ const ProductBreakdownItem = (props) => {
   let label1 = '';
   let label2 = '';
   const triangle_location = 340 * (value / 5);
-  console.log('triangle location: ', value);
 
   if (characteristic === 'Comfort') {
     label1 = 'Poor';

@@ -135,6 +135,12 @@ app.post('/reviews/meta', (req, res) => {
   })
 })
 
+app.put('/reviews/mark_helpful', (req, res, next) => {
+  apiCalls.putMarkReviewHelpful(req.body.data.review_id, (err, results) => {
+    res.send(results);
+  })
+})
+
 // ========== Server Listen ========== //
 
 app.listen(port, () => {

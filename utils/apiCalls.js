@@ -214,5 +214,23 @@ const getReviewsMetaByItem = (product_id, callback) => {
   })
 }
 
+const putMarkReviewHelpful = (review_id, callback) => {
+
+  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${review_id}/helpful`;
+  return axios.put(endpoint, {}, {
+    headers : {
+      "Authorization" : process.env.API_KEY
+    }
+  })
+  .then((response => {
+    callback(null, response.data);
+    console.log('response data: ', response.data);
+  }))
+  .catch((err) => {
+    console.log('Error marking helpful at apicalls: ', err)
+  })
+}
+
 module.exports.getReviewsByItem = getReviewsByItem;
 module.exports.getReviewsMetaByItem = getReviewsMetaByItem;
+module.exports.putMarkReviewHelpful = putMarkReviewHelpful;

@@ -62,8 +62,12 @@ class RatingsList extends React.Component {
 
   render(props) {
 
+    const chooseHelpful = this.props.chooseHelpful;
+    const putMarkHelpful= this.props.putMarkHelpful;
     let recommend_total = 0;
     let count_to_display = this.state.count_to_display;
+    console.log('choosehelpful: ', chooseHelpful);
+    console.log('ratings_list: ', this.state.ratings);
 
     if (this.props.ratings_meta) {
       const recommended = this.props.ratings_meta.recommended;
@@ -75,7 +79,7 @@ class RatingsList extends React.Component {
 
     let ratings = this.state.ratings_to_display.map((rating) => {
       return (
-          <IndividualReview key={rating.review_id} star_rating={rating.rating} summary={rating.summary} date={rating.date} body={rating.body} recommend={rating.recommend} reviewer_name={rating.reviewer_name} response={rating.response} helpfulness={rating.helpfulness} photos={rating.photos}></IndividualReview>
+          <IndividualReview chooseHelpful={chooseHelpful} putMarkHelpful={putMarkHelpful} key={rating.review_id} review_id={rating.review_id} star_rating={rating.rating} summary={rating.summary} date={rating.date} body={rating.body} recommend={rating.recommend} reviewer_name={rating.reviewer_name} response={rating.response} helpfulness={rating.helpfulness} photos={rating.photos}></IndividualReview>
       )
     });
 

@@ -12,6 +12,7 @@
 .ratings_list_widget {
   width: 60%;
   float: right;
+  font-family: sans-serif;
 }
 
 .visible_scrollbar {
@@ -86,6 +87,7 @@
 .percent_recommending {
   float: left;
   width: 100%;
+  font-family: sans-serif;
 }
 
 .product_breakdown {
@@ -104,6 +106,10 @@
   background-color: rgb(196, 230, 218);
 }
 
+.review_helpful {
+  text-decoration: underline;
+}
+
 .review_image {
   max-width: 4%;
   height: auto;
@@ -113,7 +119,6 @@
 .ratings_btn {
   width: 179px;
   height: 55px;
-  /* margin-left: 16px; */
   background-color: white;
   border: 1px solid black;
   font-size: 14px;
@@ -132,8 +137,8 @@
   width: 20px;
   height: 15px;
   z-index: 0;
-  position: absolute;
-  opacity: 0.5;
+  bottom: 15px;
+  position: relative;
 }
 
 .rating{
@@ -155,8 +160,7 @@
 }
 
 .star_bar {
-  /* width: 200px; */
-  width: 185px;
+  width: 225px;
   left: 3%;
   height: 15px;
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="40" ><rect fill="green" stroke-width="0" width="400" height="30"/></svg>');
@@ -167,7 +171,7 @@
   content:"";
   position: absolute;
   /* width: 400px; */
-  width: 370px;
+  width: 450px;
   height: 15px;
   z-index:-1;
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="40" ><rect fill="gray" stroke-width="0" width="400" height="30"/></svg>');
