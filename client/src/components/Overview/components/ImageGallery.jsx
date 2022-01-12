@@ -70,10 +70,11 @@ class ImageGallery extends React.Component {
     let mWidth = magnifying_area.offsetWidth;
     let mHeight = magnifying_area.offsetTop;
 
-    clientX = clientX / mWidth * 100;
-    clientY = clientY / mHeight * 100;
+    clientX = clientX / mWidth * 200;
+    clientY = clientY / mHeight * 200;
 
-    magnifying_img.style.transform = `translate(-${clientX}%, -${clientY}%) scale(2.5)`
+    magnifying_img.style.transform = `translate(-${clientX}%, -${clientY}%) scale(1.5)`
+    // magnifying_img.style.transform = `translate(-50%, -50%) scale(2.5)`
   }
 
   unzoomImage = (e) => {
@@ -114,8 +115,8 @@ class ImageGallery extends React.Component {
       <>
         {this.state.zoom ? (
 
-        <figure id="magnifying_area" onClick={this.zoomOut} onMouseMove={this.zoomImage} onMouseLeave={this.unzoomImage}>
-          <img id="magnifying_img" src={this.props.photo} onClick={this.zoomOut} onMouseMove={this.zoomImage}></img>
+        <figure id="magnifying_area">
+          <img id="magnifying_img" src={this.props.photo} onClick={this.zoomOut} onMouseMove={this.zoomImage} onMouseLeave={this.unzoomImage}></img>
         </figure>
 
          ) : null}

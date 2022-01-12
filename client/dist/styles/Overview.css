@@ -218,12 +218,14 @@ button:hover {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 600px;
-  height: 600px;
+  width: 800px;
+  height: 500px;
   overflow: hidden;
   position: absolute;
   z-index: 5;
   cursor: zoom-out;
+  border: solid 3px black;
+  background-color: rgb(170, 170, 170);
 }
 
 #magnifying_img {
@@ -233,6 +235,6 @@ button:hover {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  pointer-events: none;
   z-index: 6;
+  cursor: zoom-out;
 }
