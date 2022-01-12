@@ -62,7 +62,7 @@ class ImageGallery extends React.Component {
   render() {
     let currentPhoto = this.props.currentPhoto
     let subtractor = this.props.styleData[this.props.selectedStyle] !== undefined ? this.props.styleData[this.props.selectedStyle].photos.length - 7 : null
-    let thumbnailIndex = currentPhoto > subtractor ? currentPhoto - subtractor : 0;
+    let thumbnailIndex = currentPhoto > subtractor && subtractor > 0 ? currentPhoto - subtractor : 0;
     let range = this.props.styleData[this.props.selectedStyle] !== undefined ?
     this.props.currentPhoto < this.props.styleData[this.props.selectedStyle].photos.length - 7 ?
     this.props.styleData[this.props.selectedStyle].photos.slice(this.props.currentPhoto, this.props.currentPhoto + 7)
@@ -81,6 +81,7 @@ class ImageGallery extends React.Component {
           <div className="image-gallery-container">
             <div className="thumbnail-list">
               {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(range, (photo, index) => {
+                console.log(thumbnailIndex)
                 return thumbnailIndex === index ?
                   (<img className="image-gallery-thumbnail" src={photo.url} key={index} id={index} style={{border: '3px solid #8e9efa'}}></img>) :
                   (<img className="image-gallery-thumbnail" src={photo.url} key={index} id={index} onClick={this.props.changePhoto}></img>)
