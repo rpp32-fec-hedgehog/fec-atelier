@@ -77,7 +77,7 @@ class Answers extends React.Component {
       reportButton = <span className="reported">Reported</span>
     }
 
-    return (<ul className="answer" data-testid="answers">
+    return (<ul className="answers" data-testid="answers">
       <li key={`a-${answer.id}`} data-testid={answerer}>
         <span className="answer-body">{answer.body}</span>
         {this.state.thumbnails}
