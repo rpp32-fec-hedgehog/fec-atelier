@@ -54,17 +54,35 @@ class Answers extends React.Component {
     })
   }
 
+  clickThumbnail(e) {
+    e.preventDefault();
+
+  }
+
   componentDidMount() {
     let answer = this.props.answer;
-    console.log('ANSWER ', answer);
     if (answer.photos.length > 0) {
       this.setState({thumbnails: <div className="a-thumbnails">{_.map(answer.photos, photo => {
-        return <img className="a-thumbnail" key={photo} src={photo}></img>
+        return <img className="a-thumbnail" key={photo} src={photo} onClick={this.clickThumbnail.bind(this)}></img>
       })}</div>})
     }
   }
 
   render() {
+    const modalStyle = {
+      content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        border: '1px solid #000',
+        borderRadius: '0px',
+        fontFamily: 'sans-serif'
+      }
+    };
+
     let answer = this.props.answer;
     let answerer = answer.answerer_name;
     if (answerer === 'Seller') {
