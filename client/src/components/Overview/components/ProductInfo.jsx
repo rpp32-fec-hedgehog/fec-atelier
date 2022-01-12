@@ -64,15 +64,14 @@ class ProductInfo extends React.Component {
     if (this.props.salePrice !== null) {
       return (
         <div>
-          <div className="og-price" style={ogStyles}>{this.props.originalPrice}</div>
-          <div className="sale-price" style={saleStyles}>{this.props.salePrice}</div>
+          <div className="og-price" style={ogStyles}>${this.props.originalPrice}</div>
+          <div className="sale-price" style={saleStyles}>${this.props.salePrice}</div>
         </div>
       )
     } else {
       return (
         <div>
-          <div className="og-price">{this.props.originalPrice}</div>
-          <div className="sale-price">{this.props.salePrice}</div>
+          <div className="og-price">${this.props.originalPrice}</div>
         </div>
       )
     }
