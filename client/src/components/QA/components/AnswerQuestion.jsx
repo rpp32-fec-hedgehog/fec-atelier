@@ -24,19 +24,10 @@ class AnswerQuestion extends React.Component {
 
   openModal(e) {
     e.preventDefault();
-    $.ajax({
-      url: `/products/${this.props.product_id}`,
-      method: 'GET',
-      success: data => {
-        this.setState({
-          modalOpen: true,
-          product_name: data.name
-        });
-      },
-      error: err => {
-        alert(err);
-      }
-    })
+    this.setState({
+      modalOpen: true,
+      product_name: this.props.product_name
+    });
   }
 
   closeModal(e) {
@@ -168,7 +159,9 @@ class AnswerQuestion extends React.Component {
 
     return (
       <div className="answer-modal" data-testid="answer-modal">
-        <span className="add-answer" onClick={this.openModal.bind(this)}><u>Add Answer</u></span>
+        <span className="add-answer" data-testid="add-answer" onClick={this.openModal.bind(this)}>
+          <u>Add Answer</u>
+        </span>
         <Modal
           isOpen={this.state.modalOpen}
           style={modalStyle}
@@ -176,7 +169,7 @@ class AnswerQuestion extends React.Component {
         >
           <div className='qa-modal-top'>
             <span className="q-modal-answer">Submit your answer</span>
-            <span className="close-qa-modal" onClick={this.closeModal.bind(this)}>X</span>
+            <span className="close-qa-modal" data-testid="close-qa-modal" onClick={this.closeModal.bind(this)}>X</span>
           </div>
           <span className="a-modal-subtitle">{this.state.product_name}: {this.props.question_body}</span>
           {this.state.invalid}

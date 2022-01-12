@@ -91,7 +91,7 @@ class Questions extends React.Component {
               </div>
               <div>
                 <span className="a-label"><b>A: </b></span>
-                <AnswerList answers={q.answers} question_id={q.question_id}
+                <AnswerList answers={q.answers} question_id={q.question_id} product_name={this.props.product_name}
                   updateAHelp={this.props.updateAHelp} />
               </div>
             </li>
@@ -107,7 +107,8 @@ class Questions extends React.Component {
       </button>;
     let addQuestion = <AskQuestion key="ask-question" className="ask-question"
       getQAData={this.props.getQAData}
-      product_id={this.props.product_id} />
+      product_id={this.props.product_id}
+      product_name={this.props.product_name} />
     if (totalQs > this.state.questionCount && totalQs > 2) {
       return base.concat(more, addQuestion);
     } else {

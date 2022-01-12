@@ -11,7 +11,8 @@ class QA extends React.Component {
     this.state = {
       originalQuestions: [],
       questions: [],
-      page: 1
+      page: 1,
+      product_name: ''
     };
   }
 
@@ -47,6 +48,21 @@ class QA extends React.Component {
           originalQuestions: newQuestions,
           page: newPage
         })
+      }
+    })
+  }
+
+  getProductName() {
+    $.ajax({
+      url: `/products/${this.props.itemid}`,
+      method: 'GET',
+      success: data => {
+        this.setState({
+          product_name: data.name
+        });
+      },
+      error: err => {
+        alert(err);
       }
     })
   }
@@ -90,6 +106,7 @@ class QA extends React.Component {
 
   componentDidMount() {
     this.getQAData();
+    this.getProductName();
   }
 
   render() {
@@ -101,7 +118,8 @@ class QA extends React.Component {
         <Questions questions={state.questions} updateQHelp={this.updateQuestionHelp.bind(this)}
           updateAHelp={this.updateAnswerHelp.bind(this)}
           getQAData={this.getQAData.bind(this)}
-          product_id={this.props.itemid} />
+          product_id={this.props.itemid}
+          product_name={this.state.product_name} />
       </div>
     )
   }

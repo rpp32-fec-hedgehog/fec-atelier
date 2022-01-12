@@ -49,7 +49,7 @@ class Overview extends React.Component {
       });
   }
 
-  cycleForward =(e) => {
+  cycleForward = (e) => {
     let max = this.state.numberOfPhotos;
     let current = this.state.currentPhoto;
     this.state.currentPhoto < max - 1 ?
