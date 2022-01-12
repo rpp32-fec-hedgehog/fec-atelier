@@ -9,11 +9,13 @@ import Ratings from './components/Ratings/Ratings.jsx';
 import RelatedItems from './components/RelatedProducts/Related-Items.jsx';
 import Outfits from './components/RelatedProducts/Outfits.jsx';
 
+// Math.floor(Math.random() * (60563 - 59553 + 1)) + 59553,
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      item_id: Math.floor(Math.random() * (60563 - 59553 + 1)) + 59553,
+      item_id: 59557,
       myOutfit: []
     };
     this.changeProduct = this.changeProduct.bind(this);
