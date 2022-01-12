@@ -10,7 +10,9 @@ class ImageGallery extends React.Component {
     super(props)
     this.state = {
       modalOpen: false,
-      zoom: false
+      zoom: false,
+      x: 0,
+      y: 0
     }
   }
 
@@ -39,9 +41,6 @@ class ImageGallery extends React.Component {
         zoom: !state.zoom
       }))
     }
-
-    let img;
-    let lens;
   }
 
   zoomOut = (e) => {
@@ -50,13 +49,20 @@ class ImageGallery extends React.Component {
     frame.css('display', 'none')
   }
 
+  moveImage = () => {
+    let x = this.state.x
+    let y = this.state.y
+  }
+
   trackPosition = (e) => {
     let posX, posY;
-    this.state.zoom ? (
-      posX = e.nativeEvent.offsetX,
-      posY = e.nativeEvent.offsetY
-      ) : null
-    console.log(posX, posY)
+    this.state.zoom ?
+      this.setState((state, props) => ({
+        x: e.nativeEvent.offsetX,
+        y: e.nativeEvent.offsetY
+      }), () => {
+        this.moveImage();
+      }) : null
   }
 
   render() {
@@ -81,7 +87,7 @@ class ImageGallery extends React.Component {
           <div className="image-gallery-container">
             <div className="thumbnail-list">
               {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(range, (photo, index) => {
-                console.log(thumbnailIndex)
+
                 return thumbnailIndex === index ?
                   (<img className="image-gallery-thumbnail" src={photo.url} key={index} id={index} style={{border: '3px solid #8e9efa'}}></img>) :
                   (<img className="image-gallery-thumbnail" src={photo.url} key={index} id={index} onClick={this.props.changePhoto}></img>)

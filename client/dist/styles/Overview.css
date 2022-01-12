@@ -51,8 +51,10 @@ button:hover {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  height: 95%;
-  width: 95%;
+  height: auto;
+  width: auto;
+  max-height: 95%;
+  max-width: 95%;
   max-width: 100%;
   max-height: 100%;
   cursor: zoom-in;
@@ -209,11 +211,13 @@ button:hover {
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
-  width: 95%;
-  height: 95%;
+  width: 1100px;
+  height: 1100px;
+  overflow: hidden;
   background-color: rgb(129, 129, 129);
   border: solid 2px rgb(129, 129, 129);
 }
+
 .close-zoom {
   z-index: 6;
 }
@@ -231,12 +235,10 @@ button:hover {
   overflow: hidden;
   margin: 0 auto;
   background-repeat: no-repeat;
+
 }
 
 #featured:hover {
-  transform: scale(2.5);
-  width: auto;
-  height: auto;
   max-width: 95%;
   max-height: 95%;
   overflow: hidden;
