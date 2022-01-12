@@ -30,14 +30,10 @@ class App extends React.Component {
       (newOutfit.splice(newOutfit.indexOf(sku), 1),
         this.setState((state, props) => ({
           myOutfit: newOutfit
-        }), () => {
-          console.log('removed from my outfit :',this.state.myOutfit)
-        })) :
+        }))) :
       this.setState((state, props) => ({
         myOutfit: state.myOutfit.concat([sku])
-      }), () => {
-        console.log('added to my outfit :',this.state.myOutfit)
-      })
+      }))
   }
 
   render() {
@@ -55,12 +51,12 @@ class App extends React.Component {
           </div>
         </div>
         <div>
-          <RelatedItems
+          {/* <RelatedItems
             itemId={this.state.item_id}
-            changeProduct={this.changeProduct} />
+            changeProduct={this.changeProduct} /> */}
         </div>
         <div>
-          <Outfits itemId={this.state.item_id} />
+          {/* <Outfits itemId={this.state.item_id} /> */}
         </div>
       </div>
     );

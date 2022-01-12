@@ -8,7 +8,7 @@ class AddToCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sku: 2122777,
+      sku: '2122777',
       selectedSize: undefined,
       selectedQuantity : 0,
       totalQuantity: null,
@@ -50,7 +50,7 @@ class AddToCart extends React.Component {
     for (let i = 0; i < entries.length; i++) {
       if (entries[i][1].size === e.target.value) {
         this.setState({
-          selectedSize: Number(e.target.value),
+          selectedSize: e.target.value,
           sku: Number(entries[i][0]),
           totalQuantity: entries[i][1].quantity,
           selectedQuantity: 1
