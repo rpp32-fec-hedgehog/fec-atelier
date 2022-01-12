@@ -74,57 +74,65 @@ class Questions extends React.Component {
   }
 
   render() {
-    let base = [<div key="questions" className="questions" data-testid="questions">
-      <ul className="q-base">
-        {_.map(this.props.questions.slice(0, this.state.questionCount), q => {
-          return <div className="question" data-testid={q.question_body}
-            key={`${q.question_body}-${q.question_id}`}
-          >
-            <li key={`q-${q.question_id}`}>
-              <div className="q-header">
-                <div>
-                  <span className="q-label">Q:</span>
-                  <span className="q-body">{q.question_body}</span>
-                </div>
-                <div className="q-bar">
-                  <div className="q-helpful-bar">
-                    <span className="q-helpful">Helpful?</span>&nbsp;
-                    <span className={`q-help-count q-help-${q.question_id}-${q.question_helpfulness}`}
-                      onClick={this.questionIsHelpful.bind(this)}>
-                      <u>Yes</u>&nbsp;{`(${q.question_helpfulness})`}
-                    </span>
-                  </div>
-                  <span className="vertical-bar">|</span>
-                  <AnswerQuestion question_id={q.question_id} getQAData={this.props.getQAData}
-                    product_id={this.props.product_id}
-                    question_body={q.question_body} />
-                </div>
-              </div>
-              <div className="a-label-list">
-                {this.answersExist(q.answers)}
-                <AnswerList answers={q.answers} question_id={q.question_id} product_name={this.props.product_name}
-                  updateAHelp={this.props.updateAHelp} />
-              </div>
-            </li>
-          </div>
-        })}
-      </ul>
-    </div>];
-
     let totalQs = this.props.questions.length;
-    let more = <button key="more-q" className="more-q"
-      onClick={this.handleQuestions.bind(this)}>
-        MORE ANSWERED QUESTIONS
-      </button>;
+    let more;
     let addQuestion = <AskQuestion key="ask-question" className="ask-question"
       getQAData={this.props.getQAData}
       product_id={this.props.product_id}
       product_name={this.props.product_name} />
+
     if (totalQs > this.state.questionCount && totalQs > 2) {
-      return base.concat(more, addQuestion);
+      more = <button key="more-q" className="more-q"
+        onClick={this.handleQuestions.bind(this)}>
+        MORE ANSWERED QUESTIONS
+      </button>;
     } else {
-      return base.concat(addQuestion);
+      more = <></>
     }
+
+    return <div>
+      <div key="questions" className="questions" data-testid="questions">
+        <ul className="q-base">
+          {_.map(this.props.questions.slice(0, this.state.questionCount), q => {
+            return <div className="question" data-testid={q.question_body}
+              key={`${q.question_body}-${q.question_id}`}
+            >
+              <li key={`q-${q.question_id}`}>
+                <div className="q-header">
+                  <div>
+                    <span className="q-label">Q:</span>
+                    <span className="q-body">{q.question_body}</span>
+                  </div>
+                  <div className="q-bar">
+                    <div className="q-helpful-bar">
+                      <span className="q-helpful">Helpful?</span>&nbsp;
+                      <span className={`q-help-count q-help-${q.question_id}-${q.question_helpfulness}`}
+                        onClick={this.questionIsHelpful.bind(this)}>
+                        <u>Yes</u>&nbsp;{`(${q.question_helpfulness})`}
+                      </span>
+                    </div>
+                    <span className="vertical-bar">|</span>
+                    <AnswerQuestion question_id={q.question_id} getQAData={this.props.getQAData}
+                      product_id={this.props.product_id}
+                      question_body={q.question_body} />
+                  </div>
+                </div>
+                <div className="a-label-list">
+                  {this.answersExist(q.answers)}
+                  <AnswerList answers={q.answers} question_id={q.question_id} product_name={this.props.product_name}
+                    updateAHelp={this.props.updateAHelp} />
+                </div>
+              </li>
+            </div>
+          })}
+        </ul>
+      </div>
+      {more}
+      <AskQuestion key="ask-question" className="ask-question"
+        getQAData={this.props.getQAData}
+        product_id={this.props.product_id}
+        product_name={this.props.product_name} />
+    </div>
   }
 }
 
