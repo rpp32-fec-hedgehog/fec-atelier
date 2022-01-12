@@ -13,7 +13,7 @@ h1 {
   border: 0;
   box-sizing: 0;
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 60% 40%;
   grid-template-rows: 22% 48% 30%;
   font-family: sans-serif;
 }
@@ -186,6 +186,30 @@ button:hover {
   color: #8e9efa;
   box-shadow: 0 1px rgb(214, 211, 211);
   transform: translateY(1px);
+}
+
+.size-selector {
+  margin: 5px;
+  width: 150px;
+  padding: 5px 35px 5px 5px;
+  font-size: 16px;
+  border: 1px solid rgb(78, 78, 78);
+  height: 34px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.qty-selector {
+  margin: 5px;
+  width: 150px;
+  padding: 5px 35px 5px 5px;
+  font-size: 16px;
+  border: 1px solid rgb(78, 78, 78);
+  height: 34px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 /* Image Gallery ========================================================== */

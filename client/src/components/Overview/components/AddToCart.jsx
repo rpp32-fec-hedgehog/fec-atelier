@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import _ from 'underscore';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faShoppingCart, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 class AddToCart extends React.Component {
   constructor(props) {
@@ -89,9 +89,9 @@ class AddToCart extends React.Component {
   render() {
     return (
       <div className="add-to-cart" data-testid="add-to-cart">
-        <div className="size-selector"> Select a Size
-          <select value={this.state.selectedSize} onChange={this.selectSize}>
-            <option value="default">-</option>
+        <div>
+          <select className="size-selector" value={this.state.selectedSize} onChange={this.selectSize}>
+            <option value="default">Size</option>
             {this.props.styleData !== undefined ? _.map(this.getSizes(), (size, index) => {
               return (<option key={index} value={size}>{size}</option>)
             }) : null
@@ -99,9 +99,9 @@ class AddToCart extends React.Component {
           </select>
         </div>
 
-        <div className="qty-selector"> Select a Quantity
-          <select onChange={this.selectQuantity} disabled={!this.state.selectedSize}>
-            {!this.state.selectedSize ? <option value="default">-</option> :
+        <div>
+          <select className="qty-selector" onChange={this.selectQuantity} disabled={!this.state.selectedSize}>
+            {!this.state.selectedSize ? <option value="default">QTY</option> :
               this.state.totalQuantity !== 0 ? _.map(this.mapQuantity(), (number, index) => {
                 return (<option key={index} value={number}>{number}</option>)
                   }) : <option value='outOfStock'>Out Of Stock</option>}
