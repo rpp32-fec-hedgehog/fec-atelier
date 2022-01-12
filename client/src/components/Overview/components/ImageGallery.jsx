@@ -6,10 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
 class ImageGallery extends React.Component {
-
-  static magnifying_area = $('#magnigying_area');
-  static magnifying_img = $('magnifying_img');
-
   constructor(props) {
     super(props)
     this.state = {
@@ -64,8 +60,27 @@ class ImageGallery extends React.Component {
 
 
 
-  zoomImage = () => {
-    magnifying_img.css({"transform": "translate(-50%, -50%)", "transform": "scale(2.5)"})
+  zoomImage = (e) => {
+    let magnifying_area = document.getElementById('magnifying_area')
+    let magnifying_img = document.getElementById('magnifying_img')
+
+    let clientX = e.clientX - magnifying_area.offsetLeft;
+    let clientY = e.clientY - magnifying_area.offsetTop;
+
+    let mWidth = magnifying_area.offsetWidth;
+    let mHeight = magnifying_area.offsetTop;
+
+    clientX = clientX / mWidth * 100;
+    clientY = clientY / mHeight * 100;
+
+    magnifying_img.style.transform = `translate(-${clientX}%, -${clientY}%) scale(2.5)`
+  }
+
+  unzoomImage = (e) => {
+    let magnifying_area = document.getElementById('magnifying_area')
+    let magnifying_img = document.getElementById('magnifying_img')
+
+    magnifying_img.style.transform = 'translate(-50%, -50%) scale(1)'
   }
 
   moveImage = () => {
@@ -99,8 +114,8 @@ class ImageGallery extends React.Component {
       <>
         {this.state.zoom ? (
 
-        <figure id="magnifying_area" onClick={this.zoomOut} >
-          <img id="magnifying_img" src={this.props.photo} onClick={this.zoomOut} onmousemove={this.zoomImage}></img>
+        <figure id="magnifying_area" onClick={this.zoomOut} onMouseMove={this.zoomImage} onMouseLeave={this.unzoomImage}>
+          <img id="magnifying_img" src={this.props.photo} onClick={this.zoomOut} onMouseMove={this.zoomImage}></img>
         </figure>
 
          ) : null}
