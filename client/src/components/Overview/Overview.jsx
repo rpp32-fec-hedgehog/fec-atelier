@@ -106,7 +106,7 @@ class Overview extends React.Component {
 
   render() {
     return (
-      <div data-testid='overview-widget' className="overview">
+      <div data-testid='overview-widget' id="overview">
         <ProductInfo itemid={this.props.itemid} productData={this.state.productData}
           originalPrice={this.state.styleData[this.state.selectedStyle] !== undefined ?
             this.state.styleData[this.state.selectedStyle].original_price : null}
