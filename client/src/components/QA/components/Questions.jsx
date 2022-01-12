@@ -74,7 +74,10 @@ class Questions extends React.Component {
           >
             <li key={`q-${q.question_id}`}>
               <div className="q-header">
-                <span className="q-body">Q: {q.question_body}</span>
+                <div>
+                  <span className="q-label">Q:</span>
+                  <span className="q-body">{q.question_body}</span>
+                </div>
                 <div className="q-bar">
                   <div className="q-helpful-bar">
                     <span className="q-helpful">Helpful?</span>&nbsp;
@@ -90,7 +93,7 @@ class Questions extends React.Component {
                 </div>
               </div>
               <div className="a-label-list">
-                <span className="a-label"><b>A: </b></span>
+                <span className="a-label">A:</span>
                 <AnswerList answers={q.answers} question_id={q.question_id} product_name={this.props.product_name}
                   updateAHelp={this.props.updateAHelp} />
               </div>

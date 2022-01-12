@@ -34,6 +34,12 @@
   list-style-type: none;
 }
 
+.q-label {
+  font-size: 15px;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
 .q-body {
   font-size: 15px;
   font-weight: bold;
@@ -86,7 +92,9 @@
 
 .a-label {
   display: flex;
+  font-weight: bold;
   margin-top: 15px;
+  margin-right: 8px;
 }
 
 .a-label-list {
@@ -102,7 +110,8 @@
 
 .a-list {
   display: flex;
-  flex-flow: column nowrap
+  flex-flow: column nowrap;
+  margin-top: 3px;
 }
 
 .answer-body {
@@ -166,7 +175,6 @@
   display: flex;
   font-size: 10px;
   font-weight: bold;
-  margin-left: 20px;
   margin-top: 15px;
   margin-bottom: 15px;
 }
