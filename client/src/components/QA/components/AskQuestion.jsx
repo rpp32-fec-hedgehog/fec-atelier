@@ -26,11 +26,13 @@ class AskQuestion extends React.Component {
       modalOpen: true,
       product_name: this.props.product_name
     });
+    this.props.render(e);
   }
 
   closeModal(e) {
     e.preventDefault();
     this.setState({modalOpen: false, invalid: ''});
+    this.props.render(e);
   }
 
   handleQuestion(e) {

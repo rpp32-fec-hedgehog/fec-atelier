@@ -33,6 +33,7 @@ class Answers extends React.Component {
         success: () => {
           this.setState({votes: this.state.votes.push(answer_id)})
           this.props.updateAHelp(answer_id, this.props.question_id);
+          this.props.render(e);
         },
         error: err => {
           alert(err);
@@ -52,6 +53,7 @@ class Answers extends React.Component {
       method: 'PUT',
       success: () => {
         this.setState({reported: true});
+        this.props.render(e);
       },
       error: err => {
         alert(err);
