@@ -10,20 +10,20 @@ class NewReview extends React.Component {
     super(props);
     this.state = {
       product_id: 0,
-      product_name: '',
       rating: 0,
       summary: '',
       body: '',
       recommend: false,
       name: '',
       email: '',
-      photoes: [],
+      photos: [],
       characteristics: {},
       modalOpen: false,
+      stars: ['images/white_star.png', 'images/white_star.png', 'images/white_star.png', 'images/white_star.png', 'images/white_star.png'],
+      star_meaning: '',
       thumbnails: <></>,
-      addPhoto: <button className="add-a-photo" onClick={this.addPhotos.bind(this)}>ADD PHOTOS</button>
+      addPhoto: <button className="add_photo" onClick={this.addPhotos.bind(this)}>ADD PHOTOS</button>
     };
-    this.chooseStars = this.chooseStars.bind(this);
   }
 
   openModal(e) {
@@ -40,8 +40,36 @@ class NewReview extends React.Component {
   }
 
   chooseStars(e) {
-    console.log('stars clicked: ', e);
+    e.preventDefault();
+
+    let starNum = parseInt((e.target.className).slice(5));
+    let newMeaning = '';
+
+    if (starNum === 1) {
+      newMeaning = 'Poor';
+    } else if (starNum === 2) {
+      newMeaning = 'Fair';
+    } else if (starNum === 3) {
+      newMeaning = 'Average';
+    } else if (starNum === 4) {
+      newMeaning = 'Good';
+    } else if (starNum === 5) {
+      newMeaning = 'Great';
+    }
+
+    let newStars = this.state.stars;
+
+    for (let i = 0; i < starNum; i++) {
+      newStars[i] = 'images/black_star.png';
+    }
+
+    this.setState({
+      stars: newStars,
+      star_meaning: newMeaning
+    });
   }
+
+
 
   addPhotos(e) {
     e.preventDefault();
@@ -77,20 +105,17 @@ class NewReview extends React.Component {
     // client.picker(options).open();
   }
 
-  // onClick(e) {
-  //   e.preventDefault();
-  //   console.log('click: ', e);
-  // }
-
   submitReview(e) {
     e.preventDefault();
+    console.log('submit review clicked: ', e);
     let questionData = {
 
     };
     //validate and send
   }
 
-  render() {
+  render(props) {
+
     const modalStyle = {
       content: {
         top: '50%',
@@ -116,13 +141,19 @@ class NewReview extends React.Component {
           style={modalStyle}
           contentLabel="Post Your Review">
           <div className="new_review_meta">
-            <span className="modal_label">Write your review<br></br> about the {this.state.product_name}</span>
+            <span className="modal_label">Write your review<br></br> about the {this.props.item_name}</span>
             <span className="close_review_modal" onClick={this.closeModal.bind(this)}>X</span>
           </div>
           <div className="review_modal_form">
             <div className="review_modal_input">
-              <StarRating onClick={this.chooseStars}></StarRating>
-
+              <br></br>
+              <img src={this.state.stars[0]} alt='loading' width="20" height="20"className=".star1" onClick={this.chooseStars.bind(this)}/>
+              <img src={this.state.stars[1]} alt='loading' width="20" height="20"className=".star2" onClick={this.chooseStars.bind(this)}/>
+              <img src={this.state.stars[2]} alt='loading' width="20" height="20"className=".star3" onClick={this.chooseStars.bind(this)}/>
+              <img src={this.state.stars[3]} alt='loading' width="20" height="20"className=".star4" onClick={this.chooseStars.bind(this)}/>
+              <img src={this.state.stars[4]} alt='loading' width="20" height="20"className=".star5" onClick={this.chooseStars.bind(this)}/>
+              &nbsp;<span>{this.state.star_meaning}</span>
+              <br></br>
               <button onClick={this.submitReview.bind(this)}>SUBMIT REVIEW</button>
             </div>
           </div>
