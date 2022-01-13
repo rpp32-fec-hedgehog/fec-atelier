@@ -12,34 +12,19 @@ class Questions extends React.Component {
       sortedQuestions: [],
       totalQuestions: 0,
       questionCount: 2,
-      questionTracker: 1,
-      votes: []
+      votes: [],
+      more: false
     };
   }
 
   handleQuestions(e) {
     e.preventDefault();
-    let tracker;
-    if (this.state.questionTracker === 1) {
-      tracker = 2;
-    } else if (this.state.questionTracker === 2) {
-      tracker = 1;
-    }
-
-    if (tracker === 2) {
-      this.props.getQAData();
-    }
-
-    if (this.props.questions.length > this.state.questionCount) {
-      this.setState({
-        questionCount: this.state.questionCount += 2,
-        questionTracker: tracker
-      })
-    } else {
-      this.setState({
-        questionCount: this.state.questionCount -= 2
-      })
-    }
+    this.props.getQAData();
+    this.setState({
+      totalQuestions: this.props.questions.length,
+      questionCount: this.props.questions.length,
+      more: true
+    })
   }
 
   questionIsHelpful(e) {
@@ -73,10 +58,29 @@ class Questions extends React.Component {
     }
   }
 
+  handleScroll(e) {
+    e.preventDefault();
+    const wrapped = $('.questions').get(0);
+    if (wrapped.offsetHeight + wrapped.scrollTop >= wrapped.scrollHeight) {
+      this.scrollUpdate(e);
+    }
+  }
+
+  scrollUpdate(e) {
+    e.preventDefault();
+    if (this.state.more) {
+      this.props.getQAData();
+      this.setState({
+        totalQuestions: this.props.questions.length,
+        questionCount: this.props.questions.length
+      })
+    }
+  }
+
   render() {
     let totalQs = this.props.questions.length;
     let more;
-    if (totalQs > this.state.questionCount && totalQs > 2) {
+    if (totalQs > this.state.questionCount && totalQs > 2 && !this.state.more) {
       more = <button key="more-q" className="more-q"
         onClick={this.handleQuestions.bind(this)}>
         MORE ANSWERED QUESTIONS
@@ -85,13 +89,8 @@ class Questions extends React.Component {
       more = <></>
     }
 
-    // create separate tracker in state to check when rendering more questions button?
-    // stop slicing after first click
-    //
-
-
     return <div>
-      <div key="questions" className="questions" data-testid="questions">
+      <div key="questions" className="questions" data-testid="questions" onScroll={this.handleScroll.bind(this)}>
         <ul className="q-base">
           {_.map(this.props.questions.slice(0, this.state.questionCount), q => {
             return <div className="question" data-testid={q.question_body}
