@@ -108,6 +108,9 @@ button:hover {
   top: 600px;
   left: 1410px;
 }
+.modal-forward:hover {
+  color: #8e9efa;
+}
 .modal-back {
   position: relative;
   left: 40%;
@@ -117,6 +120,9 @@ button:hover {
   font-size: 100px;
   top: 600px;
   left: 40px;
+}
+.modal-back:hover {
+  color: #8e9efa;
 }
 .modal-radio-button {
   position: absolute;
@@ -128,6 +134,9 @@ button:hover {
 }
 .modal-close {
   z-index: 2;
+  height: 30px;
+  width: 30px;
+  background-color: rgb(191, 49, 49);
 }
 
 /* Style Selector ========================================================== */
@@ -313,12 +322,18 @@ button:hover {
 .forward {
   grid-row-start: 5;
   grid-column-start: 10;
+  position: relative;
   color: #8e9efa;
+  font-size: 50px;
+  left: -10px;
 }
 .backward {
   grid-row-start: 5;
   grid-column-start: 2;
+  position: relative;
   color: #8e9efa;
+  font-size: 50px;
+  left: -15px;
 }
 .forward:hover {
   color: #2f2f30;
