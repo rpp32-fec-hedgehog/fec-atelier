@@ -9,6 +9,8 @@ import Ratings from './components/Ratings/Ratings.jsx';
 import RelatedItems from './components/RelatedProducts/Related-Items.jsx';
 import Outfits from './components/RelatedProducts/Outfits.jsx';
 
+import ClickTrackerOverview from './components/Overview/components/ClickTrackerOverview.jsx';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -43,8 +45,11 @@ class App extends React.Component {
         <h1>Atelier</h1>
         <div className="main">
           <div className="overview-widget">
-            <Overview itemid={this.state.item_id}
-            addToOutfit={this.addToOutfit}/>
+            <ClickTrackerOverview render={sendMetrics => {
+              return <Overview itemid={this.state.item_id}
+              addToOutfit={this.addToOutfit}
+              render={sendMetrics}/>
+            }} />
           </div>
           <QA itemid={this.state.item_id} />
           <div className="ratings">

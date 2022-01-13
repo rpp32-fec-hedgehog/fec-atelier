@@ -1,5 +1,5 @@
 import React from 'react';
-import $ from 'jquery';
+import axios from 'axios';
 
 class ClickTrackerOverview extends React.Component {
   constructor(props) {
@@ -11,22 +11,18 @@ class ClickTrackerOverview extends React.Component {
   }
 
   sendMetrics(e) {
+    console.log(e.target.className)
     let metrics = {
       element: e.target.className,
       widget: 'Overview',
       time: new Date()
     }
-
-    $.ajax({
-      url: '/interactions',
-      method: 'POST',
-      data: metrics,
-      success: () => {
-        console.log('Metric Recorded');
-      },
-      error: err => {
-        alert(err);
-      }
+    axios.post('/interactions', metrics)
+    .then(result => {
+      console.log('recorded click')
+    })
+    .catch(err => {
+      console.log('couldnt register click', err)
     })
   }
 
