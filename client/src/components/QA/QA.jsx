@@ -30,10 +30,44 @@ class QA extends React.Component {
   }
 
   sortByTerm(questions, sortTerm) {
-    return _.filter(questions, q => {
-      if (q.question_body.includes(sortTerm)) {
+
+    // change filter or add map, need to convert back to string then filter, then return that array
+
+    let filtered = _.filter(questions, q => {
+      let questionBody = q.question_body;
+      let newQuestion = [];
+      if (typeof questionBody !== 'string') {
+        _.each(questionBody, qb => {
+          if (typeof qb !== 'string') {
+            newQuestion.push(sortTerm);
+          } else {
+            newQuestion.push(qb);
+          }
+        })
+        newQuestion = newQuestion.join();
+      }
+
+
+      if (newQuestion.includes(sortTerm)) {
         return true;
       }
+    })
+
+    return _.map(filtered, q => {
+      let questionBody = q.question_body;
+      let newQuestion = [];
+      let questionParts = questionBody.split(sortTerm);
+      _.each(questionParts, (qp, index) => {
+        newQuestion.push(qp);
+        if (index !== questionParts.length - 1) {
+          newQuestion.push(<mark>{sortTerm}</mark>);
+        }
+      })
+
+
+      console.log('Q ', q);
+      q.question_body = newQuestion;
+      return q;
     })
   }
 
