@@ -26,6 +26,7 @@ class Questions extends React.Component {
       more: true
     })
     this.focusQuestions(e);
+    this.props.render(e);
   }
 
   questionIsHelpful(e) {
@@ -43,6 +44,7 @@ class Questions extends React.Component {
         success: () => {
           this.setState({votes: this.state.votes.push(question_id)})
           this.props.updateQHelp(question_id);
+          this.props.render(e);
         },
         error: err => {
           alert(err);

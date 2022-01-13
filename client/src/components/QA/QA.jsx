@@ -115,17 +115,18 @@ class QA extends React.Component {
     return (
       <div data-testid="qa" id="qa">
         <span className="qa-title">{'QUESTIONS & ANSWERS'}</span>
-        <ClickTracker render={(sendMetrics) => {
-          return <SearchQuestion searchQuestions={this.searchQuestions.bind(this)} sendMetrics={sendMetrics}/>
+        <ClickTracker render={sendMetrics => {
+          return <SearchQuestion searchQuestions={this.searchQuestions.bind(this)} render={sendMetrics}/>
+        }} />
+        <ClickTracker render={sendMetrics => {
+          return <Questions questions={state.questions} updateQHelp={this.updateQuestionHelp.bind(this)}
+            updateAHelp={this.updateAnswerHelp.bind(this)}
+            getQAData={this.getQAData.bind(this)}
+            product_id={this.props.itemid}
+            product_name={this.state.product_name}
+            render={sendMetrics} />
         }} />
 
-        {/* <span className="qa-title">{'QUESTIONS & ANSWERS'}</span>
-        <SearchQuestion searchQuestions={this.searchQuestions.bind(this)}/> */}
-        <Questions questions={state.questions} updateQHelp={this.updateQuestionHelp.bind(this)}
-          updateAHelp={this.updateAnswerHelp.bind(this)}
-          getQAData={this.getQAData.bind(this)}
-          product_id={this.props.itemid}
-          product_name={this.state.product_name} />
       </div>
     )
   }
