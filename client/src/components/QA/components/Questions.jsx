@@ -4,6 +4,7 @@ import $ from 'jquery';
 import AnswerList from './AnswerList.jsx';
 import AnswerQuestion from './AnswerQuestion.jsx';
 import AskQuestion from './AskQuestion.jsx';
+import ClickTracker from './ClickTracker.jsx';
 
 class Questions extends React.Component {
   constructor(props) {
@@ -120,9 +121,13 @@ class Questions extends React.Component {
                       </span>
                     </div>
                     <span className="vertical-bar">|</span>
-                    <AnswerQuestion question_id={q.question_id} getQAData={this.props.getQAData}
-                      product_id={this.props.product_id}
-                      question_body={q.question_body} />
+                    <ClickTracker render={sendMetrics => {
+                      return <AnswerQuestion question_id={q.question_id} getQAData={this.props.getQAData}
+                        product_id={this.props.product_id}
+                        question_body={q.question_body}
+                        render={sendMetrics} />
+                    }} />
+
                   </div>
                 </div>
                 <div className="a-label-list">
