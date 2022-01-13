@@ -9,22 +9,22 @@ const ProductBreakdownItem = (props) => {
   const triangle_location = 340 * (value / 5);
 
   if (characteristic === 'Comfort') {
-    label1 = 'Poor';
+    label1 = 'Uncomfortable';
     label2 = 'Perfect'
   } else if (characteristic === 'Fit') {
-    label1 = 'Poor';
-    label2 = 'Just right'
+    label1 = 'Runs tight';
+    label2 = 'Runs long'
   } else if (characteristic === 'Length') {
-    label1 = 'Too short';
-    label2 = 'Too long'
+    label1 = 'Runs short';
+    label2 = 'Runs long'
   } else if (characteristic === 'Quality') {
     label1 = 'Poor';
-    label2 = 'Great'
+    label2 = 'Perfect'
   } else if (characteristic === 'Size') {
-    label1 = 'Too small';
-    label2 = 'Too large'
+    label1 = 'A size too small';
+    label2 = 'A size too wide'
   } else if (characteristic === 'Width') {
-    label1 = 'Too skinny';
+    label1 = 'Too narrow';
     label2 = 'Too wide'
   }
 

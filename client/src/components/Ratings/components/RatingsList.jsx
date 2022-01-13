@@ -1,5 +1,6 @@
 import React from 'react';
 import IndividualReview from './IndividualReview.jsx';
+import NewReview from './NewReview.jsx';
 
 class RatingsList extends React.Component {
   constructor(props) {
@@ -66,8 +67,6 @@ class RatingsList extends React.Component {
     const putMarkHelpful= this.props.putMarkHelpful;
     let recommend_total = 0;
     let count_to_display = this.state.count_to_display;
-    console.log('choosehelpful: ', chooseHelpful);
-    console.log('ratings_list: ', this.state.ratings);
 
     if (this.props.ratings_meta) {
       const recommended = this.props.ratings_meta.recommended;
@@ -100,7 +99,7 @@ class RatingsList extends React.Component {
             <ul className="ratings_list">{ratings}</ul>
           </div>
           <div>
-            {(count_to_display < recommend_total) ? <div><button className="ratings_btn" onClick={this.moreReviews}>More Reviews</button></div>: null}
+            <span>{(count_to_display < recommend_total) ? <div><button className="btn" onClick={this.moreReviews}>MORE REVIEWS</button></div>: null}<NewReview className="new_review"></NewReview></span>
           </div>
       </div>
     )

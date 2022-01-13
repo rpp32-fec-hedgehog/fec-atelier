@@ -34,7 +34,6 @@ class IndividualReview extends React.Component {
       helpfulCount: this.state.helpfulCount + 1,
       helpfulClicked: true
     })
-    console.log('state: ', this.state);
   }
 
   render(props) {
@@ -54,9 +53,6 @@ class IndividualReview extends React.Component {
       const helpful = this.state.helpfulCount;
       const chooseHelpful = this.props.chooseHelpful;
       const putMarkHelpful = this.props.putMarkHelpful;
-
-      console.log('this.props.review_id ', this.props.key);
-      console.log('this.props ', this.props);
 
       return (
         <div data-testid="individual-review" className="individual_review">
@@ -80,5 +76,5 @@ class IndividualReview extends React.Component {
     }
   }
 }
-//onClick={(e) => this.chooseHelpful(review_id, e)}
+
 export default IndividualReview;

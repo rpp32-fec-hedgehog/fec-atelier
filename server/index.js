@@ -141,6 +141,13 @@ app.put('/reviews/mark_helpful', (req, res, next) => {
   })
 })
 
+app.post('/reviews/question/new_review', function(req, res, next) {
+  let newReview = req.body;
+  apiCalls.newReview(newReview, response => {
+    res.send(response);
+  })
+})
+
 // ========== Server Listen ========== //
 
 app.listen(port, () => {

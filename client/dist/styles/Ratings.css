@@ -97,6 +97,10 @@
   padding: 0;
 }
 
+/* .new_review {
+  float: left;
+} */
+
 .product_breakdown_list_item {
   float: left;
   width: 100%;
@@ -116,13 +120,15 @@
   float: left;
 }
 
-.ratings_btn {
+.btn {
   width: 179px;
   height: 55px;
   background-color: white;
   border: 1px solid black;
   font-size: 14px;
   font-weight: bold;
+  float: left;
+  margin-right: 20px;
 }
 
 .left {
@@ -160,7 +166,7 @@
 }
 
 .star_bar {
-  width: 225px;
+  width: 280px;
   left: 3%;
   height: 15px;
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="40" ><rect fill="green" stroke-width="0" width="400" height="30"/></svg>');
@@ -171,7 +177,7 @@
   content:"";
   position: absolute;
   /* width: 400px; */
-  width: 450px;
+  width: 560px;
   height: 15px;
   z-index:-1;
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="40" ><rect fill="gray" stroke-width="0" width="400" height="30"/></svg>');

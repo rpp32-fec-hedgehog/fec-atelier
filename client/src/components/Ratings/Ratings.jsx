@@ -44,8 +44,6 @@ class Ratings extends React.Component {
     this.putMarkHelpful(review_id, (error, result) => {
       if (error) {
         console.log('error at choose helpful in individual review: ', error);
-      } else {
-        //console.log('success marking helpful: ', result);
       }
     })
   }
