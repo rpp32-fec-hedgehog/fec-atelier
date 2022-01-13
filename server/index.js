@@ -111,11 +111,15 @@ app.post('/qa/questions', function(req, res) {
 // ========== Ratings & Reviews ========== //
 
 app.get('/ratings', function(req, res, next) {
-  apiCalls.getReviewsByItem(req.headers.item_id, (err, results) => {
+
+  apiCalls.getReviewsByItem(req.headers.item_id, req.headers.sort, req.headers.count, (err, results) => {
+    if (err) {
+      console.log('error at server ratings retrieve: ', err.message);
+    } else {
       let ratings = results.data.results;
       res.send(ratings);
     }
-  )
+  })
 })
 
 app.get('/reviews/meta', (req, res, next) => {
@@ -128,6 +132,19 @@ app.post('/reviews/meta', (req, res) => {
   let product = req.body.data.product_id;
   apiCalls.getReviewsForOverview(product, (reviewsData) => {
     res.send(reviewsData);
+  })
+})
+
+app.put('/reviews/mark_helpful', (req, res, next) => {
+  apiCalls.putMarkReviewHelpful(req.body.data.review_id, (err, results) => {
+    res.send(results);
+  })
+})
+
+app.post('/reviews/question/new_review', function(req, res, next) {
+  let newReview = req.body;
+  apiCalls.newReview(newReview, response => {
+    res.send(response);
   })
 })
 
