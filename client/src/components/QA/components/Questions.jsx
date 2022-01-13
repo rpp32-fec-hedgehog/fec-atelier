@@ -127,7 +127,6 @@ class Questions extends React.Component {
                         question_body={q.question_body}
                         render={sendMetrics} />
                     }} />
-
                   </div>
                 </div>
                 <div className="a-label-list">
