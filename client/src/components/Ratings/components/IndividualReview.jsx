@@ -10,9 +10,11 @@ class IndividualReview extends React.Component {
     this.state = {
       body: this.props.body,
       truncatedBody: this.props.body.slice(0, 249),
-      truncated: false
+      truncated: false,
+      helpfulCount: 0,
+      helpfulClicked: false
     };
-    //this.addHelpful = this.addHelpful.bind(this)
+    this.updateHelpfulClicked = this.updateHelpfulClicked.bind(this);
   }
 
   showMore(e) {
@@ -21,18 +23,19 @@ class IndividualReview extends React.Component {
 
   componentDidMount() {
     if (this.state.truncatedBody !== this.state.body) {
-      this.state.truncated = true;
+      this.setState({truncated: true});
     }
+
+    this.setState({helpfulCount: this.props.helpfulness});
   }
 
-  // addHelpful(review_id) {
-  //   console.log('add helpful fired: ', review_id);
-
-  //   if (this.props.review_id) {
-  //     console.log('add helpful: ', this.props.review_id);
-  //     this.props.chooseHelpful(this.props.review_id);
-  //   }
-  // }
+  updateHelpfulClicked() {
+    this.setState({
+      helpfulCount: this.state.helpfulCount + 1,
+      helpfulClicked: true
+    })
+    console.log('state: ', this.state);
+  }
 
   render(props) {
 
@@ -48,7 +51,7 @@ class IndividualReview extends React.Component {
       const body = this.state.body;
       const truncatedBody = this.state.truncatedBody;
       const photos = this.props.photos;
-      const helpful = this.props.helpfulness;
+      const helpful = this.state.helpfulCount;
       const chooseHelpful = this.props.chooseHelpful;
       const putMarkHelpful = this.props.putMarkHelpful;
 
@@ -68,7 +71,7 @@ class IndividualReview extends React.Component {
           <br></br><br></br>
           {response ? <div className="review_response">Response from seller:<br></br>{response}</div>: null}
           <br></br>
-          <span>Helpful? <span className="review_helpful" onClick={(e) => chooseHelpful(review_id, e)}>Yes</span> ({helpful})</span>
+          <span>Helpful? {!this.state.helpfulClicked ? <span className="review_helpful" onClick={(e) => { chooseHelpful(review_id, e); this.updateHelpfulClicked();} }>Yes</span> : <span className="review_helpful">Yes</span>} ({helpful})</span>
           </li>
         </div>
       )
