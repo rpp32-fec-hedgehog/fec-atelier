@@ -1,6 +1,23 @@
 const axios = require('axios');
 // ========== Shared ========== //
 
+const addInteraction = (metrics, callback) => {
+  let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions`;
+  return axios.post(endpoint, metrics, {
+    headers: {
+      "Authorization": process.env.API_KEY
+    }
+  })
+  .then(res => {
+    callback(res.data);
+  })
+  .catch(err => {
+    callback(err);
+  });
+}
+
+module.exports.addInteraction = addInteraction;
+
 // ========== Overview ========== //
 
 const getProductDataByItem = (product_id, callback) => {
