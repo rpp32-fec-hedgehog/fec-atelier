@@ -25,6 +25,7 @@ class Questions extends React.Component {
       questionCount: this.props.questions.length,
       more: true
     })
+    this.focusQuestions(e);
   }
 
   questionIsHelpful(e) {
@@ -77,6 +78,11 @@ class Questions extends React.Component {
     }
   }
 
+  focusQuestions(e) {
+    e.preventDefault();
+    $('html, body').scrollTop($('#qa').offset().top);
+  }
+
   render() {
     let totalQs = this.props.questions.length;
     let more;
@@ -90,6 +96,7 @@ class Questions extends React.Component {
     }
 
     return <div>
+      <a className="jumper" href=".questions"></a>
       <div key="questions" className="questions" data-testid="questions" onScroll={this.handleScroll.bind(this)}>
         <ul className="q-base">
           {_.map(this.props.questions.slice(0, this.state.questionCount), q => {
