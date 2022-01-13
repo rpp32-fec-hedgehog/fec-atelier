@@ -38,12 +38,12 @@ const RatingsMeta = (props) => {
   percent_recommending = (did_recommend / recommend_total * 100).toFixed(0);
 
   for (let i = 0; i < 5; i++) {
-    star_count_list.push({stars: i + 1, star_count: ((stars_count[i] / divisor) * 400).toFixed(0)})
+    star_count_list.push({stars: i + 1, star_count: ((stars_count[i] / divisor) * 550).toFixed(0)})
   }
 
   let star_counts = star_count_list.map((stars_counted) => {
     return (
-        <StarCount key={stars_counted.stars} star_number={stars_counted.stars} star_count={stars_counted.star_count}></StarCount>
+        <StarCount className="star_counts" key={stars_counted.stars} star_number={stars_counted.stars} star_count={stars_counted.star_count}></StarCount>
     )
   });
 
@@ -64,9 +64,9 @@ const RatingsMeta = (props) => {
         <span className="ratings_average">{ratings_average}</span>
         <div className="star_rating_container"><StarRating className="ratings_breakdown_stars" star_rating={ratings_average}></StarRating></div>
       </div><br></br><br></br><br></br>
-      <div className="percent_recommending">{percent_recommending}% of reviews recommend this product.</div><br></br>
-      <ul className="star_count_list" >{star_counts}</ul>
-      <ProductBreakdowns characteristics_list={characteristics_list}></ProductBreakdowns>
+      <span className="percent_recommending">{percent_recommending}% of reviews recommend this product.</span><br></br>
+      <ul className="star_count_list">{star_counts}<ProductBreakdowns characteristics_list={characteristics_list}></ProductBreakdowns></ul>
+
     </div>
 
   )
