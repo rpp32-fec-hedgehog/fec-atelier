@@ -11,7 +11,6 @@ class ClickTrackerOverview extends React.Component {
   }
 
   sendMetrics(e) {
-    console.log(e.target.className)
     let metrics = {
       element: e.target.className,
       widget: 'Overview',
