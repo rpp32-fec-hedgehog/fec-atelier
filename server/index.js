@@ -16,6 +16,13 @@ app.use(express.urlencoded({extended: true}));
 
 // ========== Shared ========== //
 
+app.post('/interactions', (req, res) => {
+  let metrics = req.body;
+  apiCalls.addInteraction(metrics, response => {
+    res.send(response);
+  })
+})
+
 // ========== Overview ========== //
 
 app.get('/products/:product_id', (req, res) => {
