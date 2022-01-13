@@ -121,7 +121,9 @@ class ImageGallery extends React.Component {
             <FontAwesomeIcon className='modal-forward' onClick={this.props.forward} icon={faAngleRight} size='2x' color="white"></FontAwesomeIcon>
             <img className="modal-image" src={this.props.photo} onClick={this.zoomIn}></img>
           {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(range, (photo, index) => {
-            return (<input className="modal-radio-button" type="radio" key={index} id={index} onClick={this.props.changePhoto}></input>)
+            return thumbnailIndex === index ?
+              (<span className="modal-radio-button" type="radio" key={index} id={index} style={{color: '#8e9efa'}}>.</span>) :
+              (<span className="modal-radio-button" type="radio" key={index} id={index} onClick={this.props.changePhoto}>.</span>)
               }) : null
             }
           </div>
