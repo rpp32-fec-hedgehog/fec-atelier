@@ -23,7 +23,6 @@ class ImageGallery extends React.Component {
   }
 
   closeModal = (e) => {
-    this.props.render(e);
     this.setState({
       modalOpen: false
     });
@@ -59,7 +58,6 @@ class ImageGallery extends React.Component {
   }
 
   zoomImage = (e) => {
-    this.props.render(e);
     let magnifying_area = document.getElementById('magnifying_area');
     let magnifying_img = document.getElementById('magnifying_img');
 
