@@ -14,7 +14,7 @@ class ClickTracker extends React.Component {
     let metrics = {
       element: e.target.className,
       widget: 'Questions & Answers',
-      time: Date.now()
+      time: new Date()
     }
 
     $.ajax({
