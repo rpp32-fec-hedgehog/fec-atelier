@@ -16,7 +16,8 @@ class AddToCart extends React.Component {
     };
   }
 
-  addToCart = () => {
+  addToCart = (e) => {
+    this.props.render(e);
     if (this.state.selectedSize === undefined) {
       alert('Please select a size');
       return;
@@ -29,7 +30,8 @@ class AddToCart extends React.Component {
     })
   }
 
-  addToMyOutfit = () => {
+  addToMyOutfit = (e) => {
+    this.props.render(e);
     let newOutfit = this.state.myOutfit
     _.contains(this.state.myOutfit, this.state.sku) ?
       (newOutfit.splice(newOutfit.indexOf(this.state.sku), 1),
@@ -46,6 +48,7 @@ class AddToCart extends React.Component {
   }
 
   selectSize = (e) => {
+    this.props.render(e);
     let entries = Object.entries(this.props.styleData.skus)
     for (let i = 0; i < entries.length; i++) {
       if (entries[i][1].size === e.target.value) {
@@ -69,6 +72,7 @@ class AddToCart extends React.Component {
   }
 
   selectQuantity = (e) => {
+    this.props.render(e);
     this.setState({
       selectedQuantity: e.target.value
     })

@@ -50,6 +50,7 @@ class Overview extends React.Component {
   }
 
   cycleForward = (e) => {
+    this.props.render(e);
     let max = this.state.numberOfPhotos;
     let current = this.state.currentPhoto;
     this.state.currentPhoto < max - 1 ?
@@ -62,6 +63,7 @@ class Overview extends React.Component {
   }
 
   cycleBackward = (e) => {
+    this.props.render(e);
     let max = this.state.numberOfPhotos;
     let current = this.state.currentPhoto;
     this.state.currentPhoto > 0 ?
@@ -75,6 +77,7 @@ class Overview extends React.Component {
 
   changePhoto = (e) => {
     e.preventDefault();
+    this.props.render(e);
     if (this.state.currentPhoto >= this.state.styleData[this.state.selectedStyle].photos.length - 7) {
       let subtractor = this.state.styleData[this.state.selectedStyle].photos.length - 7
       this.setState((state, props) => ({
@@ -90,6 +93,7 @@ class Overview extends React.Component {
   }
 
   handleSelectStyle = (e) => {
+    this.props.render(e);
     let current = this.state.currentPhoto;
     let currentStyle = e.target.id;
     let currentPhoto = this.state.currentPhoto;
@@ -107,25 +111,25 @@ class Overview extends React.Component {
   render() {
     return (
       <div data-testid='overview-widget' id="overview">
-        <ProductInfo itemid={this.props.itemid} productData={this.state.productData}
+        <ProductInfo render={this.props.render} itemid={this.props.itemid} productData={this.state.productData}
           originalPrice={this.state.styleData[this.state.selectedStyle] !== undefined ?
             this.state.styleData[this.state.selectedStyle].original_price : null}
           salePrice={this.state.styleData[this.state.selectedStyle] !== undefined ?
             this.state.styleData[this.state.selectedStyle].sale_price : null} />
 
-        <ImageGallery styleData={this.state.styleData} photo={this.state.photo}
+        <ImageGallery render={this.props.render} styleData={this.state.styleData} photo={this.state.photo}
           selectedStyle={this.state.selectedStyle}
           forward={this.cycleForward} backward={this.cycleBackward}
           changePhoto={this.changePhoto}
           currentPhoto={this.state.currentPhoto}/>
 
-        <StyleSelector styleImgs={_.map(this.state.styleData, style => style.photos).map(arr => arr[0].thumbnail_url)}
+        <StyleSelector render={this.props.render} styleImgs={_.map(this.state.styleData, style => style.photos).map(arr => arr[0].thumbnail_url)}
           selectStyle={this.handleSelectStyle}
           styleName={this.state.styleData[this.state.selectedStyle] !== undefined ?
           this.state.styleData[this.state.selectedStyle].name : null}
           selectedStyle={Number(this.state.selectedStyle)}/>
 
-        <AddToCart productName={this.state.productData.name} styleData={this.state.styleData[this.state.selectedStyle]}
+        <AddToCart render={this.props.render} productName={this.state.productData.name} styleData={this.state.styleData[this.state.selectedStyle]}
         addToOutfit={this.props.addToOutfit}/>
 
         {this.state.productData.description !== undefined ?
