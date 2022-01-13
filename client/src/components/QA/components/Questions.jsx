@@ -132,8 +132,12 @@ class Questions extends React.Component {
                 </div>
                 <div className="a-label-list">
                   {this.answersExist(q.answers)}
-                  <AnswerList answers={q.answers} question_id={q.question_id} product_name={this.props.product_name}
-                    updateAHelp={this.props.updateAHelp} />
+                  <ClickTracker render={sendMetrics => {
+                    return <AnswerList answers={q.answers} question_id={q.question_id} product_name={this.props.product_name}
+                      updateAHelp={this.props.updateAHelp}
+                      render={sendMetrics} />
+                  }} />
+
                 </div>
               </li>
             </div>
@@ -141,10 +145,14 @@ class Questions extends React.Component {
         </ul>
       </div>
       {more}
-      <AskQuestion key="ask-question" className="ask-question"
+      <ClickTracker render={sendMetrics => {
+        return <AskQuestion key="ask-question" className="ask-question"
         getQAData={this.props.getQAData}
         product_id={this.props.product_id}
-        product_name={this.props.product_name} />
+        product_name={this.props.product_name}
+        render={sendMetrics} />
+      }}/>
+
     </div>
   }
 }
