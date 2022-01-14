@@ -5,7 +5,7 @@ class IndividualInputProductBreakdown extends React.Component {
     super(props);
     this.state = {
       characteristic: props.characteristic,
-      selectedRadio: ''
+      selectedRadio: 'none selected'
     }
     this.updateRadial = this.updateRadial.bind(this);
   }
@@ -34,10 +34,10 @@ class IndividualInputProductBreakdown extends React.Component {
       return (
         <div>
           <li className="char_list_item left">
-            <span className="indent">{this.state.selectedRadio}</span>
+            <span className="indent_less">{this.state.selectedRadio}</span>
             <br></br>
           <span>
-            {characteristic}
+            <div className="left">{characteristic}</div>
             <input onClick={this.updateRadial.bind(this)} type="radio" value={label1} name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input onClick={this.updateRadial.bind(this)} type="radio" value={label2} name={characteristic}/>
@@ -165,6 +165,7 @@ class IndividualInputProductBreakdown extends React.Component {
             <br></br>
           <span>
             {characteristic}
+            &nbsp;
             <input onClick={this.updateRadial.bind(this)} type="radio" value={label1} name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input onClick={this.updateRadial.bind(this)} type="radio" value={label2} name={characteristic}/>
@@ -196,6 +197,7 @@ class IndividualInputProductBreakdown extends React.Component {
             <br></br>
           <span>
             {characteristic}
+            &nbsp;
             <input onClick={this.updateRadial.bind(this)} type="radio" value={label1} name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input onClick={this.updateRadial.bind(this)} type="radio" value={label2} name={characteristic}/>

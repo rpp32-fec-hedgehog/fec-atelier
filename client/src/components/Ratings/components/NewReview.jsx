@@ -14,6 +14,7 @@ class NewReview extends React.Component {
       rating: 0,
       summary: '',
       body: '',
+      chars_needed: 50,
       recommend: false,
       name: '',
       email: '',
@@ -78,10 +79,15 @@ class NewReview extends React.Component {
     console.log(e.target.value);
   }
 
-  handleBodyChange(e) {
+  handleBodyChange(e, state) {
     e.preventDefault();
-    this.setState({ body: e.target.value });
-    console.log(e.target.value);
+    let charsNeeded = 49 - this.state.body.length;
+    this.setState({
+      body: e.target.value,
+      chars_needed: charsNeeded
+    });
+
+    console.log(this.state.body.length);
   }
 
   addPhotos(e) {
@@ -157,7 +163,7 @@ class NewReview extends React.Component {
           style={modalStyle}
           contentLabel="Post Your Review">
           <div className="new_review_meta">
-            <span className="modal_label"><h3>Write your review</h3> About the {this.props.item_name}</span>
+            <span className="modal_label"><h3>Write your review...</h3> ...about the {this.props.item_name}</span>
             {/* <span className="close_review_modal" onClick={this.closeModal.bind(this)}>X</span> */}
           </div>
           <div className="review_modal_form">
@@ -178,14 +184,24 @@ class NewReview extends React.Component {
               <div>
                 <InputProductBreakdowns characteristics={characteristics}></InputProductBreakdowns>
               </div>
-              <div>
+              <br></br><br></br><br></br><br></br><br></br><br></br>
+              <br></br><br></br><br></br><br></br><br></br><br></br>
+              <div>Please include a brief summary:
+              <br></br>
                 <textarea value={this.state.summary} name="summary" onChange={this.handleSummaryChange} rows={4} maxLength={60} placeholder={"Example: Best purchase ever!"}/>
-              </div>
-              <div>
-                <textarea value={this.state.body} name="body" onChange={this.handleBodyChange} rows={8} maxLength={1000} placeholder={"Why did you like the product or not?"}/>
+                <br></br>
               </div>
               <br></br>
-              <button onClick={this.submitReview.bind(this)}>SUBMIT REVIEW</button>
+              <div>Please write your full review here:
+              <br></br>
+                <textarea value={this.state.body} name="body" onChange={this.handleBodyChange} rows={8} maxLength={1000} placeholder={"Why did you like the product or not?"}/>
+                <br></br>
+                Minimum required characters left: {this.state.chars_needed}
+              </div>
+              <div className="left">
+                <br></br><br></br>
+                <button onClick={this.submitReview.bind(this)}>SUBMIT REVIEW</button>
+              </div>
             </div>
           </div>
         </Modal>

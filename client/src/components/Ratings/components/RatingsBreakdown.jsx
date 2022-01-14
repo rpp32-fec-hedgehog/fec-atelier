@@ -38,7 +38,7 @@ const RatingsMeta = (props) => {
   percent_recommending = (did_recommend / recommend_total * 100).toFixed(0);
 
   for (let i = 0; i < 5; i++) {
-    star_count_list.push({stars: i + 1, star_count: ((stars_count[i] / divisor) * 550).toFixed(0)})
+    star_count_list.push({stars: i + 1, star_count: ((stars_count[i] / divisor) * 605).toFixed(0)})
   }
 
   let star_counts = star_count_list.map((stars_counted) => {

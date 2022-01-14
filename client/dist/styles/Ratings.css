@@ -145,6 +145,10 @@
   padding-left: 19%;
 }
 
+.indent_less {
+  padding-left: 18%;
+}
+
 .triangle {
   width: 20px;
   height: 15px;
@@ -176,7 +180,7 @@
 }
 
 .star_bar {
-  width: 280px;
+  width: 600px;
   left: 3%;
   height: 15px;
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="40" ><rect fill="green" stroke-width="0" width="400" height="30"/></svg>');
@@ -186,7 +190,7 @@
 .star_bar:before {
   content:"";
   position: absolute;
-  width: 560px;
+  width: 605px;
   height: 15px;
   z-index:-1;
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="40" ><rect fill="gray" stroke-width="0" width="400" height="30"/></svg>');
