@@ -120,7 +120,9 @@ class Questions extends React.Component {
                       <span className="q-helpful">Helpful?</span>&nbsp;
                       <span className={`q-help-count q-help-${q.question_id}-${q.question_helpfulness}`}
                         onClick={this.questionIsHelpful.bind(this)}>
-                        <u>Yes</u>&nbsp;{`(${q.question_helpfulness})`}
+                        <span className={`q-help-yes q-help-${q.question_id}-${q.question_helpfulness}`}>
+                          Yes
+                        </span>&nbsp;{`(${q.question_helpfulness})`}
                       </span>
                     </div>
                     <span className="vertical-bar">|</span>
