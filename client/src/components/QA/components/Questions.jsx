@@ -155,7 +155,6 @@ class Questions extends React.Component {
         product_name={this.props.product_name}
         render={sendMetrics} />
       }}/>
-
     </div>
   }
 }
