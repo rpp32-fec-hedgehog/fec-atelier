@@ -1,5 +1,5 @@
 import React from 'react';
-import IndividualInputProductBreakdown from 'IndividualInputProductBreakdown.jsx';
+import IndividualInputProductBreakdown from './IndividualInputProductBreakdown.jsx';
 
 const InputProductBreakdowns = (props) => {
 
@@ -12,22 +12,17 @@ const InputProductBreakdowns = (props) => {
       characteristicsList.push(outerCharacteristics[key].inner_characteristic);
     }
 
-
-
-    function CharacteristicsList(props) {
-      const characteristics = props.characteristics;
-      const listItems = characteristics.map((characteristic) => {
-        return <IndividualInputProductBreakdown characteristic={characteristic} />
+    let listItems = characteristicsList.map((characteristic) => {
+        return (
+          <IndividualInputProductBreakdown key={characteristic} characteristic={characteristic} />
+        )
       });
 
       return (
-        <ul>
-          <CharacteristicsList characteristics={characteristicsList} />
+        <ul className="list">
+          {listItems}
         </ul>
       );
-      console.log('react objects in char list: ', listItems);
-    }
-
   }
 }
 

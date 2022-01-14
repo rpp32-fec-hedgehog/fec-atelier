@@ -25,6 +25,8 @@ class NewReview extends React.Component {
       thumbnails: <></>,
       addPhoto: <button className="add_photo" onClick={this.addPhotos.bind(this)}>ADD PHOTOS</button>
     };
+    this.handleSummaryChange = this.handleSummaryChange.bind(this);
+    this.handleBodyChange = this.handleBodyChange.bind(this);
   }
 
   openModal(e) {
@@ -70,7 +72,17 @@ class NewReview extends React.Component {
     });
   }
 
+  handleSummaryChange(e) {
+    e.preventDefault();
+    this.setState({ summary: e.target.value });
+    console.log(e.target.value);
+  }
 
+  handleBodyChange(e) {
+    e.preventDefault();
+    this.setState({ body: e.target.value });
+    console.log(e.target.value);
+  }
 
   addPhotos(e) {
     e.preventDefault();
@@ -113,6 +125,7 @@ class NewReview extends React.Component {
 
     };
     //validate and send
+    //if passes validation, close the model
   }
 
   render(props) {
@@ -144,27 +157,34 @@ class NewReview extends React.Component {
           style={modalStyle}
           contentLabel="Post Your Review">
           <div className="new_review_meta">
-            <span className="modal_label">Write your review<br></br> about the {this.props.item_name}</span>
-            <span className="close_review_modal" onClick={this.closeModal.bind(this)}>X</span>
+            <span className="modal_label"><h3>Write your review</h3> About the {this.props.item_name}</span>
+            {/* <span className="close_review_modal" onClick={this.closeModal.bind(this)}>X</span> */}
           </div>
           <div className="review_modal_form">
             <div className="review_modal_input">
               <br></br>
+              How would you rate this product?&nbsp;
               <img src={this.state.stars[0]} alt='loading' width="20" height="20"className=".star1" onClick={this.chooseStars.bind(this)}/>
               <img src={this.state.stars[1]} alt='loading' width="20" height="20"className=".star2" onClick={this.chooseStars.bind(this)}/>
               <img src={this.state.stars[2]} alt='loading' width="20" height="20"className=".star3" onClick={this.chooseStars.bind(this)}/>
               <img src={this.state.stars[3]} alt='loading' width="20" height="20"className=".star4" onClick={this.chooseStars.bind(this)}/>
               <img src={this.state.stars[4]} alt='loading' width="20" height="20"className=".star5" onClick={this.chooseStars.bind(this)}/>
               &nbsp;<span>{this.state.star_meaning}</span>
-              <br></br>
+              <br></br><br></br>
               <div>Do you recommend this product?
                 <input type="radio" value="Yes" name="recommend" /> Yes
                 <input type="radio" value="no" name="recommend" /> No
               </div>
-              <br></br>
               <div>
                 <InputProductBreakdowns characteristics={characteristics}></InputProductBreakdowns>
               </div>
+              <div>
+                <textarea value={this.state.summary} name="summary" onChange={this.handleSummaryChange} rows={4} maxLength={60} placeholder={"Example: Best purchase ever!"}/>
+              </div>
+              <div>
+                <textarea value={this.state.body} name="body" onChange={this.handleBodyChange} rows={8} maxLength={1000} placeholder={"Why did you like the product or not?"}/>
+              </div>
+              <br></br>
               <button onClick={this.submitReview.bind(this)}>SUBMIT REVIEW</button>
             </div>
           </div>
@@ -173,5 +193,5 @@ class NewReview extends React.Component {
     )
   }
 }
-
+//onChange={}
 export default NewReview;
