@@ -25,30 +25,34 @@ class QA extends React.Component {
         questions: this.sortByTerm(this.state.originalQuestions, text)
       })
     } else {
-      this.setState({questions: this.state.originalQuestions});
+      this.setState({questions: this.revertQuestions(this.state.originalQuestions)});
     }
   }
 
-  sortByTerm(questions, sortTerm) {
-
-    // change filter or add map, need to convert back to string then filter, then return that array
-
-    let filtered = _.filter(questions, q => {
+  revertQuestions(questions) {
+    return _.map(questions, q => {
       let questionBody = q.question_body;
       let newQuestion = [];
       if (typeof questionBody !== 'string') {
         _.each(questionBody, qb => {
           if (typeof qb !== 'string') {
-            newQuestion.push(sortTerm);
+            let reverted = qb.props.children;
+            newQuestion.push(reverted);
           } else {
             newQuestion.push(qb);
           }
         })
-        newQuestion = newQuestion.join();
+        q.question_body = newQuestion.join('');
+        return q;
+      } else {
+        return q;
       }
+    })
+  }
 
-
-      if (newQuestion.includes(sortTerm)) {
+  sortByTerm(questions, sortTerm) {
+    let filtered = _.filter(this.revertQuestions(questions), q => {
+      if (q.question_body.includes(sortTerm)) {
         return true;
       }
     })
@@ -64,8 +68,6 @@ class QA extends React.Component {
         }
       })
 
-
-      console.log('Q ', q);
       q.question_body = newQuestion;
       return q;
     })
