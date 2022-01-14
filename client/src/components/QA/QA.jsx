@@ -13,7 +13,8 @@ class QA extends React.Component {
       originalQuestions: [],
       questions: [],
       page: 1,
-      product_name: ''
+      product_name: '',
+      loaded: false
     };
   }
 
@@ -22,10 +23,10 @@ class QA extends React.Component {
     let text = e.target.value;
     if (text.length >= 3) {
       this.setState({
-        questions: this.sortByTerm(this.state.originalQuestions.slice(), text)
+        questions: this.sortByTerm(this.state.originalQuestions, text)
       })
     } else {
-      this.setState({questions: this.state.originalQuestions});
+      this.setState({questions: this.revertQuestions(this.state.originalQuestions)});
     }
   }
 
@@ -42,6 +43,7 @@ class QA extends React.Component {
             newQuestion.push(qb);
           }
         })
+
         q.question_body = newQuestion.join('');
         return q;
       } else {
@@ -73,41 +75,26 @@ class QA extends React.Component {
     })
   }
 
-  // searchQuestions(e) {
-  //   e.preventDefault();
-  //   let text = e.target.value;
-  //   if (text.length >= 3) {
-  //     this.setState({
-  //       questions: this.sortByTerm(this.state.originalQuestions, text)
-  //     })
-  //   } else {
-  //     this.setState({questions: this.state.originalQuestions});
-  //   }
-  // }
-
-  // sortByTerm(questions, sortTerm) {
-  //   return _.filter(questions, q => {
-  //     if (q.question_body.includes(sortTerm)) {
-  //       return true;
-  //     }
-  //   })
-  // }
-
   getQAData() {
-    $.ajax({
-      url: `/qa/questions/${this.props.itemid}/${this.state.page}`,
-      method: 'GET',
-      success: data => {
-        let newQuestions = _.flatten(this.state.originalQuestions.slice().concat(data.results));
-        console.log('HELP ', data.results);
-        let newPage = this.state.page + 1;
-        this.setState({
-          questions: newQuestions,
-          originalQuestions: newQuestions,
-          page: newPage
-        })
-      }
-    })
+    if (!this.state.loaded) {
+      $.ajax({
+        url: `/qa/questions/${this.props.itemid}/${this.state.page}`,
+        method: 'GET',
+        success: data => {
+          if (data.results.length < 4) {
+            this.setState({ loaded: true });
+          } else {
+            let newQuestions = _.flatten(this.state.originalQuestions.slice().concat(data.results));
+            let newPage = this.state.page + 1;
+            this.setState({
+              questions: newQuestions,
+              originalQuestions: newQuestions,
+              page: newPage
+            })
+          }
+        }
+      })
+    }
   }
 
   getProductName() {
@@ -126,7 +113,7 @@ class QA extends React.Component {
   }
 
   updateQuestionHelp(question_id) {
-    let updatedQuestions = _.map(this.state.originalQuestions.slice(), q => {
+    let updatedQuestions = _.map(this.state.originalQuestions, q => {
       if (q.question_id === question_id) {
         q.question_helpfulness ++;
         return q;
@@ -142,7 +129,7 @@ class QA extends React.Component {
   }
 
   updateAnswerHelp(answer_id, question_id) {
-    let updatedAnswers = _.map(this.state.originalQuestions.slice(), q => {
+    let updatedAnswers = _.map(this.state.originalQuestions, q => {
       if (q.question_id === question_id) {
         q.answers = _.each(q.answers, a => {
           if (a.id === answer_id) {
@@ -183,7 +170,6 @@ class QA extends React.Component {
             product_name={this.state.product_name}
             render={sendMetrics} />
         }} />
-
       </div>
     )
   }
