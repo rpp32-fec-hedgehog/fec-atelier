@@ -4,6 +4,7 @@ import $ from 'jquery';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import StarRating from './StarRating.jsx';
+import InputProductBreakdowns from './InputProductBreakdowns.jsx';
 
 class NewReview extends React.Component {
   constructor(props) {
@@ -116,6 +117,8 @@ class NewReview extends React.Component {
 
   render(props) {
 
+    let characteristics = this.props.ratings_characteristics;
+
     const modalStyle = {
       content: {
         top: '50%',
@@ -154,6 +157,14 @@ class NewReview extends React.Component {
               <img src={this.state.stars[4]} alt='loading' width="20" height="20"className=".star5" onClick={this.chooseStars.bind(this)}/>
               &nbsp;<span>{this.state.star_meaning}</span>
               <br></br>
+              <div>Do you recommend this product?
+                <input type="radio" value="Yes" name="recommend" /> Yes
+                <input type="radio" value="no" name="recommend" /> No
+              </div>
+              <br></br>
+              <div>
+                <InputProductBreakdowns characteristics={characteristics}></InputProductBreakdowns>
+              </div>
               <button onClick={this.submitReview.bind(this)}>SUBMIT REVIEW</button>
             </div>
           </div>
