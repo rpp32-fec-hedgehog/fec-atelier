@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --detectOpenHandles --coverage",
     "react-dev": "webpack --watch",
-    "start": "npx nodemon server/index.js"
+    "start": "npx nodemon server/index.js",
+    "vm": "ssh -i 'FECHedgehog.cer' ubuntu@ec2-34-228-200-106.compute-1.amazonaws.com"
   },
   "repository": {
     "type": "git",
