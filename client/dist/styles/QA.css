@@ -55,6 +55,10 @@
   margin-top: 1px;
 }
 
+.help-yes {
+  text-decoration: underline;
+}
+
 .q-help-count {
   font-size: 11px;
   margin-top: 1px;
