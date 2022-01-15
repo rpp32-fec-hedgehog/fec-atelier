@@ -113,14 +113,24 @@ class QA extends React.Component {
   }
 
   updateQuestionHelp(question_id) {
-    let updatedQuestions = _.map(this.state.originalQuestions, q => {
+    let questionIndex;
+    let updatedQuestions = _.map(this.state.originalQuestions, (q, index) => {
       if (q.question_id === question_id) {
         q.question_helpfulness ++;
+        questionIndex = index;
         return q;
       } else {
         return q;
       }
     })
+
+    if (typeof questionIndex === 'number') {
+      if (updatedQuestions[questionIndex].question_helpfulness > updatedQuestions[questionIndex - 1].question_helpfulness) {
+        let placeholder = updatedQuestions[questionIndex];
+        updatedQuestions[questionIndex] = updatedQuestions[questionIndex - 1];
+        updatedQuestions[questionIndex - 1] = placeholder;
+      }
+    }
 
     this.setState({
       originalQuestions: updatedQuestions,

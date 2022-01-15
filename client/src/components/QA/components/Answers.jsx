@@ -27,11 +27,13 @@ class Answers extends React.Component {
     let questionHelpCount = subClasses[3];
 
     if (!this.state.votes.includes(answer_id)) {
+      let newVotes = this.state.votes.slice();
+      newVotes.push(answer_id);
       $.ajax({
         url: `/qa/answers/${answer_id}/helpful`,
         method: 'PUT',
         success: () => {
-          this.setState({votes: this.state.votes.push(answer_id)})
+          this.setState({votes: newVotes})
           this.props.updateAHelp(answer_id, this.props.question_id);
           this.props.render(e);
         },
@@ -127,7 +129,9 @@ class Answers extends React.Component {
             <span className="a-helpful">Helpful?</span>&nbsp;
             <span className={`a-help-count a-help-${answer.id}-${answer.helpfulness}`}
               onClick={this.answerIsHelpful.bind(this)}>
-              <u>Yes</u>&nbsp;{`(${answer.helpfulness})`}
+              <span className={`help-yes a-help-${answer.id}-${answer.helpfulness}`}>
+                Yes
+              </span>&nbsp;{`(${answer.helpfulness})`}
             </span>
           </div>
           <span className="vertical-bar">|</span>
