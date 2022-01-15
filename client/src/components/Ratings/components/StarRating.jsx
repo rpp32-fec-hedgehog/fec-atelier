@@ -14,7 +14,6 @@ const StarRating = (props) => {
       <div className="rating" style={{width: ratingWidth}}></div>
     );
   }
-
 }
 
 export default StarRating;
