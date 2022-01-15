@@ -2,7 +2,6 @@ import React from 'react';
 import moment from 'moment';
 import StarRating from './StarRating.jsx';
 import ReviewImages from './ReviewImages.jsx';
-import axios from 'axios';
 
 class IndividualReview extends React.Component {
   constructor(props) {

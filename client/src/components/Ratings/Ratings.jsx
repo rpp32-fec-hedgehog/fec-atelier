@@ -8,6 +8,7 @@ class Ratings extends React.Component {
     super(props);
     this.state = {
       item_id: this.props.itemId,
+      item_name: '',
       ratings: [],
       ratings_meta: {},
       count: 0
@@ -35,6 +36,14 @@ class Ratings extends React.Component {
           ratings_meta: result,
           count: recommend_total
         });
+      }
+    })
+
+    this.getProductData(this.state.item_id, (error, result) => {
+      if (error) {
+        console.log('client reports retrieve name error: ', error);
+      } else {
+        this.setState({item_name: result});
       }
     })
   }
@@ -96,13 +105,24 @@ class Ratings extends React.Component {
       })
   }
 
+  async getProductData(item_id, callback) {
+    await axios.get(`products/${item_id}`)
+      .then((result) => {
+        callback(null, result.data.name);
+      })
+      .catch((err) => {
+        console.error(err.message)
+      });
+  }
+
   render() {
 
     return (
       <div data-testid="ratings" className="ratings-widget">
         <a id="reviews-link"></a>
         <h3>RATINGS & REVIEWS</h3>
-        <br></br><RatingsMeta className="ratings_meta" ratings_meta={this.state.ratings_meta}></RatingsMeta><RatingsList className="ratings_list" ratings_meta={this.state.ratings_meta} count={this.state.count} chooseHelpful={this.chooseHelpful} putMarkHelpful={this.putMarkHelpful} getAllReviews={this.getAllReviews.bind(this)}></RatingsList>
+        <br></br><RatingsMeta className="ratings_meta" ratings_meta={this.state.ratings_meta}></RatingsMeta><RatingsList className="ratings_list" ratings_meta={this.state.ratings_meta} 
+        count={this.state.count} item_name={this.state.item_name} chooseHelpful={this.chooseHelpful} putMarkHelpful={this.putMarkHelpful} getAllReviews={this.getAllReviews.bind(this)}></RatingsList>
       </div>
     );
   }
