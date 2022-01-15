@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import _ from 'underscore';
 import $ from 'jquery';
-// import API_KEYS from '../../../../../env/config.js';
+import API_KEYS from '../../../../../env/config.js';
 
 // Modal.setAppElement('#app');
 
@@ -84,36 +84,36 @@ class AnswerQuestion extends React.Component {
 
   addPhotos(e) {
     e.preventDefault();
-    // const client = filestack.init(API_KEYS.FILESTACK_API_KEY);
-    // let options = {
-    //   fromSources: ['local_file_system'],
-    //   accept: ['image/*'],
-    //   maxFiles: 5,
-    //   disableTransformer: true,
-    //   onFileSelected: file => {
-    //     if (file.size > 1000 * 1000) {
-    //       alert('File too big, select something smaller than 1MB');
-    //     }
-    //   },
-    //   onFileUploadFinished: file => {
-    //     let updatedPhotos = this.state.photos.slice();
-    //     updatedPhotos.push(file.url);
+    const client = filestack.init(API_KEYS.FILESTACK_API_KEY);
+    let options = {
+      fromSources: ['local_file_system'],
+      accept: ['image/*'],
+      maxFiles: 5,
+      disableTransformer: true,
+      onFileSelected: file => {
+        if (file.size > 1000 * 1000) {
+          alert('File too big, select something smaller than 1MB');
+        }
+      },
+      onFileUploadFinished: file => {
+        let updatedPhotos = this.state.photos.slice();
+        updatedPhotos.push(file.url);
 
-    //     let updatedThumbnails = <div className="a-modal-thumbnails">{_.map(updatedPhotos, photo => {
-    //       return <img className="a-modal-thumbnail" key={photo} src={photo}></img>
-    //     })}</div>
+        let updatedThumbnails = <div className="a-modal-thumbnails">{_.map(updatedPhotos, photo => {
+          return <img className="a-modal-thumbnail" key={photo} src={photo}></img>
+        })}</div>
 
-    //     this.setState({photos: updatedPhotos, thumbnails: updatedThumbnails});
-    //     if (this.state.photos.length === 5) {
-    //       this.setState({addPhoto: <></>})
-    //     }
-    //   },
-    //   onFileUploadFailed: file => {
-    //     alert('File upload failed');
-    //   }
-    // };
+        this.setState({photos: updatedPhotos, thumbnails: updatedThumbnails});
+        if (this.state.photos.length === 5) {
+          this.setState({addPhoto: <></>})
+        }
+      },
+      onFileUploadFailed: file => {
+        alert('File upload failed');
+      }
+    };
 
-    // client.picker(options).open();
+    client.picker(options).open();
   }
 
   submitAnswer(e) {
