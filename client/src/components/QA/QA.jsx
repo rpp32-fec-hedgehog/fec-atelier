@@ -54,21 +54,22 @@ class QA extends React.Component {
 
   sortByTerm(questions, sortTerm) {
     let filtered = _.filter(this.revertQuestions(questions), q => {
-      if (q.question_body.includes(sortTerm)) {
+      if (q.question_body.toLowerCase().includes(sortTerm.toLowerCase())) {
         return true;
       }
     })
 
     return _.map(filtered, q => {
-      let questionBody = q.question_body;
+      let questionBody = q.question_body.split('');
       let newQuestion = [];
-      let questionParts = questionBody.split(sortTerm);
-      _.each(questionParts, (qp, index) => {
-        newQuestion.push(qp);
-        if (index !== questionParts.length - 1) {
-          newQuestion.push(<mark>{sortTerm}</mark>);
+      for (let i = 0; i < questionBody.length; i++) {
+        if (questionBody.slice(i, i + sortTerm.length).join('').toLowerCase() === sortTerm.toLowerCase()) {
+          newQuestion.push(<mark>{questionBody.slice(i, i + sortTerm.length).join('')}</mark>);
+          i += sortTerm.length - 1;
+        } else {
+          newQuestion.push(questionBody[i]);
         }
-      })
+      }
 
       q.question_body = newQuestion;
       return q;
