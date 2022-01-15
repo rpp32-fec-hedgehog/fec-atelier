@@ -121,7 +121,8 @@ class Ratings extends React.Component {
       <div data-testid="ratings" className="ratings-widget">
         <a id="reviews-link"></a>
         <h3>RATINGS & REVIEWS</h3>
-        <br></br><RatingsMeta className="ratings_meta" ratings_meta={this.state.ratings_meta}></RatingsMeta><RatingsList className="ratings_list" ratings_meta={this.state.ratings_meta} count={this.state.count} item_name={this.state.item_name} chooseHelpful={this.chooseHelpful} putMarkHelpful={this.putMarkHelpful} getAllReviews={this.getAllReviews.bind(this)}></RatingsList>
+        <br></br><RatingsMeta className="ratings_meta" ratings_meta={this.state.ratings_meta}></RatingsMeta><RatingsList className="ratings_list" ratings_meta={this.state.ratings_meta} 
+        count={this.state.count} item_name={this.state.item_name} chooseHelpful={this.chooseHelpful} putMarkHelpful={this.putMarkHelpful} getAllReviews={this.getAllReviews.bind(this)}></RatingsList>
       </div>
     );
   }
