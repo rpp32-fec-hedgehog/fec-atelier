@@ -41,7 +41,6 @@ class Questions extends React.Component {
     if (!this.state.votes.includes(question_id)) {
       let newVotes = this.state.votes.slice();
       newVotes.push(question_id);
-
       $.ajax({
         url: `/qa/questions/${question_id}/helpful`,
         method: 'PUT',
@@ -156,7 +155,6 @@ class Questions extends React.Component {
         product_name={this.props.product_name}
         render={sendMetrics} />
       }}/>
-
     </div>
   }
 }

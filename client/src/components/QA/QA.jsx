@@ -13,7 +13,8 @@ class QA extends React.Component {
       originalQuestions: [],
       questions: [],
       page: 1,
-      product_name: ''
+      product_name: '',
+      loaded: false
     };
   }
 
@@ -25,32 +26,76 @@ class QA extends React.Component {
         questions: this.sortByTerm(this.state.originalQuestions, text)
       })
     } else {
-      this.setState({questions: this.state.originalQuestions});
+      this.setState({questions: this.revertQuestions(this.state.originalQuestions)});
     }
   }
 
+  revertQuestions(questions) {
+    return _.map(questions, q => {
+      let questionBody = q.question_body;
+      let newQuestion = [];
+      if (typeof questionBody !== 'string') {
+        _.each(questionBody, qb => {
+          if (typeof qb !== 'string') {
+            let reverted = qb.props.children;
+            newQuestion.push(reverted);
+          } else {
+            newQuestion.push(qb);
+          }
+        })
+
+        q.question_body = newQuestion.join('');
+        return q;
+      } else {
+        return q;
+      }
+    })
+  }
+
   sortByTerm(questions, sortTerm) {
-    return _.filter(questions, q => {
-      if (q.question_body.includes(sortTerm)) {
+    let filtered = _.filter(this.revertQuestions(questions), q => {
+      if (q.question_body.toLowerCase().includes(sortTerm.toLowerCase())) {
         return true;
       }
+    })
+
+    return _.map(filtered, q => {
+      let questionBody = q.question_body.split('');
+      let newQuestion = [];
+      for (let i = 0; i < questionBody.length; i++) {
+        if (questionBody.slice(i, i + sortTerm.length).join('').toLowerCase() === sortTerm.toLowerCase()) {
+          newQuestion.push(<mark>{questionBody.slice(i, i + sortTerm.length).join('')}</mark>);
+          i += sortTerm.length - 1;
+        } else {
+          newQuestion.push(questionBody[i]);
+        }
+      }
+
+      q.question_body = newQuestion;
+      return q;
     })
   }
 
   getQAData() {
-    $.ajax({
-      url: `/qa/questions/${this.props.itemid}/${this.state.page}`,
-      method: 'GET',
-      success: data => {
-        let newQuestions = _.flatten(this.state.originalQuestions.slice().concat(data.results));
-        let newPage = this.state.page + 1;
-        this.setState({
-          questions: newQuestions,
-          originalQuestions: newQuestions,
-          page: newPage
-        })
-      }
-    })
+    if (!this.state.loaded) {
+      $.ajax({
+        url: `/qa/questions/${this.props.itemid}/${this.state.page}`,
+        method: 'GET',
+        success: data => {
+          if (data.results.length < 4) {
+            this.setState({ loaded: true });
+          } else {
+            let newQuestions = _.flatten(this.state.originalQuestions.slice().concat(data.results));
+            let newPage = this.state.page + 1;
+            this.setState({
+              questions: newQuestions,
+              originalQuestions: newQuestions,
+              page: newPage
+            })
+          }
+        }
+      })
+    }
   }
 
   getProductName() {
@@ -136,7 +181,6 @@ class QA extends React.Component {
             product_name={this.state.product_name}
             render={sendMetrics} />
         }} />
-
       </div>
     )
   }
