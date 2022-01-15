@@ -100,7 +100,8 @@ class RatingsList extends React.Component {
             <ul className="ratings_list">{ratings}</ul>
           </div>
           <div>
-            <span>{(count_to_display < recommend_total) ? <div><button className="btn" onClick={this.moreReviews}>MORE REVIEWS</button></div>: null}<NewReview item_name={this.props.item_name} ratings_characteristics={this.props.ratings_meta.characteristics} className="new_review"></NewReview></span>
+            <span>{(count_to_display < recommend_total) ? <div><button className="btn" onClick={this.moreReviews}>MORE REVIEWS</button></div>: null}<NewReview 
+            item_name={this.props.item_name} ratings_characteristics={this.props.ratings_meta.characteristics} className="new_review"></NewReview></span>
           </div>
       </div>
     )
