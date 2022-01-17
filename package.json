@@ -7,7 +7,7 @@
     "test": "jest --detectOpenHandles --coverage",
     "react-dev": "webpack --watch",
     "start": "npx nodemon server/index.js",
-    "vm": "ssh -i '/Users/dominicmonares/Documents/FEC/MY FORK/fec-atelier/FEC.pem' ubuntu@ec2-3-86-207-191.compute-1.amazonaws.com"
+    "vm": "ssh -i 'FEC.pem' ubuntu@ec2-3-88-62-193.compute-1.amazonaws.com"
   },
   "repository": {
     "type": "git",
