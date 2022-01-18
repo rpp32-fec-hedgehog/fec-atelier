@@ -5,6 +5,8 @@ import ProductBreakdowns from './ProductBreakdown.jsx';
 
 const RatingsMeta = (props) => {
 
+  if (props) {
+
   const ratings = props.ratings_meta.ratings;
   const recommended = props.ratings_meta.recommended;
   const characteristics = props.ratings_meta.characteristics;
@@ -43,7 +45,7 @@ const RatingsMeta = (props) => {
 
   let star_counts = star_count_list.map((stars_counted) => {
     return (
-        <StarCount className="star_counts" key={stars_counted.stars} star_number={stars_counted.stars} star_count={stars_counted.star_count}></StarCount>
+        <StarCount className="star_counts"  flip_filters={props.flip_filters} key={stars_counted.stars} star_number={stars_counted.stars} star_count={stars_counted.star_count}></StarCount>
     )
   });
 
@@ -58,18 +60,17 @@ const RatingsMeta = (props) => {
       )
     });
 
-  return(
-    <div data-testid="ratings-breakdown" className="ratings_meta">
-      <div>
-        <span className="ratings_average">{ratings_average}</span>
-        <div className="star_rating_container"><StarRating className="ratings_breakdown_stars" star_rating={ratings_average}></StarRating></div>
-      </div><br></br><br></br><br></br>
-      <span className="percent_recommending">{percent_recommending}% of reviews recommend this product.</span><br></br>
-      <ul className="star_count_list">{star_counts}<ProductBreakdowns characteristics_list={characteristics_list}></ProductBreakdowns></ul>
-
-    </div>
-
-  )
+    return(
+      <div data-testid="ratings-breakdown" className="ratings_meta">
+        <div>
+          <span className="ratings_average">{ratings_average}</span>
+          <div className="star_rating_container"><ul><StarRating className="ratings_breakdown_stars" star_rating={ratings_average}></StarRating></ul></div>
+        </div><br></br><br></br><br></br>
+        <span className="percent_recommending">{percent_recommending}% of reviews recommend this product.</span><br></br>
+        <ul className="star_count_list">{star_counts}<ProductBreakdowns characteristics_list={characteristics_list}></ProductBreakdowns></ul>
+      </div>
+    )
+  }
 }
 
 export default RatingsMeta;

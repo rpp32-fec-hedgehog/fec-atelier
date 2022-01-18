@@ -99,10 +99,6 @@
   padding: 0;
 }
 
-/* .new_review {
-  float: left;
-} */
-
 .product_breakdown_list_item {
   float: left;
   width: 100%;
@@ -194,6 +190,13 @@
   height: 15px;
   z-index:-1;
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="40" ><rect fill="gray" stroke-width="0" width="400" height="30"/></svg>');
+}
+
+.star_bar_outer {
+  text-decoration: underline;
+}
+.star_bar_outer:hover {
+  background-color: rgb(164, 247, 247);
 }
 
 .char_label_main {

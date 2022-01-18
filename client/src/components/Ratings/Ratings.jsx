@@ -11,12 +11,18 @@ class Ratings extends React.Component {
       item_name: '',
       ratings: [],
       ratings_meta: {},
-      count: 0
+      count: 0,
+      filter1: false,
+      filter2: false,
+      filter3: false,
+      filter4: false,
+      filter5: false
     }
     this.getAllReviews = this.getAllReviews.bind(this);
     this.getReviewsMeta = this.getReviewsMeta.bind(this);
     this.chooseHelpful = this.chooseHelpful.bind(this);
     this.putMarkHelpful = this.putMarkHelpful.bind(this);
+    this.flipFilters = this.flipFilters.bind(this);
   }
 
   componentDidMount(props){
@@ -55,6 +61,31 @@ class Ratings extends React.Component {
         console.log('error at choose helpful in individual review: ', error);
       }
     })
+  }
+
+  flipFilters(val) {
+
+    let flipFilterState;
+    console.log('val: ', val);
+    val = val.slice(0, 1);
+
+    if (val === 1) {
+      flipFilterState = !this.state.filter1;
+      this.setState({filter1: flipFilterState})
+    } else if (val === 2) {
+      flipFilterState = !this.state.filter2;
+      this.setState({filter2: flipFilterState})
+    } else if (val === 3) {
+      flipFilterState = !this.state.filter3;
+      this.setState({filter3: flipFilterState})
+    } else if (val === 4) {
+      flipFilterState = !this.state.filter4;
+      this.setState({filter4: flipFilterState})
+    } else if (val === 5) {
+      flipFilterState = !this.state.filter5;
+      this.setState({filter5: flipFilterState})
+    }
+    console.log('state: ', this.state);
   }
 
   async putMarkHelpful(review_id, callback) {
@@ -121,7 +152,7 @@ class Ratings extends React.Component {
       <div data-testid="ratings" className="ratings-widget">
         <a id="reviews-link"></a>
         <h3>RATINGS & REVIEWS</h3>
-        <br></br><RatingsMeta className="ratings_meta" ratings_meta={this.state.ratings_meta}></RatingsMeta><RatingsList className="ratings_list" ratings_meta={this.state.ratings_meta} 
+        <br></br><RatingsMeta className="ratings_meta" ratings_meta={this.state.ratings_meta} flip_filters={this.flip_filters}></RatingsMeta><RatingsList className="ratings_list" ratings_meta={this.state.ratings_meta}
         count={this.state.count} item_name={this.state.item_name} chooseHelpful={this.chooseHelpful} putMarkHelpful={this.putMarkHelpful} getAllReviews={this.getAllReviews.bind(this)}></RatingsList>
       </div>
     );
