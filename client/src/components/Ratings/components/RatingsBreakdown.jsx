@@ -45,7 +45,7 @@ const RatingsMeta = (props) => {
 
   let star_counts = star_count_list.map((stars_counted) => {
     return (
-        <StarCount className="star_counts"  flip_filters={props.flip_filters} key={stars_counted.stars} star_number={stars_counted.stars} star_count={stars_counted.star_count}></StarCount>
+        <StarCount className="star_counts" getAllReviews={props.getAllReviews}flip_filters={props.flip_filters} filter_data={props.filter_data} key={stars_counted.stars} star_number={stars_counted.stars} star_count={stars_counted.star_count} item_id={props.item_id} sort={props.sort}></StarCount>
     )
   });
 

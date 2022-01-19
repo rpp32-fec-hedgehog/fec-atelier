@@ -10,11 +10,26 @@ class StarCount extends React.Component {
 
   flipFilter(e) {
 
+    if (this.props) {
+      console.log('this props: ', this.props);
+      this.props.getAllReviews(this.props.item_id, this.props.sort, 100, (error, result) => {
+        if (error) {
+          console.log('client reports retrieve reviews error: ', error.message);
+        } else {
+          // this.setState({
+          //   ratings: result,
+          //   ratings_to_display: result.slice(0, 2)
+          // });
+        }
+      })
+    }
     this.props.flip_filters(e.target.innerHTML);
-
+    this.props.filter_data();
   }
 
   render(props) {
+
+    //console.log('this props: ', this.props);
 
     let star_count = this.props.star_count;
     const star_number = this.props.star_number;

@@ -7,36 +7,38 @@ class RatingsList extends React.Component {
     super(props);
     this.state = {
       item_id: this.props.ratings_meta.product_id,
-      sort: 'relevant',
-      ratings: [],
+      sort: this.props.sort,
+      ratings: this.props.ratings,
       count: this.props.count,
-      count_to_display: 2,
-      ratings_to_display: [],
+      count_to_display: this.props.count_to_display,
+      ratings_to_display: this.props.ratings_to_display,
       filters: this.props.filters
     };
     this.handleChange = this.handleChange.bind(this);
     this.moreReviews = this.moreReviews.bind(this);
-
     this.filterData = this.filterData.bind(this);
   }
 
   handleChange(e) {
     e.preventDefault();
-    this.setState({
-      sort: e.target.value,
-    }, () => {
-        this.props.getAllReviews(this.state.item_id, this.state.sort, this.props.count, (error, result) => {
-          if (error) {
-            console.log('ratings list reports retrieve reviews error: ', error.message);
-          } else {
-            this.setState({
-              ratings: result,
-              ratings_to_display: result.slice(0, this.state.count_to_display)
-            });
-          }
-        })
-      }
-    )
+    console.log(e.target.value);
+    this.props.handleSort(e.target.value);
+    // this.setState({
+    //   sort: e.target.value,
+    // }, () => {
+    //     this.props.getAllReviews(this.state.item_id, this.state.sort, this.props.count, (error, result) => {
+    //       if (error) {
+    //         console.log('ratings list reports retrieve reviews error: ', error.message);
+    //       } else {
+    //         //send state back up here?
+    //         this.setState({
+    //           ratings: result,
+    //           ratings_to_display: result.slice(0, this.state.count_to_display)
+    //         });
+    //       }
+    //     })
+    //   }
+    // )
   }
 
   componentDidMount(props){
@@ -54,8 +56,11 @@ class RatingsList extends React.Component {
   }
 
   moreReviews() {
-    let howMany = this.state.count_to_display + 2;
-    let reviewsToMove = this.state.ratings.slice(0, howMany);
+    console.log('props: ', this.props);
+    // let howMany = this.state.count_to_display + 2;
+    // let reviewsToMove = this.state.ratings.slice(0, howMany);
+    let howMany = this.props.count_to_display + 2;
+    let reviewsToMove = this.props.all_reviews.slice(0, howMany);
 
     this.setState((state, props) => ({
       count_to_display: howMany,
@@ -63,7 +68,6 @@ class RatingsList extends React.Component {
     }));
   }
 
-  //    this.filterData();
   filterData() {
     let array = this.state.ratings
     let results = [];
@@ -80,7 +84,6 @@ class RatingsList extends React.Component {
       }
     }
     console.log('results: ', results);
-    //return results;
     this.setState({ratings: results});
   }
 
