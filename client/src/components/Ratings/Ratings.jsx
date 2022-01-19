@@ -100,6 +100,7 @@ class Ratings extends React.Component {
       flipFilterState[4] = !flipFilterState[4];
       this.setState({filters: flipFilterState})
     }
+    console.log('filter state: ', this.state.filters);
   }
 
   async putMarkHelpful(review_id, callback) {
@@ -166,19 +167,20 @@ class Ratings extends React.Component {
       let array = this.state.ratings
       let results = [];
 
-    if (!this.state.filters.includes(true)) {
-      results = array;
-    } else {
-      for (let i = 0; i < array.length; i++) {
-        for (let j = 0; j < 5; j++) {
-          if (this.state.filters[j] === true && j + 1 === parseInt(array[i].rating)) {
-            results.push(array[i]);
+      if (!this.state.filters.includes(true)) {
+        results = array;
+      } else {
+        for (let i = 0; i < array.length; i++) {
+          for (let j = 0; j < 5; j++) {
+            if (this.state.filters[j] === true && j + 1 === parseInt(array[i].rating)) {
+              results.push(array[i]);
+            }
           }
         }
       }
-    }
-    console.log('results: ', results);
-    this.setState({ratings: results});
+      this.setState({
+        ratings_to_display: results.slice(0, this.state.count_to_display)
+      });
     }
   }
 
@@ -223,7 +225,7 @@ class Ratings extends React.Component {
   }
 
   render() {
-
+    console.log('ratings state ratings: ', this.state.ratings);
     return (
       <div data-testid="ratings" className="ratings-widget">
         <a id="reviews-link"></a>
