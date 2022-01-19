@@ -25,7 +25,7 @@ class ClickTracker extends React.Component {
         console.log('Metric Recorded');
       },
       error: err => {
-        alert(err);
+        console.log('FAILED TO RECORD METRIC');
       }
     })
   }
