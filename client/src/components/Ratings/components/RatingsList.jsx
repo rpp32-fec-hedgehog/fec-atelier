@@ -11,10 +11,13 @@ class RatingsList extends React.Component {
       ratings: [],
       count: this.props.count,
       count_to_display: 2,
-      ratings_to_display: []
+      ratings_to_display: [],
+      filters: this.props.filters
     };
     this.handleChange = this.handleChange.bind(this);
     this.moreReviews = this.moreReviews.bind(this);
+
+    this.filterData = this.filterData.bind(this);
   }
 
   handleChange(e) {
@@ -58,7 +61,27 @@ class RatingsList extends React.Component {
       count_to_display: howMany,
       ratings_to_display: reviewsToMove
     }));
+  }
 
+  //    this.filterData();
+  filterData() {
+    let array = this.state.ratings
+    let results = [];
+
+    if (!this.state.filters.includes(true)) {
+      results = array;
+    } else {
+      for (let i = 0; i < array.length; i++) {
+        for (let j = 0; j < 5; j++) {
+          if (this.state.filters[j] === true && j + 1 === parseInt(array[i].rating)) {
+            results.push(array[i]);
+          }
+        }
+      }
+    }
+    console.log('results: ', results);
+    //return results;
+    this.setState({ratings: results});
   }
 
   render(props) {
@@ -100,7 +123,7 @@ class RatingsList extends React.Component {
             <ul className="ratings_list">{ratings}</ul>
           </div>
           <div>
-            <span>{(count_to_display < recommend_total) ? <div><button className="btn" onClick={this.moreReviews}>MORE REVIEWS</button></div>: null}<NewReview 
+            <span>{(count_to_display < recommend_total) ? <div><button className="btn" onClick={this.moreReviews}>MORE REVIEWS</button></div>: null}<NewReview
             item_name={this.props.item_name} ratings_characteristics={this.props.ratings_meta.characteristics} className="new_review"></NewReview></span>
           </div>
       </div>

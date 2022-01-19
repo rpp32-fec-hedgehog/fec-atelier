@@ -5,10 +5,11 @@ class StarCount extends React.Component {
     super(props);
     this.state = {
     };
+    this.flipFilter = this.flipFilter.bind(this);
   }
 
   flipFilter(e) {
-    console.log(e.target.innerHTML);
+
     this.props.flip_filters(e.target.innerHTML);
 
   }
@@ -27,7 +28,7 @@ class StarCount extends React.Component {
     } else {
       return (
         <li>
-          <br></br><span className="star_bar_outer" onClick={this.flipFilter.bind(this)}>{star_number} stars</span><span className="star_bar" style={{width: parseInt(star_count)}}></span>
+          <br></br><span className="star_bar_outer" onClick={this.flipFilter}>{star_number} stars</span><span className="star_bar" style={{width: parseInt(star_count)}}></span>
         </li>
       );
     }

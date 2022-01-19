@@ -12,11 +12,7 @@ class Ratings extends React.Component {
       ratings: [],
       ratings_meta: {},
       count: 0,
-      filter1: false,
-      filter2: false,
-      filter3: false,
-      filter4: false,
-      filter5: false
+      filters: [false, false, false, false, false]
     }
     this.getAllReviews = this.getAllReviews.bind(this);
     this.getReviewsMeta = this.getReviewsMeta.bind(this);
@@ -65,27 +61,25 @@ class Ratings extends React.Component {
 
   flipFilters(val) {
 
-    let flipFilterState;
-    console.log('val: ', val);
-    val = val.slice(0, 1);
+    let flipFilterState = this.state.filters;
 
-    if (val === 1) {
-      flipFilterState = !this.state.filter1;
-      this.setState({filter1: flipFilterState})
-    } else if (val === 2) {
-      flipFilterState = !this.state.filter2;
-      this.setState({filter2: flipFilterState})
-    } else if (val === 3) {
-      flipFilterState = !this.state.filter3;
-      this.setState({filter3: flipFilterState})
-    } else if (val === 4) {
-      flipFilterState = !this.state.filter4;
-      this.setState({filter4: flipFilterState})
-    } else if (val === 5) {
-      flipFilterState = !this.state.filter5;
-      this.setState({filter5: flipFilterState})
+    if (val === '1 stars') {
+      flipFilterState[0] = !flipFilterState[0];
+      this.setState({filters: flipFilterState})
+    } else if (val === '2 stars') {
+      flipFilterState[1] = !flipFilterState[1];
+      this.setState({filters: flipFilterState})
+    } else if (val === '3 stars') {
+      flipFilterState[2] = !flipFilterState[2];
+      this.setState({filters: flipFilterState})
+    } else if (val === '4 stars') {
+      flipFilterState[3] = !flipFilterState[3];
+      this.setState({filters: flipFilterState})
+    } else if (val === '5 stars') {
+      flipFilterState[4] = !flipFilterState[4];
+      this.setState({filters: flipFilterState})
     }
-    console.log('state: ', this.state);
+    //console.log('state: ', this.state.filters, this.state.ratings);
   }
 
   async putMarkHelpful(review_id, callback) {
@@ -113,6 +107,7 @@ class Ratings extends React.Component {
       }
     })
       .then((response) => {
+        //let filtered = this.filterData(response.data);
         callback(null, response.data);
       })
       .catch((error) => {
@@ -152,7 +147,7 @@ class Ratings extends React.Component {
       <div data-testid="ratings" className="ratings-widget">
         <a id="reviews-link"></a>
         <h3>RATINGS & REVIEWS</h3>
-        <br></br><RatingsMeta className="ratings_meta" ratings_meta={this.state.ratings_meta} flip_filters={this.flip_filters}></RatingsMeta><RatingsList className="ratings_list" ratings_meta={this.state.ratings_meta}
+        <br></br><RatingsMeta className="ratings_meta" ratings_meta={this.state.ratings_meta} flip_filters={this.flipFilters}></RatingsMeta><RatingsList className="ratings_list" ratings_meta={this.state.ratings_meta} filters={this.state.filters}
         count={this.state.count} item_name={this.state.item_name} chooseHelpful={this.chooseHelpful} putMarkHelpful={this.putMarkHelpful} getAllReviews={this.getAllReviews.bind(this)}></RatingsList>
       </div>
     );
