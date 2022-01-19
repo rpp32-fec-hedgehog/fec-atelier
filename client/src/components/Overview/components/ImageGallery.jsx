@@ -1,7 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
 import _ from 'underscore';
-import $ from 'jquery';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
