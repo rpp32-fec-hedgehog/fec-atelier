@@ -23,22 +23,6 @@ class RatingsList extends React.Component {
     e.preventDefault();
     console.log(e.target.value);
     this.props.handleSort(e.target.value);
-    // this.setState({
-    //   sort: e.target.value,
-    // }, () => {
-    //     this.props.getAllReviews(this.state.item_id, this.state.sort, this.props.count, (error, result) => {
-    //       if (error) {
-    //         console.log('ratings list reports retrieve reviews error: ', error.message);
-    //       } else {
-    //         //send state back up here?
-    //         this.setState({
-    //           ratings: result,
-    //           ratings_to_display: result.slice(0, this.state.count_to_display)
-    //         });
-    //       }
-    //     })
-    //   }
-    // )
   }
 
   componentDidMount(props){
@@ -47,25 +31,17 @@ class RatingsList extends React.Component {
       if (error) {
         console.log('client reports retrieve reviews error: ', error.message);
       } else {
-        this.setState({
-          ratings: result,
-          ratings_to_display: result.slice(0, 2)
-        });
+        console.log('result of query in list: ', result);
+        this.props.updateDisplayedItems(result);
       }
     })
   }
 
   moreReviews() {
-    console.log('props: ', this.props);
-    // let howMany = this.state.count_to_display + 2;
-    // let reviewsToMove = this.state.ratings.slice(0, howMany);
-    let howMany = this.props.count_to_display + 2;
-    let reviewsToMove = this.props.all_reviews.slice(0, howMany);
-
-    this.setState((state, props) => ({
-      count_to_display: howMany,
-      ratings_to_display: reviewsToMove
-    }));
+    if (this.props) {
+      console.log('props in list: ', this.props);
+      this.props.moreReviews();
+    }
   }
 
   filterData() {
@@ -88,7 +64,7 @@ class RatingsList extends React.Component {
   }
 
   render(props) {
-
+    console.log('props in ratings list: ', this.props.ratings_to_display);
     const chooseHelpful = this.props.chooseHelpful;
 
     const putMarkHelpful= this.props.putMarkHelpful;
@@ -103,7 +79,7 @@ class RatingsList extends React.Component {
       }
     }
 
-    let ratings = this.state.ratings_to_display.map((rating) => {
+    let ratings = this.props.ratings_to_display.map((rating) => {
       return (
           <IndividualReview chooseHelpful={chooseHelpful} putMarkHelpful={putMarkHelpful} key={rating.review_id} review_id={rating.review_id} star_rating={rating.rating} summary={rating.summary} date={rating.date} body={rating.body} recommend={rating.recommend} reviewer_name={rating.reviewer_name} response={rating.response} helpfulness={rating.helpfulness} photos={rating.photos}></IndividualReview>
       )
