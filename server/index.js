@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const compression = require('compression');
 require('dotenv').config();
 
 const app = express();
@@ -8,7 +9,7 @@ const port = 3000;
 const apiCalls = require('../utils/apiCalls.js');
 const rp = require('../utils/relatedProducts/serverHelpers');
 
-
+app.use(compression({level: 1}));
 app.use(express.static(path.join(__dirname, '..', '/client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -74,6 +75,7 @@ app.get('/relatedItems', (req, res) => {
 app.get('/qa/questions/:product_id/:page', function(req, res) {
   let product = req.params.product_id;
   let page = req.params.page;
+  res.set('Accept-Encoding', 'gzip');
   apiCalls.getProductQuestionData(product, page, questions => {
     res.send(questions);
   })
