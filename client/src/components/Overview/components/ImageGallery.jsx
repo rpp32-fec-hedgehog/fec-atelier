@@ -118,7 +118,7 @@ class ImageGallery extends React.Component {
         </div>
 
         <Modal isOpen={this.state.modalOpen} ariaHideApp={false} className="modal-gallery">
-          <button className="modal-close" onClick={this.closeModal}>X</button>
+          <button className="modal-close" onClick={this.closeModal}>Close</button>
           <div className="modal-buttons">
             <FontAwesomeIcon className='modal-back' onClick={this.props.backward} icon={faAngleLeft} size='2x' color="white"></FontAwesomeIcon>
             <FontAwesomeIcon className='modal-forward' onClick={this.props.forward} icon={faAngleRight} size='2x' color="white"></FontAwesomeIcon>
