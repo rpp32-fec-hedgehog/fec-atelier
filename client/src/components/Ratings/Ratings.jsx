@@ -236,8 +236,12 @@ class Ratings extends React.Component {
       <div data-testid="ratings" className="ratings-widget">
         <a id="reviews-link"></a>
         <h3>RATINGS & REVIEWS</h3>
-        <br></br><RatingsMeta item_id={this.state.item_id} sort={this.state.sort} filters={this.state.filters} className="ratings_meta" ratings_meta={this.state.ratings_meta} getAllReviews={this.getAllReviews.bind(this)} clearFilters={this.clearFilters} count={this.state.count} flip_filters={this.flipFilters} filter_data={this.filterData} any_filters={this.state.any_filters} ></RatingsMeta><RatingsList className="ratings_list" updateDisplayedItems={this.updateDisplayedItems} moreReviews={this.moreReviews} handleSort={this.handleSort} ratings_to_display={this.state.ratings_to_display} ratings_meta={this.state.ratings_meta} filters={this.state.filters}
-        count={this.state.count} count_to_display={this.state.count_to_display} item_name={this.state.item_name} chooseHelpful={this.chooseHelpful} putMarkHelpful={this.putMarkHelpful} getAllReviews={this.getAllReviews.bind(this)} all_reviews={this.state.ratings}></RatingsList>
+        <br></br><RatingsMeta item_id={this.state.item_id} sort={this.state.sort} filters={this.state.filters} className="ratings_meta" ratings_meta={this.state.ratings_meta} 
+        getAllReviews={this.getAllReviews.bind(this)} clearFilters={this.clearFilters} count={this.state.count} flip_filters={this.flipFilters} filter_data={this.filterData} 
+        any_filters={this.state.any_filters} ></RatingsMeta><RatingsList className="ratings_list" updateDisplayedItems={this.updateDisplayedItems} moreReviews={this.moreReviews} 
+        handleSort={this.handleSort} ratings_to_display={this.state.ratings_to_display} ratings_meta={this.state.ratings_meta} filters={this.state.filters}
+        count={this.state.count} count_to_display={this.state.count_to_display} item_name={this.state.item_name} chooseHelpful={this.chooseHelpful} putMarkHelpful={this.putMarkHelpful}
+        getAllReviews={this.getAllReviews.bind(this)} all_reviews={this.state.ratings}></RatingsList>
       </div>
     );
   }
