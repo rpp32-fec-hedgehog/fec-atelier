@@ -7,33 +7,22 @@ class RatingsList extends React.Component {
     super(props);
     this.state = {
       item_id: this.props.ratings_meta.product_id,
-      sort: 'relevant',
-      ratings: [],
+      sort: this.props.sort,
+      ratings: this.props.ratings,
       count: this.props.count,
-      count_to_display: 2,
-      ratings_to_display: []
+      count_to_display: this.props.count_to_display,
+      ratings_to_display: this.props.ratings_to_display,
+      filters: this.props.filters
     };
     this.handleChange = this.handleChange.bind(this);
     this.moreReviews = this.moreReviews.bind(this);
+    this.filterData = this.filterData.bind(this);
   }
 
   handleChange(e) {
     e.preventDefault();
-    this.setState({
-      sort: e.target.value,
-    }, () => {
-        this.props.getAllReviews(this.state.item_id, this.state.sort, this.props.count, (error, result) => {
-          if (error) {
-            console.log('ratings list reports retrieve reviews error: ', error.message);
-          } else {
-            this.setState({
-              ratings: result,
-              ratings_to_display: result.slice(0, this.state.count_to_display)
-            });
-          }
-        })
-      }
-    )
+    console.log(e.target.value);
+    this.props.handleSort(e.target.value);
   }
 
   componentDidMount(props){
@@ -42,23 +31,33 @@ class RatingsList extends React.Component {
       if (error) {
         console.log('client reports retrieve reviews error: ', error.message);
       } else {
-        this.setState({
-          ratings: result,
-          ratings_to_display: result.slice(0, 2)
-        });
+        this.props.updateDisplayedItems(result);
       }
     })
   }
 
   moreReviews() {
-    let howMany = this.state.count_to_display + 2;
-    let reviewsToMove = this.state.ratings.slice(0, howMany);
+    if (this.props) {
+      this.props.moreReviews();
+    }
+  }
 
-    this.setState((state, props) => ({
-      count_to_display: howMany,
-      ratings_to_display: reviewsToMove
-    }));
+  filterData() {
+    let array = this.state.ratings
+    let results = [];
 
+    if (!this.state.filters.includes(true)) {
+      results = array;
+    } else {
+      for (let i = 0; i < array.length; i++) {
+        for (let j = 0; j < 5; j++) {
+          if (this.state.filters[j] === true && j + 1 === parseInt(array[i].rating)) {
+            results.push(array[i]);
+          }
+        }
+      }
+    }
+    this.setState({ratings: results});
   }
 
   render(props) {
@@ -77,9 +76,11 @@ class RatingsList extends React.Component {
       }
     }
 
-    let ratings = this.state.ratings_to_display.map((rating) => {
+    let ratings = this.props.ratings_to_display.map((rating) => {
       return (
-          <IndividualReview chooseHelpful={chooseHelpful} putMarkHelpful={putMarkHelpful} key={rating.review_id} review_id={rating.review_id} star_rating={rating.rating} summary={rating.summary} date={rating.date} body={rating.body} recommend={rating.recommend} reviewer_name={rating.reviewer_name} response={rating.response} helpfulness={rating.helpfulness} photos={rating.photos}></IndividualReview>
+          <IndividualReview chooseHelpful={chooseHelpful} putMarkHelpful={putMarkHelpful} key={rating.review_id} review_id={rating.review_id} 
+          star_rating={rating.rating} summary={rating.summary} date={rating.date} body={rating.body} recommend={rating.recommend} 
+          reviewer_name={rating.reviewer_name} response={rating.response} helpfulness={rating.helpfulness} photos={rating.photos}></IndividualReview>
       )
     });
 
@@ -100,7 +101,7 @@ class RatingsList extends React.Component {
             <ul className="ratings_list">{ratings}</ul>
           </div>
           <div>
-            <span>{(count_to_display < recommend_total) ? <div><button className="btn" onClick={this.moreReviews}>MORE REVIEWS</button></div>: null}<NewReview 
+            <span>{(count_to_display < recommend_total) ? <div><button className="btn" onClick={this.moreReviews}>MORE REVIEWS</button></div>: null}<NewReview
             item_name={this.props.item_name} ratings_characteristics={this.props.ratings_meta.characteristics} className="new_review"></NewReview></span>
           </div>
       </div>
