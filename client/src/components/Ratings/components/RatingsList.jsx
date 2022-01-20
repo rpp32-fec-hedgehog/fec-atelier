@@ -78,7 +78,9 @@ class RatingsList extends React.Component {
 
     let ratings = this.props.ratings_to_display.map((rating) => {
       return (
-          <IndividualReview chooseHelpful={chooseHelpful} putMarkHelpful={putMarkHelpful} key={rating.review_id} review_id={rating.review_id} star_rating={rating.rating} summary={rating.summary} date={rating.date} body={rating.body} recommend={rating.recommend} reviewer_name={rating.reviewer_name} response={rating.response} helpfulness={rating.helpfulness} photos={rating.photos}></IndividualReview>
+          <IndividualReview chooseHelpful={chooseHelpful} putMarkHelpful={putMarkHelpful} key={rating.review_id} review_id={rating.review_id} 
+          star_rating={rating.rating} summary={rating.summary} date={rating.date} body={rating.body} recommend={rating.recommend} 
+          reviewer_name={rating.reviewer_name} response={rating.response} helpfulness={rating.helpfulness} photos={rating.photos}></IndividualReview>
       )
     });
 

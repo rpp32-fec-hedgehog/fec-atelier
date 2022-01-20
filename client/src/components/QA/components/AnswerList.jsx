@@ -1,7 +1,6 @@
 import React from 'react';
 import _ from 'underscore';
 import Answers from './Answers.jsx';
-import ClickTracker from './ClickTracker.jsx';
 
 class AnswerList extends React.Component {
   constructor(props) {
@@ -72,10 +71,8 @@ class AnswerList extends React.Component {
         <div className="a-list" data-testid="a-list">
           {_.map(this.sortAnswers(this.props.answers), (a) => {
             return <div key={`aBase-${a.id}`} className="a-list-item" data-testid="a-list-item">
-              <ClickTracker render={sendMetrics => {
-                return <Answers answer={a} updateAHelp={this.props.updateAHelp} question_id={this.props.question_id}
-                  render={sendMetrics} />
-              }} />
+              <Answers answer={a} updateAHelp={this.props.updateAHelp} question_id={this.props.question_id}
+                render={this.props.render} />
             </div>
           })}
         </div>
