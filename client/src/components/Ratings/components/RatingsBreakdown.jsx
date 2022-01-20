@@ -68,7 +68,6 @@ class RatingsMeta extends React.Component {
         if (this.props.filters[i] === true) {
           filters = filters + `${i + 1} stars `;
         }
-        console.log('filters loop: ', filters);
       }
 
       let product_breakdowns = characteristics_list.map((characteristic) => {

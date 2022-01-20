@@ -15,7 +15,8 @@ class NewReview extends React.Component {
       summary: '',
       body: '',
       chars_needed: 50,
-      recommend: false,
+      recommend: true,
+      recommend_chosen: false,
       name: '',
       email: '',
       photos: [],
@@ -28,6 +29,12 @@ class NewReview extends React.Component {
     };
     this.handleSummaryChange = this.handleSummaryChange.bind(this);
     this.handleBodyChange = this.handleBodyChange.bind(this);
+    this.addPhotos = this.addPhotos.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.submitReview = this.submitReview.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleRecommendChange = this.handleRecommendChange.bind(this);
   }
 
   openModal(e) {
@@ -76,7 +83,14 @@ class NewReview extends React.Component {
   handleSummaryChange(e) {
     e.preventDefault();
     this.setState({ summary: e.target.value });
-    console.log(e.target.value);
+  }
+
+  handleRecommendChange(e) {
+    e.preventDefault();
+    this.setState({
+      recommend: e.target.value,
+      recommend_chosen: true
+    });
   }
 
   handleBodyChange(e, state) {
@@ -86,12 +100,21 @@ class NewReview extends React.Component {
       body: e.target.value,
       chars_needed: charsNeeded
     });
+  }
 
-    console.log(this.state.body.length);
+  handleNameChange(e) {
+    e.preventDefault();
+    this.setState({ name: e.target.value });
+  }
+
+  handleEmailChange(e) {
+    e.preventDefault();
+    this.setState({ email: e.target.value });
   }
 
   addPhotos(e) {
     e.preventDefault();
+    console.log('click');
     // const client = filestack.init(API_KEYS.FILESTACK_API_KEY);
     // let options = {
     //   fromSources: ['local_file_system'],
@@ -127,10 +150,35 @@ class NewReview extends React.Component {
   submitReview(e) {
     e.preventDefault();
     console.log('submit review clicked: ', e);
-    let questionData = {
-
-    };
+    //let questionData = {};
     //validate and send
+    let warning = 'You must enter the following: '
+
+    if (this.state.star_meaning === '') {
+      warning = warning + 'star rating cannot be blank, '
+    }
+
+    if (this.state.recommend_chosen === false) {
+      warning = warning + 'you must choose to recommend or not, '
+    }
+    //how to validate characteristics?
+
+    if (this.state.body.length < 50) {
+      warning = warning + 'review body must be at least 50 characters, '
+    }
+    //validating photos on upload
+
+    if (this.state.name === '') {
+      warning = warning + 'nickname cannot be blank, '
+    }
+
+    if (!this.state.email.includes('@') || !this.state.email.includes('.')) {
+      warning = warning + 'needs to include a proper email, '
+    }
+
+    if (warning.length > 30) {
+      alert(warning);
+    }
     //if passes validation, close the model
   }
 
@@ -164,12 +212,11 @@ class NewReview extends React.Component {
           contentLabel="Post Your Review">
           <div className="new_review_meta">
             <span className="modal_label"><h3>Write your review...</h3> ...about the {this.props.item_name}</span>
-            {/* <span className="close_review_modal" onClick={this.closeModal.bind(this)}>X</span> */}
           </div>
           <div className="review_modal_form">
             <div className="review_modal_input">
               <br></br>
-              How would you rate this product?&nbsp;
+              How would you rate this product?*&nbsp;
               <img src={this.state.stars[0]} alt='loading' width="20" height="20"className=".star1" onClick={this.chooseStars.bind(this)}/>
               <img src={this.state.stars[1]} alt='loading' width="20" height="20"className=".star2" onClick={this.chooseStars.bind(this)}/>
               <img src={this.state.stars[2]} alt='loading' width="20" height="20"className=".star3" onClick={this.chooseStars.bind(this)}/>
@@ -177,9 +224,10 @@ class NewReview extends React.Component {
               <img src={this.state.stars[4]} alt='loading' width="20" height="20"className=".star5" onClick={this.chooseStars.bind(this)}/>
               &nbsp;<span>{this.state.star_meaning}</span>
               <br></br><br></br>
-              <div>Do you recommend this product?
-                <input type="radio" value="Yes" name="recommend" /> Yes
-                <input type="radio" value="no" name="recommend" /> No
+              <div onChange={this.handleRecommendChange} value={this.state.recommend}>Do you recommend this product?*
+              {/* buggy */}
+                <input type="radio" value="true" name="recommend" checked="checked"/> Yes
+                <input type="radio" value="false" name="recommend" /> No
               </div>
               <div>
                 <InputProductBreakdowns characteristics={characteristics}></InputProductBreakdowns>
@@ -192,15 +240,33 @@ class NewReview extends React.Component {
                 <br></br>
               </div>
               <br></br>
-              <div>Please write your full review here:
+              <div>Please write your full review here:*
               <br></br>
                 <textarea value={this.state.body} name="body" onChange={this.handleBodyChange} rows={8} maxLength={1000} placeholder={"Why did you like the product or not?"}/>
                 <br></br>
                 {this.state.chars_needed > 0 ? <span>Minimum required characters left: {this.state.chars_needed}</span> : <span>Minimum characters reached</span>}
               </div>
+              <div>
+                <button onClick={this.addPhotos}>UPLOAD PHOTOS</button>
+              </div>
+              <br></br>
+              <div>What is your nickname?*
+              <br></br>
+                <textarea value={this.state.name} name="name" onChange={this.handleNameChange} maxLength={60} placeholder={"Example: jackson11!"}/>
+                <br></br>
+                For privacy reasons, do not use your full name or email address
+                <br></br>
+              </div>
+              <div>Your email:*
+              <br></br>
+                <textarea value={this.state.email} name="email" onChange={this.handleEmailChange} maxLength={60} placeholder={"Example: jackson11@email.com"}/>
+                <br></br>
+                For authentication reasons, you will not be emailed
+                <br></br>
+              </div>
               <div className="left">
                 <br></br><br></br>
-                <button onClick={this.submitReview.bind(this)}>SUBMIT REVIEW</button>
+                <button onClick={this.submitReview}>SUBMIT REVIEW</button>
               </div>
             </div>
           </div>
@@ -209,5 +275,5 @@ class NewReview extends React.Component {
     )
   }
 }
-//onChange={}
+
 export default NewReview;

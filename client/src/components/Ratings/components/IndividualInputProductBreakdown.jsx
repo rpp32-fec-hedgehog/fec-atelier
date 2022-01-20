@@ -37,7 +37,7 @@ class IndividualInputProductBreakdown extends React.Component {
             <span className="indent_less">{this.state.selectedRadio}</span>
             <br></br>
           <span>
-            <div className="left">{characteristic}</div>
+            <div className="left">{characteristic}*</div>
             <input onClick={this.updateRadial.bind(this)} type="radio" value={label1} name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input onClick={this.updateRadial.bind(this)} type="radio" value={label2} name={characteristic}/>
@@ -68,7 +68,7 @@ class IndividualInputProductBreakdown extends React.Component {
             <span className="indent">{this.state.selectedRadio}</span>
             <br></br>
           <span>
-            {characteristic}
+            {characteristic}*
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <input onClick={this.updateRadial.bind(this)} type="radio" value={label1} name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -100,7 +100,7 @@ class IndividualInputProductBreakdown extends React.Component {
           <span className="indent">{this.state.selectedRadio}</span>
             <br></br>
           <span>
-            {characteristic}
+            {characteristic}*
             &nbsp;
             <input onClick={this.updateRadial.bind(this)} type="radio" value={label1} name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -132,7 +132,7 @@ class IndividualInputProductBreakdown extends React.Component {
           <span className="indent">{this.state.selectedRadio}</span>
             <br></br>
           <span>
-            {characteristic}
+            {characteristic}*
             &nbsp;
           <input onClick={this.updateRadial.bind(this)} type="radio" value={label1} name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -164,7 +164,7 @@ class IndividualInputProductBreakdown extends React.Component {
             <span className="indent">{this.state.selectedRadio}</span>
             <br></br>
           <span>
-            {characteristic}
+            {characteristic}*
             &nbsp;
             <input onClick={this.updateRadial.bind(this)} type="radio" value={label1} name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -196,7 +196,7 @@ class IndividualInputProductBreakdown extends React.Component {
             <span className="indent">{this.state.selectedRadio}</span>
             <br></br>
           <span>
-            {characteristic}
+            {characteristic}*
             &nbsp;
             <input onClick={this.updateRadial.bind(this)} type="radio" value={label1} name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
