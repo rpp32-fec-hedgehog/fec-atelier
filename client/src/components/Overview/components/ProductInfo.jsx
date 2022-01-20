@@ -94,7 +94,7 @@ class ProductInfo extends React.Component {
         {this.state.starCount.length ?
           <div className="star-rating" data-testid="star-rating">
             <StarRating star_rating={this.calculateStarRating()}></StarRating>
-            <a className ="overview-review" href="#reviews-link" onClick={this.props.render}>{` Read all ${numReviews} reviews`}</a>
+            <a className ="overview-review" href="#reviews-link" onClick={this.props.render}>{` Check out all ${numReviews} reviews for this product`}</a>
           </div>
           : null
         }
