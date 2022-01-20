@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import StarRating from './StarRating.jsx';
 import InputProductBreakdowns from './InputProductBreakdowns.jsx';
+import API_KEYS from '../../../../../env/config.js';
 
 class NewReview extends React.Component {
   constructor(props) {
@@ -114,37 +115,37 @@ class NewReview extends React.Component {
 
   addPhotos(e) {
     e.preventDefault();
-    console.log('click');
-    // const client = filestack.init(API_KEYS.FILESTACK_API_KEY);
-    // let options = {
-    //   fromSources: ['local_file_system'],
-    //   accept: ['image/*'],
-    //   maxFiles: 5,
-    //   disableTransformer: true,
-    //   onFileSelected: file => {
-    //     if (file.size > 1000 * 1000) {
-    //       alert('File too big, select something smaller than 1MB');
-    //     }
-    //   },
-    //   onFileUploadFinished: file => {
-    //     let updatedPhotos = this.state.photos.slice();
-    //     updatedPhotos.push(file.url);
+    console.log('cli8ck');
+    const client = filestack.init(API_KEYS.FILESTACK_API_KEY);
+    let options = {
+      fromSources: ['local_file_system'],
+      accept: ['image/*'],
+      maxFiles: 5,
+      disableTransformer: true,
+      onFileSelected: file => {
+        if (file.size > 1000 * 1000) {
+          alert('File too big, select something smaller than 1MB');
+        }
+      },
+      onFileUploadFinished: file => {
+        let updatedPhotos = this.state.photos.slice();
+        updatedPhotos.push(file.url);
 
-    //     let updatedThumbnails = <div className="a-modal-thumbnails">{_.map(updatedPhotos, photo => {
-    //       return <img className="a-modal-thumbnail" key={photo} src={photo}></img>
-    //     })}</div>
+        let updatedThumbnails = <div className="a-modal-thumbnails">{_.map(updatedPhotos, photo => {
+          return <img className="a-modal-thumbnail" key={photo} src={photo}></img>
+        })}</div>
 
-    //     this.setState({photos: updatedPhotos, thumbnails: updatedThumbnails});
-    //     if (this.state.photos.length === 5) {
-    //       this.setState({addPhoto: <></>})
-    //     }
-    //   },
-    //   onFileUploadFailed: file => {
-    //     alert('File upload failed');
-    //   }
-    // };
+        this.setState({photos: updatedPhotos, thumbnails: updatedThumbnails});
+        if (this.state.photos.length === 5) {
+          this.setState({addPhoto: <></>})
+        }
+      },
+      onFileUploadFailed: file => {
+        alert('File upload failed');
+      }
+    };
 
-    // client.picker(options).open();
+    client.picker(options).open();
   }
 
   submitReview(e) {
