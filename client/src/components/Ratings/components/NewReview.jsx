@@ -196,7 +196,7 @@ class NewReview extends React.Component {
               <br></br>
                 <textarea value={this.state.body} name="body" onChange={this.handleBodyChange} rows={8} maxLength={1000} placeholder={"Why did you like the product or not?"}/>
                 <br></br>
-                Minimum required characters left: {this.state.chars_needed}
+                {this.state.chars_needed > 0 ? <span>Minimum required characters left: {this.state.chars_needed}</span> : <span>Minimum characters reached</span>}
               </div>
               <div className="left">
                 <br></br><br></br>
