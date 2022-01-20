@@ -4,7 +4,6 @@ import $ from 'jquery';
 import AnswerList from './AnswerList.jsx';
 import AnswerQuestion from './AnswerQuestion.jsx';
 import AskQuestion from './AskQuestion.jsx';
-import ClickTracker from './ClickTracker.jsx';
 
 class Questions extends React.Component {
   constructor(props) {
@@ -125,22 +124,17 @@ class Questions extends React.Component {
                       </span>
                     </div>
                     <span className="vertical-bar">|</span>
-                    <ClickTracker render={sendMetrics => {
-                      return <AnswerQuestion question_id={q.question_id} getQAData={this.props.getQAData}
-                        product_id={this.props.product_id}
-                        question_body={q.question_body}
-                        render={sendMetrics} />
-                    }} />
+                    <AnswerQuestion question_id={q.question_id} getQAData={this.props.getQAData}
+                      product_id={this.props.product_id}
+                      question_body={q.question_body}
+                      render={this.props.render} />
                   </div>
                 </div>
                 <div className="a-label-list">
                   {this.answersExist(q.answers)}
-                  <ClickTracker render={sendMetrics => {
-                    return <AnswerList answers={q.answers} question_id={q.question_id} product_name={this.props.product_name}
-                      updateAHelp={this.props.updateAHelp}
-                      render={sendMetrics} />
-                  }} />
-
+                  <AnswerList answers={q.answers} question_id={q.question_id} product_name={this.props.product_name}
+                    updateAHelp={this.props.updateAHelp}
+                    render={this.props.render} />
                 </div>
               </li>
             </div>
@@ -148,13 +142,11 @@ class Questions extends React.Component {
         </ul>
       </div>
       {more}
-      <ClickTracker render={sendMetrics => {
-        return <AskQuestion key="ask-question" className="ask-question"
+      <AskQuestion key="ask-question" className="ask-question"
         getQAData={this.props.getQAData}
         product_id={this.props.product_id}
         product_name={this.props.product_name}
-        render={sendMetrics} />
-      }}/>
+        render={this.props.render} />
     </div>
   }
 }

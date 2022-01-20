@@ -10,6 +10,7 @@ import RelatedItems from './components/RelatedProducts/Related-Items.jsx';
 import Outfits from './components/RelatedProducts/Outfits.jsx';
 
 import ClickTrackerOverview from './components/Overview/components/ClickTrackerOverview.jsx';
+import ClickTracker from './components/ClickTracker.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -51,7 +52,11 @@ class App extends React.Component {
               render={sendMetrics}/>
             }} />
           </div>
-          <QA itemid={this.state.item_id} />
+          <div>
+            <ClickTracker render={sendMetrics => {
+              return <QA itemid={this.state.item_id} render={sendMetrics} />
+            }} />
+          </div>
           <div className="ratings">
             <Ratings itemId={this.state.item_id} />
           </div>
