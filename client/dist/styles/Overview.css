@@ -1,13 +1,19 @@
 /* General Styling ========================================================== */
 h1 {
   font-family: sans-serif;
-  background-color: rgb(227, 227, 227);
   margin-left: 5px;
   padding-left: 25px;
+  font-size: 50px;
 }
 .overview-widget {
   display: block;
   margin: 0px
+}
+
+.darkmode-btn {
+  font-family: sans-serif;
+  margin-left: 50%;
+  font-size: 30px;
 }
 
 #overview {

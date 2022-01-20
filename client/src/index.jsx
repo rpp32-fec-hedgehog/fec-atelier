@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import _ from 'underscore';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 
 import Overview from './components/Overview/Overview.jsx';
 import QA from './components/QA/QA.jsx';
@@ -18,7 +20,8 @@ class App extends React.Component {
     this.state = {
       item_id: Math.floor(Math.random() * (60563 - 59553 + 1)) + 59553,
       //item_id: 59557,
-      myOutfit: []
+      myOutfit: [],
+      darkmode: false
     };
     this.changeProduct = this.changeProduct.bind(this);
   }
@@ -40,10 +43,24 @@ class App extends React.Component {
       }))
   }
 
+  darkModeToggle = (e) => {
+    this.setState((state, props) => ({
+      darkmode: !state.darkmode
+    }))
+  }
+
+
   render() {
+
+    let darkModeStyle = this.state.darkmode ? {
+      'background-color': 'rgb(29, 29, 29)',
+      'color': 'rgb(221, 221, 221)'
+  } : null;
+
     return (
-      <div>
+      <div style={darkModeStyle}>
         <h1>Atelier</h1>
+        <FontAwesomeIcon onClick={this.darkModeToggle} className="darkmode-btn" icon={this.state.darkmode ? faSun : faMoon}></FontAwesomeIcon>
         <div className="main">
           <div className="overview-widget">
             <ClickTrackerOverview render={sendMetrics => {
