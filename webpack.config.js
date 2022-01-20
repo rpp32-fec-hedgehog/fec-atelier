@@ -1,5 +1,7 @@
+const webpack = require('webpack');
 const path = require('path');
 const TerserPlugin = require("terser-webpack-plugin");
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 module.exports = {
   mode: 'production',
@@ -24,5 +26,8 @@ module.exports = {
           use: ["style-loader", "css-loader"],
         }
     ]
-  }
+  },
+  plugins: [
+    new ImageminPlugin()
+  ]
 }
