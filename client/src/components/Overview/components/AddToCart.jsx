@@ -112,7 +112,7 @@ class AddToCart extends React.Component {
           </select>
         </div>
         <div className="add-to-bag"> Add To Bag
-          <FontAwesomeIcon className="add-to-bag-button" icon={faShoppingCart} onClick={this.addToCart}></FontAwesomeIcon>
+          <FontAwesomeIcon aria-label="add to bag button" className="add-to-bag-button" icon={faShoppingCart} onClick={this.addToCart}></FontAwesomeIcon>
         </div>
         <FontAwesomeIcon className="my-outfit-btn" icon={faStar} onClick={this.addToMyOutfit}></FontAwesomeIcon>
 
