@@ -14,7 +14,7 @@ class StyleSelector extends React.Component {
     const checkmark = <Checkmark size='30px' color='#8e9efa'/>
     return (
       <div className="styles-info" data-testid="style-selector">
-        <h4 className="style-name">Style > {this.props.styleName}</h4>
+        <span className="style-name">Style > {this.props.styleName}></span>
         <div className="style-img-container">
           {_.map(this.props.styleImgs, (style, index) => {
               return (
