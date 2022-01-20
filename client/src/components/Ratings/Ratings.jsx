@@ -11,12 +11,23 @@ class Ratings extends React.Component {
       item_name: '',
       ratings: [],
       ratings_meta: {},
-      count: 0
+      sort: 'Relevant',
+      count: 0,
+      count_to_display: 2,
+      ratings_to_display: [],
+      filters: [false, false, false, false, false],
+      any_filters: false
     }
     this.getAllReviews = this.getAllReviews.bind(this);
     this.getReviewsMeta = this.getReviewsMeta.bind(this);
     this.chooseHelpful = this.chooseHelpful.bind(this);
     this.putMarkHelpful = this.putMarkHelpful.bind(this);
+    this.flipFilters = this.flipFilters.bind(this);
+    this.filterData = this.filterData.bind(this);
+    this.handleSort = this.handleSort.bind(this);
+    this.moreReviews = this.moreReviews.bind(this);
+    this.updateDisplayedItems = this.updateDisplayedItems.bind(this);
+    this.clearFilters = this.clearFilters.bind(this);
   }
 
   componentDidMount(props){
@@ -34,7 +45,6 @@ class Ratings extends React.Component {
 
         this.setState({
           ratings_meta: result,
-          count: recommend_total
         });
       }
     })
@@ -46,6 +56,20 @@ class Ratings extends React.Component {
         this.setState({item_name: result});
       }
     })
+
+    if (this.state.ratings_to_display.length === 0) {
+      this.getAllReviews(this.state.item_id, this.state.sort, 100, (error, result) => {
+        if (error) {
+          console.log('client reports retrieve reviews error: ', error.message);
+        } else {
+          this.setState({
+            count: result.length,
+            ratings: result,
+            ratings_to_display: result.slice(0, 2)
+          });
+        }
+      })
+    }
   }
 
   chooseHelpful(review_id) {
@@ -55,6 +79,35 @@ class Ratings extends React.Component {
         console.log('error at choose helpful in individual review: ', error);
       }
     })
+  }
+
+  flipFilters(val) {
+
+    let flipFilterState = this.state.filters;
+
+    if (val === '1 stars') {
+      flipFilterState[0] = !flipFilterState[0];
+      this.setState({filters: flipFilterState})
+    } else if (val === '2 stars') {
+      flipFilterState[1] = !flipFilterState[1];
+      this.setState({filters: flipFilterState})
+    } else if (val === '3 stars') {
+      flipFilterState[2] = !flipFilterState[2];
+      this.setState({filters: flipFilterState})
+    } else if (val === '4 stars') {
+      flipFilterState[3] = !flipFilterState[3];
+      this.setState({filters: flipFilterState})
+    } else if (val === '5 stars') {
+      flipFilterState[4] = !flipFilterState[4];
+      this.setState({filters: flipFilterState})
+    }
+  }
+
+  clearFilters() {
+    this.setState({
+      filters: [false, false, false, false, false],
+      any_filters: false
+    });
   }
 
   async putMarkHelpful(review_id, callback) {
@@ -115,14 +168,80 @@ class Ratings extends React.Component {
       });
   }
 
+  filterData() {
+
+    if (this.state.ratings.length > 0) {
+      let array = this.state.ratings
+      let results = [];
+
+      if (!this.state.filters.includes(true)) {
+        results = array;
+      } else {
+        for (let i = 0; i < array.length; i++) {
+          for (let j = 0; j < 5; j++) {
+            if (this.state.filters[j] === true && j + 1 === parseInt(array[i].rating)) {
+              results.push(array[i]);
+            }
+          }
+        }
+      }
+      this.setState({
+        ratings_to_display: results.slice(0, this.state.count_to_display),
+        any_filters: this.state.filters.includes(true)
+      });
+    }
+  }
+
+  handleSort(val) {
+
+    this.setState({
+      sort: val,
+    }, () => {
+        this.getAllReviews(this.state.item_id, this.state.sort, this.state.count, (error, result) => {
+          if (error) {
+            console.log('ratings list reports retrieve reviews error: ', error.message);
+          } else {
+            this.setState({
+              ratings: result,
+              ratings_to_display: result.slice(0, this.state.count_to_display)
+            });
+          }
+        })
+      }
+    )
+  }
+
+  moreReviews() {
+
+    let howMany = this.state.count_to_display + 2;
+    let reviewsToMove = this.state.ratings.slice(0, howMany);
+
+    this.setState((state, props) => ({
+      count_to_display: howMany,
+      ratings_to_display: reviewsToMove
+    }));
+  }
+
+  updateDisplayedItems(result) {
+
+    this.setState({
+      ratings: result,
+      ratings_to_display: result.slice(0, 2)
+    });
+  }
+
   render() {
 
     return (
       <div data-testid="ratings" className="ratings-widget">
         <a id="reviews-link"></a>
         <h3>RATINGS & REVIEWS</h3>
-        <br></br><RatingsMeta className="ratings_meta" ratings_meta={this.state.ratings_meta}></RatingsMeta><RatingsList className="ratings_list" ratings_meta={this.state.ratings_meta} 
-        count={this.state.count} item_name={this.state.item_name} chooseHelpful={this.chooseHelpful} putMarkHelpful={this.putMarkHelpful} getAllReviews={this.getAllReviews.bind(this)}></RatingsList>
+        <br></br><RatingsMeta item_id={this.state.item_id} sort={this.state.sort} filters={this.state.filters} className="ratings_meta" ratings_meta={this.state.ratings_meta} 
+        getAllReviews={this.getAllReviews.bind(this)} clearFilters={this.clearFilters} count={this.state.count} flip_filters={this.flipFilters} filter_data={this.filterData} 
+        any_filters={this.state.any_filters} ></RatingsMeta><RatingsList className="ratings_list" updateDisplayedItems={this.updateDisplayedItems} moreReviews={this.moreReviews} 
+        handleSort={this.handleSort} ratings_to_display={this.state.ratings_to_display} ratings_meta={this.state.ratings_meta} filters={this.state.filters}
+        count={this.state.count} count_to_display={this.state.count_to_display} item_name={this.state.item_name} chooseHelpful={this.chooseHelpful} putMarkHelpful={this.putMarkHelpful}
+        getAllReviews={this.getAllReviews.bind(this)} all_reviews={this.state.ratings}></RatingsList>
       </div>
     );
   }
