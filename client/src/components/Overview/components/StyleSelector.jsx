@@ -20,7 +20,7 @@ class StyleSelector extends React.Component {
               return (
               <span key={index} className="style-img-background">
                 {this.props.selectedStyle === index && checkmark}
-                <img className="style-img" id={index} src={style} onClick={this.props.selectStyle}></img>
+                <img alt="style type thumbnail" className="style-img" id={index} src={style} onClick={this.props.selectStyle}></img>
               </span>)
           })}
         </div>

@@ -93,7 +93,7 @@ class ImageGallery extends React.Component {
       <>
         {this.state.zoom ? (
         <figure id="magnifying_area">
-          <img id="magnifying_img" src={this.props.photo} onClick={this.zoomOut} onMouseMove={this.zoomImage} onMouseLeave={this.unzoomImage}></img>
+          <img alt="magnified main image" id="magnifying_img" src={this.props.photo} onClick={this.zoomOut} onMouseMove={this.zoomImage} onMouseLeave={this.unzoomImage}></img>
         </figure>
          ) : null}
         <div className="image-gallery" data-testid="image-gallery">
@@ -101,12 +101,12 @@ class ImageGallery extends React.Component {
             <div className="thumbnail-list">
               {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(range, (photo, index) => {
                 return thumbnailIndex === index ?
-                  (<img className="image-gallery-thumbnail" src={photo.url} key={index} id={index} style={{border: '3px solid #8e9efa'}}></img>) :
-                  (<img className="image-gallery-thumbnail" src={photo.url} key={index} id={index} onClick={this.props.changePhoto}></img>)
+                  (<img alt="image thumbnail" className="image-gallery-thumbnail" src={photo.url} key={index} id={index} style={{border: '3px solid #8e9efa'}}></img>) :
+                  (<img alt="image thumbnail" className="image-gallery-thumbnail" src={photo.url} key={index} id={index} onClick={this.props.changePhoto}></img>)
                 }) : null
               }
             </div>
-            <img className="main-gallery" src={this.props.photo} onClick={this.openModal}></img>
+            <img alt="main gallery image" className="main-gallery" src={this.props.photo} onClick={this.openModal}></img>
             {this.props.currentPhoto === 0 ?
             <FontAwesomeIcon className='backward' onClick={this.props.backward} icon={faAngleLeft} size='2x' style={{display: 'none'}}></FontAwesomeIcon> :
             <FontAwesomeIcon className='backward' onClick={this.props.backward} icon={faAngleLeft} size='2x'></FontAwesomeIcon>}
@@ -122,7 +122,7 @@ class ImageGallery extends React.Component {
           <div className="modal-buttons">
             <FontAwesomeIcon className='modal-back' onClick={this.props.backward} icon={faAngleLeft} size='2x' color="white"></FontAwesomeIcon>
             <FontAwesomeIcon className='modal-forward' onClick={this.props.forward} icon={faAngleRight} size='2x' color="white"></FontAwesomeIcon>
-            <img className="modal-image" src={this.props.photo} onClick={this.zoomIn}></img>
+            <img alt="modal main image" className="modal-image" src={this.props.photo} onClick={this.zoomIn}></img>
           {this.props.styleData[this.props.selectedStyle] !== undefined ? _.map(range, (photo, index) => {
             return thumbnailIndex === index ?
               (<span className="modal-radio-button" type="radio" key={index} id={index} style={{color: '#8e9efa'}}>.</span>) :
