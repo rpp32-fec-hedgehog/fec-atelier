@@ -63,6 +63,10 @@
   list-style-type: none;
 }
 
+.link {
+  text-decoration: underline;
+}
+
 .star_counts {
   float:left;
 }

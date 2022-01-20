@@ -31,7 +31,6 @@ class RatingsList extends React.Component {
       if (error) {
         console.log('client reports retrieve reviews error: ', error.message);
       } else {
-        console.log('result of query in list: ', result);
         this.props.updateDisplayedItems(result);
       }
     })
@@ -39,7 +38,6 @@ class RatingsList extends React.Component {
 
   moreReviews() {
     if (this.props) {
-      console.log('props in list: ', this.props);
       this.props.moreReviews();
     }
   }
@@ -59,12 +57,11 @@ class RatingsList extends React.Component {
         }
       }
     }
-    console.log('results: ', results);
     this.setState({ratings: results});
   }
 
   render(props) {
-    console.log('props in ratings list: ', this.props.ratings_to_display);
+
     const chooseHelpful = this.props.chooseHelpful;
 
     const putMarkHelpful= this.props.putMarkHelpful;
