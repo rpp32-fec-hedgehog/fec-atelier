@@ -11,7 +11,7 @@ class NewReview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_id: 0,
+      product_id: this.props.item_name,
       rating: 0,
       summary: '',
       body: '',
@@ -21,6 +21,7 @@ class NewReview extends React.Component {
       name: '',
       email: '',
       photos: [],
+      thumbnails: <></>,
       characteristics: {},
       modalOpen: false,
       stars: ['images/white_star.png', 'images/white_star.png', 'images/white_star.png', 'images/white_star.png', 'images/white_star.png'],
@@ -36,6 +37,7 @@ class NewReview extends React.Component {
     this.submitReview = this.submitReview.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleRecommendChange = this.handleRecommendChange.bind(this);
+    this.updateCharacteristics = this.updateCharacteristics.bind(this);
   }
 
   openModal(e) {
@@ -49,6 +51,7 @@ class NewReview extends React.Component {
   closeModal(e) {
     e.preventDefault();
     this.setState({modalOpen: false, invalid: ''});
+    //refresh questions list
   }
 
   chooseStars(e) {
@@ -77,7 +80,8 @@ class NewReview extends React.Component {
 
     this.setState({
       stars: newStars,
-      star_meaning: newMeaning
+      star_meaning: newMeaning,
+      rating: starNum
     });
   }
 
@@ -115,7 +119,6 @@ class NewReview extends React.Component {
 
   addPhotos(e) {
     e.preventDefault();
-    console.log('cli8ck');
     const client = filestack.init(API_KEYS.FILESTACK_API_KEY);
     let options = {
       fromSources: ['local_file_system'],
@@ -148,11 +151,13 @@ class NewReview extends React.Component {
     client.picker(options).open();
   }
 
+  updateCharacteristics(characteristic, value, characteristics) {
+    console.log('state pushed up to new review: ', characteristic, value, characteristics)
+  }
+
   submitReview(e) {
     e.preventDefault();
     console.log('submit review clicked: ', e);
-    //let questionData = {};
-    //validate and send
     let warning = 'You must enter the following: '
 
     if (this.state.star_meaning === '') {
@@ -162,25 +167,58 @@ class NewReview extends React.Component {
     if (this.state.recommend_chosen === false) {
       warning = warning + 'you must choose to recommend or not, '
     }
-    //how to validate characteristics?
 
     if (this.state.body.length < 50) {
       warning = warning + 'review body must be at least 50 characters, '
     }
-    //validating photos on upload
 
     if (this.state.name === '') {
       warning = warning + 'nickname cannot be blank, '
     }
 
     if (!this.state.email.includes('@') || !this.state.email.includes('.')) {
-      warning = warning + 'needs to include a proper email, '
+      warning = warning + 'needs to include a properly formatted email (Example: jackson11@email.com), '
     }
 
     if (warning.length > 30) {
-      alert(warning);
+      let trimmedAlert = warning.substr(0, warning.length - 2);
+      alert(trimmedAlert);
+    } else {
+      let dataObject = {
+        product_id: this.state.product_id,
+        rating: this.state.rating,
+        summary: this.state.summary,
+        body: this.state.body,
+        recommend: this.state.recommend,
+        name: this.state.name,
+        email: this.state.email,
+        photos: this.state.photos,
+        characteristics: charObject
+      };
+      this.postNewReview(dataObject);
+      //send data, then...
+      // this.setState({invalid: '', photos: []})
+      // this.closeModal(e);
+      //refresh to show data. Doms:
+      // this.props.getQAData();
     }
-    //if passes validation, close the model
+  }
+
+  async postNewReview(dataObject, callback) {
+
+    await axios.post('/reviews/question/new_review', {
+      data: dataObject
+      // data : {
+      //   "review_id" : review_id
+      // }
+    })
+      .then((response) => {
+        callback(null, response.data);
+      })
+      .catch((error) => {
+        console.log('error posting new review: ', error);
+        callback(error);
+      })
   }
 
   render(props) {
@@ -226,12 +264,11 @@ class NewReview extends React.Component {
               &nbsp;<span>{this.state.star_meaning}</span>
               <br></br><br></br>
               <div onChange={this.handleRecommendChange} value={this.state.recommend}>Do you recommend this product?*
-              {/* buggy */}
-                <input type="radio" value="true" name="recommend" checked="checked"/> Yes
+                <input type="radio" value="true" name="recommend"/> Yes
                 <input type="radio" value="false" name="recommend" /> No
               </div>
               <div>
-                <InputProductBreakdowns characteristics={characteristics}></InputProductBreakdowns>
+                <InputProductBreakdowns characteristics={characteristics} update_characteristics={this.updateCharacteristics}></InputProductBreakdowns>
               </div>
               <br></br><br></br><br></br><br></br><br></br><br></br>
               <br></br><br></br><br></br><br></br><br></br><br></br>
