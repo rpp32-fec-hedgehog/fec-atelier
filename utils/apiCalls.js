@@ -252,6 +252,7 @@ const newReview = (reviewData, callback) => {
   let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews`;
 
   reviewData.product_id = Number(reviewData.product_id);
+  reviewData.recommend = Boolean(reviewData.recommend);
 
   return axios.post(endpoint, reviewData, {
     headers : {
@@ -260,10 +261,9 @@ const newReview = (reviewData, callback) => {
   })
   .then((response => {
     callback(null, response.data);
-    //console.log('response data: ', response.data);
   }))
   .catch((err) => {
-    console.log('Error marking submitting new review: ', err)
+    console.log('Error submitting new review: ', err)
   })
 }
 

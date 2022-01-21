@@ -4,31 +4,64 @@ class IndividualInputProductBreakdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      characteristic: props.characteristic,
-      selectedRadio: 'none selected'
+      characteristic: this.props.characteristic,
+      rating: 0,
+      selectedRadio: 'none selected',
+      characteristics: this.props.characteristics_obj
     }
     this.updateRadial = this.updateRadial.bind(this);
   }
 
   updateRadial(e) {
-    console.log('radial clicked: ', e.target.value);
-    this.setState({selectedRadio: e.target.value})
+
+    let values = [];
+
+    if (this.state.characteristic === 'Comfort') {
+
+      values = ['Uncomfortable', 'Slightly uncomfortable', 'Ok', 'Comfortable', 'Perfect'];
+
+    } else if (this.state.characteristic === 'Fit') {
+
+      values = ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long'];
+
+    } else if (this.state.characteristic === 'Length') {
+
+      values = ['Runs short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'];
+
+    } else if (this.state.characteristic === 'Quality') {
+
+      values = ['Poor', 'Below average', 'What I expected', 'Pretty great', 'Perfect'];
+
+    } else if (this.state.characteristic === 'Size') {
+
+      values = ['A size too small', '½ a size too small', 'Perfect', '½ a size too big', 'A size too wide'];
+
+    } else if (this.state.characteristic === 'Width') {
+
+      values = ['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide'];
+
+    }
+
+    this.setState({
+      rating: e.target.value,
+      selectedRadio: values[e.target.value - 1]
+    })
+
+    this.props.update_characteristics(this.state.characteristic, e.target.value, this.state.characteristics)
   }
+
+
 
   render(props) {
 
-    let characteristic = this.state.characteristic;
+    const characteristic = this.state.characteristic;
+    const rating = this.state.rating
     let label1 = '';
-    let label2 = '';
-    let label3 = '';
-    let label4 = '';
     let label5 = '';
 
+    //I *can* refactor this to be just over a sixth of the size, but it's downstream on the agenda.
     if (characteristic === 'Comfort') {
       label1 = 'Uncomfortable';
-      label2 = 'Slightly uncomfortable';
-      label3 = 'Ok';
-      label4 = 'Comfortable';
       label5 = 'Perfect';
 
       return (
@@ -37,16 +70,16 @@ class IndividualInputProductBreakdown extends React.Component {
             <span className="indent_less">{this.state.selectedRadio}</span>
             <br></br>
           <span>
-            <div className="left">{characteristic}</div>
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label1} name={characteristic}/>
+            <div className="left">{characteristic}*</div>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="1" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label2} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="2" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label3} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="3" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label4} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="4" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label5} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="5" name={characteristic}/>
             <br></br>
           </span>
           <span className="left indent">{label1}</span><span className="right">{label5}</span>
@@ -57,9 +90,6 @@ class IndividualInputProductBreakdown extends React.Component {
       )
     } else if (characteristic === 'Fit') {
       label1 = 'Runs tight';
-      label2 = 'Runs slightly tight';
-      label3 = 'Perfect';
-      label4 = 'Runs slightly long';
       label5 = 'Runs long';
 
       return (
@@ -68,17 +98,17 @@ class IndividualInputProductBreakdown extends React.Component {
             <span className="indent">{this.state.selectedRadio}</span>
             <br></br>
           <span>
-            {characteristic}
+            {characteristic}*
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <input onClick={this.updateRadial.bind(this)} type="radio" value={label1} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="1" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label2} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="2" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label3} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="3" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label4} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="4" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label5} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="5" name={characteristic}/>
             <br></br>
           </span>
           <span className="left indent">{label1}</span><span className="right">{label5}</span>
@@ -89,9 +119,6 @@ class IndividualInputProductBreakdown extends React.Component {
       )
     } else if (characteristic === 'Length') {
       label1 = 'Runs short';
-      label2 = 'Runs slightly short';
-      label3 = 'Perfect';
-      label4 = 'Runs slightly long';
       label5 = 'Runs long';
 
       return (
@@ -100,17 +127,17 @@ class IndividualInputProductBreakdown extends React.Component {
           <span className="indent">{this.state.selectedRadio}</span>
             <br></br>
           <span>
-            {characteristic}
+            {characteristic}*
             &nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label1} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="1" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label2} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="2" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label3} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="3" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label4} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="4" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label5} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="5" name={characteristic}/>
             <br></br>
           </span>
           <span className="left indent">{label1}</span><span className="right">{label5}</span>
@@ -121,9 +148,6 @@ class IndividualInputProductBreakdown extends React.Component {
       )
     } else if (characteristic === 'Quality') {
       label1 = 'Poor';
-      label2 = 'Below average';
-      label3 = 'What I expected';
-      label4 = 'Pretty great';
       label5 = 'Perfect';
 
       return (
@@ -132,17 +156,17 @@ class IndividualInputProductBreakdown extends React.Component {
           <span className="indent">{this.state.selectedRadio}</span>
             <br></br>
           <span>
-            {characteristic}
+            {characteristic}*
             &nbsp;
-          <input onClick={this.updateRadial.bind(this)} type="radio" value={label1} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="1" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label2} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="2" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label3} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="3" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label4} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="4" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label5} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="5" name={characteristic}/>
             <br></br>
           </span>
           <span className="left indent">{label1}</span><span className="right">{label5}</span>
@@ -153,9 +177,6 @@ class IndividualInputProductBreakdown extends React.Component {
       )
     } else if (characteristic === 'Size') {
       label1 = 'A size too small';
-      label2 = '½ a size too small';
-      label3 = 'Perfect';
-      label4 = '½ a size too big';
       label5 = 'A size too wide';
 
       return (
@@ -164,17 +185,17 @@ class IndividualInputProductBreakdown extends React.Component {
             <span className="indent">{this.state.selectedRadio}</span>
             <br></br>
           <span>
-            {characteristic}
+            {characteristic}*
             &nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label1} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="1" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label2} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="2" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label3} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="3" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label4} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="4" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label5} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="5" name={characteristic}/>
             <br></br>
           </span>
           <span className="left indent">{label1}</span><span className="right">{label5}</span>
@@ -185,9 +206,6 @@ class IndividualInputProductBreakdown extends React.Component {
       )
     } else if (characteristic === 'Width') {
       label1 = 'Too narrow';
-      label2 = 'Slightly narrow';
-      label3 = 'Perfect';
-      label4 = 'Slightly wide';
       label5 = 'Too wide';
 
       return (
@@ -196,17 +214,17 @@ class IndividualInputProductBreakdown extends React.Component {
             <span className="indent">{this.state.selectedRadio}</span>
             <br></br>
           <span>
-            {characteristic}
+            {characteristic}*
             &nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label1} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="1" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label2} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="2" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label3} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="3" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label4} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="4" name={characteristic}/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input onClick={this.updateRadial.bind(this)} type="radio" value={label5} name={characteristic}/>
+            <input onClick={this.updateRadial.bind(this)} type="radio" value="5" name={characteristic}/>
             <br></br>
           </span>
           <span className="left indent">{label1}</span><span className="right">{label5}</span>
