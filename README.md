@@ -8,6 +8,11 @@ FEC Atelier runs and is tested on `Chrome`, `Firefox`, `Edge`, and `Safari` brow
 - [Product Overview](#product-overview)
 - [Related Items \& Outfit Creation](#related-items--outfit-creation)
 - [Questions \& Answers](#questions--answers)
+  - [Q\&A View](#qa-view)
+  - [Search Bar](#search-bar)
+  - [Helpfulness Voting \& Reporting](#helpfulness-voting--reporting)
+  - [Expanded Views](#expanded-views)
+  - [Ask \& Answer Questions](#ask--answer-questions)
 - [Ratings \& Reviews](#ratings--reviews)
 
 ## Features
@@ -15,7 +20,7 @@ FEC Atelier runs and is tested on `Chrome`, `Firefox`, `Edge`, and `Safari` brow
 ### Related Items \& Outfit Creation
 
 ### Questions \& Answers
-#### Widget View
+#### Q\&A View
 Displays two questions, with two answers per question, on page load.
 
 ![Q\&A View](https://drive.google.com/uc?export=view&id=1kw0QQd4WYkBUJ_lGu_3tqEuQ2BJG1Qnn)
