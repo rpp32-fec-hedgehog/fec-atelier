@@ -180,20 +180,21 @@
 }
 
 .star_bar {
-  width: 600px;
+  width: 100%;
   left: 3%;
   height: 15px;
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="40" ><rect fill="green" stroke-width="0" width="400" height="30"/></svg>');
   position: absolute;
 }
 
-.star_bar:before {
-  content:"";
-  position: absolute;
-  width: 605px;
+.star_bar_under {
+
+  width: 37%;
+  left: 3%;
   height: 15px;
-  z-index:-1;
+  z-index: -1;
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="40" ><rect fill="gray" stroke-width="0" width="400" height="30"/></svg>');
+  position: absolute;
 }
 
 .star_bar_outer {

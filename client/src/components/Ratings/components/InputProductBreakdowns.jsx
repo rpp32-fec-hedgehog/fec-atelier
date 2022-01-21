@@ -16,11 +16,9 @@ const InputProductBreakdowns = (props) => {
       characteristicsObj[key] = outerCharacteristics[key].id;
     }
 
-    //console.log('characteristics object: ', characteristicsObj);
-
     let listItems = characteristicsList.map((characteristic) => {
         return (
-          <IndividualInputProductBreakdown key={characteristic} characteristic={characteristic} 
+          <IndividualInputProductBreakdown key={characteristic} characteristic={characteristic}
           characteristics_obj={characteristicsObj} update_characteristics={props.update_characteristics}/>
         )
       });
