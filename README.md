@@ -19,19 +19,19 @@ FEC Atelier runs and is tested on `Chrome`, `Firefox`, `Edge`, and `Safari` brow
 
 ## Installation
 ```
-$ npm install
+npm install
 ```
 
 ## Usage
 App Initialization:
 ```
-$ npm start
-$ npm run react-dev
+npm start
+npm run react-dev
 ```
 
 App Deployment (AWS):
 ```
-$ npm run vm
+npm run vm
 ```
 
 Default Port: `3000`
