@@ -183,6 +183,7 @@ const submitQuestion = (question, callback) => {
     }
   })
   .then(res => {
+    console.log('ASDFASDFASDF ', res);
     callback(res);
   })
   .catch(err => {

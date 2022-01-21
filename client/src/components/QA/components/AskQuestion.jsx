@@ -96,7 +96,7 @@ class AskQuestion extends React.Component {
         data: questionData,
         success: () => {
           this.closeModal(e);
-          this.props.getQAData();
+          this.props.getQAData(true);
         },
         error: err => {
           alert(err);
