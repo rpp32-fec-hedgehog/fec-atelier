@@ -157,9 +157,9 @@
   position: relative;
 }
 
-/* .clickable_single_star {
-
-} */
+.review_modal_input {
+  font-size: xx-small;
+}
 
 .rating {
   width: 0;
