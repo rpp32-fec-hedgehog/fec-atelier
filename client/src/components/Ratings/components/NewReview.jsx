@@ -6,12 +6,14 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import StarRating from './StarRating.jsx';
 import InputProductBreakdowns from './InputProductBreakdowns.jsx';
 import API_KEYS from '../../../../../env/config.js';
+import axios from 'axios';
+import _ from 'underscore';
 
 class NewReview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_id: this.props.item_name,
+      product_id: this.props.item_id,
       rating: 0,
       summary: '',
       body: '',
@@ -49,8 +51,8 @@ class NewReview extends React.Component {
   }
 
   closeModal(e) {
-    e.preventDefault();
-    this.setState({modalOpen: false, invalid: ''});
+    //e.preventDefault();
+    this.setState({modalOpen: false});
     //refresh questions list
   }
 
@@ -152,12 +154,17 @@ class NewReview extends React.Component {
   }
 
   updateCharacteristics(characteristic, value, characteristics) {
-    console.log('state pushed up to new review: ', characteristic, value, characteristics)
+    let workingCharacteristics = this.state.characteristics;
+    let key = characteristics[characteristic].toString();
+    workingCharacteristics[key] = parseInt(value);
+    this.setState({
+      characteristics: workingCharacteristics
+    })
   }
 
   submitReview(e) {
     e.preventDefault();
-    console.log('submit review clicked: ', e);
+
     let warning = 'You must enter the following: '
 
     if (this.state.star_meaning === '') {
@@ -183,9 +190,10 @@ class NewReview extends React.Component {
     if (warning.length > 30) {
       let trimmedAlert = warning.substr(0, warning.length - 2);
       alert(trimmedAlert);
+
     } else {
       let dataObject = {
-        product_id: this.state.product_id,
+        product_id: this.props.item_id,
         rating: this.state.rating,
         summary: this.state.summary,
         body: this.state.body,
@@ -193,14 +201,20 @@ class NewReview extends React.Component {
         name: this.state.name,
         email: this.state.email,
         photos: this.state.photos,
-        characteristics: charObject
+        characteristics: this.state.characteristics
       };
-      this.postNewReview(dataObject);
-      //send data, then...
-      // this.setState({invalid: '', photos: []})
-      // this.closeModal(e);
-      //refresh to show data. Doms:
-      // this.props.getQAData();
+
+      this.postNewReview(dataObject, (error, result) => {
+        if (error) {
+          console.log('error sending new review from client: ', error);
+        } else {
+          console.log('success posting new review: ', result);
+        }
+      });
+      this.closeModal();
+
+      //refresh to show data.
+
     }
   }
 
@@ -208,15 +222,11 @@ class NewReview extends React.Component {
 
     await axios.post('/reviews/question/new_review', {
       data: dataObject
-      // data : {
-      //   "review_id" : review_id
-      // }
     })
       .then((response) => {
         callback(null, response.data);
       })
       .catch((error) => {
-        console.log('error posting new review: ', error);
         callback(error);
       })
   }
