@@ -14,7 +14,28 @@ FEC Atelier runs and is tested on `Chrome`, `Firefox`, `Edge`, and `Safari` brow
 ## Features
 #### Product Overview
 #### Related Items \& Outfit Creation
+
 #### Questions \& Answers
+##### Widget View
+Displays two questions, with two answers per question, on page load.
+
+![Q\&A View](https://drive.google.com/file/d/1kw0QQd4WYkBUJ_lGu_3tqEuQ2BJG1Qnn/view?usp=sharing)
+
+##### Search Bar
+Search for questions with matching text.
+
+##### Helpfulness Voting & Reporting
+Mark questions and/or answers as helpful.
+
+Flag answers for review by reporting them.
+
+##### Expanded Views
+Loads additional questions and/or answers.
+
+##### Ask & Answer Questions
+
+
+
 #### Ratings \& Reviews
 
 ## Installation
