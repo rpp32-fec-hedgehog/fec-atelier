@@ -26,6 +26,8 @@ npm install
 App Initialization:
 ```
 npm start
+```
+```
 npm run react-dev
 ```
 
