@@ -1,9 +1,9 @@
 # FEC Atelier
 
 ## Overview
-FEC Atelier is a client-facing retail web-portal created for [company name].
-It offers functionality for product overviews, related items, outfit creation, questions & answers, and ratings & reviews.
-FEC Atelier runs and is tested on Chrome, Firefox, Edge, and Safari browsers.
+`FEC Atelier` is a client-facing retail web-portal created for **[company name]**.
+It offers functionality for `product overviews`, `related items & outfit creation`, `questions & answers`, and `ratings & reviews`.
+FEC Atelier runs and is tested on `Chrome`, `Firefox`, `Edge`, and `Safari` browsers.
 
 ## Table of Contents
 - [Product Overview](#product-overview)
@@ -12,10 +12,10 @@ FEC Atelier runs and is tested on Chrome, Firefox, Edge, and Safari browsers.
 - [Ratings \& Reviews](#ratings--reviews)
 
 ## Features
-### Product Overview
-### Related Items \& Outfit Creation
-### Questions \& Answers
-### Ratings \& Reviews
+#### Product Overview
+#### Related Items \& Outfit Creation
+#### Questions \& Answers
+#### Ratings \& Reviews
 
 ## Installation
 `$ npm install`
