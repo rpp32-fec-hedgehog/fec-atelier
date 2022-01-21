@@ -126,13 +126,14 @@ class Questions extends React.Component {
                     <span className="vertical-bar">|</span>
                     <AnswerQuestion question_id={q.question_id} getQAData={this.props.getQAData}
                       product_id={this.props.product_id}
+                      product_name={this.props.product_name}
                       question_body={q.question_body}
                       render={this.props.render} />
                   </div>
                 </div>
                 <div className="a-label-list">
                   {this.answersExist(q.answers)}
-                  <AnswerList answers={q.answers} question_id={q.question_id} product_name={this.props.product_name}
+                  <AnswerList answers={q.answers} question_id={q.question_id}
                     updateAHelp={this.props.updateAHelp}
                     render={this.props.render} />
                 </div>
