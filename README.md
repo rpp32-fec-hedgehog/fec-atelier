@@ -18,7 +18,7 @@ FEC Atelier runs and is tested on `Chrome`, `Firefox`, `Edge`, and `Safari` brow
 #### Ratings \& Reviews
 
 ## Installation
-````
+```
 $ npm install
 ```
 
