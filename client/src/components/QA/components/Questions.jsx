@@ -66,7 +66,7 @@ class Questions extends React.Component {
   handleScroll(e) {
     e.preventDefault();
     const wrapped = $('.questions').get(0);
-    if (wrapped.offsetHeight + wrapped.scrollTop >= wrapped.scrollHeight) {
+    if (wrapped.offsetHeight + wrapped.scrollTop >= wrapped.scrollHeight - 1) {
       this.scrollUpdate(e);
     }
   }

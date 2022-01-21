@@ -95,7 +95,6 @@ class AskQuestion extends React.Component {
         method: 'POST',
         data: questionData,
         success: (res) => {
-          console.log('FOR THE LOVE OF GOD WORK ', res)
           this.closeModal(e);
           this.props.getQAData(true);
         },

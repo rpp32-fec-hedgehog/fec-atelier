@@ -176,7 +176,6 @@ const submitAnswer = (question_id, answer, callback) => {
 const submitQuestion = (question, callback) => {
   let endpoint = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions`;
   question.product_id = Number(question.product_id);
-  console.log('FFS ', question);
 
   return axios.post(endpoint, question, {
     headers: {
@@ -184,7 +183,6 @@ const submitQuestion = (question, callback) => {
     }
   })
   .then(res => {
-    console.log('WHY ', res);
     callback(res);
   })
   .catch(err => {
