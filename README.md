@@ -1,6 +1,5 @@
 # FEC Atelier
 
-## Overview
 `FEC Atelier` is a client-facing retail web-portal created for **[company name]**.
 It offers functionality for `product overviews`, `related items & outfit creation`, `questions & answers`, and `ratings & reviews`.
 FEC Atelier runs and is tested on `Chrome`, `Firefox`, `Edge`, and `Safari` browsers.
