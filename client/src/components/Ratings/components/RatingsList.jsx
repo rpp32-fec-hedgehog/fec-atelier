@@ -78,8 +78,8 @@ class RatingsList extends React.Component {
 
     let ratings = this.props.ratings_to_display.map((rating) => {
       return (
-          <IndividualReview chooseHelpful={chooseHelpful} putMarkHelpful={putMarkHelpful} key={rating.review_id} review_id={rating.review_id} 
-          star_rating={rating.rating} summary={rating.summary} date={rating.date} body={rating.body} recommend={rating.recommend} 
+          <IndividualReview chooseHelpful={chooseHelpful} putMarkHelpful={putMarkHelpful} key={rating.review_id} review_id={rating.review_id}
+          star_rating={rating.rating} summary={rating.summary} date={rating.date} body={rating.body} recommend={rating.recommend}
           reviewer_name={rating.reviewer_name} response={rating.response} helpfulness={rating.helpfulness} photos={rating.photos}></IndividualReview>
       )
     });
@@ -102,7 +102,7 @@ class RatingsList extends React.Component {
           </div>
           <div>
             <span>{(count_to_display < recommend_total) ? <div><button className="btn" onClick={this.moreReviews}>MORE REVIEWS</button></div>: null}<NewReview
-            item_name={this.props.item_name} ratings_characteristics={this.props.ratings_meta.characteristics} className="new_review"></NewReview></span>
+            item_name={this.props.item_name} item_id={this.props.item_id} ratings_characteristics={this.props.ratings_meta.characteristics} className="new_review"></NewReview></span>
           </div>
       </div>
     )
