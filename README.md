@@ -8,15 +8,15 @@ FEC Atelier runs and is tested on Chrome, Firefox, Edge, and Safari browsers.
 
 # Table of Contents
 - [Product Overview](#product-overview)
-- [Related Items & Outfit Creation](#related-items-\&-outfit-creation)
+- [Related Items & Outfit Creation](#related-items-outfit-creation)
 - [Questions & Answers](#questions-answers)
 - [Ratings & Reviews](#ratings-reviews)
 
 # Features
 ### Product Overview
-### Related Items \& Outfit Creation
-### Questions \& Answers
-### Ratings \& Reviews
+### Related Items & Outfit Creation
+### Questions & Answers
+### Ratings & Reviews
 
 # Installation
 `$ npm install`
