@@ -261,7 +261,6 @@ const newReview = (reviewData, callback) => {
   })
   .then((response => {
     callback(null, response.data);
-    console.log('response data: ', response.data);
   }))
   .catch((err) => {
     console.log('Error submitting new review: ', err)
