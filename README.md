@@ -12,31 +12,40 @@ FEC Atelier runs and is tested on `Chrome`, `Firefox`, `Edge`, and `Safari` brow
 - [Ratings \& Reviews](#ratings--reviews)
 
 ## Features
-#### Product Overview
-#### Related Items \& Outfit Creation
+### Product Overview
+### Related Items \& Outfit Creation
 
-#### Questions \& Answers
-##### Widget View
+### Questions \& Answers
+#### Widget View
 Displays two questions, with two answers per question, on page load.
 
-![Q\&A View](https://drive.google.com/file/d/1kw0QQd4WYkBUJ_lGu_3tqEuQ2BJG1Qnn/view?usp=sharing)
+![Q\&A View](https://drive.google.com/uc?export=view&id=1kw0QQd4WYkBUJ_lGu_3tqEuQ2BJG1Qnn)
 
-##### Search Bar
+#### Search Bar
 Search for questions with matching text.
 
-##### Helpfulness Voting & Reporting
-Mark questions and/or answers as helpful.
+![Search Bar](https://drive.google.com/uc?export=view&id=1k9sVifM-Uz0sH3WGFQKViXDRAoGZ-7lL)
 
-Flag answers for review by reporting them.
+#### Helpfulness Voting & Reporting
+Mark questions and/or answers as helpful, as well as flag answers for review.
 
-##### Expanded Views
+![Helpfulness \& Reporting](https://drive.google.com/uc?export=view&id=1camDNICDXSZgF6zAUbOQnaRbC7_Ldclm)
+
+#### Expanded Views
 Loads additional questions and/or answers.
 
-##### Ask & Answer Questions
+![Expanded Views](https://drive.google.com/uc?export=view&id=1jY80BjmjkBgslNW4sGDz58gU2laP4-jb)
 
+#### Ask & Answer Questions
+Add a question to the database.
 
+![Ask](https://drive.google.com/uc?export=view&id=1rgnqSC1xezeQKfyoHExZxvqNSK2M6GJg)
 
-#### Ratings \& Reviews
+Add an answer to the database.
+
+![Answer](https://drive.google.com/uc?export=view&id=1LkMb2b05VVyJQh7DgOfqzIw3qB5H4OMP)
+
+### Ratings \& Reviews
 
 ## Installation
 ```
