@@ -124,7 +124,7 @@ class Questions extends React.Component {
                       </span>
                     </div>
                     <span className="vertical-bar">|</span>
-                    <AnswerQuestion question_id={q.question_id} getQAData={this.props.getQAData}
+                    <AnswerQuestion question_id={q.question_id} updateAnswers={this.props.updateAnswers}
                       product_id={this.props.product_id}
                       product_name={this.props.product_name}
                       question_body={q.question_body}

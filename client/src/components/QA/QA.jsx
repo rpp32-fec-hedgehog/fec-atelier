@@ -160,6 +160,17 @@ class QA extends React.Component {
     })
   }
 
+  updateAnswers(question_id, answer) {
+    let questions = this.state.originalQuestions.slice();
+    _.each(questions, (q, index) => {
+      if (q.question_id === question_id) {
+        questions[index]['answers'][answer.id] = answer;
+      }
+    })
+
+    this.setState({originalQuestions: questions});
+  }
+
   componentDidMount() {
     this.getQAData();
     this.getProductName();
@@ -173,6 +184,7 @@ class QA extends React.Component {
         <SearchQuestion searchQuestions={this.searchQuestions.bind(this)} render={this.props.render}/>
         <Questions questions={state.questions} updateQHelp={this.updateQuestionHelp.bind(this)}
             updateAHelp={this.updateAnswerHelp.bind(this)}
+            updateAnswers={this.updateAnswers.bind(this)}
             getQAData={this.getQAData.bind(this)}
             product_id={this.props.itemid}
             product_name={this.state.product_name}
