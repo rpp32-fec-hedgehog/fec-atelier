@@ -1,6 +1,5 @@
 # FEC Atelier
 
-## Overview
 `FEC Atelier` is a client-facing retail web-portal created for **[company name]**.
 It offers functionality for `product overviews`, `related items & outfit creation`, `questions & answers`, and `ratings & reviews`.
 FEC Atelier runs and is tested on `Chrome`, `Firefox`, `Edge`, and `Safari` browsers.
@@ -9,13 +8,48 @@ FEC Atelier runs and is tested on `Chrome`, `Firefox`, `Edge`, and `Safari` brow
 - [Product Overview](#product-overview)
 - [Related Items \& Outfit Creation](#related-items--outfit-creation)
 - [Questions \& Answers](#questions--answers)
+  - [Q\&A View](#qa-view)
+  - [Search Bar](#search-bar)
+  - [Helpfulness Voting \& Reporting](#helpfulness-voting--reporting)
+  - [Expanded Views](#expanded-views)
+  - [Ask \& Answer Questions](#ask--answer-questions)
 - [Ratings \& Reviews](#ratings--reviews)
 
 ## Features
-#### Product Overview
-#### Related Items \& Outfit Creation
-#### Questions \& Answers
-#### Ratings \& Reviews
+### Product Overview
+### Related Items \& Outfit Creation
+
+### Questions \& Answers
+#### Q\&A View
+Displays two questions, with two answers per question, on page load.
+
+![Q\&A View](https://drive.google.com/uc?export=view&id=1kw0QQd4WYkBUJ_lGu_3tqEuQ2BJG1Qnn)
+
+#### Search Bar
+Search for questions with matching text.
+
+![Search Bar](https://drive.google.com/uc?export=view&id=1k9sVifM-Uz0sH3WGFQKViXDRAoGZ-7lL)
+
+#### Helpfulness Voting & Reporting
+Mark questions and/or answers as helpful, as well as flag answers for review.
+
+![Helpfulness \& Reporting](https://drive.google.com/uc?export=view&id=1camDNICDXSZgF6zAUbOQnaRbC7_Ldclm)
+
+#### Expanded Views
+Loads additional questions and/or answers.
+
+![Expanded Views](https://drive.google.com/uc?export=view&id=1jY80BjmjkBgslNW4sGDz58gU2laP4-jb)
+
+#### Ask & Answer Questions
+Add a question to the database.
+
+![Ask](https://drive.google.com/uc?export=view&id=1rgnqSC1xezeQKfyoHExZxvqNSK2M6GJg)
+
+Add an answer to the database.
+
+![Answer](https://drive.google.com/uc?export=view&id=1LkMb2b05VVyJQh7DgOfqzIw3qB5H4OMP)
+
+### Ratings \& Reviews
 
 ## Installation
 ```
