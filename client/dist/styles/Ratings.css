@@ -180,7 +180,7 @@
 }
 
 .star_bar {
-  width: 100%;
+  /* width: 100%; */
   left: 3%;
   height: 15px;
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="40" ><rect fill="green" stroke-width="0" width="400" height="30"/></svg>');
@@ -188,7 +188,6 @@
 }
 
 .star_bar_under {
-
   width: 37%;
   left: 3%;
   height: 15px;

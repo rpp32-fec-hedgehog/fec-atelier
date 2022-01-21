@@ -3,8 +3,6 @@ import IndividualInputProductBreakdown from './IndividualInputProductBreakdown.j
 
 const InputProductBreakdowns = (props) => {
 
-  //console.log('props in input: ', props);
-
   if (props.characteristics) {
 
     const outerCharacteristics = props.characteristics;
