@@ -125,7 +125,8 @@ class QA extends React.Component {
     })
 
     if (typeof questionIndex === 'number') {
-      if (updatedQuestions[questionIndex].question_helpfulness > updatedQuestions[questionIndex - 1].question_helpfulness) {
+      let currentHelpfulness = updatedQuestions[questionIndex].question_helpfulness;
+      if (questionIndex !== 0 && currentHelpfulness > updatedQuestions[questionIndex - 1].question_helpfulness) {
         let placeholder = updatedQuestions[questionIndex];
         updatedQuestions[questionIndex] = updatedQuestions[questionIndex - 1];
         updatedQuestions[questionIndex - 1] = placeholder;
