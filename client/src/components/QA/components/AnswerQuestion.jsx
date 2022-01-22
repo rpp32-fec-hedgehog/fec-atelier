@@ -132,7 +132,6 @@ class AnswerQuestion extends React.Component {
         method: 'POST',
         data: answerData,
         success: () => {
-          this.setState({invalid: '', photos: []})
           this.closeModal(e);
           let newAnswer = {
             id: Math.floor(Math.random() * (6500000 - 6000000 + 1)) + 6000000,
@@ -144,6 +143,7 @@ class AnswerQuestion extends React.Component {
           };
 
           this.props.updateAnswers(this.props.question_id, newAnswer);
+          this.setState({invalid: '', photos: []})
         },
         error: err => {
           alert(err);
