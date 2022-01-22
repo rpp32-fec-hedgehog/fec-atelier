@@ -104,10 +104,14 @@ class Ratings extends React.Component {
   }
 
   clearFilters() {
+    let filterState = this.state.filters;
+    for (let i = 0; i < 5; i++) {
+      filterState[i] = false;
+    }
     this.setState({
-      filters: [false, false, false, false, false],
+      filters: filterState,
       any_filters: false
-    });
+  });
   }
 
   async putMarkHelpful(review_id, callback) {
@@ -171,10 +175,11 @@ class Ratings extends React.Component {
   filterData() {
 
     if (this.state.ratings.length > 0) {
-      let array = this.state.ratings
+      let array = this.state.ratings;
       let results = [];
 
       if (!this.state.filters.includes(true)) {
+
         results = array;
       } else {
         for (let i = 0; i < array.length; i++) {
@@ -237,7 +242,7 @@ class Ratings extends React.Component {
         <a id="reviews-link"></a>
         <h3>RATINGS & REVIEWS</h3>
         <br></br><RatingsMeta item_id={this.state.item_id} sort={this.state.sort} filters={this.state.filters} className="ratings_meta" ratings_meta={this.state.ratings_meta}
-        getAllReviews={this.getAllReviews.bind(this)} clearFilters={this.clearFilters} count={this.state.count} flip_filters={this.flipFilters} filter_data={this.filterData}
+        getAllReviews={this.getAllReviews.bind(this)} clear_filters={this.clearFilters} count={this.state.count} flip_filters={this.flipFilters} filter_data={this.filterData}
         any_filters={this.state.any_filters} ></RatingsMeta><RatingsList className="ratings_list" updateDisplayedItems={this.updateDisplayedItems} moreReviews={this.moreReviews}
         handleSort={this.handleSort} ratings_to_display={this.state.ratings_to_display} ratings_meta={this.state.ratings_meta} filters={this.state.filters} item_id={this.state.item_id}
         count={this.state.count} count_to_display={this.state.count_to_display} item_name={this.state.item_name} chooseHelpful={this.chooseHelpful} putMarkHelpful={this.putMarkHelpful}

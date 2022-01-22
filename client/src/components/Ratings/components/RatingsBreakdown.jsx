@@ -7,8 +7,13 @@ class RatingsMeta extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-
     }
+    this.callClearFilters = this.callClearFilters.bind(this);
+  }
+
+  callClearFilters() {
+    this.props.clear_filters();
+    this.props.filter_data();
   }
 
   render() {
@@ -79,7 +84,7 @@ class RatingsMeta extends React.Component {
           </div><br></br><br></br><br></br>
           <span className="percent_recommending">{percent_recommending}% of reviews recommend this product.</span><br></br><br></br>
           <h3>Rating Breakdown</h3>
-          {this.props.any_filters ? <span>Current filters: {filters} <span className="link" onClick={this.props.clearFilters} >Remove all filters?</span></span>: null}
+          {this.props.any_filters ? <span>Current filters: {filters} <span className="link" onClick={this.callClearFilters} >Remove all filters?</span></span>: null}
           <ul className="star_count_list">{star_counts}</ul>
           <ProductBreakdowns characteristics_list={characteristics_list}></ProductBreakdowns>
         </div>

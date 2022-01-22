@@ -17,7 +17,6 @@ class StarCount extends React.Component {
   render(props) {
 
     const star_count = this.props.star_count;
-    console.log('props in star count: ', star_count);
     const star_number = this.props.star_number;
     const bar_style = {
       width: star_count + '%'
