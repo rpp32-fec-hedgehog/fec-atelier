@@ -12,7 +12,10 @@ class ProductBreakdownItem extends React.Component {
 
     const value = this.props.char_count;
     const characteristic = this.props.characteristic;
-    const triangle_location = 340 * (value / 5);
+    const triangle_location = 37 * (value / 5);
+    const char_style = {
+      left: triangle_location + '%'
+    }
 
     let label1 = '';
     let label2 = '';
@@ -41,7 +44,7 @@ class ProductBreakdownItem extends React.Component {
       <li className="product_breakdown_list_item">
         <br></br>
         <span className="char_label_main">{characteristic}</span>
-        <span className="characteristic"></span><img className="triangle" style={{left: triangle_location}}src={'images/triangle.png'} alt='loading' />
+        <span className="characteristic"></span><img className="triangle" style={char_style} src={'images/triangle.png'} alt='loading' />
         <span className="left" >{label1}</span><span className="right">{label2}</span><br></br><br></br>
       </li>
     );

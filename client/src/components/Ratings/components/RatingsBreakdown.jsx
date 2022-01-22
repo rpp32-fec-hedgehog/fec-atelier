@@ -7,8 +7,13 @@ class RatingsMeta extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-
     }
+    this.callClearFilters = this.callClearFilters.bind(this);
+  }
+
+  callClearFilters() {
+    this.props.clear_filters();
+    this.props.filter_data();
   }
 
   render() {
@@ -48,7 +53,7 @@ class RatingsMeta extends React.Component {
       percent_recommending = (did_recommend / recommend_total * 100).toFixed(0);
 
       for (let i = 0; i < 5; i++) {
-        star_count_list.push({stars: i + 1, star_count: ((stars_count[i] / divisor) * 605).toFixed(0)})
+        star_count_list.push({stars: i + 1, star_count: ((stars_count[i] / divisor) * 37).toFixed(0)})
       }
 
       let star_counts = star_count_list.map((stars_counted) => {
@@ -70,12 +75,6 @@ class RatingsMeta extends React.Component {
         }
       }
 
-      let product_breakdowns = characteristics_list.map((characteristic) => {
-          return (
-              <ProductBreakdowns key={characteristic.id} star_number={characteristic.value} star_count={characteristic.inner_characteristic}></ProductBreakdowns>
-          )
-        });
-
         return(
 
         <div data-testid="ratings-breakdown" className="ratings_meta">
@@ -84,9 +83,10 @@ class RatingsMeta extends React.Component {
             <div className="star_rating_container"><ul><StarRating className="ratings_breakdown_stars" star_rating={ratings_average}></StarRating></ul></div>
           </div><br></br><br></br><br></br>
           <span className="percent_recommending">{percent_recommending}% of reviews recommend this product.</span><br></br><br></br>
-          <h3>Rating Breakdown</h3>
-          {this.props.any_filters ? <span>Current filters: {filters} <span className="link" onClick={this.props.clearFilters} >Remove all filters?</span></span>: null}
-          <ul className="star_count_list">{star_counts}<ProductBreakdowns characteristics_list={characteristics_list}></ProductBreakdowns></ul>
+          <span className="rating_breakdown" >Rating Breakdown</span>
+          {this.props.any_filters ? <span>Current filters: {filters} <span className="link" onClick={this.callClearFilters} >Remove all filters?</span></span>: null}
+          <ul className="star_count_list">{star_counts}</ul>
+          <ProductBreakdowns characteristics_list={characteristics_list}></ProductBreakdowns>
         </div>
       )
     }

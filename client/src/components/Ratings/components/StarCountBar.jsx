@@ -16,8 +16,12 @@ class StarCount extends React.Component {
 
   render(props) {
 
-    let star_count = this.props.star_count;
+    const star_count = this.props.star_count;
     const star_number = this.props.star_number;
+    const bar_style = {
+      width: star_count + '%'
+    }
+
 
     if (isNaN(star_count)) {
       return (
@@ -28,7 +32,7 @@ class StarCount extends React.Component {
     } else {
       return (
         <li>
-          <br></br><span className="star_bar_outer" onClick={this.flipFilter}>{star_number} stars</span><span className="star_bar" style={{width: parseInt(star_count)}}></span>
+          <br></br><span className="star_bar_outer" onClick={this.flipFilter}>{star_number} stars</span><span className="star_bar" style={bar_style}></span><span className="star_bar_under"></span>
         </li>
       );
     }
