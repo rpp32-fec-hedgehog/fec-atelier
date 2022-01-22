@@ -101,7 +101,7 @@ class AnswerQuestion extends React.Component {
         updatedPhotos.push(file.url);
 
         let updatedThumbnails = <div className="a-modal-thumbnails">{_.map(updatedPhotos, photo => {
-          return <img className="a-modal-thumbnail" key={photo} src={photo}></img>
+          return <img className="a-modal-thumbnail" key={photo} src={photo} alt="Answer Thumbnail" />
         })}</div>
 
         this.setState({photos: updatedPhotos, thumbnails: updatedThumbnails});
