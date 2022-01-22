@@ -160,15 +160,29 @@ class QA extends React.Component {
     })
   }
 
+  updateQuestions(question) {
+    if (this.state.loaded) {
+      let newQuestions = this.state.originalQuestions.slice();
+      newQuestions.push(question);
+      this.setState({
+        originalQuestions: newQuestions,
+        questions: newQuestions
+      });
+    }
+  }
+
   updateAnswers(question_id, answer) {
-    let questions = this.state.originalQuestions.slice();
-    _.each(questions, (q, index) => {
+    let newQuestions = this.state.originalQuestions.slice();
+    _.each(newQuestions, (q, index) => {
       if (q.question_id === question_id) {
-        questions[index]['answers'][answer.id] = answer;
+        newQuestions[index]['answers'][answer.id] = answer;
       }
     })
 
-    this.setState({originalQuestions: questions});
+    this.setState({
+      originalQuestions: newQuestions,
+      questions: newQuestions
+    });
   }
 
   componentDidMount() {
@@ -185,6 +199,7 @@ class QA extends React.Component {
         <Questions questions={state.questions} updateQHelp={this.updateQuestionHelp.bind(this)}
             updateAHelp={this.updateAnswerHelp.bind(this)}
             updateAnswers={this.updateAnswers.bind(this)}
+            updateQuestions={this.updateQuestions.bind(this)}
             getQAData={this.getQAData.bind(this)}
             product_id={this.props.itemid}
             product_name={this.state.product_name}

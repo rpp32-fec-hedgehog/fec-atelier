@@ -145,6 +145,7 @@ class Questions extends React.Component {
       {more}
       <AskQuestion key="ask-question" className="ask-question"
         getQAData={this.props.getQAData}
+        updateQuestions={this.props.updateQuestions}
         product_id={this.props.product_id}
         product_name={this.props.product_name}
         render={this.props.render} />
