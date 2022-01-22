@@ -83,7 +83,7 @@ class RatingsMeta extends React.Component {
             <div className="star_rating_container"><ul><StarRating className="ratings_breakdown_stars" star_rating={ratings_average}></StarRating></ul></div>
           </div><br></br><br></br><br></br>
           <span className="percent_recommending">{percent_recommending}% of reviews recommend this product.</span><br></br><br></br>
-          <h3>Rating Breakdown</h3>
+          <span className="rating_breakdown" >Rating Breakdown</span>
           {this.props.any_filters ? <span>Current filters: {filters} <span className="link" onClick={this.callClearFilters} >Remove all filters?</span></span>: null}
           <ul className="star_count_list">{star_counts}</ul>
           <ProductBreakdowns characteristics_list={characteristics_list}></ProductBreakdowns>

@@ -54,8 +54,7 @@ class IndividualReview extends React.Component {
       const putMarkHelpful = this.props.putMarkHelpful;
 
       return (
-        <div data-testid="individual-review" className="individual_review">
-          <li>
+          <li data-testid="individual-review" className="individual_review">
             <div>
               <span className="individual_star_rating"><StarRating star_rating={star_rating}></StarRating></span><span className="user_name_date">{reviewer_name}, {moment(date).format('LL')}</span>
             </div>
@@ -68,7 +67,6 @@ class IndividualReview extends React.Component {
           <br></br>
           <span>Helpful? {!this.state.helpfulClicked ? <span className="review_helpful" onClick={(e) => { chooseHelpful(review_id, e); this.updateHelpfulClicked();} }>Yes</span> : <span className="review_helpful">Yes</span>} ({helpful})</span>
           </li>
-        </div>
       )
     } else {
       return (<div></div>)

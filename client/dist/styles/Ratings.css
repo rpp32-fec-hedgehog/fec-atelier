@@ -15,6 +15,9 @@
   font-family: sans-serif;
 }
 
+.rating_breakdown {
+  font-size: x-large;
+}
 .visible_scrollbar {
   display: block;
   width: 100%;
