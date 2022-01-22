@@ -81,7 +81,7 @@ class QA extends React.Component {
         url: `/qa/questions/${this.props.itemid}/${this.state.page}`,
         method: 'GET',
         success: data => {
-          if (data.results.length < 4 && this.state.page !== 1) {
+          if (data.results.length < 3 && this.state.page !== 1) {
             this.setState({ loaded: true });
           } else {
             let newQuestions = _.flatten(this.state.originalQuestions.slice().concat(data.results));
@@ -179,7 +179,9 @@ class QA extends React.Component {
       }
     })
 
-    this.setState({originalQuestions: newQuestions});
+    this.setState({
+      originalQuestions: newQuestions
+    });
   }
 
   componentDidMount() {
