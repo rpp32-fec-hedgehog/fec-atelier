@@ -179,10 +179,7 @@ class QA extends React.Component {
       }
     })
 
-    this.setState({
-      originalQuestions: newQuestions,
-      questions: newQuestions
-    });
+    this.setState({originalQuestions: newQuestions});
   }
 
   componentDidMount() {
