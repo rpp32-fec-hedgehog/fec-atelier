@@ -100,14 +100,14 @@ class Questions extends React.Component {
     }
 
     return <div>
-      <a className="jumper" href=".questions"></a>
+      <a className="jumper" aria-label="jumper" href=".questions"></a>
       <div key="questions" className="questions" data-testid="questions" onScroll={this.handleScroll.bind(this)}>
         <ul className="q-base">
           {_.map(this.props.questions.slice(0, this.state.questionCount), q => {
-            return <div className="question" data-testid={q.question_body}
+            return <li className="question" data-testid={q.question_body}
               key={`${q.question_body}-${q.question_id}`}
             >
-              <li key={`q-${q.question_id}`}>
+              <div key={`q-${q.question_id}`}>
                 <div className="q-header">
                   <div>
                     <span className="q-label">Q:</span>
@@ -137,8 +137,8 @@ class Questions extends React.Component {
                     updateAHelp={this.props.updateAHelp}
                     render={this.props.render} />
                 </div>
-              </li>
-            </div>
+              </div>
+            </li>
           })}
         </ul>
       </div>
