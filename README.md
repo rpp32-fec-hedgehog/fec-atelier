@@ -116,17 +116,17 @@ Add an answer to the database.
 #### Ratings \& Reviews View
 Displays two ratings on load, more when requested.
 
-<img width="1000" alt="style" src="https://drive.google.com/file/d/1_pntAlI9RRbjnx90xPUTt_Nlg5B7RzKZ/view?usp=sharing">
+<img width="1000" alt="style" src="https://drive.google.com/uc?export=view&id=1_pntAlI9RRbjnx90xPUTt_Nlg5B7RzKZ">
 
 #### Sort
 Sorts reviews by relevance, newness and helpfulness (relevance is an average of newness & helpfulness scores.
 
-<img width="1000" alt="style" src="https://drive.google.com/file/d/1UaCr8goTM9kguraB4_45KfrCHjYPFFvz/view?usp=sharing">
+<img width="1000" alt="style" src="https://drive.google.com/uc?export=view&id=1UaCr8goTM9kguraB4_45KfrCHjYPFFvz">
 
 #### Add new review
 Adds a new review, and validates all fields before sending data to the server.
 
-<img width="1000" alt="style" src="https://drive.google.com/file/d/1HCBAhpHhAzdbNCSlQrru56RVLcK8IVd7/view?usp=sharing">
+<img width="1000" alt="style" src="https://drive.google.com/uc?export=view&id=1HCBAhpHhAzdbNCSlQrru56RVLcK8IVd7">
   
 ## Installation
 ```
