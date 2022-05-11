@@ -113,6 +113,21 @@ Add an answer to the database.
 |:--------:|:------:|:----------:|:-----:|
 |Rob Stafford|Ratings & Reviews Lead|<a href="https://www.linkedin.com/in/rob-stafford-dev/"><img alt="linkedin" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /><a/>|<a href="https://github.com/RobStafford"><img alt="github" src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /><a/>|
   
+#### Ratings\&Reviews View
+Displays two ratings on load, more when requested.
+
+![Ratings View](https://drive.google.com/file/d/1_pntAlI9RRbjnx90xPUTt_Nlg5B7RzKZ/view?usp=sharing)
+
+#### Sort
+Sorts reviews by relevance, newness and helpfulness (relevance is an average of newness & helpfulness scores.
+
+![Sort](https://drive.google.com/file/d/1UaCr8goTM9kguraB4_45KfrCHjYPFFvz/view?usp=sharing)
+
+#### Add new review
+Adds a new review, and validates all fields before sending data to the server.
+
+![Add New Review](https://drive.google.com/file/d/1HCBAhpHhAzdbNCSlQrru56RVLcK8IVd7/view?usp=sharing)
+  
 ## Installation
 ```
 npm install
