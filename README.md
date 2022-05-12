@@ -126,7 +126,7 @@ Sorts reviews by relevance, newness and helpfulness (relevance is an average of 
 #### Filter
 Filter reviews by star rating.
 
-<img width="1000" alt="style" src="https://drive.google.com/file/d/1Qjra6JTBeA_XFyD0NUzmtDZm8yYMyvIz">
+<img width="1000" alt="style" src="https://drive.google.com/uc?export=view&id=1Qjra6JTBeA_XFyD0NUzmtDZm8yYMyvIz">
   
 #### Add new review
 Adds a new review, and validates all fields before sending data to the server.
